@@ -24,7 +24,7 @@
         android:layout_height="0dp"
         android:layout_weight="1" />
 
-    <fragment android:name="com.google.android.apps.iosched.ui.WhatsOnFragment"
+    <fragment android:name="com.funkyandroid.droidcon.uk.iosched.ui.WhatsOnFragment"
         android:id="@+id/fragment_whats_on"
         android:layout_width="match_parent"
         android:layout_height="@dimen/whats_on_height" />

@@ -14,14 +14,14 @@
   limitations under the License.
   -->
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:iosched="http://schemas.android.com/apk/res/com.google.android.apps.iosched"
+    xmlns:iosched="http://schemas.android.com/apk/res/com.funkyandroid.droidcon.uk.iosched"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/element_spacing_normal"
     android:layout_marginBottom="@dimen/element_spacing_normal">
 
-    <com.google.android.apps.iosched.ui.widget.BezelImageView android:id="@+id/speaker_image"
+    <com.funkyandroid.droidcon.uk.iosched.ui.widget.BezelImageView android:id="@+id/speaker_image"
         style="@style/SpeakerDetailImage"
         iosched:maskDrawable="@drawable/circle_mask"
         iosched:borderDrawable="@drawable/circle_border"

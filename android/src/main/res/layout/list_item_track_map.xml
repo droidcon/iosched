@@ -14,7 +14,7 @@
   limitations under the License.
   -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:iosched="http://schemas.android.com/apk/res/com.google.android.apps.iosched"
+    xmlns:iosched="http://schemas.android.com/apk/res/com.funkyandroid.droidcon.uk.iosched"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical">
@@ -25,7 +25,7 @@
         android:layout_height="?android:listPreferredItemHeight"
         android:foreground="?activatableItemBackground">
 
-        <com.google.android.apps.iosched.ui.widget.BezelImageView
+        <com.funkyandroid.droidcon.uk.iosched.ui.widget.BezelImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:src="@drawable/map_background"

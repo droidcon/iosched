@@ -17,9 +17,9 @@
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.google.android.apps.iosched"
-    android:versionCode="110"
-    android:versionName="1.1.0"
+    package="com.funkyandroid.droidcon.uk.iosched"
+    android:versionCode="201301"
+    android:versionName="2013.01"
     android:installLocation="auto">
 
     <uses-sdk
@@ -27,7 +27,7 @@
         android:targetSdkVersion="18" />
 
     <permission
-        android:name="com.google.android.apps.iosched.permission.WRITE_SCHEDULE"
+        android:name="com.funkyandroid.droidcon.uk.iosched.permission.WRITE_SCHEDULE"
         android:protectionLevel="normal"
         android:label="@string/permission_write"
         android:description="@string/permission_write" />
@@ -53,16 +53,16 @@
     <uses-permission
             android:name="com.google.android.c2dm.permission.RECEIVE" />
     <permission
-            android:name="com.google.android.apps.iosched.permission.C2D_MESSAGE"
+            android:name="com.funkyandroid.droidcon.uk.iosched.permission.C2D_MESSAGE"
             android:protectionLevel="signature" />
     <uses-permission
-            android:name="com.google.android.apps.iosched.permission.C2D_MESSAGE" />
+            android:name="com.funkyandroid.droidcon.uk.iosched.permission.C2D_MESSAGE" />
 
     <!-- required for MapView v2 -->
     <permission
-        android:name="com.google.android.apps.iosched.permission.MAPS_RECEIVE"
+        android:name="com.funkyandroid.droidcon.uk.iosched.permission.MAPS_RECEIVE"
         android:protectionLevel="signature"/>
-    <uses-permission android:name="com.google.android.apps.iosched.permission.MAPS_RECEIVE"/>
+    <uses-permission android:name="com.funkyandroid.droidcon.uk.iosched.permission.MAPS_RECEIVE"/>
     <uses-feature
         android:glEsVersion="0x00020000"
         android:required="true"/>
@@ -182,13 +182,13 @@
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="vnd.android.cursor.dir/vnd.iosched.session" />
+                <data android:mimeType="vnd.android.cursor.dir/vnd.droiconuk.session" />
             </intent-filter>
             <!-- HomeActivity and not TrackDetailActivity is the parent because SessionsActivity
               is not used to show sessions for a given track. -->
             <meta-data android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.HomeActivity" />
-            <meta-data android:name="com.google.android.apps.iosched.meta.TARGET_FORM_FACTOR"
+            <meta-data android:name="com.funkyandroid.droidcon.uk.iosched.meta.TARGET_FORM_FACTOR"
                 android:value="handset" />
         </activity>
 
@@ -204,7 +204,7 @@
             </intent-filter>
             <meta-data android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.HomeActivity" />
-            <meta-data android:name="com.google.android.apps.iosched.meta.TARGET_FORM_FACTOR"
+            <meta-data android:name="com.funkyandroid.droidcon.uk.iosched.meta.TARGET_FORM_FACTOR"
                 android:value="handset" />
         </activity>
 
@@ -235,7 +235,7 @@
             <!-- PARENT_ACTIVITY alone is insufficient for Up navigation for this activity -->
             <meta-data android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.phone.SessionsActivity" />
-            <meta-data android:name="com.google.android.apps.iosched.meta.TARGET_FORM_FACTOR"
+            <meta-data android:name="com.funkyandroid.droidcon.uk.iosched.meta.TARGET_FORM_FACTOR"
                 android:value="handset" />
         </activity>
 
@@ -263,7 +263,7 @@
             <!-- PARENT_ACTIVITY alone is insufficient for Up navigation for this activity -->
             <meta-data android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.phone.TrackDetailActivity" />
-            <meta-data android:name="com.google.android.apps.iosched.meta.TARGET_FORM_FACTOR"
+            <meta-data android:name="com.funkyandroid.droidcon.uk.iosched.meta.TARGET_FORM_FACTOR"
                 android:value="handset" />
         </activity>
 
@@ -274,7 +274,7 @@
             android:parentActivityName=".ui.HomeActivity">
             <meta-data android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.HomeActivity" />
-            <meta-data android:name="com.google.android.apps.iosched.meta.TARGET_FORM_FACTOR"
+            <meta-data android:name="com.funkyandroid.droidcon.uk.iosched.meta.TARGET_FORM_FACTOR"
                 android:value="handset" />
         </activity>
 
@@ -330,7 +330,7 @@
             </intent-filter>
             <meta-data android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.HomeActivity" />
-            <meta-data android:name="com.google.android.apps.iosched.meta.TARGET_FORM_FACTOR"
+            <meta-data android:name="com.funkyandroid.droidcon.uk.iosched.meta.TARGET_FORM_FACTOR"
                 android:value="tablet" />
         </activity>
 
@@ -341,7 +341,7 @@
             android:parentActivityName=".ui.HomeActivity">
             <meta-data android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.HomeActivity" />
-            <meta-data android:name="com.google.android.apps.iosched.meta.TARGET_FORM_FACTOR"
+            <meta-data android:name="com.funkyandroid.droidcon.uk.iosched.meta.TARGET_FORM_FACTOR"
                 android:value="tablet" />
         </activity>
 
@@ -355,7 +355,7 @@
         <receiver android:name=".receiver.SessionAlarmReceiver" >
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
-                <action android:name="com.google.android.apps.iosched.action.UPDATE_CALENDAR_COMPLETED" />
+                <action android:name="com.funkyandroid.droidcon.uk.iosched.action.UPDATE_CALENDAR_COMPLETED" />
             </intent-filter>
         </receiver>
 
@@ -375,7 +375,7 @@
                 <action android:name="com.google.android.c2dm.intent.RECEIVE" />
                 <!-- Receives the registration id. -->
                 <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
-                <category android:name="com.google.android.apps.iosched" />
+                <category android:name="com.funkyandroid.droidcon.uk.iosched" />
             </intent-filter>
         </receiver>
 
@@ -392,8 +392,8 @@
 
         <provider
             android:name=".provider.ScheduleProvider"
-            android:authorities="com.google.android.apps.iosched"
-            android:writePermission="com.google.android.apps.iosched.permission.WRITE_SCHEDULE"
+            android:authorities="com.funkyandroid.droidcon.uk.iosched"
+            android:writePermission="com.funkyandroid.droidcon.uk.iosched.permission.WRITE_SCHEDULE"
             android:syncable="true"
             android:label="@string/app_name"
             android:exported="true" />

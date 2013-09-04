@@ -26,7 +26,7 @@
         Caused by: java.lang.IllegalStateException: Fragment ....WhatsOnFragment did not
                 create a view.
     -->
-    <fragment android:name="com.google.android.apps.iosched.ui.WhatsOnFragment"
+    <fragment android:name="com.funkyandroid.droidcon.uk.iosched.ui.WhatsOnFragment"
         android:id="@+id/fragment_whats_on"
         android:layout_width="match_parent"
         android:layout_height="0dp"

@@ -75,7 +75,7 @@
 
     </FrameLayout>
 
-    <com.google.android.apps.iosched.ui.widget.EllipsizedTextView
+    <com.funkyandroid.droidcon.uk.iosched.ui.widget.EllipsizedTextView
         style="@style/MapInfoTextSub"
         android:id="@+id/map_info_sandbox_now"
         android:layout_width="@dimen/map_infowindow_width"

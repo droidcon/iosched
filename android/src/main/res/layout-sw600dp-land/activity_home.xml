@@ -38,13 +38,13 @@
             android:layout_weight="1"
             android:layout_margin="@dimen/multipane_half_padding"
             android:background="@drawable/grey_frame">
-            <fragment android:name="com.google.android.apps.iosched.ui.ScheduleFragment"
+            <fragment android:name="com.funkyandroid.droidcon.uk.iosched.ui.ScheduleFragment"
                 android:id="@+id/fragment_my_schedule"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </FrameLayout>
 
-        <fragment android:name="com.google.android.apps.iosched.ui.WhatsOnFragment"
+        <fragment android:name="com.funkyandroid.droidcon.uk.iosched.ui.WhatsOnFragment"
             android:id="@+id/fragment_whats_on"
             android:layout_width="match_parent"
             android:layout_height="@dimen/whats_on_height"
@@ -68,7 +68,7 @@
             android:layout_weight="1"
             android:layout_margin="@dimen/multipane_half_padding"
             android:background="@drawable/grey_frame">
-            <fragment android:name="com.google.android.apps.iosched.ui.ExploreFragment"
+            <fragment android:name="com.funkyandroid.droidcon.uk.iosched.ui.ExploreFragment"
                 android:id="@+id/fragment_tracks"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
@@ -91,7 +91,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:layout_margin="@dimen/multipane_half_padding">
-            <fragment android:name="com.google.android.apps.iosched.ui.SocialStreamFragment"
+            <fragment android:name="com.funkyandroid.droidcon.uk.iosched.ui.SocialStreamFragment"
                 android:id="@+id/fragment_stream"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />

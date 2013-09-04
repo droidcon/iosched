@@ -32,7 +32,7 @@
             android:layout_marginBottom="@dimen/multipane_padding"
             android:background="@drawable/grey_frame_on_white">
 
-            <fragment android:name="com.google.android.apps.iosched.ui.tablet.TracksDropdownFragment"
+            <fragment android:name="com.funkyandroid.droidcon.uk.iosched.ui.tablet.TracksDropdownFragment"
                 android:id="@+id/fragment_tracks_dropdown"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/thickbar_height" />

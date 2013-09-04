@@ -13,7 +13,7 @@
   See the License for the specific language governing permissions and
   limitations under the License.
   -->
-<com.google.android.apps.iosched.ui.widget.CheckableFrameLayout
+<com.funkyandroid.droidcon.uk.iosched.ui.widget.CheckableFrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -43,4 +43,4 @@
             android:layout_height="wrap_content"
             style="@style/ListItemSubtitle" />
     </LinearLayout>
-</com.google.android.apps.iosched.ui.widget.CheckableFrameLayout>
+</com.funkyandroid.droidcon.uk.iosched.ui.widget.CheckableFrameLayout>
