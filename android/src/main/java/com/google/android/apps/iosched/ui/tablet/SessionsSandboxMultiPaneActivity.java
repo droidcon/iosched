@@ -437,7 +437,6 @@ public class SessionsSandboxMultiPaneActivity extends BaseActivity implements
                 break;
         }
 
-        EasyTracker.getTracker().sendView(trackType + ": " + getTitle());
         LOGD("Tracker", trackType + ": " + mTracksDropdownFragment.getTrackName());
     }
 
