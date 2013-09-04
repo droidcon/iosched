@@ -24,7 +24,6 @@ import android.os.Bundle;
 import android.os.RemoteException;
 import android.preference.PreferenceManager;
 
-import com.google.analytics.tracking.android.GAServiceManager;
 import com.google.android.apps.iosched.Config;
 import com.google.android.apps.iosched.R;
 import com.google.android.apps.iosched.io.*;
@@ -179,7 +178,6 @@ public class SyncHelper {
                     ++syncResult.stats.numUpdates; // TODO: better way of indicating progress?
                     ++syncResult.stats.numEntries;
                 }
-                GAServiceManager.getInstance().dispatch();
 
                 // Sync feedback stuff
                 LOGI(TAG, "Syncing session feedback");

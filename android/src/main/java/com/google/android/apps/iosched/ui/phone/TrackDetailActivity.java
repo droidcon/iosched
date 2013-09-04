@@ -18,7 +18,6 @@ package com.google.android.apps.iosched.ui.phone;
 
 import android.view.Menu;
 import android.view.MenuItem;
-import com.google.analytics.tracking.android.EasyTracker;
 import com.google.android.apps.iosched.R;
 import com.google.android.apps.iosched.provider.ScheduleContract;
 import com.google.android.apps.iosched.ui.*;
@@ -121,7 +120,6 @@ public class TrackDetailActivity extends BaseActivity implements
         }
         
         String title = getString(titleId);
-        EasyTracker.getTracker().sendView(title + ": " + getTitle());
         LOGD("Tracker", title + ": " + getTitle());
     }
 

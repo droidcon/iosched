@@ -43,7 +43,6 @@ import android.view.*;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.google.analytics.tracking.android.EasyTracker;
 import com.google.android.apps.iosched.R;
 import com.google.android.apps.iosched.provider.ScheduleContract;
 import com.google.android.apps.iosched.util.PrefUtils;
@@ -311,7 +310,6 @@ public class SessionsFragment extends ListFragment implements
                     if (title == null) {
                         title = (String) this.getActivity().getTitle();
                     }
-                    EasyTracker.getTracker().sendView("Session Block: " + title);
                     LOGD("Tracker", "Session Block: " + title);
                 }
             }
@@ -359,8 +357,6 @@ public class SessionsFragment extends ListFragment implements
                 helper.startMapActivity(roomId);
 
                 String title = cursor.getString(SessionsQuery.TITLE);
-                EasyTracker.getTracker().sendEvent(
-                        "Session", "Mapped", title, 0L);
                 LOGV(TAG, "Starred: " + title);
                 
                 return true;
@@ -378,8 +374,6 @@ public class SessionsFragment extends ListFragment implements
                     starred = cursor.getInt(SessionsQuery.STARRED) == 0;
                     helper.setSessionStarred(sessionUri, starred, title);
                     ++numChanged;
-                    EasyTracker.getTracker().sendEvent(
-                            "Session", starred ? "Starred" : "Unstarred", title, 0L);
                     LOGV(TAG, "Starred: " + title);
                 }
                 Toast.makeText(

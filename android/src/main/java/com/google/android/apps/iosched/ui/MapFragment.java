@@ -47,7 +47,6 @@ import android.view.ViewTreeObserver;
 import android.widget.Button;
 import android.widget.FrameLayout;
 
-import com.google.analytics.tracking.android.EasyTracker;
 import com.google.android.apps.iosched.R;
 import com.google.android.apps.iosched.provider.ScheduleContract;
 import com.google.android.apps.iosched.util.MapUtils;
@@ -173,7 +172,6 @@ public class MapFragment extends SupportMapFragment implements
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        EasyTracker.getTracker().sendView("Map");
         LOGD("Tracker", "Map");
 
         clearMap();
@@ -418,15 +416,11 @@ public class MapFragment extends SupportMapFragment implements
         final String snippet = marker.getSnippet();
         if (TYPE_SESSION.equals(snippet)) {
             final String roomId = marker.getTitle();
-            EasyTracker.getTracker().sendEvent(
-                    "Map", "infoclick", roomId, 0L);
             mCallbacks.onSessionRoomSelected(roomId, mMarkers.get(roomId).label);
             // ignore other markers
         } else if (TYPE_SANDBOX.equals(snippet)) {
             final String roomId = marker.getTitle();
             MarkerModel model = mMarkers.get(roomId);
-            EasyTracker.getTracker().sendEvent(
-                    "Map", "infoclick", roomId, 0L);
             mCallbacks.onSandboxRoomSelected(model.track, model.label);
         }
 
@@ -441,8 +435,6 @@ public class MapFragment extends SupportMapFragment implements
         if (TYPE_SESSION.equals(snippet)) {
             // ignore other markers - sandbox is just another session type
 
-            EasyTracker.getTracker().sendEvent(
-                    "Map", "markerclick", roomId, 0L);
             final long time = UIUtils.getCurrentTime(getActivity());
             Uri uri = ScheduleContract.Sessions.buildSessionsInRoomAfterUri(roomId, time);
             final String order = ScheduleContract.Sessions.BLOCK_START + " ASC";
@@ -451,8 +443,6 @@ public class MapFragment extends SupportMapFragment implements
                     SessionAfterQuery.PROJECTION, null, null, order);
         } else if (TYPE_SANDBOX.equals(snippet)) {
             // get the room id
-            EasyTracker.getTracker().sendEvent(
-                    "Map", "markerclick", roomId, 0L);
             final long time = UIUtils.getCurrentTime(getActivity());
             String selection = ScheduleContract.Sandbox.AT_TIME_IN_ROOM_SELECTION;
 

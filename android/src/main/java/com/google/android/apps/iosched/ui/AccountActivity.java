@@ -41,7 +41,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.analytics.tracking.android.EasyTracker;
 import com.google.android.apps.iosched.R;
 import com.google.android.apps.iosched.provider.ScheduleContract;
 import com.google.android.apps.iosched.sync.SyncHelper;
@@ -309,15 +308,11 @@ public class AccountActivity extends ActionBarActivity
                                 .addToBackStack("setup_attendee")
                                 .commit();
                     }
-                    EasyTracker.getTracker()
-                            .setCustomDimension(ATCONF_DIMEN_INDEX,"conference attendee");
 
                 } else if (position == 1) {
                     // Attendee is remote.  Set up is done.
                     PrefUtils.setAttendeeAtVenue(activity, false);
                     PrefUtils.setUsingLocalTime(activity, true);
-                    EasyTracker.getTracker()
-                            .setCustomDimension(ATCONF_DIMEN_INDEX,"remote attendee");
                     ((AccountActivity)activity).finishSetup();
                 }
             } else if (mSetupId == SETUP_WIFI) {

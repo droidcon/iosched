@@ -35,7 +35,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
-import com.google.analytics.tracking.android.EasyTracker;
 import com.google.android.apps.iosched.R;
 import com.google.android.apps.iosched.provider.ScheduleContract;
 import com.google.android.apps.iosched.ui.TracksAdapter.TracksQuery;
@@ -102,8 +101,6 @@ public class ExploreFragment extends ListFragment implements
             @Override
             public void onClick(View view) {
                 // Launch map of conference venue
-                EasyTracker.getTracker().sendEvent(
-                        "Explore Tab", "Click", "Map", 0L);
                 startActivity(new Intent(context,
                         UIUtils.getMapActivityClass(getActivity())));
             }

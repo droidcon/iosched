@@ -24,7 +24,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 
-import com.google.analytics.tracking.android.EasyTracker;
 import com.google.android.apps.iosched.R;
 import com.google.android.apps.iosched.util.*;
 
@@ -39,7 +38,6 @@ public abstract class BaseActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EasyTracker.getInstance().setContext(this);
         if (!AccountUtils.isAuthenticated(this) || !PrefUtils.isSetupDone(this)) {
             LogUtils.LOGD(TAG, "exiting:"
                     + " isAuthenticated=" + AccountUtils.isAuthenticated(this)
@@ -123,17 +121,5 @@ public abstract class BaseActivity extends ActionBarActivity {
         intent.putExtras(arguments);
         intent.removeExtra("_uri");
         return intent;
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        EasyTracker.getInstance().activityStart(this);
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        EasyTracker.getInstance().activityStop(this);
     }
 }

@@ -361,16 +361,6 @@
 
         <service android:name=".service.SessionAlarmService" />
 
-        <!-- Used for install referral measurement-->
-        <service android:name="com.google.analytics.tracking.android.CampaignTrackingService" />
-        <receiver
-            android:name="com.google.analytics.tracking.android.CampaignTrackingReceiver"
-            android:exported="true">
-            <intent-filter>
-                <action android:name="com.android.vending.INSTALL_REFERRER" />
-            </intent-filter>
-        </receiver>
-
         <!--
           BroadcastReceiver that will receive the C2DM messages from GCM
           services and handle them to the custom IntentService.

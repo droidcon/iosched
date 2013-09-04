@@ -33,7 +33,6 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.google.analytics.tracking.android.EasyTracker;
 import com.google.android.apps.iosched.Config;
 import com.google.android.apps.iosched.R;
 import com.google.android.apps.iosched.util.ImageLoader;
@@ -190,7 +189,6 @@ public class SocialStreamFragment extends ListFragment implements
 
                 startActivity(intent);
 
-                EasyTracker.getTracker().sendEvent("Home Screen Dashboard", "Click", "Post to G+", 0L);
                 LOGD("Tracker", "Home Screen Dashboard: Click, post to g+");
 
                 return true;

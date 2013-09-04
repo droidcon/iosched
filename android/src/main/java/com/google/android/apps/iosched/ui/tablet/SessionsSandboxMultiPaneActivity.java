@@ -34,7 +34,6 @@ import android.widget.BaseAdapter;
 import android.widget.SearchView;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
-import com.google.analytics.tracking.android.EasyTracker;
 import com.google.android.apps.iosched.R;
 import com.google.android.apps.iosched.provider.ScheduleContract;
 import com.google.android.apps.iosched.ui.*;
@@ -124,8 +123,6 @@ public class SessionsSandboxMultiPaneActivity extends BaseActivity implements
         mImageLoader = new ImageLoader(this, R.drawable.person_image_empty)
                 .setMaxImageSize(getResources().getDimensionPixelSize(R.dimen.speaker_image_size))
                 .setFadeInImage(UIUtils.hasHoneycombMR1());
-
-        EasyTracker.getInstance().setContext(this);
     }
 
     private void routeIntent(Intent intent, boolean updateSurfaceOnly) {

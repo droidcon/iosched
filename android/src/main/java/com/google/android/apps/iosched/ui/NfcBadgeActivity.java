@@ -24,8 +24,6 @@ import android.nfc.NdefRecord;
 import android.nfc.NfcAdapter;
 import android.nfc.Tag;
 import android.nfc.tech.Ndef;
-import android.os.Bundle;
-import com.google.analytics.tracking.android.EasyTracker;
 
 import java.util.Arrays;
 
@@ -39,32 +37,16 @@ public class NfcBadgeActivity extends Activity {
     @Override
     public void onStart() {
         super.onStart();
-        EasyTracker.getInstance().activityStart(this);
         // Check for NFC data
         Intent i = getIntent();
         if (NfcAdapter.ACTION_NDEF_DISCOVERED.equals(i.getAction())) {
             LOGI(TAG, "Badge detected");
-            EasyTracker.getTracker().sendEvent("NFC", "Read", "Badge", null);
             readTag((Tag) i.getParcelableExtra(NfcAdapter.EXTRA_TAG));
         }
         finish();
     }
 
-    @Override
-    public void onStop() {
-        super.onStop();
-        EasyTracker.getInstance().activityStop(this);
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        EasyTracker.getInstance().setContext(this);
-    }
-
     private void readTag(Tag t) {
-        byte[] id = t.getId();
-
         // get NDEF tag details
         Ndef ndefTag = Ndef.get(t);
 

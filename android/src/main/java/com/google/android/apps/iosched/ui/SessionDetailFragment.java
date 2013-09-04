@@ -43,7 +43,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.google.analytics.tracking.android.EasyTracker;
 import com.google.android.apps.iosched.R;
 import com.google.android.apps.iosched.provider.ScheduleContract;
 import com.google.android.apps.iosched.service.SessionAlarmService;
@@ -465,7 +464,6 @@ public class SessionDetailFragment extends Fragment implements
                 mSessionBlockStart, mSessionBlockEnd, hasLivestream,
                 null, mSubtitle, subtitle);
 
-        EasyTracker.getTracker().sendView("Session: " + mTitleString);
         LOGD("Tracker", "Session: " + mTitleString);
     }
 
@@ -692,8 +690,6 @@ public class SessionDetailFragment extends Fragment implements
         SessionsHelper helper = new SessionsHelper(getActivity());
         switch (item.getItemId()) {
             case R.id.menu_map:
-                EasyTracker.getTracker().sendEvent(
-                        "Session", "Map", mTitleString, 0L);
                 LOGD("Tracker", "Map: " + mTitleString);
 
                 helper.startMapActivity(mRoomId);
@@ -711,8 +707,6 @@ public class SessionDetailFragment extends Fragment implements
                 return true;
 
             case R.id.menu_social_stream:
-                EasyTracker.getTracker().sendEvent(
-                        "Session", "Stream", mTitleString, 0L);
                 LOGD("Tracker", "Stream: " + mTitleString);
 
                 helper.startSocialStream(mHashtags);
@@ -737,7 +731,6 @@ public class SessionDetailFragment extends Fragment implements
      * Value -> 0.
      */
     void fireLinkEvent(int actionId) {
-        EasyTracker.getTracker().sendEvent("Session", getString(actionId), mTitleString, 0L);
         LOGD("Tracker", getString(actionId) + ": " + mTitleString);
     }
 
@@ -745,8 +738,6 @@ public class SessionDetailFragment extends Fragment implements
         SessionsHelper helper = new SessionsHelper(getActivity());
         showStarred(star, allowAnimate);
         helper.setSessionStarred(mSessionUri, star, mTitleString);
-        EasyTracker.getTracker().sendEvent(
-                "Session", star ? "Starred" : "Unstarred", mTitleString, 0L);
         LOGD("Tracker", (star ? "Starred: " : "Unstarred: ") + mTitleString);
     }
     /**

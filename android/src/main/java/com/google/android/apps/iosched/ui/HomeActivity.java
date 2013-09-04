@@ -37,7 +37,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.SearchView;
 
-import com.google.analytics.tracking.android.EasyTracker;
 import com.google.android.apps.iosched.Config;
 import com.google.android.apps.iosched.R;
 import com.google.android.apps.iosched.gcm.ServerUtilities;
@@ -117,7 +116,6 @@ public class HomeActivity extends BaseActivity implements
         }
         getSupportActionBar().setHomeButtonEnabled(false);
 
-        EasyTracker.getTracker().sendView(homeScreenLabel);
         LOGD("Tracker", homeScreenLabel);
 
         // Sync data on load
@@ -222,9 +220,7 @@ public class HomeActivity extends BaseActivity implements
         }
 
         String title = getString(titleId);
-        EasyTracker.getTracker().sendView(title);
         LOGD("Tracker", title);
-
     }
 
     @Override

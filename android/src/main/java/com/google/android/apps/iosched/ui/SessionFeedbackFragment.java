@@ -16,7 +16,6 @@
 
 package com.google.android.apps.iosched.ui;
 
-import com.google.analytics.tracking.android.EasyTracker;
 import com.google.android.apps.iosched.R;
 import com.google.android.apps.iosched.provider.ScheduleContract;
 import com.google.android.apps.iosched.provider.ScheduleContract.Feedback;
@@ -40,9 +39,6 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static com.google.android.apps.iosched.util.LogUtils.LOGD;
 import static com.google.android.apps.iosched.util.LogUtils.makeLogTag;
@@ -142,7 +138,6 @@ public class SessionFeedbackFragment extends Fragment implements
                     @Override
                     public void onClick(View view) {
                         submitAllFeedback();
-                        EasyTracker.getTracker().sendEvent("Session", "Feedback", mTitleString, 0L);
                         LOGD("Tracker", "Feedback: " + mTitleString);
                         getActivity().finish();
                     }
@@ -189,7 +184,6 @@ public class SessionFeedbackFragment extends Fragment implements
         // Format time block this session occupies
         mTitle.setText(mTitleString);
 
-        EasyTracker.getTracker().sendView("Feedback: " + mTitleString);
         LOGD("Tracker", "Feedback: " + mTitleString);
     }
 

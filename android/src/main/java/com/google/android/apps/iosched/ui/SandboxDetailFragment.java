@@ -36,7 +36,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.google.analytics.tracking.android.EasyTracker;
 import com.google.android.apps.iosched.R;
 import com.google.android.apps.iosched.provider.ScheduleContract;
 import com.google.android.apps.iosched.util.ImageLoader;
@@ -141,8 +140,6 @@ public class SandboxDetailFragment extends Fragment implements
         switch (item.getItemId()) {
             case R.id.menu_map:
                 if (mRoomId != null && mCompanyName != null) {
-                    EasyTracker.getTracker().sendEvent(
-                            "Sandbox", "Map", mCompanyName, 0L);
                     LOGD("Tracker", "Map: " + mCompanyName);
 
                     helper.startMapActivity(mRoomId);
@@ -203,7 +200,6 @@ public class SandboxDetailFragment extends Fragment implements
         mDesc.setText(cursor.getString(SandboxQuery.DESC));
 
         String trackId = cursor.getString(SandboxQuery.TRACK_ID);
-        EasyTracker.getTracker().sendView("Sandbox Company: " + mCompanyName);
         LOGD("Tracker", "Sandbox Company: " + mCompanyName);
 
         mCallbacks.onTrackIdAvailable(trackId);

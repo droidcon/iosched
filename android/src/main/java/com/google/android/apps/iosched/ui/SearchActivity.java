@@ -30,7 +30,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.SearchView;
 
-import com.google.analytics.tracking.android.EasyTracker;
 import com.google.android.apps.iosched.R;
 import com.google.android.apps.iosched.provider.ScheduleContract;
 import com.google.android.apps.iosched.provider.ScheduleContract.Sessions;
@@ -94,7 +93,6 @@ public class SearchActivity extends BaseActivity implements
         mSessionsFragment.reloadFromArguments(intentToFragmentArguments(
                 new Intent(Intent.ACTION_VIEW, Sessions.buildSearchUri(query))));
 
-        EasyTracker.getTracker().sendView("Search: " + query);
         LOGD("Tracker", "Search: " + query);
         
         updateDetailBackground();

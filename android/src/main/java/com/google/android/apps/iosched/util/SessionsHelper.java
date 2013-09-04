@@ -29,7 +29,6 @@ import android.view.ActionProvider;
 import android.view.MenuItem;
 import android.widget.ShareActionProvider;
 
-import com.google.analytics.tracking.android.EasyTracker;
 import com.google.android.apps.iosched.R;
 import com.google.android.apps.iosched.appwidget.ScheduleWidgetProvider;
 import com.google.android.apps.iosched.provider.ScheduleContract;
@@ -86,7 +85,6 @@ public final class SessionsHelper {
                     new ShareActionProvider.OnShareTargetSelectedListener() {
                         @Override
                         public boolean onShareTargetSelected(ShareActionProvider source, Intent intent) {
-                            EasyTracker.getTracker().sendEvent("Session", "Shared", title, 0L);
                             LOGD("Tracker", "Shared: " + title);
                             return false;
                         }
@@ -98,7 +96,6 @@ public final class SessionsHelper {
 
     public void shareSession(Context context, int messageTemplateResId, String title,
             String hashtags, String url) {
-        EasyTracker.getTracker().sendEvent("Session", "Shared", title, 0L);
         LOGD("Tracker", "Shared: " + title);
         context.startActivity(Intent.createChooser(
                 createShareIntent(messageTemplateResId, title, hashtags, url),
@@ -115,9 +112,6 @@ public final class SessionsHelper {
                 new AsyncQueryHandler(mActivity.getContentResolver()) {
                 };
         handler.startUpdate(-1, null, sessionUri, values, null, null);
-
-        EasyTracker.getTracker().sendEvent(
-                "Session", starred ? "Starred" : "Unstarred", title, 0L);
 
         // Because change listener is set to null during initialization, these
         // won't fire on pageview.

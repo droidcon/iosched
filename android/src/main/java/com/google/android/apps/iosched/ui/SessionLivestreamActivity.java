@@ -55,7 +55,6 @@ import android.widget.TabWidget;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.analytics.tracking.android.EasyTracker;
 import com.google.android.apps.iosched.Config;
 import com.google.android.apps.iosched.R;
 import com.google.android.apps.iosched.provider.ScheduleContract;
@@ -642,7 +641,6 @@ public class SessionLivestreamActivity extends BaseActivity implements
         playVideo(youtubeVideoId);
 
         if (mTrackPlay) {
-            EasyTracker.getTracker().sendView("Live Streaming: " + title);
             LOGD("Tracker", "Live Streaming: " + title);
         }
 
