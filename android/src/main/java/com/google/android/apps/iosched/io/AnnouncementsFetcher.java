@@ -28,9 +28,6 @@ import com.google.api.client.googleapis.services.CommonGoogleClientRequestInitia
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.JsonFactory;
-import com.google.api.services.plus.Plus;
-import com.google.api.services.plus.model.Activity;
-import com.google.api.services.plus.model.ActivityFeed;
 
 import android.content.ContentProviderOperation;
 import android.content.Context;
@@ -59,6 +56,8 @@ public class AnnouncementsFetcher {
         JsonFactory jsonFactory = new AndroidJsonFactory();
 
         // Set up the main Google+ class
+        /*
+            TODO: Replace with Facebook or Twitter
         Plus plus = new Plus.Builder(httpTransport, jsonFactory, null)
                 .setApplicationName(NetUtils.getUserAgent(mContext))
                 .setGoogleClientRequestInitializer(
@@ -114,6 +113,8 @@ public class AnnouncementsFetcher {
         }
 
         return batch;
+         */
+        return null;
     }
 
     private static void appendIfNotEmpty(StringBuilder sb, String s) {

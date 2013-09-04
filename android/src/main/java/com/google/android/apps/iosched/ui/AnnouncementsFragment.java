@@ -18,11 +18,10 @@ package com.google.android.apps.iosched.ui;
 
 import com.google.android.apps.iosched.R;
 import com.google.android.apps.iosched.provider.ScheduleContract;
-import com.google.android.apps.iosched.util.ImageLoader;
+import com.google.android.apps.iosched.social.Tweet;
 import com.google.android.apps.iosched.util.UIUtils;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 import com.google.api.client.json.JsonFactory;
-import com.google.api.services.plus.model.Activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -67,14 +66,9 @@ public class AnnouncementsFragment extends ListFragment implements
     private int mListViewStatePosition;
     private int mListViewStateTop;
 
-    private ImageLoader mImageLoader;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        mImageLoader =
-                PlusStreamRowViewBinder.getPlusStreamImageLoader(getActivity(), getResources());
 
         mCursor = null;
         mStreamAdapter = new StreamAdapter(getActivity());
@@ -162,9 +156,9 @@ public class AnnouncementsFragment extends ListFragment implements
     public void onScrollStateChanged(AbsListView listView, int scrollState) {
         // Pause disk cache access to ensure smoother scrolling
         if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_FLING) {
-            mImageLoader.stopProcessingQueue();
+//            mImageLoader.stopProcessingQueue();
         } else {
-            mImageLoader.startProcessingQueue();
+// TODO : Look at image loading            mImageLoader.startProcessingQueue();
         }
     }
 
@@ -196,7 +190,7 @@ public class AnnouncementsFragment extends ListFragment implements
 
     private class StreamAdapter extends CursorAdapter {
         private JsonFactory mFactory = new AndroidJsonFactory();
-        private Map<Long, Activity> mActivityCache = new HashMap<Long, Activity>();
+        private Map<Long, Tweet> mActivityCache = new HashMap<Long, Tweet>();
 
         public StreamAdapter(Context context) {
             super(context, null, 0);
@@ -210,6 +204,8 @@ public class AnnouncementsFragment extends ListFragment implements
 
         @Override
         public void bindView(View view, Context context, Cursor cursor) {
+            /*
+             Replace with handling tweets
             long id = cursor.getLong(AnnouncementsQuery._ID);
             String activityJson = cursor.getString(AnnouncementsQuery.ANNOUNCEMENT_ACTIVITY_JSON);
             Activity activity = mActivityCache.get(id);
@@ -222,8 +218,7 @@ public class AnnouncementsFragment extends ListFragment implements
                 }
                 mActivityCache.put(id, activity);
             }
-
-            PlusStreamRowViewBinder.bindActivityView(view, activity, mImageLoader, true);
+             */
         }
     }
 

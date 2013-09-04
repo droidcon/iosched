@@ -16,6 +16,7 @@
 
 package com.google.android.apps.iosched.ui;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -43,9 +44,6 @@ import com.google.api.client.googleapis.services.CommonGoogleClientRequestInitia
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.JsonFactory;
-import com.google.api.services.plus.Plus;
-import com.google.api.services.plus.model.Activity;
-import com.google.api.services.plus.model.ActivityFeed;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -87,8 +85,6 @@ public class SocialStreamFragment extends ListFragment implements
     private int mListViewStatePosition;
     private int mListViewStateTop;
 
-    private ImageLoader mImageLoader;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -106,9 +102,6 @@ public class SocialStreamFragment extends ListFragment implements
         if (!mSearchString.startsWith("#")) {
             mSearchString = "#" + mSearchString;
         }
-
-        mImageLoader =
-                PlusStreamRowViewBinder.getPlusStreamImageLoader(getActivity(), getResources());
 
         setHasOptionsMenu(true);
     }
@@ -254,7 +247,11 @@ public class SocialStreamFragment extends ListFragment implements
     public void onListItemClick(ListView l, View v, int position, long id) {
         Activity activity = mStream.get(position);
 
+        /*
+        TODO: URL for activity
         Intent postDetailIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(activity.getUrl()));
+         */
+        Intent postDetailIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://uk.droidcon.com/"));
         postDetailIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
         UIUtils.preferPackageForIntent(getActivity(), postDetailIntent,
                 UIUtils.GOOGLE_PLUS_PACKAGE_NAME);
@@ -264,11 +261,14 @@ public class SocialStreamFragment extends ListFragment implements
     @Override
     public void onScrollStateChanged(AbsListView listView, int scrollState) {
         // Pause disk cache access to ensure smoother scrolling
+        /*
+            TODO: Improve image loading
         if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_FLING) {
             mImageLoader.stopProcessingQueue();
         } else {
             mImageLoader.startProcessingQueue();
         }
+         */
     }
 
     @Override
@@ -363,31 +363,34 @@ public class SocialStreamFragment extends ListFragment implements
             JsonFactory jsonFactory = new AndroidJsonFactory();
 
             // Set up the main Google+ class
-            Plus plus = new Plus.Builder(httpTransport, jsonFactory, null)
-                    .setApplicationName(NetUtils.getUserAgent(getContext()))
-                    .setGoogleClientRequestInitializer(
-                            new CommonGoogleClientRequestInitializer(Config.API_KEY))
-                    .build();
+            /*
+                TODO : Replace with Facebook or Twitter
+                Plus plus = new Plus.Builder(httpTransport, jsonFactory, null)
+                        .setApplicationName(NetUtils.getUserAgent(getContext()))
+                        .setGoogleClientRequestInitializer(
+                                new CommonGoogleClientRequestInitializer(Config.API_KEY))
+                        .build();
 
-            ActivityFeed activities = null;
-            try {
-                activities = plus.activities().search(mSearchString)
-                        .setPageToken(mNextPageToken)
-                        .setOrderBy("recent")
-                        .setMaxResults(MAX_RESULTS_PER_REQUEST)
-                        .setFields(PLUS_RESULT_FIELDS)
-                        .execute();
+                ActivityFeed activities = null;
+                try {
+                    activities = plus.activities().search(mSearchString)
+                            .setPageToken(mNextPageToken)
+                            .setOrderBy("recent")
+                            .setMaxResults(MAX_RESULTS_PER_REQUEST)
+                            .setFields(PLUS_RESULT_FIELDS)
+                            .execute();
 
-                mHasError = false;
-                mNextPageToken = activities.getNextPageToken();
+                    mHasError = false;
+                    mNextPageToken = activities.getNextPageToken();
 
-            } catch (IOException e) {
-                e.printStackTrace();
-                mHasError = true;
-                mNextPageToken = null;
-            }
-
-            return (activities != null) ? activities.getItems() : null;
+                } catch (IOException e) {
+                    e.printStackTrace();
+                    mHasError = true;
+                    mNextPageToken = null;
+                }
+                return (activities != null) ? activities.getItems() : null;
+            */
+            return null;
         }
 
         @Override
@@ -503,9 +506,12 @@ public class SocialStreamFragment extends ListFragment implements
         @Override
         public long getItemId(int position) {
             // TODO: better unique ID heuristic
+            /*
             return (getItemViewType(position) == VIEW_TYPE_ACTIVITY)
                     ? mStream.get(position).getId().hashCode()
                     : -1;
+            */
+            return -1;
         }
 
         @Override
@@ -535,8 +541,6 @@ public class SocialStreamFragment extends ListFragment implements
                             R.layout.list_item_stream_activity, parent, false);
                 }
 
-                PlusStreamRowViewBinder.bindActivityView(convertView, activity, mImageLoader,
-                        false);
                 return convertView;
             }
         }
