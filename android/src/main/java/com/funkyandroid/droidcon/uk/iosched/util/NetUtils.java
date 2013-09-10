@@ -24,7 +24,7 @@ import com.funkyandroid.droidcon.uk.iosched.Config;
 import static com.funkyandroid.droidcon.uk.iosched.util.LogUtils.*;
 
 public class NetUtils {
-    private static final String TAG = makeLogTag(AccountUtils.class);
+    private static final String TAG = makeLogTag(NetUtils.class);
     private static String mUserAgent = null;
 
     public static String getUserAgent(Context mContext) {

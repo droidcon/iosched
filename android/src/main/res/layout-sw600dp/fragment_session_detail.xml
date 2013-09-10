@@ -24,12 +24,6 @@
         android:layout_height="@dimen/thickbar_height"
         android:clipToPadding="false">
 
-        <com.google.android.gms.plus.PlusOneButton
-            android:id="@+id/plus_one_button"
-            style="@style/SessionDetailPlusOne"
-            plus:annotation="bubble"
-            plus:size="tall" />
-
         <TextView android:id="@+id/session_title"
             style="@style/SessionDetailTitle" />
 

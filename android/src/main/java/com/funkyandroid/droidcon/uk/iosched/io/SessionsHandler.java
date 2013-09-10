@@ -17,12 +17,16 @@
 package com.funkyandroid.droidcon.uk.iosched.io;
 
 import android.content.ContentProviderOperation;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.database.Cursor;
 import android.net.Uri;
 import android.text.TextUtils;
 
+import com.funkyandroid.droidcon.uk.droidconsched.io.ConferenceAPI;
+import com.funkyandroid.droidcon.uk.droidconsched.io.model.SessionResponse;
+import com.funkyandroid.droidcon.uk.droidconsched.io.model.SessionsResponse;
+import com.funkyandroid.droidcon.uk.droidconsched.io.model.TrackResponse;
+import com.funkyandroid.droidcon.uk.droidconsched.io.model.TracksResponse;
 import com.funkyandroid.droidcon.uk.iosched.Config;
 import com.funkyandroid.droidcon.uk.iosched.R;
 import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract;
@@ -31,13 +35,7 @@ import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract.SyncColumn
 import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleDatabase;
 import com.funkyandroid.droidcon.uk.iosched.util.*;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
-import com.google.api.client.googleapis.json.GoogleJsonResponseException;
 import com.google.api.client.json.JsonFactory;
-import com.google.api.services.googledevelopers.Googledevelopers;
-import com.google.api.services.googledevelopers.model.SessionResponse;
-import com.google.api.services.googledevelopers.model.SessionsResponse;
-import com.google.api.services.googledevelopers.model.TrackResponse;
-import com.google.api.services.googledevelopers.model.TracksResponse;
 
 import java.io.IOException;
 import java.util.*;
@@ -68,7 +66,7 @@ public class SessionsHandler {
     }
 
     public ArrayList<ContentProviderOperation> fetchAndParse(
-            Googledevelopers conferenceAPI)
+            ConferenceAPI conferenceAPI)
             throws IOException {
         // Set up the HTTP transport and JSON factory
         SessionsResponse sessions;
@@ -92,6 +90,8 @@ public class SessionsHandler {
 
         final boolean profileAvailableBefore = PrefUtils.isDevsiteProfileAvailable(mContext);
         boolean profileAvailableNow = false;
+/*
+    TODO: Look at remote sync
         try {
             starredSessions = conferenceAPI.users().events().sessions().list(Config.EVENT_ID).execute();
 
@@ -100,26 +100,14 @@ public class SessionsHandler {
             profileAvailableNow = true;
 
         } catch (GoogleJsonResponseException e) {
-            // Hack: If the user doesn't have a developers.google.com profile, the Conference API
-            // will respond with HTTP 401 and include something like
-            // "Provided user does not have a developers.google.com profile" in the message.
-            if (401 == e.getStatusCode()
-                    && e.getDetails() != null
-                    && e.getDetails().getMessage() != null
-                    && e.getDetails().getMessage().contains("developers.google.com")) {
-                LOGE(TAG, "User does not have a developers.google.com profile. Not syncing remote " +
-                        "personalized schedule.");
-                starredSessions = null;
+            LOGE(TAG, "User does not have a developers.google.com profile. Not syncing remote " +
+                    "personalized schedule.");
+*/            starredSessions = null;
+            PrefUtils.markDevSiteProfileAvailable(mContext, false);
+//        }
 
-                // Record that the user's profile is offline. If this changes later, we'll re-upload any local
-                // starred sessions.
-                PrefUtils.markDevSiteProfileAvailable(mContext, false);
-            } else {
-                LOGW(TAG, "Auth token invalid, requesting refresh", e);
-                AccountUtils.refreshAuthToken(mContext);
-            }
-        }
-
+/*
+        TODO: Look at remote sync for starred events
         if (profileAvailableNow && !profileAvailableBefore) {
             LOGI(TAG, "developers.google.com mode change: DEVSITE_PROFILE_AVAILABLE=false -> true");
             // User's DevSite profile has come into existence. Re-upload tracks.
@@ -142,6 +130,8 @@ public class SessionsHandler {
             // TODO(trevorjohns): Upload starred sessions should be synchronous to avoid this hack
             starredSessions = null;
         }
+*/
+        starredSessions = null;
         return buildContentProviderOperations(sessions, starredSessions, tracks);
     }
 

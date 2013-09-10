@@ -20,13 +20,13 @@ import android.content.ContentProviderOperation;
 import android.content.Context;
 import android.database.Cursor;
 
+import com.funkyandroid.droidcon.uk.droidconsched.io.ConferenceAPI;
+import com.funkyandroid.droidcon.uk.droidconsched.io.model.FeedbackResponse;
+import com.funkyandroid.droidcon.uk.droidconsched.io.model.ModifyFeedbackRequest;
+import com.funkyandroid.droidcon.uk.droidconsched.io.model.events.sessions.Feedback;
 import com.funkyandroid.droidcon.uk.iosched.Config;
 import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract;
 import com.funkyandroid.droidcon.uk.iosched.util.Lists;
-
-import com.google.api.services.googledevelopers.Googledevelopers;
-import com.google.api.services.googledevelopers.model.FeedbackResponse;
-import com.google.api.services.googledevelopers.model.ModifyFeedbackRequest;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -43,7 +43,7 @@ public class FeedbackHandler {
         mContext = context;
     }
 
-    public ArrayList<ContentProviderOperation> uploadNew(Googledevelopers conferenceApi) {
+    public ArrayList<ContentProviderOperation> uploadNew(ConferenceAPI conferenceApi) {
         // Collect rows of feedback
         Cursor feedbackCursor = mContext.getContentResolver().query(
                 ScheduleContract.Feedback.CONTENT_URI,
@@ -92,7 +92,7 @@ public class FeedbackHandler {
             feedbackRequest.setEventId(Config.EVENT_ID);
 
             try {
-                Googledevelopers.Events.Sessions.Feedback feedback = conferenceApi.events().sessions()
+                Feedback feedback = conferenceApi.events().sessions()
                         .feedback(Config.EVENT_ID, sessionId, feedbackRequest);
                 FeedbackResponse response = feedback.execute();
 

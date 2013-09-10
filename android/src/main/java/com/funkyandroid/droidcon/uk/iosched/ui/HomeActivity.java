@@ -119,9 +119,12 @@ public class HomeActivity extends BaseActivity implements
         LOGD("Tracker", homeScreenLabel);
 
         // Sync data on load
-        if (savedInstanceState == null) {
-            registerGCMClient();
-        }
+        /*
+            TODO : Sync data, don't register for GCM
+            if (savedInstanceState == null) {
+                registerGCMClient();
+            }
+        */
     }
 
     private void registerGCMClient() {
@@ -328,17 +331,12 @@ public class HomeActivity extends BaseActivity implements
             case R.id.menu_settings:
                 startActivity(new Intent(this, SettingsActivity.class));
                 return true;
-
-            case R.id.menu_sign_out:
-                AccountUtils.signOut(this);
-                finish();
-                return true;
         }
         return super.onOptionsItemSelected(item);
     }
 
     private void triggerRefresh() {
-        SyncHelper.requestManualSync(AccountUtils.getChosenAccount(this));
+        SyncHelper.requestManualSync();
 
         if (mSocialStreamFragment != null) {
             mSocialStreamFragment.refresh();
@@ -392,17 +390,10 @@ public class HomeActivity extends BaseActivity implements
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    String accountName = AccountUtils.getChosenAccountName(HomeActivity.this);
-                    if (TextUtils.isEmpty(accountName)) {
-                        setRefreshActionButtonState(false);
-                        return;
-                    }
-
-                    Account account = new Account(accountName, GoogleAuthUtil.GOOGLE_ACCOUNT_TYPE);
                     boolean syncActive = ContentResolver.isSyncActive(
-                            account, ScheduleContract.CONTENT_AUTHORITY);
+                            null, ScheduleContract.CONTENT_AUTHORITY);
                     boolean syncPending = ContentResolver.isSyncPending(
-                            account, ScheduleContract.CONTENT_AUTHORITY);
+                            null, ScheduleContract.CONTENT_AUTHORITY);
                     setRefreshActionButtonState(syncActive || syncPending);
                 }
             });

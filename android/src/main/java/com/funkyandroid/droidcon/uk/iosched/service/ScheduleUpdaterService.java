@@ -20,10 +20,7 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.*;
 
-import com.funkyandroid.droidcon.uk.iosched.Config;
-import com.funkyandroid.droidcon.uk.iosched.gcm.ServerUtilities;
 import com.funkyandroid.droidcon.uk.iosched.sync.SyncHelper;
-import com.funkyandroid.droidcon.uk.iosched.util.AccountUtils;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -107,6 +104,8 @@ public class ScheduleUpdaterService extends Service {
 //    }
 
     private void notifyGcmDevices() {
+/*
+   TODO: Look for non G+ dependant method of doing this.
         String plusID = AccountUtils.getPlusProfileId(getApplicationContext());
         if (plusID != null) {
             LOGI(TAG, "Sending device sync notification");
@@ -132,6 +131,7 @@ public class ScheduleUpdaterService extends Service {
         } else {
             LOGI(TAG, "No gPlusID, skipping device sync notification");
         }
+*/
     }
 
     public ScheduleUpdaterService() {

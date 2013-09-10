@@ -20,7 +20,6 @@ import com.funkyandroid.droidcon.uk.iosched.R;
 import com.funkyandroid.droidcon.uk.iosched.sync.SyncHelper;
 import com.funkyandroid.droidcon.uk.iosched.ui.HomeActivity;
 import com.funkyandroid.droidcon.uk.iosched.ui.TaskStackBuilderProxyActivity;
-import com.funkyandroid.droidcon.uk.iosched.util.AccountUtils;
 
 import android.accounts.Account;
 import android.annotation.TargetApi;
@@ -62,9 +61,8 @@ public class ScheduleWidgetProvider extends AppWidgetProvider {
             final boolean shouldSync = widgetIntent.getBooleanExtra(EXTRA_PERFORM_SYNC, false);
 
             // Trigger sync
-            Account chosenAccount = AccountUtils.getChosenAccount(context);
-            if (shouldSync && chosenAccount != null) {
-                SyncHelper.requestManualSync(chosenAccount);
+            if (shouldSync) {
+                SyncHelper.requestManualSync();
             }
 
             // Notify the widget that the list view needs to be updated.
@@ -78,7 +76,6 @@ public class ScheduleWidgetProvider extends AppWidgetProvider {
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
-        final boolean isAuthenticated = AccountUtils.isAuthenticated(context);
         for (int appWidgetId : appWidgetIds) {
             // Specify the service to provide data for the collection widget.  Note that we need to
             // embed the appWidgetId via the data otherwise it will be ignored.
@@ -91,9 +88,7 @@ public class ScheduleWidgetProvider extends AppWidgetProvider {
             // Set the empty view to be displayed if the collection is empty.  It must be a sibling
             // view of the collection view.
             rv.setEmptyView(R.id.widget_schedule_list, android.R.id.empty);
-            rv.setTextViewText(android.R.id.empty, context.getResources().getString(isAuthenticated
-                    ? R.string.empty_widget_text
-                    : R.string.empty_widget_text_signed_out));
+            rv.setTextViewText(android.R.id.empty, context.getResources().getString(R.string.empty_widget_text));
 
             final PendingIntent refreshPendingIntent = PendingIntent.getBroadcast(context, 0,
                     getRefreshBroadcastIntent(context, true), PendingIntent.FLAG_UPDATE_CURRENT);

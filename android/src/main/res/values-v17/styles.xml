@@ -254,7 +254,6 @@
     </style>
 
     <style name="SessionDetailTitle" parent="@style/TextHeader">
-        <item name="android:layout_toStartOf">@id/plus_one_button</item>
         <item name="android:layout_alignParentStart">true</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
@@ -262,7 +261,6 @@
 
     <style name="SessionDetailSubtitle" parent="@style/TextHeaderSub">
         <item name="android:layout_below">@id/session_title</item>
-        <item name="android:layout_toStartOf">@id/plus_one_button</item>
         <item name="android:layout_alignParentStart">true</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>

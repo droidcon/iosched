@@ -26,7 +26,7 @@ public class Config {
     public static final String API_KEY = "YOUR_API_KEY_HERE";
 
     // Conference API-specific config
-    public static final String EVENT_ID = "googleio2013";
+    public static final String EVENT_ID = "droidconuk2013";
     public static final String CONFERENCE_IMAGE_PREFIX_URL = "https://developers.google.com";
 
     // Announcements

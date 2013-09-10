@@ -37,7 +37,6 @@ import com.google.api.client.googleapis.services.CommonGoogleClientRequestInitia
 import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.JsonFactory;
-import com.google.api.services.googledevelopers.Googledevelopers;
 
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -76,11 +75,11 @@ public class SyncHelper {
         mContext = context;
     }
 
-    public static void requestManualSync(Account mChosenAccount) {
+    public static void requestManualSync() {
         Bundle b = new Bundle();
         b.putBoolean(ContentResolver.SYNC_EXTRAS_MANUAL, true);
         ContentResolver.requestSync(
-                mChosenAccount,
+                null,
                 ScheduleContract.CONTENT_AUTHORITY, b);
     }
 
@@ -162,6 +161,9 @@ public class SyncHelper {
         }
 
         if ((flags & FLAG_SYNC_REMOTE) != 0 && isOnline()) {
+/*
+
+  TODO : Look at non-Gogole developers way of doing this
             try {
                 Googledevelopers conferenceAPI = getConferenceAPIClient();
                 final long startRemote = System.currentTimeMillis();
@@ -182,18 +184,15 @@ public class SyncHelper {
                 // Sync feedback stuff
                 LOGI(TAG, "Syncing session feedback");
                 batch.addAll(new FeedbackHandler(mContext).uploadNew(conferenceAPI));
-
             } catch (GoogleJsonResponseException e) {
                 if (e.getStatusCode() == 401) {
                     LOGI(TAG, "Unauthorized; getting a new auth token.", e);
                     if (syncResult != null) {
                         ++syncResult.stats.numAuthExceptions;
                     }
-                    AccountUtils.refreshAuthToken(mContext);
-
-
                 }
             }
+ */
             // all other IOExceptions are thrown
             LOGI(TAG, "Sync complete");
         }
@@ -233,20 +232,19 @@ public class SyncHelper {
             boolean inSchedule) throws IOException {
         LOGI(TAG, "Updating session on user schedule: " + sessionId);
 
+/*
+        TODO: Look at non-Google Developers way of doing this.
         Googledevelopers conferenceAPI = getConferenceAPIClient();
         try {
             sendScheduleUpdate(conferenceAPI, context, sessionId, inSchedule);
         } catch (GoogleJsonResponseException e) {
-            if (e.getDetails().getCode() == 401) {
-                LOGI(TAG, "Unauthorized; getting a new auth token.", e);
-                AccountUtils.refreshAuthToken(mContext);
-                // Try request one more time with new credentials before giving up
-                conferenceAPI = getConferenceAPIClient();
-                sendScheduleUpdate(conferenceAPI, context, sessionId, inSchedule);
-            }
+            LOGI(TAG, "Schedule change failed", e);
         }
+*/
     }
 
+/*
+    TODO: Look at non-Google Developers way of doing this.
     private void sendScheduleUpdate(Googledevelopers conferenceAPI,
             Context context, String sessionId, boolean inSchedule) throws IOException {
         if (inSchedule) {
@@ -255,6 +253,7 @@ public class SyncHelper {
             conferenceAPI.users().events().sessions().delete(Config.EVENT_ID, sessionId).execute();
         }
     }
+*/
 
     private ArrayList<ContentProviderOperation> remoteSyncMapData(String urlString,
             SharedPreferences preferences) throws IOException {
@@ -354,19 +353,4 @@ public class SyncHelper {
         @Override
         public void logResponse(HttpResponse res) { }
     };
-
-    private Googledevelopers getConferenceAPIClient() {
-        HttpTransport httpTransport = new NetHttpTransport();
-        JsonFactory jsonFactory = new AndroidJsonFactory();
-        GoogleCredential credential =
-                new GoogleCredential().setAccessToken(AccountUtils.getAuthToken(mContext));
-        // Note: The Googledevelopers API is unique, in that it requires an API key in addition to the client
-        //       ID normally embedded an an OAuth token. Most apps will use one or the other.
-        return new Googledevelopers.Builder(httpTransport, jsonFactory, null)
-                .setApplicationName(NetUtils.getUserAgent(mContext))
-                .setGoogleClientRequestInitializer(new
-                        CommonGoogleClientRequestInitializer(Config.API_KEY))
-                .setHttpRequestInitializer(credential)
-                .build();
-    }
 }

@@ -17,7 +17,6 @@
 package com.funkyandroid.droidcon.uk.iosched.sync;
 
 import com.funkyandroid.droidcon.uk.iosched.BuildConfig;
-import com.funkyandroid.droidcon.uk.iosched.util.AccountUtils;
 
 import android.accounts.Account;
 import android.content.AbstractThreadedSyncAdapter;
@@ -80,6 +79,8 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
                 " manualSync=" + manualSync +
                 " initialize=" + initialize);
 
+        /*
+            TODO: Look at non-G+ dependant way of doing this
         String chosenAccountName = AccountUtils.getChosenAccountName(mContext);
         boolean isAccountSet = !TextUtils.isEmpty(chosenAccountName);
         boolean isChosenAccount = isAccountSet && chosenAccountName.equals(account.name);
@@ -92,6 +93,7 @@ public class SyncAdapter extends AbstractThreadedSyncAdapter {
             ++syncResult.stats.numAuthExceptions;
             return;
         }
+        */
 
         // Perform a sync using SyncHelper
         if (mSyncHelper == null) {

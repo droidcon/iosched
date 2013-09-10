@@ -18,7 +18,6 @@
 package com.funkyandroid.droidcon.uk.iosched.sync;
 
 import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract;
-import com.funkyandroid.droidcon.uk.iosched.util.AccountUtils;
 
 import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
@@ -34,13 +33,8 @@ import android.text.TextUtils;
 public class TriggerSyncReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
-        String accountName = AccountUtils.getChosenAccountName(context);
-        if (TextUtils.isEmpty(accountName)) {
-            return;
-        }
-
         ContentResolver.requestSync(
-                AccountUtils.getChosenAccount(context),
+                null,
                 ScheduleContract.CONTENT_AUTHORITY, new Bundle());
     }
 }

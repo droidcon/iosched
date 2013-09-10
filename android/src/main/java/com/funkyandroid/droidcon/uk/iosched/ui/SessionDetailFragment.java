@@ -26,7 +26,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Rect;
-import android.graphics.RectF;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -48,16 +47,11 @@ import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract;
 import com.funkyandroid.droidcon.uk.iosched.service.SessionAlarmService;
 import com.funkyandroid.droidcon.uk.iosched.ui.widget.ObservableScrollView;
 import com.funkyandroid.droidcon.uk.iosched.util.*;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesClient;
-import com.google.android.gms.plus.PlusClient;
-import com.google.android.gms.plus.PlusOneButton;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.funkyandroid.droidcon.uk.iosched.util.LogUtils.LOGD;
-import static com.funkyandroid.droidcon.uk.iosched.util.LogUtils.makeLogTag;
 
 /**
  * A fragment that shows detail information for a session, including session title, abstract,
@@ -65,11 +59,7 @@ import static com.funkyandroid.droidcon.uk.iosched.util.LogUtils.makeLogTag;
  */
 public class SessionDetailFragment extends Fragment implements
         LoaderManager.LoaderCallbacks<Cursor>,
-        GooglePlayServicesClient.ConnectionCallbacks,
-        GooglePlayServicesClient.OnConnectionFailedListener,
         ObservableScrollView.Callbacks {
-
-    private static final String TAG = makeLogTag(SessionDetailFragment.class);
 
     // Set this boolean extra to true to show a variable height header
     public static final String EXTRA_VARIABLE_HEIGHT_HEADER =
@@ -96,8 +86,6 @@ public class SessionDetailFragment extends Fragment implements
     private ViewGroup mRootView;
     private TextView mTitle;
     private TextView mSubtitle;
-    private PlusClient mPlusClient;
-    private PlusOneButton mPlusOneButton;
 
     private ObservableScrollView mScrollView;
     private CheckableLinearLayout mAddScheduleButton;
@@ -120,11 +108,6 @@ public class SessionDetailFragment extends Fragment implements
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        final String chosenAccountName = AccountUtils.getChosenAccountName(getActivity());
-        mPlusClient = new PlusClient.Builder(getActivity(), this, this)
-                .clearScopes()
-                .setAccountName(chosenAccountName)
-                .build();
 
         final Intent intent = BaseActivity.fragmentArgumentsToIntent(getArguments());
         mSessionUri = intent.getData();
@@ -154,11 +137,7 @@ public class SessionDetailFragment extends Fragment implements
         mSubtitle = (TextView) mRootView.findViewById(R.id.session_subtitle);
 
         // Larger target triggers plus one button
-        mPlusOneButton = (PlusOneButton) mRootView.findViewById(R.id.plus_one_button);
         View headerView = mRootView.findViewById(R.id.header_session);
-        FractionalTouchDelegate.setupDelegate(headerView, mPlusOneButton,
-                new RectF(0.6f, 0f, 1f, 1.0f));
-
         mAbstract = (TextView) mRootView.findViewById(R.id.session_abstract);
         mRequirements = (TextView) mRootView.findViewById(R.id.session_requirements);
 
@@ -254,41 +233,13 @@ public class SessionDetailFragment extends Fragment implements
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        updatePlusOneButton();
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        mPlusClient.connect();
-    }
-
-    @Override
     public void onStop() {
         super.onStop();
-        mPlusClient.disconnect();
         if (mInitStarred != mStarred) {
             if (mStarred && UIUtils.getCurrentTime(getActivity()) < mSessionBlockStart) {
                 setupNotification();
             }
         }
-    }
-
-    @Override
-    public void onConnected(Bundle connectionHint) {
-        updatePlusOneButton();
-    }
-
-    @Override
-    public void onDisconnected() {
-    }
-
-    @Override
-    public void onConnectionFailed(ConnectionResult connectionResult) {
-        // Don't show an error just for the +1 button. Google Play services errors
-        // should be caught at a higher level in the app
     }
 
     private void setupNotification() {
@@ -351,8 +302,6 @@ public class SessionDetailFragment extends Fragment implements
         } else {
             mAbstract.setVisibility(View.GONE);
         }
-
-        updatePlusOneButton();
 
         final View requirementsBlock = mRootView.findViewById(R.id.session_requirements_block);
         final String sessionRequirements = cursor.getString(SessionsQuery.REQUIREMENTS);
@@ -465,19 +414,6 @@ public class SessionDetailFragment extends Fragment implements
                 null, mSubtitle, subtitle);
 
         LOGD("Tracker", "Session: " + mTitleString);
-    }
-
-    private void updatePlusOneButton() {
-        if (mPlusOneButton == null) {
-            return;
-        }
-
-        if (mPlusClient.isConnected() && !TextUtils.isEmpty(mUrl)) {
-            mPlusOneButton.initialize(mPlusClient, mUrl, null);
-            mPlusOneButton.setVisibility(View.VISIBLE);
-        } else {
-            mPlusOneButton.setVisibility(View.GONE);
-        }
     }
 
     private void enableSocialStreamMenuItemDeferred() {

@@ -18,15 +18,15 @@ package com.funkyandroid.droidcon.uk.iosched.io;
 
 import android.content.ContentProviderOperation;
 import android.content.Context;
+import com.funkyandroid.droidcon.uk.droidconsched.io.ConferenceAPI;
+import com.funkyandroid.droidcon.uk.droidconsched.io.model.PresenterResponse;
+import com.funkyandroid.droidcon.uk.droidconsched.io.model.PresentersResponse;
 import com.funkyandroid.droidcon.uk.iosched.Config;
 import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract;
 import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract.SyncColumns;
 import com.funkyandroid.droidcon.uk.iosched.util.Lists;
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 import com.google.api.client.json.JsonFactory;
-import com.google.api.services.googledevelopers.Googledevelopers;
-import com.google.api.services.googledevelopers.model.PresenterResponse;
-import com.google.api.services.googledevelopers.model.PresentersResponse;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -42,7 +42,7 @@ public class SpeakersHandler {
     public SpeakersHandler(Context context) {}
 
     public ArrayList<ContentProviderOperation> fetchAndParse(
-            Googledevelopers conferenceAPI)
+            ConferenceAPI conferenceAPI)
             throws IOException {
         PresentersResponse presenters;
 

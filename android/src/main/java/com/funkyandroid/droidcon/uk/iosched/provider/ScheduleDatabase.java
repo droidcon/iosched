@@ -42,7 +42,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
 import com.funkyandroid.droidcon.uk.iosched.sync.SyncHelper;
-import com.funkyandroid.droidcon.uk.iosched.util.AccountUtils;
 
 import static com.funkyandroid.droidcon.uk.iosched.util.LogUtils.*;
 
@@ -389,11 +388,8 @@ public class ScheduleDatabase extends SQLiteOpenHelper {
         LOGD(TAG, "onUpgrade() from " + oldVersion + " to " + newVersion);
 
         // Cancel any sync currently in progress
-        Account account = AccountUtils.getChosenAccount(mContext);
-        if (account != null) {
-            LOGI(TAG, "Cancelling any pending syncs for for account");
-            ContentResolver.cancelSync(account, ScheduleContract.CONTENT_AUTHORITY);
-        }
+        LOGI(TAG, "Cancelling any pending syncs for for account");
+        ContentResolver.cancelSync(null, ScheduleContract.CONTENT_AUTHORITY);
 
         // NOTE: This switch statement is designed to handle cascading database
         // updates, starting at the current version and falling through to all
@@ -444,10 +440,7 @@ public class ScheduleDatabase extends SQLiteOpenHelper {
             onCreate(db);
         }
 
-        if (account != null) {
-            LOGI(TAG, "DB upgrade complete. Requesting resync.");
-            SyncHelper.requestManualSync(account);
-        }
+        SyncHelper.requestManualSync();
     }
 
     public static void deleteDatabase(Context context) {

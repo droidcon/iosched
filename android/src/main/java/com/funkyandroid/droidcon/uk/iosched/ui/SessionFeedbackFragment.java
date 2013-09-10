@@ -19,10 +19,6 @@ package com.funkyandroid.droidcon.uk.iosched.ui;
 import com.funkyandroid.droidcon.uk.iosched.R;
 import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract;
 import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract.Feedback;
-import com.funkyandroid.droidcon.uk.iosched.util.AccountUtils;
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesClient;
-import com.google.android.gms.plus.PlusClient;
 
 import android.content.ContentValues;
 import android.content.Intent;
@@ -47,9 +43,7 @@ import static com.funkyandroid.droidcon.uk.iosched.util.LogUtils.makeLogTag;
  * A fragment that lets the user submit feedback about a given session.
  */
 public class SessionFeedbackFragment extends Fragment implements
-        LoaderManager.LoaderCallbacks<Cursor>,
-        GooglePlayServicesClient.ConnectionCallbacks,
-        GooglePlayServicesClient.OnConnectionFailedListener {
+        LoaderManager.LoaderCallbacks<Cursor> {
 
     private static final String TAG = makeLogTag(SessionDetailFragment.class);
 
@@ -64,7 +58,6 @@ public class SessionFeedbackFragment extends Fragment implements
 
 
     private TextView mTitle;
-    private PlusClient mPlusClient;
 
     private boolean mVariableHeightHeader = false;
 
@@ -82,12 +75,6 @@ public class SessionFeedbackFragment extends Fragment implements
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        final String chosenAccountName = AccountUtils.getChosenAccountName(getActivity());
-        mPlusClient = new PlusClient.Builder(getActivity(), this, this)
-                .clearScopes()
-                .setAccountName(chosenAccountName)
-                .build();
-
         final Intent intent = BaseActivity.fragmentArgumentsToIntent(getArguments());
         mSessionUri = intent.getData();
 
@@ -143,32 +130,6 @@ public class SessionFeedbackFragment extends Fragment implements
                     }
                 });
         return rootView;
-    }
-
-    @Override
-    public void onStart() {
-        super.onStart();
-        mPlusClient.connect();
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        mPlusClient.disconnect();
-    }
-
-    @Override
-    public void onConnected(Bundle connectionHint) {
-    }
-
-    @Override
-    public void onDisconnected() {
-    }
-
-    @Override
-    public void onConnectionFailed(ConnectionResult connectionResult) {
-        // Don't show an error just for the +1 button. Google Play services errors
-        // should be caught at a higher level in the app
     }
 
     /**

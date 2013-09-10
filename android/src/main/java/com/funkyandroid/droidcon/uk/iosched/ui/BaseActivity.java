@@ -38,12 +38,8 @@ public abstract class BaseActivity extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (!AccountUtils.isAuthenticated(this) || !PrefUtils.isSetupDone(this)) {
-            LogUtils.LOGD(TAG, "exiting:"
-                    + " isAuthenticated=" + AccountUtils.isAuthenticated(this)
-                    + " isSetupDone=" + PrefUtils.isSetupDone(this));
-            AccountUtils.startAuthenticationFlow(this, getIntent());
-            finish();
+        if (!PrefUtils.isSetupDone(this)) {
+            // TODO: Decide if we want to do some setup
         }
     }
 

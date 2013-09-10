@@ -43,9 +43,4 @@
         android:title="@string/description_about"
         android:orderInCategory="99"
         iosched:showAsAction="never" />
-
-    <item android:id="@+id/menu_sign_out"
-        android:title="@string/description_sign_out"
-        android:orderInCategory="100"
-        iosched:showAsAction="never" />
 </menu>

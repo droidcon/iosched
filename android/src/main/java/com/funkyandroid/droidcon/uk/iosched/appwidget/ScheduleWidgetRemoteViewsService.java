@@ -23,7 +23,6 @@ import com.funkyandroid.droidcon.uk.iosched.ui.SessionLivestreamActivity;
 import com.funkyandroid.droidcon.uk.iosched.ui.SimpleSectionedListAdapter;
 import com.funkyandroid.droidcon.uk.iosched.ui.SimpleSectionedListAdapter.Section;
 import com.funkyandroid.droidcon.uk.iosched.ui.TaskStackBuilderProxyActivity;
-import com.funkyandroid.droidcon.uk.iosched.util.AccountUtils;
 import com.funkyandroid.droidcon.uk.iosched.util.PrefUtils;
 import com.funkyandroid.droidcon.uk.iosched.util.UIUtils;
 
@@ -92,7 +91,7 @@ public class ScheduleWidgetRemoteViewsService extends RemoteViewsService {
         }
 
         public int getCount() {
-            if (mCursor == null || !AccountUtils.isAuthenticated(mContext)) {
+            if (mCursor == null) {
                 return 0;
             }
 

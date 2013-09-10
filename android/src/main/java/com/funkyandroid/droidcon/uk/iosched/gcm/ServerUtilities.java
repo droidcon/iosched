@@ -20,7 +20,6 @@ import com.funkyandroid.droidcon.uk.iosched.Config;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
-import com.funkyandroid.droidcon.uk.iosched.util.AccountUtils;
 
 import java.io.IOException;
 import java.io.OutputStream;
@@ -56,12 +55,7 @@ public final class ServerUtilities {
     public static boolean register(final Context context, final String gcmId) {
         LOGI(TAG, "registering device (gcm_id = " + gcmId + ")");
         String serverUrl = Config.GCM_SERVER_URL + "/register";
-        String plusProfileId = AccountUtils.getPlusProfileId(context);
-        if (plusProfileId == null) {
-            LOGW(TAG, "Profile ID: null");
-        } else {
-            LOGI(TAG, "Profile ID: " + plusProfileId);
-        }
+        String plusProfileId = null;
 
         Map<String, String> params = new HashMap<String, String>();
         params.put("gcm_id", gcmId);
