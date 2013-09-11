@@ -279,7 +279,7 @@
 
     <!-- Preferences -->
     <string name="pref_local_times_title">Show local times</string>
-    <string name="pref_local_times_description">When checked, show local times instead of Pacific time (the timezone at the conference)</string>
+    <string name="pref_local_times_description">When checked, show local times instead of British Summer Time (the timezone at the conference)</string>
     <string name="pref_attendee_at_venue_title">I\'ll be at Droidcon UK!</string>
     <string name="pref_attendee_at_venue_description">When checked, all sessions and on-site events will be shown. Otherwise, only live-streamed sessions will be shown.</string>
     <string name="wifi_install_error_message">Sorry, unable to update WiFi configuration</string>
