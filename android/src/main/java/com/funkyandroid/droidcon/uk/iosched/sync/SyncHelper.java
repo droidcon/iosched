@@ -24,6 +24,7 @@ import android.os.Bundle;
 import android.os.RemoteException;
 import android.preference.PreferenceManager;
 
+import com.funkyandroid.droidcon.uk.droidconsched.io.ConferenceAPI;
 import com.funkyandroid.droidcon.uk.iosched.Config;
 import com.funkyandroid.droidcon.uk.iosched.R;
 import com.funkyandroid.droidcon.uk.iosched.io.*;
@@ -165,11 +166,8 @@ public class SyncHelper {
         }
 
         if ((flags & FLAG_SYNC_REMOTE) != 0 && isOnline()) {
-/*
-
-  TODO : Look at non-Gogole developers way of doing this
             try {
-                Googledevelopers conferenceAPI = getConferenceAPIClient();
+                ConferenceAPI conferenceAPI = new ConferenceAPI();
                 final long startRemote = System.currentTimeMillis();
                 LOGI(TAG, "Remote syncing announcements");
                 batch.addAll(new AnnouncementsFetcher(mContext).fetchAndParse());
@@ -196,7 +194,7 @@ public class SyncHelper {
                     }
                 }
             }
- */
+
             // all other IOExceptions are thrown
             LOGI(TAG, "Sync complete");
         }

@@ -1,14 +1,15 @@
 package com.funkyandroid.droidcon.uk.droidconsched.io;
 
 import android.util.Log;
-import com.squareup.okhttp.OkHttpClient;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.*;
 import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.StringTokenizer;
 
 /**
  * Base Class for classes which request data from the server
@@ -22,10 +23,10 @@ public class ServerRequest<T extends ServerResponse> {
     private static final String DATA_ROOT = "http://dcuk2013.funkyandroid.net/";
 
     /**
-     * The client to use to make the request
+     * The parameter types for the getters to use to fill URL parameters
      */
 
-    private OkHttpClient client = new OkHttpClient();
+    private static final Class[] GETTER_PARAMETERS = {};
 
     /**
      * The request type to make
@@ -70,9 +71,26 @@ public class ServerRequest<T extends ServerResponse> {
         mResponseClass = responseClass;
     }
 
+    /**
+     * Perform the request
+     *
+     * @return The appropriate ServerResponse object
+     * @throws IOException Thrown if there is a problem making the request.
+     */
     public T execute()
         throws IOException {
-        HttpURLConnection connection = client.open(new URL(DATA_ROOT+mRequestURL));
+        HttpURLConnection connection;
+        try {
+            URL requestURL = new URL(DATA_ROOT+expandURLParameters());
+            connection = (HttpURLConnection)requestURL.openConnection();
+        } catch (NoSuchMethodException e) {
+            throw new IOException("Error constructing request URL", e);
+        } catch (IllegalAccessException e) {
+            throw new IOException("Error constructing request URL", e);
+        } catch (InvocationTargetException e) {
+            throw new IOException("Error constructing request URL", e);
+        }
+
         OutputStream outputStream = null;
         InputStream inputStream = null;
         try {
@@ -109,8 +127,6 @@ public class ServerRequest<T extends ServerResponse> {
             throw new IOException("Problem creating response object", e);
         } catch (IllegalAccessException e) {
             throw new IOException("Problem creating response object", e);
-        } catch (InvocationTargetException e) {
-            throw new IOException("Problem parsing response", e);
         } finally {
             if(outputStream != null) {
                 outputStream.close();
@@ -121,5 +137,45 @@ public class ServerRequest<T extends ServerResponse> {
         }
 
         return null;
+    }
+
+    /**
+     * Replace the parameters in a URL with the values from this object.
+     *
+     * @return the RequestURL with the parameters expanded.
+     */
+
+    private String expandURLParameters()
+        throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
+        StringBuilder result = new StringBuilder(mRequestURL.length()+16);
+
+        StringTokenizer stringTokenizer = new StringTokenizer(mRequestURL, "/");
+        StringBuilder getterName = new StringBuilder(128);
+        while(stringTokenizer.hasMoreTokens()) {
+            String urlSection = stringTokenizer.nextToken();
+            if(!urlSection.startsWith("{") || !urlSection.endsWith("}")) {
+                result.append(urlSection);
+                result.append('/');
+                continue;
+            }
+
+            if(getterName.length() != 0) {
+                getterName.delete(0, getterName.length());
+            }
+
+            getterName.append("get");
+            getterName.append(Character.toUpperCase(urlSection.charAt(1)));
+            getterName.append(urlSection.substring(2, urlSection.length()-1));
+            Method getter = getClass().getMethod(getterName.toString(), GETTER_PARAMETERS);
+            Object value = getter.invoke(this, null);
+            result.append(value.toString());
+            result.append('/');
+        }
+
+        if(!mRequestURL.endsWith("/")) {
+            result.deleteCharAt(result.length()-1);
+        }
+
+        return result.toString();
     }
 }
