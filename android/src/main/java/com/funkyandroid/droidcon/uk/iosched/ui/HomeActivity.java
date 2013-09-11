@@ -336,7 +336,7 @@ public class HomeActivity extends BaseActivity implements
     }
 
     private void triggerRefresh() {
-        SyncHelper.requestManualSync();
+        SyncHelper.requestManualSync(this);
 
         if (mSocialStreamFragment != null) {
             mSocialStreamFragment.refresh();

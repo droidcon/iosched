@@ -75,12 +75,16 @@ public class SyncHelper {
         mContext = context;
     }
 
-    public static void requestManualSync() {
-        Bundle b = new Bundle();
-        b.putBoolean(ContentResolver.SYNC_EXTRAS_MANUAL, true);
-        ContentResolver.requestSync(
-                null,
-                ScheduleContract.CONTENT_AUTHORITY, b);
+    /**
+     * Start a sync manually using the supplied context.
+     *
+     * @param context The context to start the sync service under.
+     */
+    public static void requestManualSync(Context context) {
+        Context appContext = context.getApplicationContext();
+        Intent serviceIntent = new Intent(appContext, SyncService.class);
+        serviceIntent.putExtra(ContentResolver.SYNC_EXTRAS_MANUAL, true);
+        appContext.startService(serviceIntent);
     }
 
     /**

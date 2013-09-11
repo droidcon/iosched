@@ -440,7 +440,7 @@ public class ScheduleDatabase extends SQLiteOpenHelper {
             onCreate(db);
         }
 
-        SyncHelper.requestManualSync();
+        SyncHelper.requestManualSync(mContext);
     }
 
     public static void deleteDatabase(Context context) {

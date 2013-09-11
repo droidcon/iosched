@@ -62,7 +62,7 @@ public class ScheduleWidgetProvider extends AppWidgetProvider {
 
             // Trigger sync
             if (shouldSync) {
-                SyncHelper.requestManualSync();
+                SyncHelper.requestManualSync(context);
             }
 
             // Notify the widget that the list view needs to be updated.

@@ -17,11 +17,14 @@
 package com.funkyandroid.droidcon.uk.iosched;
 
 public class Config {
+    // Log tag
+    public static final String LOG_TAG = "DCUK2013";
+
     // General configuration
     public static final int CONFERENCE_YEAR = 2013;
 
     // OAuth 2.0 related config
-    public static final String APP_NAME = "GoogleIO-Android";
+    public static final String APP_NAME = "DroidconUK2013-Android";
     // TODO: Add your Google API key here.
     public static final String API_KEY = "YOUR_API_KEY_HERE";
 
