@@ -91,6 +91,7 @@ public class ExploreFragment extends ListFragment implements
     }
 
     private void addMapHeaderView() {
+/* TODO: Look at whether we want to do a map
         ListView listView = getListView();
         final Context context = listView.getContext();
         View mapHeaderContainerView = LayoutInflater.from(context).inflate(
@@ -108,6 +109,7 @@ public class ExploreFragment extends ListFragment implements
 
         listView.addHeaderView(mapHeaderContainerView);
         listView.setHeaderDividersEnabled(false);
+*/
     }
 
     @Override
