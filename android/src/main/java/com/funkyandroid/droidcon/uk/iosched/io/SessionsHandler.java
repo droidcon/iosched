@@ -34,8 +34,8 @@ import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract.Sessions;
 import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract.SyncColumns;
 import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleDatabase;
 import com.funkyandroid.droidcon.uk.iosched.util.*;
-import com.google.api.client.extensions.android.json.AndroidJsonFactory;
-import com.google.api.client.json.JsonFactory;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.*;
@@ -136,13 +136,14 @@ public class SessionsHandler {
     }
 
     public ArrayList<ContentProviderOperation> parseString(String sessionsJson, String tracksJson) {
-        JsonFactory jsonFactory = new AndroidJsonFactory();
         try {
-            SessionsResponse sessions = jsonFactory.fromString(sessionsJson, SessionsResponse.class);
-            TracksResponse tracks =
-                    jsonFactory.fromString(tracksJson, TracksResponse.class);
+            SessionsResponse sessions = new SessionsResponse();
+            sessions.fromJSON(new JSONObject(sessionsJson));
+
+            TracksResponse tracks = new TracksResponse();
+            tracks.fromJSON(new JSONObject(tracksJson));
             return buildContentProviderOperations(sessions, null, tracks);
-        } catch (IOException e) {
+        } catch (JSONException e) {
             LOGE(TAG, "Error reading speakers from packaged data", e);
             return Lists.newArrayList();
         }

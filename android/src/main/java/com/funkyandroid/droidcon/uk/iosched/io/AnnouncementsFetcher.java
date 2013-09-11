@@ -17,10 +17,6 @@
 package com.funkyandroid.droidcon.uk.iosched.io;
 
 import com.funkyandroid.droidcon.uk.iosched.util.Lists;
-import com.google.api.client.extensions.android.json.AndroidJsonFactory;
-import com.google.api.client.http.HttpTransport;
-import com.google.api.client.http.javanet.NetHttpTransport;
-import com.google.api.client.json.JsonFactory;
 
 import android.content.ContentProviderOperation;
 import android.content.Context;
@@ -44,18 +40,9 @@ public class AnnouncementsFetcher {
     public ArrayList<ContentProviderOperation> fetchAndParse() throws IOException {
         final ArrayList<ContentProviderOperation> batch = Lists.newArrayList();
 
-        // Set up the HTTP transport and JSON factory
-        HttpTransport httpTransport = new NetHttpTransport();
-        JsonFactory jsonFactory = new AndroidJsonFactory();
-
         // Set up the main Google+ class
         /*
             TODO: Replace with Facebook or Twitter
-        Plus plus = new Plus.Builder(httpTransport, jsonFactory, null)
-                .setApplicationName(NetUtils.getUserAgent(mContext))
-                .setGoogleClientRequestInitializer(
-                        new CommonGoogleClientRequestInitializer(Config.API_KEY))
-                .build();
 
         ActivityFeed activities;
         try {

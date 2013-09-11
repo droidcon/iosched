@@ -1,6 +1,6 @@
 package com.funkyandroid.droidcon.uk.droidconsched.io.model;
 
-import com.funkyandroid.droidcon.uk.droidconsched.io.ServerResponse;
+import com.funkyandroid.droidcon.uk.droidconsched.io.ServerArrayResponse;
 
 import java.util.List;
 
@@ -10,22 +10,20 @@ import java.util.List;
  * This is an implementation which replaces the generated version which shipped with IOsched and
  * makes the code human more human readable and removed the dependence on additional Google libraries.
  */
-public class AnnouncementsResponse extends ServerResponse {
-
-    private List<AnnouncementResponse> announcements;
-
-    public AnnouncementsResponse()
-    {
-    }
+public class AnnouncementsResponse extends ServerArrayResponse<AnnouncementResponse> {
 
     public List<AnnouncementResponse> getAnnouncements()
     {
-        return this.announcements;
+        return getArrayContents();
     }
 
-    public AnnouncementsResponse setAnnouncements(List<AnnouncementResponse> announcements)
-    {
-        this.announcements = announcements;
-        return this;
+    @Override
+    protected String getArrayAttributeName() {
+        return "events";
+    }
+
+    @Override
+    protected AnnouncementResponse getNewObject() {
+        return new AnnouncementResponse();
     }
 }

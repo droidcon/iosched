@@ -25,8 +25,8 @@ import com.funkyandroid.droidcon.uk.iosched.Config;
 import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract;
 import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract.SyncColumns;
 import com.funkyandroid.droidcon.uk.iosched.util.Lists;
-import com.google.api.client.extensions.android.json.AndroidJsonFactory;
-import com.google.api.client.json.JsonFactory;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -61,11 +61,11 @@ public class SpeakersHandler {
     }
 
     public ArrayList<ContentProviderOperation> parseString(String json) {
-        JsonFactory jsonFactory = new AndroidJsonFactory();
         try {
-            PresentersResponse presenters = jsonFactory.fromString(json, PresentersResponse.class);
+            PresentersResponse presenters = new PresentersResponse();
+            presenters.fromJSON(new JSONObject(json));
             return buildContentProviderOperations(presenters);
-        } catch (IOException e) {
+        } catch (JSONException e) {
             LOGE(TAG, "Error reading speakers from packaged data", e);
             return Lists.newArrayList();
         }
