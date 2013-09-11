@@ -393,16 +393,7 @@
             android:exported="true" />
 
         <service android:name=".service.ScheduleUpdaterService" />
-
-        <service android:name=".sync.SyncService"
-            android:exported="true"
-            tools:ignore="ExportedService">
-            <intent-filter>
-                <action android:name="android.content.SyncAdapter" />
-            </intent-filter>
-            <meta-data android:name="android.content.SyncAdapter"
-                android:resource="@xml/syncadapter" />
-        </service>
+        <service android:name=".sync.SyncService" android:exported="false" />
 
         <!-- a simple receiver that triggers a sync for any message it receives. used by our
              GCM implementation -->
