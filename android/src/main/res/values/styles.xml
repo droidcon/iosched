@@ -300,7 +300,7 @@
     <style name="WhatsOnStaticItem" parent="WhatsOnItemBase">
         <item name="android:textSize">@dimen/text_size_medium</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textColor">@color/body_text_1</item>
+        <item name="android:textColor">@color/whats_on_text</item>
         <item name="android:maxLines">2</item>
         <item name="android:background">@drawable/whats_on_background</item>
     </style>
