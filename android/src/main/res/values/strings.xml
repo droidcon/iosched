@@ -14,7 +14,7 @@
   limitations under the License.
   -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_name">Droidcon London 2013</string>
+    <string name="app_name">Droidcon UK 2013</string>
 
     <string name="description_search">Search</string>
     <string name="description_map">Map</string>
@@ -65,9 +65,9 @@
     <string name="all_tracks_sessions">All sessions</string>
     <string name="all_tracks_office_hours">All office hours</string>
     <string name="all_tracks_sandbox">All companies</string>
-    <string name="all_tracks_subtitle_sessions">All sessions at Google I/O 2013.</string>
-    <string name="all_tracks_subtitle_office_hours">All office hours at Google I/O 2013.</string>
-    <string name="all_tracks_subtitle_sandbox">All developer sandbox companies at Google I/O 2013.</string>
+    <string name="all_tracks_subtitle_sessions">All sessions at Droidcon UK 2013.</string>
+    <string name="all_tracks_subtitle_office_hours">All office hours at Droidcon UK 2013.</string>
+    <string name="all_tracks_subtitle_sandbox">All developer sandbox companies at Droidcon UK 2013.</string>
     <string name="other_tracks">Other tracks</string>
 
     <string name="empty_sessions">No sessions found.</string>
@@ -100,13 +100,13 @@
     <string name="session_livestream_captions">Captions</string>
     <string name="session_livestream_error_init">Sorry, there was an error initializing the YouTube Player (%1$s)</string>
     <string name="session_livestream_error_playback">Sorry, there was an error loading the live stream, please try again later</string>
-    <string name="session_livestream_keynote_title">Google I/O - %s</string>
-    <string name="session_livestream_keynote_desc">Google I/O\'s much-anticipated kickoff event will make you among the first developers to see what we\'ve been working on here at Google. Grab some popcorn, kick back and enjoy the show directly from your Android powered device.</string>
+    <string name="session_livestream_keynote_title">Droidcon UK - %s</string>
+    <string name="session_livestream_keynote_desc">Droidcon UK\'s much-anticipated kickoff event will make you among the first developers to see what we\'ve been working on here at Google. Grab some popcorn, kick back and enjoy the show directly from your Android powered device.</string>
     <string name="session_livestream_play_pause">Play / Pause</string>
 
     <string name="codelab_title_template">Code Lab: <xliff:g id="title">%1$s</xliff:g></string>
 
-    <string name="search_label">Google I/O Sessions</string>
+    <string name="search_label">Droidcon UK Sessions</string>
     <string name="search_hint">Search sessions</string>
 
     <string name="share_template">Checking out \'<xliff:g id="title">%1$s</xliff:g>\' at <xliff:g id="hashtags">%2$s</xliff:g> <xliff:g id="url">%3$s</xliff:g></string>
@@ -119,18 +119,18 @@
     <string name="remove_from_schedule_desc">Remove from schedule</string>
 
     <!-- Announcements -->
-    <string name="whats_on_countdown_title_0"><xliff:g id="remaining_time">%1$s</xliff:g>\nuntil Google I/O</string>
+    <string name="whats_on_countdown_title_0"><xliff:g id="remaining_time">%1$s</xliff:g>\nuntil Droidcon UK</string>
     <plurals name="whats_on_countdown_title">
-        <item quantity="one"><xliff:g id="number_of_days">%1$s</xliff:g> day, <xliff:g id="remaining_time">%2$s</xliff:g>\nuntil Google I/O</item>
-        <item quantity="other"><xliff:g id="number_of_days">%1$s</xliff:g> days, <xliff:g id="remaining_time">%2$s</xliff:g>\nuntil Google I/O</item>
+        <item quantity="one"><xliff:g id="number_of_days">%1$s</xliff:g> day, <xliff:g id="remaining_time">%2$s</xliff:g>\nuntil Droidcon UK</item>
+        <item quantity="other"><xliff:g id="number_of_days">%1$s</xliff:g> days, <xliff:g id="remaining_time">%2$s</xliff:g>\nuntil Droidcon UK</item>
     </plurals>
     <string name="whats_on_thank_you_short">Thanks!</string>
     <string name="whats_on_thank_you_title">See you next year!</string>
-    <string name="whats_on_thank_you_subtitle">Google I/O 2013 has ended.</string>
+    <string name="whats_on_thank_you_subtitle">Droidcon UK 2013 has ended.</string>
     <string name="news_will_appear_here">Announcements will appear here</string>
-    <string name="welcome_to_google_i_o">Welcome to Google I/O!</string>
+    <string name="welcome_to_google_i_o">Welcome to Droidcon UK!</string>
 
-    <string name="permission_write">Modify Google I/O schedule data</string>
+    <string name="permission_write">Modify Droidcon UK schedule data</string>
 
     <plurals name="toast_added_to_schedule">
         <item quantity="one">Session added to your schedule</item>
@@ -165,11 +165,11 @@
 
     <!-- EULA, login, and about -->
     <string name="description_choose_account"><![CDATA[
-        <font color="#4d90fe"><b>Choose an account below. If you registered to attend Google I/O,
+        <font color="#4d90fe"><b>Choose an account below. If you registered to attend Droidcon UK,
         make sure to use the same account.</b></font>
     ]]></string>
     <string name="description_setup_attendee_mode_header"><![CDATA[
-        <font color="#4d90fe"><b>Are you attending Google I/O in person this year?</b></font>
+        <font color="#4d90fe"><b>Are you attending Droidcon UK in person this year?</b></font>
         <br><br>
     ]]></string>
     <string name="description_setup_attendee_mode_body"><![CDATA[
@@ -187,7 +187,7 @@
         arrival.</i>
     ]]></string>
     <string name="description_sign_in_main"><![CDATA[
-        Welcome to the Google I/O 2013 app, your official companion to the Google I/O conference
+        Welcome to the Droidcon UK 2013 app, your official companion to the Droidcon UK conference
         taking place in San Francisco from May 15th to May 17th, 2013.<br>
         <br>
         We just need to ask you a couple of quick questions. Press the &quot;Sign-in&quot; button
@@ -207,7 +207,7 @@
     </string-array>
     <string-array name="selection_setup_attendee">
         <item>Yes, I\'ll be attending from San Francisco.</item>
-        <item>No, I\'ll be viewing from home or attending a Google I/O Extended event.</item>
+        <item>No, I\'ll be viewing from home or attending a Droidcon UK Extended event.</item>
     </string-array>
     <string name="empty_accounts">No Google accounts are available. Add an account to continue.</string>
     <string name="no_connection_cant_login">Can\'t sign in. Check your network connection.</string>
@@ -215,7 +215,7 @@
     <string name="about_eula">End User License Agreement</string>
     <string name="about_licenses">Open Source Licenses</string>
     <string name="about_body"><![CDATA[
-        <b>Google I/O 2013</b><br>
+        <b>Droidcon UK 2013</b><br>
         Version %s<br><br>
         <a href="http://m.google.com/utos">Terms of Service</a><br><br>
         <a href="http://www.google.com/policies/privacy/">Privacy Policy</a>
@@ -263,7 +263,7 @@
     <string name="stream_error">Couldn\'t load the Google+ stream.</string>
     <string name="stream_originally_shared">Originally shared by <xliff:g id="name">%s</xliff:g></string>
     <string name="empty_widget_text">No more upcoming sessions.\nSee you next year!</string>
-    <string name="empty_widget_text_signed_out">Touch the Google I/O 2013 logo above to sign in and begin using the app.</string>
+    <string name="empty_widget_text_signed_out">Touch the Droidcon UK 2013 logo above to sign in and begin using the app.</string>
 
     <string name="now_playing_badge"><![CDATA[<font color="#4d90fe"><small><b>NOW</b></small></font>]]></string>
     <string name="live_available_badge"><![CDATA[<font color="#999999"><small><b>LIVE</b></small></font>]]></string>
@@ -280,7 +280,7 @@
     <!-- Preferences -->
     <string name="pref_local_times_title">Show local times</string>
     <string name="pref_local_times_description">When checked, show local times instead of Pacific time (the timezone at the conference)</string>
-    <string name="pref_attendee_at_venue_title">I\'ll be at Google I/O!</string>
+    <string name="pref_attendee_at_venue_title">I\'ll be at Droidcon UK!</string>
     <string name="pref_attendee_at_venue_description">When checked, all sessions and on-site events will be shown. Otherwise, only live-streamed sessions will be shown.</string>
     <string name="wifi_install_error_message">Sorry, unable to update WiFi configuration</string>
 
@@ -320,6 +320,6 @@
 
     <!-- More Misc -->
     <string name="dashclock_extension_description">
-        Displays the next few items in your Google I/O 2013 schedule.
+        Displays the next few items in your Droidcon UK 2013 schedule.
     </string>
 </resources>
