@@ -43,13 +43,6 @@ public abstract class BaseActivity extends ActionBarActivity {
         }
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        // Verifies the proper version of Google Play Services exists on the device.
-        PlayServicesUtils.checkGooglePlaySevices(this);
-    }
-
     protected void setHasTabs() {
         if (!UIUtils.isTablet(this)
                 && getResources().getConfiguration().orientation
