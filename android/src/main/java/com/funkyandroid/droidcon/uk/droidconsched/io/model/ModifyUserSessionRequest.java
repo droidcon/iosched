@@ -48,8 +48,8 @@ public class ModifyUserSessionRequest extends ServerRequestData {
     public String toJSON()
         throws JSONException {
         return new JSONObject()
-                .put("EventId", eventId)
-                .put("SessionId", sessionId)
+                .put("eventId", eventId)
+                .put("sessionId", sessionId)
                 .toString();
     }
 }

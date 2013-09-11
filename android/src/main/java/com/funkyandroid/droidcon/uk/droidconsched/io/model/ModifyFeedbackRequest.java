@@ -147,16 +147,16 @@ public class ModifyFeedbackRequest extends ServerRequestData {
     public String toJSON()
         throws JSONException {
         return new JSONObject()
-                .put("AdditionalFeedback", additionalFeedback)
-                .put("ContentScore", contentScore)
-                .put("EventId", eventId)
-                .put("OverallScore", overallScore)
-                .put("RelevancyScore", relevancyScore)
-                .put("Salt", salt)
-                .put("SessionId", sessionId)
-                .put("SpeakerScore", speakerScore)
-                .put("UserId", userId)
-                .put("WillUser", willUse)
+                .put("additionalFeedback", additionalFeedback)
+                .put("contentScore", contentScore)
+                .put("eventId", eventId)
+                .put("overallScore", overallScore)
+                .put("relevancyScore", relevancyScore)
+                .put("salt", salt)
+                .put("sessionId", sessionId)
+                .put("speakerScore", speakerScore)
+                .put("userId", userId)
+                .put("willUser", willUse)
                 .toString();
     }
 }

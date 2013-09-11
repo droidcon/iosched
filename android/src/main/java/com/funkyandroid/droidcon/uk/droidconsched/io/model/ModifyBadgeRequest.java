@@ -74,10 +74,10 @@ public class ModifyBadgeRequest extends ServerRequestData {
     public String toJSON()
         throws JSONException {
         return new JSONObject()
-                .put("EventId", eventId)
-                .put("ForceNfcId", forceNfcId)
-                .put("NfcId", nfcId)
-                .put("UserId", userId)
+                .put("eventId", eventId)
+                .put("forceNfcId", forceNfcId)
+                .put("nfcId", nfcId)
+                .put("userId", userId)
                 .toString();
     }
 }

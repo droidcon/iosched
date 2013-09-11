@@ -33,7 +33,7 @@ public class ModifyCheckinRequest extends ServerRequestData {
     public String toJSON()
         throws JSONException {
         return new JSONObject()
-                .put("ConfirmationCode", confirmationCode)
+                .put("confirmationCode", confirmationCode)
                 .toString();
     }
 }

@@ -86,11 +86,11 @@ public class ModifyTodoRequest extends ServerRequestData {
     @Override
     public String toJSON() throws JSONException {
         return new JSONObject()
-                .put("CompletionTimestamp", completionTimestamp)
-                .put("EventId", eventId)
-                .put("NfcId", nfcId)
-                .put("TodoId", todoId)
-                .put("UserId", userId)
+                .put("completionTimestamp", completionTimestamp)
+                .put("eventId", eventId)
+                .put("nfcId", nfcId)
+                .put("todoId", todoId)
+                .put("userId", userId)
                 .toString();
     }
 }

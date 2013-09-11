@@ -64,7 +64,9 @@ public class ServerResponse {
                     if(!methodName.startsWith("set")) {
                         continue;
                     }
-                    mSetterMap.put(methodName.substring(3), method);
+
+                    // Change setBlah to be blah to reflect the attribute name in the JSON representation
+                    mSetterMap.put(Character.toLowerCase(methodName.charAt(3))+methodName.substring(4), method);
                 }
             }
         }
