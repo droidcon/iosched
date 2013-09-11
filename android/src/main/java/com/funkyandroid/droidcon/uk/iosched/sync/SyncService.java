@@ -16,12 +16,11 @@
 
 package com.funkyandroid.droidcon.uk.iosched.sync;
 
-import android.app.Service;
+import android.app.IntentService;
 import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.SyncResult;
 import android.os.Bundle;
-import android.os.IBinder;
 import com.funkyandroid.droidcon.uk.iosched.Config;
 
 import java.io.IOException;
@@ -33,19 +32,23 @@ import static com.funkyandroid.droidcon.uk.iosched.util.LogUtils.LOGI;
  * Service that handles sync. We're not requiring users to have any kind of account, so this needs to perform
  * the sync rather than just be a front end to a SyncAdapter.
  */
-public class SyncService extends Service {
+public class SyncService extends IntentService {
 
     private SyncHelper mSyncHelper;
 
+    public SyncService() {
+        super("SyncService");
+    }
+
     @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
+    public void onHandleIntent(Intent intent) {
         Bundle extras = intent.getExtras();
         final boolean uploadOnly = extras.getBoolean(ContentResolver.SYNC_EXTRAS_UPLOAD, false);
         final boolean manualSync = extras.getBoolean(ContentResolver.SYNC_EXTRAS_MANUAL, false);
         final boolean initialize = extras.getBoolean(ContentResolver.SYNC_EXTRAS_INITIALIZE, false);
 
         if (uploadOnly) {
-            return START_NOT_STICKY;
+            return;
         }
 
         LOGI(Config.LOG_TAG, "Beginning sync ," +
@@ -85,19 +88,5 @@ public class SyncService extends Service {
             ++syncResult.stats.numIoExceptions;
             LOGE(Config.LOG_TAG, "Error syncing data for I/O 2013.", e);
         }
-
-        return START_NOT_STICKY;
     }
-
-    /**
-     * The service is only invoked locally so we don't need to return a Binder.
-     *
-     * @param intent The bind intent.
-     * @return null. This service should not be used via IPC.
-     */
-    @Override
-    public IBinder onBind(Intent intent) {
-        return null;
-    }
-
 }
