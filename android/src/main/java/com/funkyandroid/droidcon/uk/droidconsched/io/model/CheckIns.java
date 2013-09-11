@@ -1,7 +1,6 @@
 package com.funkyandroid.droidcon.uk.droidconsched.io.model;
 
 import com.funkyandroid.droidcon.uk.droidconsched.io.ServerRequest;
-import com.google.api.client.util.Preconditions;
 
 import java.io.IOException;
 
@@ -39,7 +38,8 @@ public class CheckIns
         protected Update(String confirmationCode, ModifyCheckinRequest content)
         {
             super("PUT", "checkins/{confirmationCode}", content, RegistrationResponse.class);
-            this.confirmationCode = ((String) Preconditions.checkNotNull(confirmationCode, "Required parameter confirmationCode must be specified."));
+            assert confirmationCode != null;
+            this.confirmationCode = confirmationCode;
         }
         public String getConfirmationCode()
         {
@@ -61,7 +61,8 @@ public class CheckIns
         protected Delete(String confirmationCode)
         {
             super("DELETE", "checkins/{confirmationCode}", null, RegistrationResponse.class);
-            this.confirmationCode = ((String)Preconditions.checkNotNull(confirmationCode, "Required parameter confirmationCode must be specified."));
+            assert confirmationCode != null;
+            this.confirmationCode = confirmationCode;
         }
         public String getConfirmationCode()
         {

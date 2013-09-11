@@ -3,7 +3,6 @@ package com.funkyandroid.droidcon.uk.droidconsched.io.model.events;
 import com.funkyandroid.droidcon.uk.droidconsched.io.ServerRequest;
 import com.funkyandroid.droidcon.uk.droidconsched.io.model.TrackResponse;
 import com.funkyandroid.droidcon.uk.droidconsched.io.model.TracksResponse;
-import com.google.api.client.util.Preconditions;
 
 import java.io.IOException;
 
@@ -42,7 +41,8 @@ public class Tracks
         protected List(String eventId)
         {
             super("GET", "events/{eventId}/tracks", null, TracksResponse.class);
-            this.eventId = ((String) Preconditions.checkNotNull(eventId, "Required parameter eventId must be specified."));
+            assert eventId != null;
+            this.eventId = eventId;
         }
 
         public String getEventId()
@@ -67,8 +67,11 @@ public class Tracks
         protected Get(String eventId, String trackId)
         {
             super("GET", "events/{eventId}/tracks/{trackId}", null, TrackResponse.class);
-            this.eventId = ((String)Preconditions.checkNotNull(eventId, "Required parameter eventId must be specified."));
-            this.trackId = ((String)Preconditions.checkNotNull(trackId, "Required parameter trackId must be specified."));
+            assert eventId != null;
+            this.eventId = eventId;
+
+            assert trackId != null;
+            this.trackId = trackId;
         }
 
         public String getEventId()

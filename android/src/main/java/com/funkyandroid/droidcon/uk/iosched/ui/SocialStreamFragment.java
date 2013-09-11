@@ -36,10 +36,6 @@ import android.widget.TextView;
 
 import com.funkyandroid.droidcon.uk.iosched.R;
 import com.funkyandroid.droidcon.uk.iosched.util.UIUtils;
-import com.google.api.client.extensions.android.json.AndroidJsonFactory;
-import com.google.api.client.http.HttpTransport;
-import com.google.api.client.http.javanet.NetHttpTransport;
-import com.google.api.client.json.JsonFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -354,8 +350,8 @@ public class SocialStreamFragment extends ListFragment implements
             mIsLoading = true;
 
             // Set up the HTTP transport and JSON factory
-            HttpTransport httpTransport = new NetHttpTransport();
-            JsonFactory jsonFactory = new AndroidJsonFactory();
+            // HttpTransport httpTransport = new NetHttpTransport();
+            // JsonFactory jsonFactory = new AndroidJsonFactory();
 
             // Set up the main Google+ class
             /*

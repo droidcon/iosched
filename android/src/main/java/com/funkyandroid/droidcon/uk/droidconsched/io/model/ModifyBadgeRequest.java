@@ -1,7 +1,6 @@
 package com.funkyandroid.droidcon.uk.droidconsched.io.model;
 
 import com.funkyandroid.droidcon.uk.droidconsched.io.ServerRequestData;
-import com.google.api.client.util.Key;
 import org.json.JSONException;
 import org.json.JSONObject;
 

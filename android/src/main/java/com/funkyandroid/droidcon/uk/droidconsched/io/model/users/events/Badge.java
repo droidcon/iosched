@@ -3,7 +3,6 @@ package com.funkyandroid.droidcon.uk.droidconsched.io.model.users.events;
 import com.funkyandroid.droidcon.uk.droidconsched.io.ServerRequest;
 import com.funkyandroid.droidcon.uk.droidconsched.io.model.ModifyBadgeRequest;
 import com.funkyandroid.droidcon.uk.droidconsched.io.model.RegistrationResponse;
-import com.google.api.client.util.Preconditions;
 
 import java.io.IOException;
 
@@ -42,8 +41,11 @@ public class Badge
         protected Update(String userId, String eventId, ModifyBadgeRequest content)
         {
             super("PUT", "users/{userId}/events/{eventId}/badge", content, RegistrationResponse.class);
-            this.userId = ((String) Preconditions.checkNotNull(userId, "Required parameter userId must be specified."));
-            this.eventId = ((String)Preconditions.checkNotNull(eventId, "Required parameter eventId must be specified."));
+            assert userId != null;
+            this.userId = userId;
+
+            assert eventId != null;
+            this.eventId = eventId;
         }
 
         public String getUserId()
@@ -78,8 +80,11 @@ public class Badge
         protected Delete(String userId, String eventId)
         {
             super("DELETE", "users/{userId}/events/{eventId}/badge", null, RegistrationResponse.class);
-            this.userId = ((String)Preconditions.checkNotNull(userId, "Required parameter userId must be specified."));
-            this.eventId = ((String)Preconditions.checkNotNull(eventId, "Required parameter eventId must be specified."));
+            assert userId != null;
+            this.userId = userId;
+
+            assert eventId != null;
+            this.eventId = eventId;
         }
         public String getUserId()
         {
