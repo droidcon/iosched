@@ -16,11 +16,9 @@
 
 package com.funkyandroid.droidcon.uk.iosched.sync;
 
-import android.accounts.Account;
 import android.content.*;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
-import android.os.Bundle;
 import android.os.RemoteException;
 import android.preference.PreferenceManager;
 
@@ -31,13 +29,6 @@ import com.funkyandroid.droidcon.uk.iosched.io.*;
 import com.funkyandroid.droidcon.uk.iosched.io.map.model.Tile;
 import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract;
 import com.funkyandroid.droidcon.uk.iosched.util.*;
-import com.google.api.client.extensions.android.json.AndroidJsonFactory;
-import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
-import com.google.api.client.googleapis.json.GoogleJsonResponseException;
-import com.google.api.client.googleapis.services.CommonGoogleClientRequestInitializer;
-import com.google.api.client.http.HttpTransport;
-import com.google.api.client.http.javanet.NetHttpTransport;
-import com.google.api.client.json.JsonFactory;
 
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -166,34 +157,25 @@ public class SyncHelper {
         }
 
         if ((flags & FLAG_SYNC_REMOTE) != 0 && isOnline()) {
-            try {
-                ConferenceAPI conferenceAPI = new ConferenceAPI();
-                final long startRemote = System.currentTimeMillis();
-                LOGI(TAG, "Remote syncing announcements");
-                batch.addAll(new AnnouncementsFetcher(mContext).fetchAndParse());
-                LOGI(TAG, "Remote syncing speakers");
-                batch.addAll(new SpeakersHandler(mContext).fetchAndParse(conferenceAPI));
-                LOGI(TAG, "Remote syncing sessions");
-                batch.addAll(new SessionsHandler(mContext).fetchAndParse(conferenceAPI));
-                // Map sync
-                batch.addAll(remoteSyncMapData(Config.GET_MAP_URL,prefs));
-                LOGD(TAG, "Remote sync took " + (System.currentTimeMillis() - startRemote) + "ms");
-                if (syncResult != null) {
-                    ++syncResult.stats.numUpdates; // TODO: better way of indicating progress?
-                    ++syncResult.stats.numEntries;
-                }
-
-                // Sync feedback stuff
-                LOGI(TAG, "Syncing session feedback");
-                batch.addAll(new FeedbackHandler(mContext).uploadNew(conferenceAPI));
-            } catch (GoogleJsonResponseException e) {
-                if (e.getStatusCode() == 401) {
-                    LOGI(TAG, "Unauthorized; getting a new auth token.", e);
-                    if (syncResult != null) {
-                        ++syncResult.stats.numAuthExceptions;
-                    }
-                }
+            ConferenceAPI conferenceAPI = new ConferenceAPI();
+            final long startRemote = System.currentTimeMillis();
+            LOGI(TAG, "Remote syncing announcements");
+            batch.addAll(new AnnouncementsFetcher(mContext).fetchAndParse());
+            LOGI(TAG, "Remote syncing speakers");
+            batch.addAll(new SpeakersHandler(mContext).fetchAndParse(conferenceAPI));
+            LOGI(TAG, "Remote syncing sessions");
+            batch.addAll(new SessionsHandler(mContext).fetchAndParse(conferenceAPI));
+            // Map sync
+            batch.addAll(remoteSyncMapData(Config.GET_MAP_URL,prefs));
+            LOGD(TAG, "Remote sync took " + (System.currentTimeMillis() - startRemote) + "ms");
+            if (syncResult != null) {
+                ++syncResult.stats.numUpdates; // TODO: better way of indicating progress?
+                ++syncResult.stats.numEntries;
             }
+
+            // Sync feedback stuff
+            LOGI(TAG, "Syncing session feedback");
+            batch.addAll(new FeedbackHandler(mContext).uploadNew(conferenceAPI));
 
             // all other IOExceptions are thrown
             LOGI(TAG, "Sync complete");
