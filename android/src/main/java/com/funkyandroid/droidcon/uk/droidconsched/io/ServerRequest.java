@@ -6,7 +6,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.*;
-import java.lang.reflect.InvocationTargetException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
@@ -109,9 +108,8 @@ public class ServerRequest<T extends ServerResponse> {
             throw new IOException("Problem creating response object", e);
         } catch (IllegalAccessException e) {
             throw new IOException("Problem creating response object", e);
-        } catch (InvocationTargetException e) {
-            throw new IOException("Problem parsing response", e);
-        } finally {
+        }
+        finally {
             if(outputStream != null) {
                 outputStream.close();
             }
