@@ -1,7 +1,11 @@
 package com.funkyandroid.droidcon.uk.droidconsched.io.model;
 
 import com.funkyandroid.droidcon.uk.droidconsched.io.ServerResponse;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -170,5 +174,21 @@ public class SessionResponse extends ServerResponse {
     {
         this.youtubeUrl = youtubeUrl;
         return this;
+    }
+
+    @Override
+    protected boolean useClassSpecificSetter(JSONObject jsonObject, final String key)
+        throws JSONException {
+        if(!"presenterIds".equals(key)) {
+            return false;
+        }
+
+        JSONArray array = jsonObject.getJSONArray("presenterIds");
+        List<String> presenterIdList = new ArrayList<String>(array.length());
+        for(int i = 0 ; i < array.length() ; i++) {
+            presenterIdList.add(array.getString(i));
+        }
+        setPresenterIds(presenterIdList);
+        return true;
     }
 }

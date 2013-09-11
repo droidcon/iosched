@@ -113,8 +113,21 @@ public class ServerResponse {
             } else if   (setterType.equals(JSONObject.class)) {
                 method.invoke(this, jsonObject.getJSONObject(key));
             } else {
-                Log.w("Server Response", "Unable to deal with setter for "+key+" in "+getClass().getCanonicalName());
+                if(!useClassSpecificSetter(jsonObject, key)) {
+                    Log.w("Server Response", "Unable to deal with setter for "+key+" in "+getClass().getCanonicalName());
+                }
             }
         }
+    }
+
+    /**
+     * Allows class specific overrides of attributes which are not detected by the default handler
+     *
+     * @param jsonObject The object containing the data.
+     * @param key They key in the object which holds the data.
+     */
+
+    protected boolean useClassSpecificSetter(JSONObject jsonObject, final String key) throws JSONException {
+        return false;
     }
 }
