@@ -1,6 +1,7 @@
 package com.funkyandroid.droidcon.uk.droidconsched.io;
 
 import android.util.Log;
+import com.funkyandroid.droidcon.uk.iosched.Config;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -34,8 +35,16 @@ public class ServerResponse {
      */
 
     public void fromJSON(final JSONObject jsonObject)
-        throws IllegalAccessException, InvocationTargetException, JSONException {
-        setPropertiesByReflection(jsonObject);
+        throws JSONException {
+        try {
+            setPropertiesByReflection(jsonObject);
+        } catch (InvocationTargetException e) {
+            Log.e(Config.LOG_TAG, "Problem parsing JSON response", e);
+            throw new JSONException("Problem parsing response");
+        } catch (IllegalAccessException e) {
+            Log.e(Config.LOG_TAG, "Problem parsing JSON response", e);
+            throw new JSONException("Problem parsing response");
+        }
     }
 
     /**
@@ -75,7 +84,7 @@ public class ServerResponse {
         // JSONObject is backed
         Iterator keys = jsonObject.keys();
         while(keys.hasNext()) {
-            String key = keys.toString();
+            String key = keys.next().toString();
             if(!mSetterMap.containsKey(key)) {
                 continue;
             }
