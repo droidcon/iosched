@@ -56,22 +56,6 @@ public class SyncService extends IntentService {
                 " manualSync=" + manualSync +
                 " initialize=" + initialize);
 
-        /*
-            TODO: Look at non-G+ dependant way of doing this
-        String chosenAccountName = AccountUtils.getChosenAccountName(mContext);
-        boolean isAccountSet = !TextUtils.isEmpty(chosenAccountName);
-        boolean isChosenAccount = isAccountSet && chosenAccountName.equals(account.name);
-        if (isAccountSet) {
-            ContentResolver.setIsSyncable(account, authority, isChosenAccount ? 1 : 0);
-        }
-        if (!isChosenAccount) {
-            LOGW(TAG, "Tried to sync account " + logSanitizedAccountName + " but the chosen " +
-                    "account is actually " + chosenAccountName);
-            ++syncResult.stats.numAuthExceptions;
-            return;
-        }
-        */
-
         // Perform a sync using SyncHelper
         if (mSyncHelper == null) {
             mSyncHelper = new SyncHelper(this);
@@ -86,7 +70,7 @@ public class SyncService extends IntentService {
 
         } catch (IOException e) {
             ++syncResult.stats.numIoExceptions;
-            LOGE(Config.LOG_TAG, "Error syncing data for I/O 2013.", e);
+            LOGE(Config.LOG_TAG, "Error syncing data for Droidcon London 2013.", e);
         }
     }
 }
