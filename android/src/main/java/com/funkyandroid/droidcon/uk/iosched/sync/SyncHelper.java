@@ -39,10 +39,6 @@ import java.util.List;
 import com.larvalabs.svgandroid.SVG;
 import com.larvalabs.svgandroid.SVGParseException;
 import com.larvalabs.svgandroid.SVGParser;
-import com.turbomanage.httpclient.BasicHttpClient;
-import com.turbomanage.httpclient.ConsoleRequestLogger;
-import com.turbomanage.httpclient.HttpResponse;
-import com.turbomanage.httpclient.RequestLogger;
 
 import static com.funkyandroid.droidcon.uk.iosched.util.LogUtils.*;
 
@@ -245,6 +241,8 @@ public class SyncHelper {
 
         ArrayList<ContentProviderOperation> batch = Lists.newArrayList();
 
+/* TODO : Look at remote sync for map data
+
         BasicHttpClient httpClient = new BasicHttpClient();
         httpClient.setRequestLogger(mQuietLogger);
         httpClient.addHeader("If-None-Match", localVersion);
@@ -266,7 +264,7 @@ public class SyncHelper {
                 preferences.edit().putString("local_mapdata_version", etag.get(0)).commit();
             }
         } //else: no update
-
+*/
         return batch;
     }
 
@@ -287,6 +285,9 @@ public class SyncHelper {
 
         //keep track of used files, unused files are removed
         ArrayList<String> usedTiles = Lists.newArrayList();
+
+/* TODO : Look at remote sync for map data
+
         for(Tile tile : collection){
             final String filename = tile.filename;
             final String url = tile.url;
@@ -315,6 +316,7 @@ public class SyncHelper {
         }
 
         MapUtils.removeUnusedTiles(mContext, usedTiles);
+*/
     }
 
     /**
@@ -326,15 +328,4 @@ public class SyncHelper {
         bos.write(data);
         bos.close();
     }
-
-    /**
-     * A type of ConsoleRequestLogger that does not log requests and responses.
-     */
-    private RequestLogger mQuietLogger = new ConsoleRequestLogger(){
-        @Override
-        public void logRequest(HttpURLConnection uc, Object content) throws IOException { }
-
-        @Override
-        public void logResponse(HttpResponse res) { }
-    };
 }
