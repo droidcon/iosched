@@ -94,7 +94,7 @@ public class AnnouncementsFetcher {
 
         return batch;
          */
-        return null;
+        return batch;
     }
 
     private static void appendIfNotEmpty(StringBuilder sb, String s) {
