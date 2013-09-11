@@ -93,12 +93,6 @@
         <!-- Activities for both phones and tablets -->
 
         <activity
-            android:name=".ui.AccountActivity"
-            android:label="@string/app_name"
-            android:theme="@style/Theme.IOSched.Accounts"
-            android:configChanges="orientation|keyboardHidden" />
-
-        <activity
             android:name=".ui.HomeActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.IOSched.Home">
