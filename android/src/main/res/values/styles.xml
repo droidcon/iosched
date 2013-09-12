@@ -20,7 +20,7 @@
 
     <!-- Disable RTL support on older devices -->
     <!-- Prevents crash on certain devices to namespace conflict -->
-    <style name="FrameworkRoot.Base" parent="Theme.AppCompat.Light">
+    <style name="FrameworkRoot.Base" parent="Theme.AppCompat.Light.DarkActionBar">
     </style>
 
     <!-- Root styles that vary by API level -->
@@ -114,7 +114,7 @@
     </style>
 
     <style name="ActionBar.TitleText" parent="FrameworkRoot.ActionBar.TitleText">
-        <item name="android:textColor">#888</item>
+        <item name="android:textColor">#cccccc</item>
         <item name="android:fontFamily">sans-serif-light</item>
     </style>
 

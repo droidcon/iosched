@@ -97,7 +97,7 @@ public class ServerRequest<T extends ServerResponse> {
             connection.setRequestMethod(mRequestType);
             if(mRequestContent != null) {
                 outputStream = connection.getOutputStream();
-                outputStream.write(mRequestContent.toJSON().getBytes("UTD-8"));
+                outputStream.write(mRequestContent.toJSON().getBytes("UTF-8"));
                 outputStream.close();
                 outputStream = null;
             }
