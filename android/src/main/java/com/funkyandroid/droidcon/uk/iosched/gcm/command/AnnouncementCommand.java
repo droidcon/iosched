@@ -41,7 +41,7 @@ public class AnnouncementCommand extends GCMCommand {
         ((NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE))
                 .notify(0, new NotificationCompat.Builder(context)
                         .setWhen(System.currentTimeMillis())
-                        .setSmallIcon(R.drawable.ic_stat_notification)
+                        .setSmallIcon(R.drawable.ic_stat_droidconuk)
                         .setTicker(message)
                         .setContentTitle(context.getString(R.string.app_name))
                         .setContentText(message)

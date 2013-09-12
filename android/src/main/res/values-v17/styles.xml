@@ -18,7 +18,7 @@
 
     <!-- Enable RTL support on newer devices -->
     <!-- Prevents crash on certain devices to namespace conflict -->
-    <style name="FrameworkRoot.Base" parent="Theme.AppCompat.Light">
+    <style name="FrameworkRoot.Base" parent="Theme.AppCompat.Light.DarkActionBar">
         <item name="android:paddingStart">?android:attr/paddingLeft</item>
         <item name="android:paddingEnd">?android:attr/paddingRight</item>
         <item name="android:layout_marginStart">?android:attr/layout_marginLeft</item>
