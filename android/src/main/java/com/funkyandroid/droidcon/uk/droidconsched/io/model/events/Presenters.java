@@ -3,7 +3,6 @@ package com.funkyandroid.droidcon.uk.droidconsched.io.model.events;
 import com.funkyandroid.droidcon.uk.droidconsched.io.ServerRequest;
 import com.funkyandroid.droidcon.uk.droidconsched.io.model.PresenterResponse;
 import com.funkyandroid.droidcon.uk.droidconsched.io.model.PresentersResponse;
-import com.google.api.client.util.Preconditions;
 
 import java.io.IOException;
 
@@ -42,7 +41,8 @@ public class Presenters
         protected List(String eventId)
         {
             super("GET", "events/{eventId}/presenters", null, PresentersResponse.class);
-            this.eventId = ((String) Preconditions.checkNotNull(eventId, "Required parameter eventId must be specified."));
+            assert eventId != null;
+            this.eventId = eventId;
         }
 
 
@@ -69,8 +69,11 @@ public class Presenters
         protected Get(String eventId, String presenterId)
         {
             super("GET", "events/{eventId}/presenters/{presenterId}", null, PresenterResponse.class);
-            this.eventId = ((String)Preconditions.checkNotNull(eventId, "Required parameter eventId must be specified."));
-            this.presenterId = ((String)Preconditions.checkNotNull(presenterId, "Required parameter presenterId must be specified."));
+            assert presenterId != null;
+            this.presenterId = presenterId;
+
+            assert eventId != null;
+            this.eventId = eventId;
         }
 
         public String getEventId()

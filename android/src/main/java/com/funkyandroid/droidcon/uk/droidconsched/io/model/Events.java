@@ -5,7 +5,6 @@ import com.funkyandroid.droidcon.uk.droidconsched.io.model.events.Announcements;
 import com.funkyandroid.droidcon.uk.droidconsched.io.model.events.Sessions;
 import com.funkyandroid.droidcon.uk.droidconsched.io.model.events.Presenters;
 import com.funkyandroid.droidcon.uk.droidconsched.io.model.events.Tracks;
-import com.google.api.client.util.Preconditions;
 
 import java.io.IOException;
 
@@ -111,7 +110,8 @@ public class Events
         protected Get(String eventId)
         {
             super("GET", "events/{eventId}", null, EventResponse.class);
-            this.eventId = ((String) Preconditions.checkNotNull(eventId, "Required parameter eventId must be specified."));
+            assert eventId != null;
+            this.eventId = eventId;
         }
 
 

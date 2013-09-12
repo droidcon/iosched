@@ -16,27 +16,19 @@
 
 package com.funkyandroid.droidcon.uk.iosched.sync;
 
-import android.accounts.Account;
 import android.content.*;
 import android.database.Cursor;
 import android.net.ConnectivityManager;
-import android.os.Bundle;
 import android.os.RemoteException;
 import android.preference.PreferenceManager;
 
+import com.funkyandroid.droidcon.uk.droidconsched.io.ConferenceAPI;
 import com.funkyandroid.droidcon.uk.iosched.Config;
 import com.funkyandroid.droidcon.uk.iosched.R;
 import com.funkyandroid.droidcon.uk.iosched.io.*;
 import com.funkyandroid.droidcon.uk.iosched.io.map.model.Tile;
 import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract;
 import com.funkyandroid.droidcon.uk.iosched.util.*;
-import com.google.api.client.extensions.android.json.AndroidJsonFactory;
-import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
-import com.google.api.client.googleapis.json.GoogleJsonResponseException;
-import com.google.api.client.googleapis.services.CommonGoogleClientRequestInitializer;
-import com.google.api.client.http.HttpTransport;
-import com.google.api.client.http.javanet.NetHttpTransport;
-import com.google.api.client.json.JsonFactory;
 
 import java.io.*;
 import java.net.HttpURLConnection;
@@ -47,10 +39,6 @@ import java.util.List;
 import com.larvalabs.svgandroid.SVG;
 import com.larvalabs.svgandroid.SVGParseException;
 import com.larvalabs.svgandroid.SVGParser;
-import com.turbomanage.httpclient.BasicHttpClient;
-import com.turbomanage.httpclient.ConsoleRequestLogger;
-import com.turbomanage.httpclient.HttpResponse;
-import com.turbomanage.httpclient.RequestLogger;
 
 import static com.funkyandroid.droidcon.uk.iosched.util.LogUtils.*;
 
@@ -165,38 +153,26 @@ public class SyncHelper {
         }
 
         if ((flags & FLAG_SYNC_REMOTE) != 0 && isOnline()) {
-/*
-
-  TODO : Look at non-Gogole developers way of doing this
-            try {
-                Googledevelopers conferenceAPI = getConferenceAPIClient();
-                final long startRemote = System.currentTimeMillis();
-                LOGI(TAG, "Remote syncing announcements");
-                batch.addAll(new AnnouncementsFetcher(mContext).fetchAndParse());
-                LOGI(TAG, "Remote syncing speakers");
-                batch.addAll(new SpeakersHandler(mContext).fetchAndParse(conferenceAPI));
-                LOGI(TAG, "Remote syncing sessions");
-                batch.addAll(new SessionsHandler(mContext).fetchAndParse(conferenceAPI));
-                // Map sync
-                batch.addAll(remoteSyncMapData(Config.GET_MAP_URL,prefs));
-                LOGD(TAG, "Remote sync took " + (System.currentTimeMillis() - startRemote) + "ms");
-                if (syncResult != null) {
-                    ++syncResult.stats.numUpdates; // TODO: better way of indicating progress?
-                    ++syncResult.stats.numEntries;
-                }
-
-                // Sync feedback stuff
-                LOGI(TAG, "Syncing session feedback");
-                batch.addAll(new FeedbackHandler(mContext).uploadNew(conferenceAPI));
-            } catch (GoogleJsonResponseException e) {
-                if (e.getStatusCode() == 401) {
-                    LOGI(TAG, "Unauthorized; getting a new auth token.", e);
-                    if (syncResult != null) {
-                        ++syncResult.stats.numAuthExceptions;
-                    }
-                }
+            ConferenceAPI conferenceAPI = new ConferenceAPI();
+            final long startRemote = System.currentTimeMillis();
+            LOGI(TAG, "Remote syncing announcements");
+            batch.addAll(new AnnouncementsFetcher(mContext).fetchAndParse());
+            LOGI(TAG, "Remote syncing speakers");
+            batch.addAll(new SpeakersHandler(mContext).fetchAndParse(conferenceAPI));
+            LOGI(TAG, "Remote syncing sessions");
+            batch.addAll(new SessionsHandler(mContext).fetchAndParse(conferenceAPI));
+            // Map sync
+            batch.addAll(remoteSyncMapData(Config.GET_MAP_URL,prefs));
+            LOGD(TAG, "Remote sync took " + (System.currentTimeMillis() - startRemote) + "ms");
+            if (syncResult != null) {
+                ++syncResult.stats.numUpdates; // TODO: better way of indicating progress?
+                ++syncResult.stats.numEntries;
             }
- */
+
+            // Sync feedback stuff
+            LOGI(TAG, "Syncing session feedback");
+            batch.addAll(new FeedbackHandler(mContext).uploadNew(conferenceAPI));
+
             // all other IOExceptions are thrown
             LOGI(TAG, "Sync complete");
         }
@@ -265,6 +241,8 @@ public class SyncHelper {
 
         ArrayList<ContentProviderOperation> batch = Lists.newArrayList();
 
+/* TODO : Look at remote sync for map data
+
         BasicHttpClient httpClient = new BasicHttpClient();
         httpClient.setRequestLogger(mQuietLogger);
         httpClient.addHeader("If-None-Match", localVersion);
@@ -286,7 +264,7 @@ public class SyncHelper {
                 preferences.edit().putString("local_mapdata_version", etag.get(0)).commit();
             }
         } //else: no update
-
+*/
         return batch;
     }
 
@@ -307,6 +285,9 @@ public class SyncHelper {
 
         //keep track of used files, unused files are removed
         ArrayList<String> usedTiles = Lists.newArrayList();
+
+/* TODO : Look at remote sync for map data
+
         for(Tile tile : collection){
             final String filename = tile.filename;
             final String url = tile.url;
@@ -335,6 +316,7 @@ public class SyncHelper {
         }
 
         MapUtils.removeUnusedTiles(mContext, usedTiles);
+*/
     }
 
     /**
@@ -346,15 +328,4 @@ public class SyncHelper {
         bos.write(data);
         bos.close();
     }
-
-    /**
-     * A type of ConsoleRequestLogger that does not log requests and responses.
-     */
-    private RequestLogger mQuietLogger = new ConsoleRequestLogger(){
-        @Override
-        public void logRequest(HttpURLConnection uc, Object content) throws IOException { }
-
-        @Override
-        public void logResponse(HttpResponse res) { }
-    };
 }

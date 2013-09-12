@@ -28,11 +28,6 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
-import com.turbomanage.httpclient.AsyncCallback;
-import com.turbomanage.httpclient.HttpResponse;
-import com.turbomanage.httpclient.ParameterMap;
-import com.turbomanage.httpclient.android.AndroidHttpClient;
-
 import static com.funkyandroid.droidcon.uk.iosched.util.LogUtils.*;
 
 /**

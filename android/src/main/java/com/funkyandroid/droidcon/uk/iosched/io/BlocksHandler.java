@@ -81,8 +81,8 @@ public class BlocksHandler extends JSONHandler {
         if (slot.title != null) {
             title = slot.title;
         }
-        String startTime = date + "T" + start + ":00.000-07:00";
-        String endTime = date + "T" + end + ":00.000-07:00";
+        String startTime = date + "T" + start + ":00.000+01:00";
+        String endTime = date + "T" + end + ":00.000+01:00";
         LOGV(TAG, "startTime:" + startTime);
         long startTimeL = ParserUtils.parseTime(startTime);
         long endTimeL = ParserUtils.parseTime(endTime);

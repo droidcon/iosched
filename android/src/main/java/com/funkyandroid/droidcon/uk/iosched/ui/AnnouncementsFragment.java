@@ -20,8 +20,6 @@ import com.funkyandroid.droidcon.uk.iosched.R;
 import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract;
 import com.funkyandroid.droidcon.uk.iosched.social.Tweet;
 import com.funkyandroid.droidcon.uk.iosched.util.UIUtils;
-import com.google.api.client.extensions.android.json.AndroidJsonFactory;
-import com.google.api.client.json.JsonFactory;
 
 import android.content.Context;
 import android.content.Intent;
@@ -188,7 +186,7 @@ public class AnnouncementsFragment extends ListFragment implements
     }
 
     private class StreamAdapter extends CursorAdapter {
-        private JsonFactory mFactory = new AndroidJsonFactory();
+//        private JsonFactory mFactory = new AndroidJsonFactory();
         private Map<Long, Tweet> mActivityCache = new HashMap<Long, Tweet>();
 
         public StreamAdapter(Context context) {

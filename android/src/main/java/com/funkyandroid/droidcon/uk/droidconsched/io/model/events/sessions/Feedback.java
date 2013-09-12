@@ -3,7 +3,6 @@ package com.funkyandroid.droidcon.uk.droidconsched.io.model.events.sessions;
 import com.funkyandroid.droidcon.uk.droidconsched.io.ServerRequest;
 import com.funkyandroid.droidcon.uk.droidconsched.io.model.FeedbackResponse;
 import com.funkyandroid.droidcon.uk.droidconsched.io.model.ModifyFeedbackRequest;
-import com.google.api.client.util.Preconditions;
 
 /**
  * Events.Sessions.Feedback as modelled in the Google Developers API.
@@ -22,8 +21,11 @@ public class Feedback extends ServerRequest<FeedbackResponse>
     public Feedback(String eventId, String sessionId, ModifyFeedbackRequest content)
     {
         super("PUT", "events/{eventId}/sessions/{sessionId}/feedback", content, FeedbackResponse.class);
-        this.eventId = ((String) Preconditions.checkNotNull(eventId, "Required parameter eventId must be specified."));
-        this.sessionId = ((String)Preconditions.checkNotNull(sessionId, "Required parameter sessionId must be specified."));
+        assert eventId != null;
+        this.eventId = eventId;
+
+        assert sessionId != null;
+        this.sessionId = sessionId;
     }
 
     public String getEventId()

@@ -1,14 +1,9 @@
 package com.funkyandroid.droidcon.uk.droidconsched.io.model.users;
 
-import com.funkyandroid.droidcon.uk.droidconsched.io.ServerRequest;
-import com.funkyandroid.droidcon.uk.droidconsched.io.model.RegistrationResponse;
 import com.funkyandroid.droidcon.uk.droidconsched.io.model.users.events.Badge;
 import com.funkyandroid.droidcon.uk.droidconsched.io.model.users.events.Registration;
 import com.funkyandroid.droidcon.uk.droidconsched.io.model.users.events.Sessions;
 import com.funkyandroid.droidcon.uk.droidconsched.io.model.users.events.Todos;
-import com.google.api.client.util.Preconditions;
-
-import java.io.IOException;
 
 /**
  * Users.Events as modelled in the Google Developers API.
