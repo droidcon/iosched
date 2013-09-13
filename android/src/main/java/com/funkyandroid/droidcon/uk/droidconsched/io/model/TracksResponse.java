@@ -19,7 +19,7 @@ public class TracksResponse extends ServerArrayResponse<TrackResponse> {
 
     @Override
     protected String getArrayAttributeName() {
-        return "presenters";
+        return "tracks";
     }
 
     @Override
