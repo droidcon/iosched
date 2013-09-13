@@ -255,9 +255,9 @@ public class ScheduleContract {
                 BASE_CONTENT_URI.buildUpon().appendPath(PATH_BLOCKS).build();
 
         public static final String CONTENT_TYPE =
-                "vnd.android.cursor.dir/vnd.iosched.block";
+                "vnd.android.cursor.dir/vnd.droidconuk2013.block";
         public static final String CONTENT_ITEM_TYPE =
-                "vnd.android.cursor.item/vnd.iosched.block";
+                "vnd.android.cursor.item/vnd.droidconuk2013.block";
 
         /** Count of {@link Sessions} inside given block. */
         public static final String SESSIONS_COUNT = "sessions_count";
@@ -378,9 +378,9 @@ public class ScheduleContract {
         public static final int TRACK_META_OFFICE_HOURS_ONLY = 3;
 
         public static final String CONTENT_TYPE =
-                "vnd.android.cursor.dir/vnd.iosched.track";
+                "vnd.android.cursor.dir/vnd.droidconuk2013.track";
         public static final String CONTENT_ITEM_TYPE =
-                "vnd.android.cursor.item/vnd.iosched.track";
+                "vnd.android.cursor.item/vnd.droidconuk2013.track";
 
         /** "All tracks" ID. */
         public static final String ALL_TRACK_ID = "all";
@@ -432,9 +432,9 @@ public class ScheduleContract {
                 BASE_CONTENT_URI.buildUpon().appendPath(PATH_ROOMS).build();
 
         public static final String CONTENT_TYPE =
-                "vnd.android.cursor.dir/vnd.iosched.room";
+                "vnd.android.cursor.dir/vnd.droidconuk2013.room";
         public static final String CONTENT_ITEM_TYPE =
-                "vnd.android.cursor.item/vnd.iosched.room";
+                "vnd.android.cursor.item/vnd.droidconuk2013.room";
 
         /** Default "ORDER BY" clause. */
         public static final String DEFAULT_SORT = RoomsColumns.ROOM_FLOOR + " ASC, "
@@ -469,9 +469,9 @@ public class ScheduleContract {
                 BASE_CONTENT_URI.buildUpon().appendPath(PATH_FEEDBACK).build();
 
         public static final String CONTENT_TYPE =
-                "vnd.android.cursor.dir/vnd.iosched.session_feedback";
+                "vnd.android.cursor.dir/vnd.droidconuk2013.session_feedback";
         public static final String CONTENT_ITEM_TYPE =
-                "vnd.android.cursor.item/vnd.iosched.session_feedback";
+                "vnd.android.cursor.item/vnd.droidconuk2013.session_feedback";
 
         /** Default "ORDER BY" clause. */
         public static final String DEFAULT_SORT = BaseColumns._ID + " ASC, ";
@@ -506,9 +506,9 @@ public class ScheduleContract {
                 CONTENT_URI.buildUpon().appendPath(PATH_STARRED).build();
 
         public static final String CONTENT_TYPE =
-                "vnd.android.cursor.dir/vnd.iosched.session";
+                "vnd.android.cursor.dir/vnd.droidconuk2013.session";
         public static final String CONTENT_ITEM_TYPE =
-                "vnd.android.cursor.item/vnd.iosched.session";
+                "vnd.android.cursor.item/vnd.droidconuk2013.session";
 
         public static final String BLOCK_ID = "block_id";
         public static final String ROOM_ID = "room_id";
@@ -622,9 +622,9 @@ public class ScheduleContract {
                 BASE_CONTENT_URI.buildUpon().appendPath(PATH_SPEAKERS).build();
 
         public static final String CONTENT_TYPE =
-                "vnd.android.cursor.dir/vnd.iosched.speaker";
+                "vnd.android.cursor.dir/vnd.droidconuk2013.speaker";
         public static final String CONTENT_ITEM_TYPE =
-                "vnd.android.cursor.item/vnd.iosched.speaker";
+                "vnd.android.cursor.item/vnd.droidconuk2013.speaker";
 
         /** Default "ORDER BY" clause. */
         public static final String DEFAULT_SORT = SpeakersColumns.SPEAKER_NAME
@@ -658,9 +658,9 @@ public class ScheduleContract {
                 BASE_CONTENT_URI.buildUpon().appendPath(PATH_SANDBOX).build();
 
         public static final String CONTENT_TYPE =
-                "vnd.android.cursor.dir/vnd.iosched.sandbox";
+                "vnd.android.cursor.dir/vnd.droidconuk2013.sandbox";
         public static final String CONTENT_ITEM_TYPE =
-                "vnd.android.cursor.item/vnd.iosched.sandbox";
+                "vnd.android.cursor.item/vnd.droidconuk2013.sandbox";
 
         /** {@link Tracks#TRACK_ID} that this sandbox company belongs to. */
         public static final String TRACK_ID = "track_id";
@@ -698,9 +698,9 @@ public class ScheduleContract {
                 BASE_CONTENT_URI.buildUpon().appendPath(PATH_ANNOUNCEMENTS).build();
 
         public static final String CONTENT_TYPE =
-                "vnd.android.cursor.dir/vnd.iosched.announcement";
+                "vnd.android.cursor.dir/vnd.droidconuk2013.announcement";
         public static final String CONTENT_ITEM_TYPE =
-                "vnd.android.cursor.item/vnd.iosched.announcement";
+                "vnd.android.cursor.item/vnd.droidconuk2013.announcement";
 
         /** Default "ORDER BY" clause. */
         public static final String DEFAULT_SORT = AnnouncementsColumns.ANNOUNCEMENT_DATE
@@ -726,8 +726,8 @@ public class ScheduleContract {
         public static final Uri CONTENT_URI = BASE_CONTENT_URI.buildUpon()
                 .appendPath(PATH_MAP_TILES).build();
 
-        public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd.iosched.maptiles";
-        public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.iosched.maptiles";
+        public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd.droidconuk2013.maptiles";
+        public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.droidconuk2013.maptiles";
 
         /** Default "ORDER BY" clause. */
         public static final String DEFAULT_SORT = MapTileColumns.TILE_FLOOR + " ASC";
@@ -757,8 +757,8 @@ public class ScheduleContract {
         public static final Uri CONTENT_URI = BASE_CONTENT_URI.buildUpon()
                 .appendPath(PATH_MAP_MARKERS).build();
 
-        public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd.iosched.mapmarker";
-        public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.iosched.mapmarker";
+        public static final String CONTENT_TYPE = "vnd.android.cursor.dir/vnd.droidconuk2013.mapmarker";
+        public static final String CONTENT_ITEM_TYPE = "vnd.android.cursor.item/vnd.droidconuk2013.mapmarker";
 
         /** Default "ORDER BY" clause. */
         public static final String DEFAULT_SORT = MapMarkerColumns.MARKER_FLOOR

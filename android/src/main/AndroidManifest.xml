@@ -176,7 +176,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="vnd.android.cursor.dir/vnd.droiconuk.session" />
+                <data android:mimeType="vnd.android.cursor.dir/vnd.droidconuk2013.session" />
             </intent-filter>
             <!-- HomeActivity and not TrackDetailActivity is the parent because SessionsActivity
               is not used to show sessions for a given track. -->
@@ -194,7 +194,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="vnd.android.cursor.item/vnd.iosched.track" />
+                <data android:mimeType="vnd.android.cursor.item/vnd.droidconuk2013.track" />
             </intent-filter>
             <meta-data android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.HomeActivity" />
@@ -209,13 +209,13 @@
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="vnd.android.cursor.item/vnd.iosched.session" />
+                <data android:mimeType="vnd.android.cursor.item/vnd.droidconuk2013.session" />
             </intent-filter>
             <!-- Android Beam for session details -->
             <intent-filter>
                 <action android:name="android.nfc.action.NDEF_DISCOVERED" />
                 <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="vnd.android.cursor.item/vnd.iosched.session" />
+                <data android:mimeType="vnd.android.cursor.item/vnd.droidconuk2013.session" />
             </intent-filter>
             <!-- Web URLs -->
             <intent-filter android:label="@string/app_name">
@@ -238,7 +238,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="vnd.android.cursor.item/vnd.iosched.session_feedback" />
+                <data android:mimeType="vnd.android.cursor.item/vnd.droidconuk2013.session_feedback" />
             </intent-filter>
             <!-- PARENT_ACTIVITY alone is insufficient for Up navigation for this activity -->
             <meta-data android:name="android.support.PARENT_ACTIVITY"
@@ -252,7 +252,7 @@
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="vnd.android.cursor.item/vnd.iosched.sandbox" />
+                <data android:mimeType="vnd.android.cursor.item/vnd.droidconuk2013.sandbox" />
             </intent-filter>
             <!-- PARENT_ACTIVITY alone is insufficient for Up navigation for this activity -->
             <meta-data android:name="android.support.PARENT_ACTIVITY"
@@ -283,35 +283,35 @@
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="vnd.android.cursor.item/vnd.iosched.track" />
+                <data android:mimeType="vnd.android.cursor.item/vnd.droidconuk2013.track" />
             </intent-filter>
             <!-- can show session and sandbox company lists -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="vnd.android.cursor.dir/vnd.iosched.session" />
+                <data android:mimeType="vnd.android.cursor.dir/vnd.droidconuk2013.session" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="vnd.android.cursor.dir/vnd.iosched.sandbox" />
+                <data android:mimeType="vnd.android.cursor.dir/vnd.droidconuk2013.sandbox" />
             </intent-filter>
             <!-- can show session and sandbox company details -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="vnd.android.cursor.item/vnd.iosched.session" />
+                <data android:mimeType="vnd.android.cursor.item/vnd.droidconuk2013.session" />
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="vnd.android.cursor.item/vnd.iosched.sandbox" />
+                <data android:mimeType="vnd.android.cursor.item/vnd.droidconuk2013.sandbox" />
             </intent-filter>
             <!-- Android Beam for session details -->
             <intent-filter>
                 <action android:name="android.nfc.action.NDEF_DISCOVERED" />
                 <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="vnd.android.cursor.item/vnd.iosched.session" />
+                <data android:mimeType="vnd.android.cursor.item/vnd.droidconuk2013.session" />
             </intent-filter>
             <!-- Web URLs -->
             <intent-filter android:label="@string/app_name">
