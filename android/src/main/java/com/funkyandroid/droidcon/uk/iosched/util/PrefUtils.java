@@ -89,12 +89,16 @@ public class PrefUtils {
     }
 
     public static boolean isAttendeeAtVenue(final Context context, boolean forceRequery) {
+        return true;
+
+        /* For droidcon we're not live streaming so physical presence is irrelevant
         if (sAttendeeAtVenue == -1 || forceRequery) {
             SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
             sAttendeeAtVenue = sp.getBoolean(PREF_ATTENDEE_AT_VENUE, false) ? 1 : 0;
         }
 
         return sAttendeeAtVenue == 1;
+         */
     }
 
     public static void markSetupDone(final Context context) {
