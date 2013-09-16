@@ -95,7 +95,7 @@ public class SyncHelper {
 
         LOGI(TAG, "Performing sync");
 
-/*        if ((flags & FLAG_SYNC_LOCAL) != 0) {
+        if ((flags & FLAG_SYNC_LOCAL) != 0) {
             final long startLocal = System.currentTimeMillis();
             final boolean localParse = localVersion < LOCAL_VERSION_CURRENT;
             LOGD(TAG, "found localVersion=" + localVersion + " and LOCAL_VERSION_CURRENT="
@@ -103,7 +103,7 @@ public class SyncHelper {
             // Only run local sync if there's a newer version of data available
             // than what was last locally-sync'd.
             if (localParse) {
-*/                // Load static local data
+                // Load static local data
                 LOGI(TAG, "Local syncing rooms");
                 batch.addAll(new RoomsHandler(mContext).parse(
                         JSONHandler.parseResource(mContext, R.raw.rooms)));
@@ -128,7 +128,7 @@ public class SyncHelper {
                 batch.addAll(mapHandler.parse(
                         JSONHandler.parseResource(mContext, R.raw.map)));
                 //need to sync tile files before data is updated in content provider
-                syncMapTiles(mapHandler.getTiles());
+// We're not using the map                syncMapTiles(mapHandler.getTiles());
 
                 prefs.edit().putInt("local_data_version", LOCAL_VERSION_CURRENT).commit();
                 prefs.edit().putString("local_mapdata_version", LOCAL_MAPVERSION_CURRENT).commit();
@@ -136,10 +136,10 @@ public class SyncHelper {
                     ++syncResult.stats.numUpdates; // TODO: better way of indicating progress?
                     ++syncResult.stats.numEntries;
                 }
-/*            }
+            }
 
             LOGD(TAG, "Local sync took " + (System.currentTimeMillis() - startLocal) + "ms");
-*/
+
             try {
                 // Apply all queued up batch operations for local data.
                 resolver.applyBatch(ScheduleContract.CONTENT_AUTHORITY, batch);
@@ -150,7 +150,7 @@ public class SyncHelper {
             }
 
             batch = new ArrayList<ContentProviderOperation>();
-//        }
+        }
 
         if ((flags & FLAG_SYNC_REMOTE) != 0 && isOnline()) {
             ConferenceAPI conferenceAPI = new ConferenceAPI();
