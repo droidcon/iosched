@@ -110,7 +110,7 @@ public class ServerRequest<T extends ServerResponse> {
             }
 
             inputStream = connection.getInputStream();
-            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream, "UTF-8"));
             StringBuilder stringBuilder = new StringBuilder();
             String line = null;
             while ((line = reader.readLine()) != null) {
@@ -121,6 +121,7 @@ public class ServerRequest<T extends ServerResponse> {
 
             JSONObject jsonObject = new JSONObject(stringBuilder.toString());
             result.fromJSON(jsonObject);
+            return result;
         } catch (JSONException e) {
             throw new IOException("Formatting error", e);
         } catch (InstantiationException e) {
@@ -135,8 +136,6 @@ public class ServerRequest<T extends ServerResponse> {
                 inputStream.close();
             }
         }
-
-        return null;
     }
 
     /**
