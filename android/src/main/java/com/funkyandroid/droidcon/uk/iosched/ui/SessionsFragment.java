@@ -70,7 +70,7 @@ public class SessionsFragment extends ListFragment implements
     private CursorAdapter mAdapter;
     private String mSelectedSessionId;
     private MenuItem mStarredMenuItem;
-    private MenuItem mMapMenuItem;
+    //private MenuItem mMapMenuItem;
     private MenuItem mShareMenuItem;
     private MenuItem mSocialStreamMenuItem;
     private int mSessionQueryToken;
@@ -349,7 +349,7 @@ public class SessionsFragment extends ListFragment implements
         SessionsHelper helper = new SessionsHelper(getActivity());
         mode.finish();
         switch (item.getItemId()) {
-            case R.id.menu_map: {
+            /*case R.id.menu_map: {
                 // multiple selection not supported
                 int position = checkedSessionPositions.get(0);
                 Cursor cursor = (Cursor) mAdapter.getItem(position);
@@ -360,7 +360,7 @@ public class SessionsFragment extends ListFragment implements
                 LOGV(TAG, "Starred: " + title);
                 
                 return true;
-            }
+            }*/
             case R.id.menu_star: {
                 // multiple selection supported
                 boolean starred = false;
@@ -417,7 +417,7 @@ public class SessionsFragment extends ListFragment implements
         MenuInflater inflater = mode.getMenuInflater();
         inflater.inflate(R.menu.sessions_context, menu);
         mStarredMenuItem = menu.findItem(R.id.menu_star);
-        mMapMenuItem = menu.findItem(R.id.menu_map);
+        //mMapMenuItem = menu.findItem(R.id.menu_map);
         mShareMenuItem = menu.findItem(R.id.menu_share);
         mSocialStreamMenuItem = menu.findItem(R.id.menu_social_stream);
         return true;
@@ -441,7 +441,7 @@ public class SessionsFragment extends ListFragment implements
 
         if (numSelectedSessions == 1) {
             // activate all the menu items
-            mMapMenuItem.setVisible(true);
+            //mMapMenuItem.setVisible(true);
             mShareMenuItem.setVisible(true);
             mStarredMenuItem.setVisible(true);
             position = checkedSessionPositions.get(0);
@@ -451,7 +451,7 @@ public class SessionsFragment extends ListFragment implements
             mSocialStreamMenuItem.setVisible(!TextUtils.isEmpty(hashtags));
             setSelectedSessionStarred(starred);
         } else {
-            mMapMenuItem.setVisible(false);
+            //mMapMenuItem.setVisible(false);
             mShareMenuItem.setVisible(false);
             mSocialStreamMenuItem.setVisible(false);
             boolean allStarred = true;

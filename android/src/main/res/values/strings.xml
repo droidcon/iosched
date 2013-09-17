@@ -181,14 +181,11 @@
     ]]></string>
     <string name="description_setup_wifi_body"><![CDATA[
         Since you\'re attending in person, we can set up this device to access the conference Wi-Fi network.
-        By configuring your Wi-Fi now, you\'ll help prevent network congestion.<br>
-        <br>
-        <i>Note: If your device only supports 2.4 GHz networks, you\'ll need to manually connect upon
-        arrival.</i>
+        By configuring your Wi-Fi now, you\'ll help prevent network congestion.
     ]]></string>
     <string name="description_sign_in_main"><![CDATA[
         Welcome to the Droidcon London 2013 app, your official companion to the Droidcon London conference
-        taking place in San Francisco from May 15th to May 17th, 2013.<br>
+        taking place in London from October 24th to October 27th, 2013.<br>
         <br>
         We just need to ask you a couple of quick questions. Press the &quot;Sign-in&quot; button
         to get started.
@@ -206,7 +203,7 @@
         <item>No thanks, I\'ll connect on my own.</item>
     </string-array>
     <string-array name="selection_setup_attendee">
-        <item>Yes, I\'ll be attending from San Francisco.</item>
+        <item>Yes, I\'ll be attending from London.</item>
         <item>No, I\'ll be viewing from home or attending a Droidcon London Extended event.</item>
     </string-array>
     <string name="empty_accounts">No Google accounts are available. Add an account to continue.</string>
@@ -283,6 +280,7 @@
     <string name="pref_attendee_at_venue_title">I\'ll be at Droidcon London!</string>
     <string name="pref_attendee_at_venue_description">When checked, all sessions and on-site events will be shown. Otherwise, only live-streamed sessions will be shown.</string>
     <string name="wifi_install_error_message">Sorry, unable to update WiFi configuration</string>
+    <string name="wifi_install_success_message">The Droidcon WiFi network has been successfully added to this device</string>
 
     <!-- Feedback -->
     <string name="session_feedback_submitlink">Submit Feedback</string>
