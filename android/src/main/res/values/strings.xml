@@ -181,14 +181,11 @@
     ]]></string>
     <string name="description_setup_wifi_body"><![CDATA[
         Since you\'re attending in person, we can set up this device to access the conference Wi-Fi network.
-        By configuring your Wi-Fi now, you\'ll help prevent network congestion.<br>
-        <br>
-        <i>Note: If your device only supports 2.4 GHz networks, you\'ll need to manually connect upon
-        arrival.</i>
+        By configuring your Wi-Fi now, you\'ll help prevent network congestion.
     ]]></string>
     <string name="description_sign_in_main"><![CDATA[
         Welcome to the Droidcon London 2013 app, your official companion to the Droidcon London conference
-        taking place in San Francisco from May 15th to May 17th, 2013.<br>
+        taking place in London from October 24th to October 27th, 2013.<br>
         <br>
         We just need to ask you a couple of quick questions. Press the &quot;Sign-in&quot; button
         to get started.
