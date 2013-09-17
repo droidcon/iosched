@@ -145,7 +145,9 @@ public class BezelImageView extends ImageView {
                 mCacheBitmap.eraseColor(0);
             } else {
                 // Allocate a new bitmap with the correct dimensions.
-                mCacheBitmap.recycle();
+                if (!isInEditMode()) {
+                    mCacheBitmap.recycle();
+                }
                 //noinspection AndroidLintDrawAllocation
                 mCacheBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
                 mCachedWidth = width;

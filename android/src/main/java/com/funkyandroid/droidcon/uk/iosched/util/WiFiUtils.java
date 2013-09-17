@@ -71,6 +71,10 @@ public class WiFiUtils {
                 Toast.makeText(context,
                         context.getResources().getString(R.string.wifi_install_error_message),
                         Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(context,
+                       context.getResources().getString(R.string.wifi_install_success_message),
+                       Toast.LENGTH_SHORT).show();
             }
         } else {
             Log.e(TAG, "Unknown error while calling WiFiManager.addNetwork()");
