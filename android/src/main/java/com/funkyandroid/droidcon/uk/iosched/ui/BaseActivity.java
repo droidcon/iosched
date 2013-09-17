@@ -25,6 +25,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 
 import com.funkyandroid.droidcon.uk.iosched.R;
+import com.funkyandroid.droidcon.uk.iosched.sync.SyncHelper;
 import com.funkyandroid.droidcon.uk.iosched.util.*;
 
 import static com.funkyandroid.droidcon.uk.iosched.util.LogUtils.makeLogTag;
@@ -39,7 +40,8 @@ public abstract class BaseActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (!PrefUtils.isSetupDone(this)) {
-            // TODO: Decide if we want to do some setup
+            SyncHelper.requestManualSync(this);
+            PrefUtils.markSetupDone(this);
         }
     }
 
