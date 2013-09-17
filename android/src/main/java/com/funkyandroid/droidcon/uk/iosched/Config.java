@@ -53,8 +53,8 @@ public class Config {
     public static final String SECONDARY_LIVESTREAM_TRACK = "chrome";
 
     // Conference public WiFi AP parameters
-    public static final String WIFI_SSID = "Google5G";
-    public static final String WIFI_PASSPHRASE = "gomobileio";
+    public static final String WIFI_SSID = "DroidconUK";        // TODO: set real Droidcon WiFi SSID
+    public static final String WIFI_PASSPHRASE = "fillmein";    // TODO: set real Droidcon WiFi password
 
     // GCM config
     // TODO: Add your GCM information here.
