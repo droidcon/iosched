@@ -45,15 +45,12 @@ import android.text.style.StyleSpan;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.funkyandroid.droidcon.uk.iosched.BuildConfig;
 import com.funkyandroid.droidcon.uk.iosched.Config;
 import com.funkyandroid.droidcon.uk.iosched.R;
 import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract;
 import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract.Blocks;
 import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract.Rooms;
-import com.funkyandroid.droidcon.uk.iosched.ui.phone.MapActivity;
-import com.funkyandroid.droidcon.uk.iosched.ui.tablet.MapMultiPaneActivity;
 
 import java.io.*;
 import java.lang.ref.WeakReference;
@@ -617,14 +614,6 @@ public class UIUtils {
         } catch (ClassNotFoundException e) {
             LOGE(TAG, "Activity not found within package.", e);
         }
-    }
-
-    public static Class getMapActivityClass(Context context) {
-        if (UIUtils.isHoneycombTablet(context)) {
-            return MapMultiPaneActivity.class;
-        }
-
-        return MapActivity.class;
     }
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
