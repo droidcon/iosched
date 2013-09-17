@@ -276,15 +276,12 @@ public class SessionsFragment extends ListFragment implements
             sessionsUri = ScheduleContract.Sessions.CONTENT_URI;
         }
         Loader<Cursor> loader = null;
-        String liveStreamedOnlySelection = UIUtils.shouldShowLiveSessionsOnly(getActivity())
-                ? "IFNULL(" + ScheduleContract.Sessions.SESSION_LIVESTREAM_URL + ",'')!=''"
-                : null;
         if (id == SessionsQuery._TOKEN) {
             loader = new CursorLoader(getActivity(), sessionsUri, SessionsQuery.PROJECTION,
-                    liveStreamedOnlySelection, null, ScheduleContract.Sessions.DEFAULT_SORT);
+                    null, null, ScheduleContract.Sessions.DEFAULT_SORT);
         } else if (id == SearchQuery._TOKEN) {
             loader = new CursorLoader(getActivity(), sessionsUri, SearchQuery.PROJECTION,
-                    liveStreamedOnlySelection, null, ScheduleContract.Sessions.DEFAULT_SORT);
+                    null, null, ScheduleContract.Sessions.DEFAULT_SORT);
         }
         return loader;
     }
@@ -504,9 +501,6 @@ public class SessionsFragment extends ListFragment implements
                 if (PrefUtils.PREF_LOCAL_TIMES.equals(key)) {
                     PrefUtils.isUsingLocalTime(getActivity(), true); // force update
                     mAdapter.notifyDataSetInvalidated();
-                } else if (PrefUtils.PREF_ATTENDEE_AT_VENUE.equals(key)) {
-                    PrefUtils.isAttendeeAtVenue(getActivity(), true); // force update
-                    mAdapter.notifyDataSetInvalidated();
                 }
             }
         }
@@ -570,13 +564,10 @@ public class SessionsFragment extends ListFragment implements
             view.findViewById(R.id.indicator_in_schedule).setVisibility(
                     starred ? View.VISIBLE : View.INVISIBLE);
 
-            final boolean hasLivestream = !TextUtils.isEmpty(
-                    cursor.getString(SessionsQuery.LIVESTREAM_URL));
-
             // Show past/present/future and livestream status for this block.
-            UIUtils.updateTimeAndLivestreamBlockUI(context,
-                    blockStart, blockEnd,
-                    titleView, subtitleView, subtitle);
+            UIUtils.updateTimeBlockUI(context,
+                                      blockStart, blockEnd,
+                                      titleView, subtitleView, subtitle);
         }
     }
 
@@ -633,7 +624,6 @@ public class SessionsFragment extends ListFragment implements
                 ScheduleContract.Rooms.ROOM_ID,
                 ScheduleContract.Sessions.SESSION_HASHTAGS,
                 ScheduleContract.Sessions.SESSION_URL,
-                ScheduleContract.Sessions.SESSION_LIVESTREAM_URL,
         };
 
         int _ID = 0;
@@ -646,7 +636,6 @@ public class SessionsFragment extends ListFragment implements
         int ROOM_ID = 7;
         int HASHTAGS = 8;
         int URL = 9;
-        int LIVESTREAM_URL = 10;
     }
 
     /**

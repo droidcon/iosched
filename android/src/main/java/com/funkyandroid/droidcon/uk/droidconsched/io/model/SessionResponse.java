@@ -34,10 +34,6 @@ public class SessionResponse extends ServerResponse {
 
     private String title;
 
-    private String youtubeId;
-
-    private String youtubeUrl;
-
     public SessionResponse()
     {
     }
@@ -138,28 +134,6 @@ public class SessionResponse extends ServerResponse {
     public SessionResponse setTitle(String title)
     {
         this.title = title;
-        return this;
-    }
-
-    public String getYoutubeId()
-    {
-        return this.youtubeId;
-    }
-
-    public SessionResponse setYoutubeId(String youtubeId)
-    {
-        this.youtubeId = youtubeId;
-        return this;
-    }
-
-    public String getYoutubeUrl()
-    {
-        return this.youtubeUrl;
-    }
-
-    public SessionResponse setYoutubeUrl(String youtubeUrl)
-    {
-        this.youtubeUrl = youtubeUrl;
         return this;
     }
 

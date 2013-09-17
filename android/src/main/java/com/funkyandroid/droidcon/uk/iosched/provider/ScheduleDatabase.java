@@ -218,7 +218,6 @@ public class ScheduleDatabase extends SQLiteOpenHelper {
                 + SessionsColumns.SESSION_NOTES_URL + " TEXT,"
                 + SessionsColumns.SESSION_STARRED + " INTEGER NOT NULL DEFAULT 0,"
                 + SessionsColumns.SESSION_CAL_EVENT_ID + " INTEGER,"
-                + SessionsColumns.SESSION_LIVESTREAM_URL + " TEXT,"
                 + "UNIQUE (" + SessionsColumns.SESSION_ID + ") ON CONFLICT REPLACE)");
 
         db.execSQL("CREATE TABLE " + Tables.SPEAKERS + " ("

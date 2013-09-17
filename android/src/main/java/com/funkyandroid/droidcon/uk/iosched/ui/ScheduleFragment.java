@@ -182,9 +182,6 @@ public class ScheduleFragment extends ListFragment implements
                 if (PrefUtils.PREF_LOCAL_TIMES.equals(key)) {
                     PrefUtils.isUsingLocalTime(getActivity(), true); // force update
                     mAdapter.notifyDataSetInvalidated();
-                } else if (PrefUtils.PREF_ATTENDEE_AT_VENUE.equals(key)) {
-                    PrefUtils.isAttendeeAtVenue(getActivity(), true); // force update
-                    getLoaderManager().restartLoader(0, null, ScheduleFragment.this);
                 }
             }
         }
@@ -534,10 +531,10 @@ public class ScheduleFragment extends ListFragment implements
                     DateUtils.FORMAT_SHOW_TIME,
                     PrefUtils.getDisplayTimeZone(context).getID()).toString());
 
-            // Show past/present/future and livestream status for this block.
-            UIUtils.updateTimeAndLivestreamBlockUI(context,
-                    blockStart, blockEnd,
-                    titleView, subtitleView, subtitle);
+            // Show past/present/future status for this block.
+            UIUtils.updateTimeBlockUI(context,
+                                      blockStart, blockEnd,
+                                      titleView, subtitleView, subtitle);
         }
     }
 

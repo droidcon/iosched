@@ -898,13 +898,6 @@ public class ScheduleProvider extends ContentProvider {
                 + Qualified.BLOCKS_BLOCK_ID + " AND " + Qualified.SESSIONS_STARRED + "=1 "
                 + "ORDER BY " + Qualified.SESSIONS_TITLE + ")";
 
-        String BLOCK_STARRED_SESSION_LIVESTREAM_URL = "(SELECT "
-                + Qualified.SESSIONS_LIVESTREAM_URL
-                + " FROM "
-                + Tables.SESSIONS + " WHERE " + Qualified.SESSIONS_BLOCK_ID + "="
-                + Qualified.BLOCKS_BLOCK_ID + " AND " + Qualified.SESSIONS_STARRED + "=1 "
-                + "ORDER BY " + Qualified.SESSIONS_TITLE + ")";
-
         String BLOCK_STARRED_SESSION_ROOM_NAME = "(SELECT " + Qualified.ROOMS_ROOM_NAME + " FROM "
                 + Tables.SESSIONS_JOIN_ROOMS + " WHERE " + Qualified.SESSIONS_BLOCK_ID + "="
                 + Qualified.BLOCKS_BLOCK_ID + " AND " + Qualified.SESSIONS_STARRED + "=1 "
@@ -961,8 +954,6 @@ public class ScheduleProvider extends ContentProvider {
         String SESSIONS_TITLE = Tables.SESSIONS + "." + Sessions.SESSION_TITLE;
         String SESSIONS_HASHTAGS = Tables.SESSIONS + "." + Sessions.SESSION_HASHTAGS;
         String SESSIONS_URL = Tables.SESSIONS + "." + Sessions.SESSION_URL;
-
-        String SESSIONS_LIVESTREAM_URL = Tables.SESSIONS + "." + Sessions.SESSION_LIVESTREAM_URL;
 
         String ROOMS_ROOM_NAME = Tables.ROOMS + "." + Rooms.ROOM_NAME;
         String ROOMS_ROOM_ID = Tables.ROOMS + "." + Rooms.ROOM_ID;

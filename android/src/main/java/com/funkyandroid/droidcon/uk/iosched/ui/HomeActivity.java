@@ -16,7 +16,6 @@
 
 package com.funkyandroid.droidcon.uk.iosched.ui;
 
-import android.accounts.Account;
 import android.annotation.TargetApi;
 import android.app.SearchManager;
 import android.content.ContentResolver;
@@ -36,15 +35,15 @@ import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.SearchView;
-
 import com.funkyandroid.droidcon.uk.iosched.Config;
 import com.funkyandroid.droidcon.uk.iosched.R;
 import com.funkyandroid.droidcon.uk.iosched.gcm.ServerUtilities;
 import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract;
 import com.funkyandroid.droidcon.uk.iosched.sync.SyncHelper;
-import com.funkyandroid.droidcon.uk.iosched.util.*;
+import com.funkyandroid.droidcon.uk.iosched.util.HelpUtils;
+import com.funkyandroid.droidcon.uk.iosched.util.UIUtils;
+import com.funkyandroid.droidcon.uk.iosched.util.WiFiUtils;
 import com.google.android.gcm.GCMRegistrar;
-import com.google.android.gms.auth.GoogleAuthUtil;
 
 import static com.funkyandroid.droidcon.uk.iosched.util.LogUtils.*;
 
@@ -297,11 +296,6 @@ public class HomeActivity extends BaseActivity implements
                 searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
                 searchView.setQueryRefinementEnabled(true);
             }
-        }
-        MenuItem wifiItem = menu.findItem(R.id.menu_wifi);
-        if (!PrefUtils.isAttendeeAtVenue(this) ||
-                (WiFiUtils.isWiFiEnabled(this) && WiFiUtils.isWiFiApConfigured(this))) {
-            wifiItem.setVisible(false);
         }
         return true;
     }

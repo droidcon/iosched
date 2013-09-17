@@ -200,9 +200,9 @@ public class UIUtils {
         }
     }
 
-    public static void updateTimeAndLivestreamBlockUI(final Context context,
-                                                      long blockStart, long blockEnd, TextView titleView,
-                                                      TextView subtitleView, CharSequence subtitle) {
+    public static void updateTimeBlockUI(final Context context,
+                                         long blockStart, long blockEnd, TextView titleView,
+                                         TextView subtitleView, CharSequence subtitle) {
         long currentTimeMillis = getCurrentTime(context);
 
         boolean conferenceEnded = currentTimeMillis > CONFERENCE_END_MILLIS;
@@ -569,11 +569,6 @@ public class UIUtils {
         } else {
             return System.currentTimeMillis();
         }
-    }
-
-    public static boolean shouldShowLiveSessionsOnly(final Context context) {
-        return !PrefUtils.isAttendeeAtVenue(context)
-                && getCurrentTime(context) < CONFERENCE_END_MILLIS;
     }
 
     /**

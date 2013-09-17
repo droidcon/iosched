@@ -30,10 +30,6 @@ public class EventResponse extends ServerResponse {
 
     private String title;
 
-    private String youtubeId;
-
-    private String youtubeUrl;
-
     public EventResponse()
     {
     }
@@ -137,25 +133,4 @@ public class EventResponse extends ServerResponse {
         return this;
     }
 
-    public String getYoutubeId()
-    {
-        return this.youtubeId;
-    }
-
-    public EventResponse setYoutubeId(String youtubeId)
-    {
-        this.youtubeId = youtubeId;
-        return this;
-    }
-
-    public String getYoutubeUrl()
-    {
-        return this.youtubeUrl;
-    }
-
-    public EventResponse setYoutubeUrl(String youtubeUrl)
-    {
-        this.youtubeUrl = youtubeUrl;
-        return this;
-    }
 }

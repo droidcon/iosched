@@ -268,8 +268,6 @@ public class SessionsHandler {
                         hashtag = ParserUtils.sanitizeId(track.getTitle());
                     }
 
-                    String youtubeUrl = session.getYoutubeUrl();
-
                     // Get block id
                     long sessionStartTime = session.getStartTimestamp().longValue() * 1000;
                     long sessionEndTime = session.getEndTimestamp().longValue() * 1000;
@@ -361,7 +359,6 @@ public class SessionsHandler {
                                 .withValue(Sessions.SESSION_HASHTAGS, hashtag)
                                 .withValue(Sessions.SESSION_TAGS, null)             // Not available
                                 .withValue(Sessions.SESSION_URL, makeSessionUrl(sessionId))
-                                .withValue(Sessions.SESSION_LIVESTREAM_URL, null)   // Not available
                                 .withValue(Sessions.SESSION_MODERATOR_URL, null)    // Not available
                                 .withValue(Sessions.SESSION_REQUIREMENTS, null)     // Not available
                                 .withValue(Sessions.SESSION_STARRED, inSchedule)
