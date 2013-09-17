@@ -204,7 +204,6 @@
 
         <activity android:name=".ui.phone.SessionDetailActivity"
             android:label="@string/title_session_detail"
-            android:uiOptions="splitActionBarWhenNarrow"
             android:parentActivityName=".ui.phone.SessionsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />

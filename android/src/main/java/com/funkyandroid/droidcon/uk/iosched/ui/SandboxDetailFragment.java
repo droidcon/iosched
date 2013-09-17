@@ -27,19 +27,12 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.CursorLoader;
 import android.support.v4.content.Loader;
 import android.text.TextUtils;
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
+import android.view.*;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.funkyandroid.droidcon.uk.iosched.R;
 import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract;
 import com.funkyandroid.droidcon.uk.iosched.util.ImageLoader;
-import com.funkyandroid.droidcon.uk.iosched.util.SessionsHelper;
 import com.funkyandroid.droidcon.uk.iosched.util.UIUtils;
 
 import static com.funkyandroid.droidcon.uk.iosched.util.LogUtils.LOGD;
@@ -134,7 +127,7 @@ public class SandboxDetailFragment extends Fragment implements
         inflater.inflate(R.menu.sandbox_detail, menu);
     }
 
-    @Override
+    /*@Override
     public boolean onOptionsItemSelected(MenuItem item) {
         SessionsHelper helper = new SessionsHelper(getActivity());
         switch (item.getItemId()) {
@@ -147,7 +140,7 @@ public class SandboxDetailFragment extends Fragment implements
                 }
         }
         return false;
-    }
+    }*/
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
