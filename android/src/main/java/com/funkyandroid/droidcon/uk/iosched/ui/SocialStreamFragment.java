@@ -34,9 +34,14 @@ import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.funkyandroid.droidcon.uk.droidconsched.io.model.TweetResponse;
+import com.funkyandroid.droidcon.uk.droidconsched.io.model.Tweets;
+import com.funkyandroid.droidcon.uk.droidconsched.io.model.TweetsResponse;
+import com.funkyandroid.droidcon.uk.iosched.Config;
 import com.funkyandroid.droidcon.uk.iosched.R;
 import com.funkyandroid.droidcon.uk.iosched.util.UIUtils;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,7 +55,7 @@ import static com.funkyandroid.droidcon.uk.iosched.util.LogUtils.makeLogTag;
  */
 public class SocialStreamFragment extends ListFragment implements
         AbsListView.OnScrollListener,
-        LoaderManager.LoaderCallbacks<List<Activity>> {
+        LoaderManager.LoaderCallbacks<List<TweetResponse>> {
 
     private static final String TAG = makeLogTag(SocialStreamFragment.class);
 
@@ -71,7 +76,7 @@ public class SocialStreamFragment extends ListFragment implements
 
     private String mSearchString;
 
-    private List<Activity> mStream = new ArrayList<Activity>();
+    private List<TweetResponse> mStream = new ArrayList<TweetResponse>();
     private StreamAdapter mStreamAdapter = new StreamAdapter();
     private int mListViewStatePosition;
     private int mListViewStateTop;
@@ -236,16 +241,11 @@ public class SocialStreamFragment extends ListFragment implements
 
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
-        Activity activity = mStream.get(position);
+        TweetResponse activity = mStream.get(position);
 
-        /*
-        TODO: URL for activity
         Intent postDetailIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(activity.getUrl()));
-         */
-        Intent postDetailIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("http://uk.droidcon.com/"));
         postDetailIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-        UIUtils.preferPackageForIntent(getActivity(), postDetailIntent,
-                UIUtils.GOOGLE_PLUS_PACKAGE_NAME);
+        UIUtils.preferPackageForIntent(getActivity(), postDetailIntent, UIUtils.TWITTER_PACKAGE_NAME);
         startActivity(postDetailIntent);
     }
 
@@ -274,13 +274,13 @@ public class SocialStreamFragment extends ListFragment implements
     }
 
     @Override
-    public Loader<List<Activity>> onCreateLoader(int id, Bundle args) {
+    public Loader<List<TweetResponse>> onCreateLoader(int id, Bundle args) {
         return new StreamLoader(getActivity(), mSearchString);
 
     }
 
     @Override
-    public void onLoadFinished(Loader<List<Activity>> listLoader, List<Activity> activities) {
+    public void onLoadFinished(Loader<List<TweetResponse>> listLoader, List<TweetResponse> activities) {
         if (activities != null) {
             mStream = activities;
         }
@@ -292,7 +292,7 @@ public class SocialStreamFragment extends ListFragment implements
     }
 
     @Override
-    public void onLoaderReset(Loader<List<Activity>> listLoader) {
+    public void onLoaderReset(Loader<List<TweetResponse>> listLoader) {
     }
 
     private boolean isStreamLoading() {
@@ -325,8 +325,8 @@ public class SocialStreamFragment extends ListFragment implements
         return false;
     }
 
-    private static class StreamLoader extends AsyncTaskLoader<List<Activity>> {
-        List<Activity> mActivities;
+    private static class StreamLoader extends AsyncTaskLoader<List<TweetResponse>> {
+        List<TweetResponse> mActivities;
         private String mSearchString;
         private String mNextPageToken;
         private boolean mIsLoading;
@@ -346,46 +346,22 @@ public class SocialStreamFragment extends ListFragment implements
         }
 
         @Override
-        public List<Activity> loadInBackground() {
+        public List<TweetResponse> loadInBackground() {
             mIsLoading = true;
 
-            // Set up the HTTP transport and JSON factory
-            // HttpTransport httpTransport = new NetHttpTransport();
-            // JsonFactory jsonFactory = new AndroidJsonFactory();
-
-            // Set up the main Google+ class
-            /*
-                TODO : Replace with Facebook or Twitter
-                Plus plus = new Plus.Builder(httpTransport, jsonFactory, null)
-                        .setApplicationName(NetUtils.getUserAgent(getContext()))
-                        .setGoogleClientRequestInitializer(
-                                new CommonGoogleClientRequestInitializer(Config.API_KEY))
-                        .build();
-
-                ActivityFeed activities = null;
-                try {
-                    activities = plus.activities().search(mSearchString)
-                            .setPageToken(mNextPageToken)
-                            .setOrderBy("recent")
-                            .setMaxResults(MAX_RESULTS_PER_REQUEST)
-                            .setFields(PLUS_RESULT_FIELDS)
-                            .execute();
-
-                    mHasError = false;
-                    mNextPageToken = activities.getNextPageToken();
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                    mHasError = true;
-                    mNextPageToken = null;
-                }
-                return (activities != null) ? activities.getItems() : null;
-            */
+            try {
+                TweetsResponse tweets = new Tweets().list(Config.EVENT_ID).execute();
+                mHasError = false;
+                return tweets.getTweets();
+            } catch (IOException e) {
+                e.printStackTrace();
+                mHasError = true;
+            }
             return null;
         }
 
         @Override
-        public void deliverResult(List<Activity> activities) {
+        public void deliverResult(List<TweetResponse> activities) {
             mIsLoading = false;
             if (activities != null) {
                 if (mActivities == null) {
@@ -397,7 +373,7 @@ public class SocialStreamFragment extends ListFragment implements
             if (isStarted()) {
                 // Need to return new ArrayList for some reason or onLoadFinished() is not called
                 super.deliverResult(mActivities == null ?
-                        null : new ArrayList<Activity>(mActivities));
+                        null : new ArrayList<TweetResponse>(mActivities));
             }
         }
 
@@ -526,11 +502,17 @@ public class SocialStreamFragment extends ListFragment implements
                 return convertView;
 
             } else {
-                Activity activity = (Activity) getItem(position);
+                TweetResponse activity = (TweetResponse) getItem(position);
                 if (convertView == null) {
                     convertView = getLayoutInflater(null).inflate(
                             R.layout.list_item_stream_activity, parent, false);
                 }
+
+                ((TextView)convertView.findViewById(R.id.stream_user_name)).setText(activity.getName());
+
+                TextView content = (TextView)convertView.findViewById(R.id.stream_content);
+                content.setText(activity.getText());
+                content.setVisibility(View.VISIBLE);
 
                 return convertView;
             }

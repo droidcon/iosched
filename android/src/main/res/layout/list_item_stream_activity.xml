@@ -14,99 +14,14 @@
   limitations under the License.
   -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:iosched="http://schemas.android.com/apk/res/com.funkyandroid.droidcon.uk.iosched"
     style="@style/StreamActivity">
 
-    <!-- Author and metadata box -->
-    <RelativeLayout
-        android:id="@+id/stream_author_container"
-        style="@style/StreamContainer">
-
-        <com.funkyandroid.droidcon.uk.iosched.ui.widget.BezelImageView
-            android:id="@+id/stream_user_image"
-            style="@style/StreamUserImage"
-            iosched:borderDrawable="@null"
-            iosched:maskDrawable="@drawable/circle_mask" />
-
-        <TextView
-            android:id="@+id/stream_user_name"
-            style="@style/StreamUserName" />
-
-        <TextView
-            android:id="@+id/stream_time"
-            style="@style/StreamTime" />
-
-    </RelativeLayout>
-
-    <!-- Author's content -->
-    <com.funkyandroid.droidcon.uk.iosched.ui.widget.EllipsizedTextView
+    <TextView
         android:id="@+id/stream_content"
         style="@style/StreamContent" />
 
-    <!-- Original share box -->
-    <LinearLayout
-        android:id="@+id/stream_original_container"
-        style="@style/StreamOriginalContainer">
+    <TextView
+            android:id="@+id/stream_user_name"
+            style="@style/StreamUserName" />
 
-        <View android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:background="@drawable/list_divider_holo_light"
-            android:layout_marginBottom="8dp" />
-
-        <TextView
-            android:id="@+id/stream_original_author"
-            style="@style/StreamOriginalAuthor"/>
-
-        <com.funkyandroid.droidcon.uk.iosched.ui.widget.EllipsizedTextView
-            android:id="@+id/stream_original_content"
-            style="@style/StreamOriginalContent"/>
-
-    </LinearLayout>
-
-    <!-- Media box -->
-    <RelativeLayout
-        android:id="@+id/stream_media_container"
-        style="@style/StreamMediaContainer">
-
-        <!-- Always -->
-        <ImageView android:id="@+id/stream_media_background"
-            style="@style/StreamMediaBackground" />
-
-        <!-- Option 1: overlay -->
-        <ImageView android:id="@+id/stream_media_overlay"
-            style="@style/StreamMediaOverlay" />
-
-        <!-- Option 2: title and subtitle -->
-        <TextView
-            android:id="@+id/stream_media_title"
-            style="@style/StreamMediaTitle"/>
-
-        <TextView
-            android:id="@+id/stream_media_subtitle"
-            style="@style/StreamMediaSubtitle"/>
-    </RelativeLayout>
-
-    <!-- Interactions box -->
-    <LinearLayout
-        android:id="@+id/stream_interactions_container"
-        style="@style/StreamInteractionsContainer">
-
-        <TextView
-            android:id="@+id/stream_plus_ones"
-            style="@style/StreamPlusOnes"/>
-
-        <TextView
-            android:id="@+id/stream_shares"
-            style="@style/StreamShares"/>
-
-        <!-- spacer -->
-        <View android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_weight="1" />
-
-        <TextView
-            android:id="@+id/stream_comments"
-            style="@style/StreamComments"/>
-
-    </LinearLayout>
 </LinearLayout>

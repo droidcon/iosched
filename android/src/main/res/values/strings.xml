@@ -22,7 +22,7 @@
     <string name="description_share">Share</string>
     <string name="description_add_schedule">Add to schedule</string>
     <string name="description_remove_schedule">Remove from schedule</string>
-    <string name="description_social_stream">View Google+ stream</string>
+    <string name="description_social_stream">View Tweets</string>
     <string name="description_compose">New post</string>
     <string name="description_add_account">Add account</string>
     <string name="description_about">About</string>
@@ -40,7 +40,7 @@
     <string name="title_sandbox">Sandbox</string>
     <string name="title_sandbox_detail">Company Information</string>
     <string name="title_map">Map</string>
-    <string name="title_tagstream">Google+ Posts</string>
+    <string name="title_tagstream">Twitter Posts</string>
     <string name="title_announcements">Announcements</string>
     <string name="title_about">About</string>
     <string name="title_settings">Settings</string>
@@ -52,7 +52,7 @@
 
     <string name="title_my_schedule">Schedule</string>
     <string name="title_explore">Explore</string>
-    <string name="title_stream">Stream</string>
+    <string name="title_stream">Tweets</string>
 
     <plurals name="title_selected_sessions">
         <item quantity="one">1 session</item>
@@ -257,7 +257,7 @@
     <string name="ok">OK</string>
     <string name="loading">Loading&#8230;</string>
     <string name="retry">Retry</string>
-    <string name="stream_error">Couldn\'t load the Google+ stream.</string>
+    <string name="stream_error">Couldn\'t load the Twitter feed.</string>
     <string name="stream_originally_shared">Originally shared by <xliff:g id="name">%s</xliff:g></string>
     <string name="empty_widget_text">No more upcoming sessions.\nSee you next year!</string>
     <string name="empty_widget_text_signed_out">Touch the Droidcon London 2013 logo above to sign in and begin using the app.</string>
