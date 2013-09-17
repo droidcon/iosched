@@ -15,11 +15,12 @@
   -->
 
 <manifest
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        package="com.funkyandroid.droidcon.uk.iosched"
-        android:versionCode="201302"
-        android:versionName="2013.02"
-        android:installLocation="auto">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.funkyandroid.droidcon.uk.iosched"
+    android:versionCode="201303"
+    android:versionName="2013.03"
+    android:installLocation="auto">
 
     <uses-sdk
         android:minSdkVersion="10"
