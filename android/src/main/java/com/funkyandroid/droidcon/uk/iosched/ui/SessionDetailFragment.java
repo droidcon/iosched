@@ -612,12 +612,6 @@ public class SessionDetailFragment extends Fragment implements
     public boolean onOptionsItemSelected(MenuItem item) {
         SessionsHelper helper = new SessionsHelper(getActivity());
         switch (item.getItemId()) {
-            /*case R.id.menu_map:
-                LOGD("Tracker", "Map: " + mTitleString);
-
-                helper.startMapActivity(mRoomId);
-                return true;*/
-
             case R.id.menu_star:
                 setSessionStarred(!mStarred, true);
                 return true;
