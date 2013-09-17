@@ -346,6 +346,27 @@
         <item name="android:fontFamily">sans-serif-light</item>
     </style>
 
+    <!-- Map -->
+    <style name="MapInfoText" parent="@style/TextHeaderSub">
+        <item name="android:textColor">@color/map_info_1</item>
+        <item name="android:maxWidth">@dimen/map_info_maxwidth</item>
+    </style>
+
+    <style name="MapRoomTitle" parent="@style/TextHeader">
+        <item name="android:textSize">30sp</item>
+    </style>
+    
+    <style name="MapInfoTextSub" parent="@style/MapInfoText">
+        <item name="android:textColor">@color/map_info_2</item>
+    </style>
+
+    <style name="MapFloorSelectorButton" parent="android:Widget.Button">
+        <item name="android:background">@drawable/map_floor_button_background</item>
+        <item name="android:minWidth">40dp</item>
+        <item name="android:textColor">@color/map_floorselect_inactive</item>
+        <item name="android:textAppearance">?android:attr/textAppearanceMedium</item>
+    </style>
+
     <!-- Session feedback -->
 
     <style name="FeedbackQuestion">

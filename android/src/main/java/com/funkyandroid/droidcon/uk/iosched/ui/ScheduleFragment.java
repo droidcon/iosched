@@ -583,6 +583,11 @@ public class ScheduleFragment extends ListFragment implements
         String url = mSelectedItemData.get(BlocksQuery.STARRED_SESSION_URL);
         boolean handled = false;
         switch (item.getItemId()) {
+            /*case R.id.menu_map:
+                String roomId = mSelectedItemData.get(BlocksQuery.STARRED_SESSION_ROOM_ID);
+                helper.startMapActivity(roomId);
+                handled = true;
+                break;*/
             case R.id.menu_star:
                 String sessionId = mSelectedItemData.get(BlocksQuery.STARRED_SESSION_ID);
                 Uri sessionUri = ScheduleContract.Sessions.buildSessionUri(sessionId);

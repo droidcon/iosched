@@ -17,6 +17,7 @@
     <string name="app_name">Droidcon London 2013</string>
 
     <string name="description_search">Search</string>
+    <string name="description_map">Map</string>
     <string name="description_refresh">Refresh</string>
     <string name="description_share">Share</string>
     <string name="description_add_schedule">Add to schedule</string>
@@ -38,6 +39,7 @@
     <string name="title_office_hours">Office Hours</string>
     <string name="title_sandbox">Sandbox</string>
     <string name="title_sandbox_detail">Company Information</string>
+    <string name="title_map">Map</string>
     <string name="title_tagstream">Google+ Posts</string>
     <string name="title_announcements">Announcements</string>
     <string name="title_about">About</string>
@@ -136,6 +138,17 @@
     <string name="schedule_block_title_office_hours">Office Hours</string>
     <string name="schedule_block_title_keynote">Keynote</string>
     <string name="schedule_block_title_sandbox">Sandbox</string>
+
+    <!-- Map -->
+    <string name="map_floorcontrol_1">1</string>
+    <string name="map_floorcontrol_2">2</string>
+    <string name="map_floorcontrol_3">3</string>
+    <string name="map_touch_to_see_session">Touch to see sessions</string>
+    <string name="map_at">At %1$s:<![CDATA[<br><b>%2$s</b>]]></string>
+    <string name="map_now_playing">Now playing:<![CDATA[<br><b>%1$s</b>]]></string>
+    <string name="map_touch_to_see_sandbox">Touch to see sandbox partners</string>
+    <string name="map_now_sandbox">Now in the sandbox:<![CDATA[<br><b>%1$s</b>]]></string>
+    <string name="map_infowindow_text_empty">-</string>
 
     <!-- EULA, login, and about -->
     <string name="description_setup_wifi_body"><![CDATA[

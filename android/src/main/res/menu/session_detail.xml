@@ -15,6 +15,11 @@
   -->
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
       xmlns:iosched="http://schemas.android.com/apk/res-auto">
+    <!--<item android:id="@+id/menu_map"
+        android:icon="@drawable/ic_action_map"
+        android:title="@string/description_map"
+        android:orderInCategory="1"
+        iosched:showAsAction="ifRoom" />-->
     <item android:id="@+id/menu_star"
         android:icon="@drawable/ic_action_add_schedule"
         android:title="@string/description_add_schedule"

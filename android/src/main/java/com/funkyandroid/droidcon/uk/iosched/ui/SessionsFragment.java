@@ -344,6 +344,18 @@ public class SessionsFragment extends ListFragment implements
         SessionsHelper helper = new SessionsHelper(getActivity());
         mode.finish();
         switch (item.getItemId()) {
+            /*case R.id.menu_map: {
+                // multiple selection not supported
+                int position = checkedSessionPositions.get(0);
+                Cursor cursor = (Cursor) mAdapter.getItem(position);
+                String roomId = cursor.getString(SessionsQuery.ROOM_ID);
+                helper.startMapActivity(roomId);
+
+                String title = cursor.getString(SessionsQuery.TITLE);
+                LOGV(TAG, "Starred: " + title);
+                
+                return true;
+            }*/
             case R.id.menu_star: {
                 // multiple selection supported
                 boolean starred = false;

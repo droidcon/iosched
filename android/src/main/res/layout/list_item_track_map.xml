@@ -14,9 +14,38 @@
   limitations under the License.
   -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:orientation="vertical">
+    xmlns:iosched="http://schemas.android.com/apk/res/com.funkyandroid.droidcon.uk.iosched"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/map_button"
+        android:layout_width="match_parent"
+        android:layout_height="?android:listPreferredItemHeight"
+        android:foreground="?activatableItemBackground">
+
+        <com.funkyandroid.droidcon.uk.iosched.ui.widget.BezelImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/map_background"
+            iosched:desaturateOnPress="true"
+            android:duplicateParentState="true"
+            android:scaleType="centerCrop"
+            android:contentDescription="@string/title_map" />
+
+        <TextView
+            android:id="@android:id/text1"
+            android:textStyle="bold"
+            android:textAllCaps="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:text="@string/title_map"
+            android:textSize="@dimen/text_size_medium" />
+
+    </FrameLayout>
 
     <View android:layout_width="match_parent"
         android:layout_height="2dp"

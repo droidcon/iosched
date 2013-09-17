@@ -29,6 +29,7 @@ import android.support.v4.app.TaskStackBuilder;
 import com.funkyandroid.droidcon.uk.iosched.R;
 import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract;
 import com.funkyandroid.droidcon.uk.iosched.ui.HomeActivity;
+import com.funkyandroid.droidcon.uk.iosched.ui.MapFragment;
 import com.funkyandroid.droidcon.uk.iosched.util.UIUtils;
 
 import java.util.ArrayList;
@@ -233,6 +234,11 @@ public class SessionAlarmService extends IntentService {
                     String.format(res.getString(R.string.snooze_x_min), 5),
                     createSnoozeIntent(sessionStart, sessionEnd, 5));
         }
+        if (starredCount == 1) {
+            notifBuilder.addAction(R.drawable.ic_map_holo_dark,
+                    res.getString(R.string.title_map),
+                    createRoomMapIntent(starredSessionRoomIds.get(0)));
+        }
         NotificationCompat.InboxStyle richNotification = new NotificationCompat.InboxStyle(
                 notifBuilder)
                 .setBigContentTitle(res.getQuantityString(R.plurals.session_notification_title,
@@ -260,6 +266,13 @@ public class SessionAlarmService extends IntentService {
                 snoozeMinutes * MILLI_ONE_MINUTE);
         return PendingIntent.getService(this, 0, scheduleIntent,
                 PendingIntent.FLAG_CANCEL_CURRENT);
+    }
+
+    private PendingIntent createRoomMapIntent(final String roomId) {
+        Intent mapIntent = new Intent(getApplicationContext(),
+                UIUtils.getMapActivityClass(getApplicationContext()));
+        mapIntent.putExtra(MapFragment.EXTRA_ROOM, roomId);
+        return PendingIntent.getActivity(this, 0, mapIntent, 0);
     }
 
     private void scheduleAllStarredBlocks() {

@@ -22,15 +22,20 @@ import android.net.ConnectivityManager;
 import android.os.RemoteException;
 import android.preference.PreferenceManager;
 import com.funkyandroid.droidcon.uk.droidconsched.io.ConferenceAPI;
+import com.funkyandroid.droidcon.uk.iosched.Config;
 import com.funkyandroid.droidcon.uk.iosched.R;
 import com.funkyandroid.droidcon.uk.iosched.io.*;
+import com.funkyandroid.droidcon.uk.iosched.io.map.model.Tile;
 import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract;
+import com.funkyandroid.droidcon.uk.iosched.util.Lists;
+import com.larvalabs.svgandroid.SVGParseException;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 
 import static com.funkyandroid.droidcon.uk.iosched.util.LogUtils.*;
 
@@ -47,7 +52,7 @@ public class SyncHelper {
     public static final int FLAG_SYNC_REMOTE = 0x2;
 
     private static final int LOCAL_VERSION_CURRENT = 27;
-    // private static final String LOCAL_MAPVERSION_CURRENT = "\"vlh7Ig\"";
+    private static final String LOCAL_MAPVERSION_CURRENT = "\"vlh7Ig\"";
 
     private Context mContext;
 
@@ -115,15 +120,15 @@ public class SyncHelper {
                 LOGI(TAG, "Local syncing search suggestions");
                 batch.addAll(new SearchSuggestHandler(mContext).parse(
                         JSONHandler.parseResource(mContext, R.raw.search_suggest)));
-                /*LOGI(TAG, "Local syncing map");
+                LOGI(TAG, "Local syncing map");
                 MapPropertyHandler mapHandler = new MapPropertyHandler(mContext);
                 batch.addAll(mapHandler.parse(
-                        JSONHandler.parseResource(mContext, R.raw.map)));*/
+                        JSONHandler.parseResource(mContext, R.raw.map)));
                 //need to sync tile files before data is updated in content provider
 // We're not using the map                syncMapTiles(mapHandler.getTiles());
 
                 prefs.edit().putInt("local_data_version", LOCAL_VERSION_CURRENT).commit();
-                //prefs.edit().putString("local_mapdata_version", LOCAL_MAPVERSION_CURRENT).commit();
+                prefs.edit().putString("local_mapdata_version", LOCAL_MAPVERSION_CURRENT).commit();
                 if (syncResult != null) {
                     ++syncResult.stats.numUpdates; // TODO: better way of indicating progress?
                     ++syncResult.stats.numEntries;
@@ -153,8 +158,8 @@ public class SyncHelper {
             batch.addAll(new SpeakersHandler(mContext).fetchAndParse(conferenceAPI));
             LOGI(TAG, "Remote syncing sessions");
             batch.addAll(new SessionsHandler(mContext).fetchAndParse(conferenceAPI));
-            /*// Map sync
-            batch.addAll(remoteSyncMapData(Config.GET_MAP_URL,prefs));*/
+            // Map sync
+            batch.addAll(remoteSyncMapData(Config.GET_MAP_URL,prefs));
             LOGD(TAG, "Remote sync took " + (System.currentTimeMillis() - startRemote) + "ms");
             if (syncResult != null) {
                 ++syncResult.stats.numUpdates; // TODO: better way of indicating progress?
@@ -227,14 +232,13 @@ public class SyncHelper {
     }
 */
 
-/*
     private ArrayList<ContentProviderOperation> remoteSyncMapData(String urlString,
             SharedPreferences preferences) throws IOException {
         final String localVersion = preferences.getString("local_mapdata_version", null);
 
         ArrayList<ContentProviderOperation> batch = Lists.newArrayList();
 
-        TODO : Look at remote sync for map data
+/* TODO : Look at remote sync for map data
 
         BasicHttpClient httpClient = new BasicHttpClient();
         httpClient.setRequestLogger(mQuietLogger);
@@ -257,9 +261,9 @@ public class SyncHelper {
                 preferences.edit().putString("local_mapdata_version", etag.get(0)).commit();
             }
         } //else: no update
-
+*/
         return batch;
-    }*/
+    }
 
     private boolean isOnline() {
         ConnectivityManager cm = (ConnectivityManager) mContext.getSystemService(
@@ -274,12 +278,12 @@ public class SyncHelper {
      * @param collection Set of tiles containing a local filename and remote url.
      * @throws IOException
      */
-/*    private void syncMapTiles(Collection<Tile> collection) throws IOException, SVGParseException {
+    private void syncMapTiles(Collection<Tile> collection) throws IOException, SVGParseException {
 
         //keep track of used files, unused files are removed
         ArrayList<String> usedTiles = Lists.newArrayList();
 
- TODO : Look at remote sync for map data
+/* TODO : Look at remote sync for map data
 
         for(Tile tile : collection){
             final String filename = tile.filename;
@@ -309,8 +313,8 @@ public class SyncHelper {
         }
 
         MapUtils.removeUnusedTiles(mContext, usedTiles);
-
-    }*/
+*/
+    }
 
     /**
      * Write the byte array directly to a file.
