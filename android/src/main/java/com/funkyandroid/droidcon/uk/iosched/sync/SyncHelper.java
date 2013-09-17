@@ -21,24 +21,21 @@ import android.database.Cursor;
 import android.net.ConnectivityManager;
 import android.os.RemoteException;
 import android.preference.PreferenceManager;
-
 import com.funkyandroid.droidcon.uk.droidconsched.io.ConferenceAPI;
 import com.funkyandroid.droidcon.uk.iosched.Config;
 import com.funkyandroid.droidcon.uk.iosched.R;
 import com.funkyandroid.droidcon.uk.iosched.io.*;
 import com.funkyandroid.droidcon.uk.iosched.io.map.model.Tile;
 import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract;
-import com.funkyandroid.droidcon.uk.iosched.util.*;
+import com.funkyandroid.droidcon.uk.iosched.util.Lists;
+import com.larvalabs.svgandroid.SVGParseException;
 
-import java.io.*;
-import java.net.HttpURLConnection;
+import java.io.BufferedOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
-
-import com.larvalabs.svgandroid.SVG;
-import com.larvalabs.svgandroid.SVGParseException;
-import com.larvalabs.svgandroid.SVGParser;
 
 import static com.funkyandroid.droidcon.uk.iosched.util.LogUtils.*;
 
@@ -54,7 +51,7 @@ public class SyncHelper {
     public static final int FLAG_SYNC_LOCAL = 0x1;
     public static final int FLAG_SYNC_REMOTE = 0x2;
 
-    private static final int LOCAL_VERSION_CURRENT = 26;
+    private static final int LOCAL_VERSION_CURRENT = 27;
     private static final String LOCAL_MAPVERSION_CURRENT = "\"vlh7Ig\"";
 
     private Context mContext;
