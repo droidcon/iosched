@@ -340,7 +340,6 @@ public class ScheduleFragment extends ListFragment implements
 
             String subtitle;
 
-            boolean isLiveStreamed = false;
             primaryTouchTargetView.setOnLongClickListener(null);
             primaryTouchTargetView.setSelected(false);
 
@@ -403,8 +402,6 @@ public class ScheduleFragment extends ListFragment implements
                         subtitle = getString(R.string.session_finished);
                     }
 
-                    isLiveStreamed = !TextUtils.isEmpty(
-                            cursor.getString(BlocksQuery.STARRED_SESSION_LIVESTREAM_URL));
                     extraButton.setVisibility(View.VISIBLE);
                     extraButton.setOnClickListener(allSessionsListener);
                     extraButton.setEnabled(!mActionModeStarted);
@@ -521,26 +518,10 @@ public class ScheduleFragment extends ListFragment implements
 
                 boolean enabled = canViewStream && !mActionModeStarted;
 
-                isLiveStreamed = true;
                 subtitle = getString(R.string.keynote_room);
 
                 titleView.setText(starredSessionTitle);
                 extraButton.setVisibility(View.GONE);
-                primaryTouchTargetView.setEnabled(enabled);
-                primaryTouchTargetView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        if (mActionModeStarted) {
-                            return;
-                        }
-
-                        final Uri sessionUri = ScheduleContract.Sessions.buildSessionUri(
-                                starredSessionId);
-                        Intent livestreamIntent = new Intent(Intent.ACTION_VIEW, sessionUri);
-                        livestreamIntent.setClass(getActivity(), SessionLivestreamActivity.class);
-                        startActivity(livestreamIntent);
-                    }
-                });
 
             } else {
                 subtitle = blockMeta;
@@ -564,7 +545,7 @@ public class ScheduleFragment extends ListFragment implements
 
             // Show past/present/future and livestream status for this block.
             UIUtils.updateTimeAndLivestreamBlockUI(context,
-                    blockStart, blockEnd, isLiveStreamed,
+                    blockStart, blockEnd,
                     titleView, subtitleView, subtitle);
         }
     }

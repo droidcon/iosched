@@ -120,9 +120,7 @@ public class SessionsFragment extends ListFragment implements
         View rootView = inflater.inflate(R.layout.fragment_list_with_empty_container_inset,
                 container, false);
         TextView emptyView = new TextView(getActivity(), null, R.attr.emptyText);
-        emptyView.setText(UIUtils.shouldShowLiveSessionsOnly(getActivity())
-                ? R.string.empty_live_streamed_sessions
-                : R.string.empty_sessions);
+        emptyView.setText(R.string.empty_sessions);
         ((ViewGroup) rootView.findViewById(android.R.id.empty)).addView(emptyView);
 
         mMultiSelectionController = MultiSelectionUtil.attachMultiSelectionController(
@@ -577,7 +575,7 @@ public class SessionsFragment extends ListFragment implements
 
             // Show past/present/future and livestream status for this block.
             UIUtils.updateTimeAndLivestreamBlockUI(context,
-                    blockStart, blockEnd, hasLivestream,
+                    blockStart, blockEnd,
                     titleView, subtitleView, subtitle);
         }
     }

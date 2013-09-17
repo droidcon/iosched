@@ -326,19 +326,6 @@ public class SessionDetailFragment extends Fragment implements
 
         List<Pair<Integer, Intent>> links = new ArrayList<Pair<Integer, Intent>>();
 
-        final boolean hasLivestream = !TextUtils.isEmpty(
-                cursor.getString(SessionsQuery.LIVESTREAM_URL));
-        long currentTimeMillis = UIUtils.getCurrentTime(context);
-        if (UIUtils.hasHoneycomb() // Needs Honeycomb+ for the live stream
-                && hasLivestream
-                && currentTimeMillis > mSessionBlockStart
-                && currentTimeMillis <= mSessionBlockEnd) {
-            links.add(new Pair<Integer, Intent>(
-                    R.string.session_link_livestream,
-                    new Intent(Intent.ACTION_VIEW, mSessionUri)
-                            .setClass(context, SessionLivestreamActivity.class)));
-        }
-
         // Add session feedback link
         links.add(new Pair<Integer, Intent>(
                 R.string.session_feedback_submitlink,
@@ -410,7 +397,7 @@ public class SessionDetailFragment extends Fragment implements
 
         // Show past/present/future and livestream status for this block.
         UIUtils.updateTimeAndLivestreamBlockUI(context,
-                mSessionBlockStart, mSessionBlockEnd, hasLivestream,
+                mSessionBlockStart, mSessionBlockEnd,
                 null, mSubtitle, subtitle);
 
         LOGD("Tracker", "Session: " + mTitleString);

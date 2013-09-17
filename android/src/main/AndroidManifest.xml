@@ -15,12 +15,11 @@
   -->
 
 <manifest
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.funkyandroid.droidcon.uk.iosched"
-    android:versionCode="201302"
-    android:versionName="2013.02"
-    android:installLocation="auto">
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        package="com.funkyandroid.droidcon.uk.iosched"
+        android:versionCode="201302"
+        android:versionName="2013.02"
+        android:installLocation="auto">
 
     <uses-sdk
         android:minSdkVersion="10"
@@ -131,19 +130,6 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
             <meta-data android:name="android.app.searchable" android:resource="@xml/searchable" />
-            <meta-data android:name="android.support.PARENT_ACTIVITY"
-                android:value=".ui.HomeActivity" />
-        </activity>
-
-        <activity android:name=".ui.SessionLivestreamActivity"
-            android:label="@string/session_livestream_title"
-            android:configChanges="orientation|screenSize"
-            android:theme="@style/Theme.IOSched.Livestream"
-            android:parentActivityName=".ui.HomeActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.VIEW" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
             <meta-data android:name="android.support.PARENT_ACTIVITY"
                 android:value=".ui.HomeActivity" />
         </activity>

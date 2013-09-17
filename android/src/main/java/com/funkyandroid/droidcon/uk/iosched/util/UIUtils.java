@@ -201,8 +201,8 @@ public class UIUtils {
     }
 
     public static void updateTimeAndLivestreamBlockUI(final Context context,
-            long blockStart, long blockEnd, boolean hasLivestream, TextView titleView,
-            TextView subtitleView, CharSequence subtitle) {
+                                                      long blockStart, long blockEnd, TextView titleView,
+                                                      TextView subtitleView, CharSequence subtitle) {
         long currentTimeMillis = getCurrentTime(context);
 
         boolean conferenceEnded = currentTimeMillis > CONFERENCE_END_MILLIS;
@@ -235,23 +235,6 @@ public class UIUtils {
                     sb.append("  ");
                 }
                 sb.append(sNowPlayingText);
-
-                if (hasLivestream) {
-                    if (sLivestreamNowText == null) {
-                        sLivestreamNowText = Html.fromHtml("&nbsp;&nbsp;" +
-                                context.getString(R.string.live_now_badge));
-                    }
-                    sb.append(sLivestreamNowText);
-                }
-            } else if (hasLivestream) {
-                if (sLivestreamAvailableText == null) {
-                    sLivestreamAvailableText = Html.fromHtml(
-                            context.getString(R.string.live_available_badge));
-                }
-                if (!empty) {
-                    sb.append("  ");
-                }
-                sb.append(sLivestreamAvailableText);
             }
 
             subtitleView.setText(sb);

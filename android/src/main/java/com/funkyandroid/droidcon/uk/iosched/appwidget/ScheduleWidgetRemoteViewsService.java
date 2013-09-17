@@ -19,7 +19,6 @@ package com.funkyandroid.droidcon.uk.iosched.appwidget;
 import com.funkyandroid.droidcon.uk.iosched.R;
 import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract;
 import com.funkyandroid.droidcon.uk.iosched.ui.HomeActivity;
-import com.funkyandroid.droidcon.uk.iosched.ui.SessionLivestreamActivity;
 import com.funkyandroid.droidcon.uk.iosched.ui.SimpleSectionedListAdapter;
 import com.funkyandroid.droidcon.uk.iosched.ui.SimpleSectionedListAdapter.Section;
 import com.funkyandroid.droidcon.uk.iosched.ui.TaskStackBuilderProxyActivity;
@@ -241,17 +240,7 @@ public class ScheduleWidgetRemoteViewsService extends RemoteViewsService {
                             : res.getColor(R.color.body_text_disabled));
                     rv.setViewVisibility(R.id.extra_button, View.GONE);
 
-                    if (canViewStream) {
-                        Intent fillIntent = TaskStackBuilderProxyActivity.getFillIntent(
-                                homeIntent,
-                                new Intent(Intent.ACTION_VIEW, ScheduleContract.Sessions
-                                        .buildSessionUri(starredSessionId))
-                                        .setClass(mContext, SessionLivestreamActivity.class));
-                        rv.setOnClickFillInIntent(R.id.list_item_middle_container, fillIntent);
-                    } else {
-                        rv.setOnClickFillInIntent(R.id.list_item_middle_container, new Intent());
-                    }
-
+                    rv.setOnClickFillInIntent(R.id.list_item_middle_container, new Intent());
                 } else {
                     rv.setTextViewText(R.id.block_title, blockTitle);
                     rv.setTextColor(R.id.block_title, res.getColor(R.color.body_text_disabled));
