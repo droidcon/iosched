@@ -269,12 +269,6 @@ public class ScheduleContract {
         public static final String NUM_STARRED_SESSIONS = "num_starred_sessions";
 
         /**
-         * Flag indicating the number of sessions inside this block that have a
-         * {@link Sessions#SESSION_LIVESTREAM_URL} set.
-         */
-        public static final String NUM_LIVESTREAMED_SESSIONS = "num_livestreamed_sessions";
-
-        /**
          * The {@link Sessions#SESSION_ID} of the first starred session in this
          * block.
          */
@@ -285,13 +279,6 @@ public class ScheduleContract {
          * this block.
          */
         public static final String STARRED_SESSION_TITLE = "starred_session_title";
-
-        /**
-         * The {@link Sessions#SESSION_LIVESTREAM_URL} of the first starred
-         * session in this block.
-         */
-        public static final String STARRED_SESSION_LIVESTREAM_URL =
-                "starred_session_livestream_url";
 
         /**
          * The {@link Rooms#ROOM_NAME} of the first starred session in this

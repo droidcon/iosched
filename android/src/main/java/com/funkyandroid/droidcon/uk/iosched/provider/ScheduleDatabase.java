@@ -16,31 +16,13 @@
 
 package com.funkyandroid.droidcon.uk.iosched.provider;
 
-import android.accounts.Account;
-import android.content.ContentResolver;
-
-import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract.AnnouncementsColumns;
-import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract.Blocks;
-import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract.BlocksColumns;
-import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract.FeedbackColumns;
-import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract.MapMarkerColumns;
-import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract.MapTileColumns;
-import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract.Rooms;
-import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract.RoomsColumns;
-import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract.Sessions;
-import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract.SessionsColumns;
-import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract.Speakers;
-import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract.SpeakersColumns;
-import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract.SyncColumns;
-import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract.Tracks;
-import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract.TracksColumns;
-import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract.Sandbox;
-
 import android.app.SearchManager;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
+import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract.*;
 import com.funkyandroid.droidcon.uk.iosched.sync.SyncHelper;
 
 import static com.funkyandroid.droidcon.uk.iosched.util.LogUtils.*;
@@ -59,7 +41,8 @@ public class ScheduleDatabase extends SQLiteOpenHelper {
 
     private static final int VER_2013_LAUNCH = 104;  // 1.0
     private static final int VER_2013_RM2 = 105;  // 1.1
-    private static final int DATABASE_VERSION = VER_2013_RM2;
+    private static final int VER_2013_DROIDCON = 106;  // 1.2
+    private static final int DATABASE_VERSION = VER_2013_DROIDCON;
 
     private final Context mContext;
 

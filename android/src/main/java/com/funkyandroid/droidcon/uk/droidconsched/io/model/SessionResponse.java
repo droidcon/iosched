@@ -24,8 +24,6 @@ public class SessionResponse extends ServerResponse {
 
     private String id;
 
-    private Boolean isLivestream;
-
     private String location;
 
     private List<String> presenterIds;
@@ -85,17 +83,6 @@ public class SessionResponse extends ServerResponse {
     public SessionResponse setId(String id)
     {
         this.id = id;
-        return this;
-    }
-
-    public Boolean getIsLivestream()
-    {
-        return this.isLivestream;
-    }
-
-    public SessionResponse setIsLivestream(Boolean isLivestream)
-    {
-        this.isLivestream = isLivestream;
         return this;
     }
 

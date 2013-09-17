@@ -126,11 +126,6 @@
         <item name="android:background">@drawable/tab_color_ab</item>
     </style>
 
-    <!-- Live stream -->
-    <style name="Theme.IOSched.Livestream" parent="Theme.IOSched.GreyBackground">
-        <item name="android:actionBarTabTextStyle">@style/FrameworkRoot.ActionBar.TabText</item>
-    </style>
-
     <!-- List views and list items -->
     <style name="ListItemContainerBase">
         <item name="android:background">?activatableItemBackground</item>

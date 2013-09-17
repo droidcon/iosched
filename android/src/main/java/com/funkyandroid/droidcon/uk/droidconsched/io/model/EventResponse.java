@@ -20,8 +20,6 @@ public class EventResponse extends ServerResponse {
 
     private String id;
 
-    private Boolean isLivestream;
-
     private String location;
 
     private List<String> presenterIds;
@@ -81,17 +79,6 @@ public class EventResponse extends ServerResponse {
     public EventResponse setId(String id)
     {
         this.id = id;
-        return this;
-    }
-
-    public Boolean getIsLivestream()
-    {
-        return this.isLivestream;
-    }
-
-    public EventResponse setIsLivestream(Boolean isLivestream)
-    {
-        this.isLivestream = isLivestream;
         return this;
     }
 

@@ -223,15 +223,6 @@ public class ScheduleFragment extends ListFragment implements
     // LoaderCallbacks
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle data) {
-        String liveStreamedOnlyBlocksSelection = "("
-                + (UIUtils.shouldShowLiveSessionsOnly(getActivity())
-                ? ScheduleContract.Blocks.BLOCK_TYPE + " NOT IN ('"
-                + ScheduleContract.Blocks.BLOCK_TYPE_SESSION + "','"
-                + ScheduleContract.Blocks.BLOCK_TYPE_CODELAB + "','"
-                + ScheduleContract.Blocks.BLOCK_TYPE_OFFICE_HOURS + "','"
-                + ScheduleContract.Blocks.BLOCK_TYPE_FOOD + "')"
-                + " OR " + ScheduleContract.Blocks.NUM_LIVESTREAMED_SESSIONS + ">1 "
-                : "1==1") + ")";
         String onlyStarredOfficeHoursSelection = "("
                 + ScheduleContract.Blocks.BLOCK_TYPE + " != '"
                 + ScheduleContract.Blocks.BLOCK_TYPE_OFFICE_HOURS
@@ -242,7 +233,7 @@ public class ScheduleFragment extends ListFragment implements
         return new CursorLoader(getActivity(),
                 ScheduleContract.Blocks.CONTENT_URI,
                 BlocksQuery.PROJECTION,
-                liveStreamedOnlyBlocksSelection + " AND " + onlyStarredOfficeHoursSelection + " AND " + excludeSandbox,
+                onlyStarredOfficeHoursSelection + " AND " + excludeSandbox,
                 null,
                 ScheduleContract.Blocks.DEFAULT_SORT);
     }
@@ -562,14 +553,12 @@ public class ScheduleFragment extends ListFragment implements
                 ScheduleContract.Blocks.BLOCK_META,
                 ScheduleContract.Blocks.SESSIONS_COUNT,
                 ScheduleContract.Blocks.NUM_STARRED_SESSIONS,
-                ScheduleContract.Blocks.NUM_LIVESTREAMED_SESSIONS,
                 ScheduleContract.Blocks.STARRED_SESSION_ID,
                 ScheduleContract.Blocks.STARRED_SESSION_TITLE,
                 ScheduleContract.Blocks.STARRED_SESSION_ROOM_NAME,
                 ScheduleContract.Blocks.STARRED_SESSION_ROOM_ID,
                 ScheduleContract.Blocks.STARRED_SESSION_HASHTAGS,
                 ScheduleContract.Blocks.STARRED_SESSION_URL,
-                ScheduleContract.Blocks.STARRED_SESSION_LIVESTREAM_URL,
         };
 
         int _ID = 0;
@@ -581,14 +570,12 @@ public class ScheduleFragment extends ListFragment implements
         int BLOCK_META = 6;
         int SESSIONS_COUNT = 7;
         int NUM_STARRED_SESSIONS = 8;
-        int NUM_LIVESTREAMED_SESSIONS = 9;
-        int STARRED_SESSION_ID = 10;
-        int STARRED_SESSION_TITLE = 11;
-        int STARRED_SESSION_ROOM_NAME = 12;
-        int STARRED_SESSION_ROOM_ID = 13;
-        int STARRED_SESSION_HASHTAGS = 14;
-        int STARRED_SESSION_URL = 15;
-        int STARRED_SESSION_LIVESTREAM_URL = 16;
+        int STARRED_SESSION_ID = 9;
+        int STARRED_SESSION_TITLE = 10;
+        int STARRED_SESSION_ROOM_NAME = 11;
+        int STARRED_SESSION_ROOM_ID = 12;
+        int STARRED_SESSION_HASHTAGS = 13;
+        int STARRED_SESSION_URL = 14;
     }
 
     @Override

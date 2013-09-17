@@ -174,15 +174,6 @@ public class DashClockExtension extends com.google.android.apps.dashclock.api.Da
 
     private Cursor tryOpenBlocksCursor() {
         try {
-            String liveStreamedOnlyBlocksSelection = "("
-                    + (UIUtils.shouldShowLiveSessionsOnly(this)
-                    ? ScheduleContract.Blocks.BLOCK_TYPE + " NOT IN ('"
-                    + ScheduleContract.Blocks.BLOCK_TYPE_SESSION + "','"
-                    + ScheduleContract.Blocks.BLOCK_TYPE_CODELAB + "','"
-                    + ScheduleContract.Blocks.BLOCK_TYPE_OFFICE_HOURS + "','"
-                    + ScheduleContract.Blocks.BLOCK_TYPE_FOOD + "')"
-                    + " OR " + ScheduleContract.Blocks.NUM_LIVESTREAMED_SESSIONS + ">1 "
-                    : "1==1") + ")";
             String onlyStarredSelection = "("
                     + ScheduleContract.Blocks.BLOCK_TYPE + " NOT IN ('"
                     + ScheduleContract.Blocks.BLOCK_TYPE_SESSION + "','"
@@ -194,7 +185,6 @@ public class DashClockExtension extends com.google.android.apps.dashclock.api.Da
             return getContentResolver().query(ScheduleContract.Blocks.CONTENT_URI,
                     BlocksQuery.PROJECTION,
                     ScheduleContract.Blocks.BLOCK_START + " >= ? AND "
-                            + liveStreamedOnlyBlocksSelection + " AND "
                             + onlyStarredSelection + " AND "
                             + excludeSandbox,
                     new String[]{
@@ -217,7 +207,6 @@ public class DashClockExtension extends com.google.android.apps.dashclock.api.Da
                 ScheduleContract.Blocks.NUM_STARRED_SESSIONS,
                 ScheduleContract.Blocks.STARRED_SESSION_TITLE,
                 ScheduleContract.Blocks.STARRED_SESSION_ROOM_NAME,
-                ScheduleContract.Blocks.NUM_LIVESTREAMED_SESSIONS,
         };
 
         int _ID = 0;

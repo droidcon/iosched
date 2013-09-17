@@ -268,12 +268,6 @@ public class SessionsHandler {
                         hashtag = ParserUtils.sanitizeId(track.getTitle());
                     }
 
-                    boolean isLivestream = false;
-                    try {
-                        isLivestream = session.getIsLivestream();
-                    } catch (NullPointerException ignored) {
-                    }
-
                     String youtubeUrl = session.getYoutubeUrl();
 
                     // Get block id
@@ -367,13 +361,11 @@ public class SessionsHandler {
                                 .withValue(Sessions.SESSION_HASHTAGS, hashtag)
                                 .withValue(Sessions.SESSION_TAGS, null)             // Not available
                                 .withValue(Sessions.SESSION_URL, makeSessionUrl(sessionId))
-                                .withValue(Sessions.SESSION_LIVESTREAM_URL,
-                                        isLivestream ? youtubeUrl : null)
+                                .withValue(Sessions.SESSION_LIVESTREAM_URL, null)   // Not available
                                 .withValue(Sessions.SESSION_MODERATOR_URL, null)    // Not available
                                 .withValue(Sessions.SESSION_REQUIREMENTS, null)     // Not available
                                 .withValue(Sessions.SESSION_STARRED, inSchedule)
-                                .withValue(Sessions.SESSION_YOUTUBE_URL,
-                                        isLivestream ? null : youtubeUrl)
+                                .withValue(Sessions.SESSION_YOUTUBE_URL, null)      // Not available
                                 .withValue(Sessions.SESSION_PDF_URL, null)          // Not available
                                 .withValue(Sessions.SESSION_NOTES_URL, null)        // Not available
                                 .withValue(Sessions.ROOM_ID, sanitizeId(session.getLocation()))
