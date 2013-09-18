@@ -41,9 +41,13 @@ public class RoomsHandler extends JSONHandler {
     public ArrayList<ContentProviderOperation> parse(String json) throws IOException {
         final ArrayList<ContentProviderOperation> batch = Lists.newArrayList();
         Rooms roomsJson = new Gson().fromJson(json, Rooms.class);
-        int noOfRooms = roomsJson.rooms.length;
-        for (int i = 0; i < noOfRooms; i++) {
-            parseRoom(roomsJson.rooms[i], batch);
+        if (roomsJson != null) {
+            final Room[] rooms = roomsJson.rooms;
+            if (rooms != null) {
+                for (Room room : rooms) {
+                    parseRoom(room, batch);
+                }
+            }
         }
         return batch;
     }

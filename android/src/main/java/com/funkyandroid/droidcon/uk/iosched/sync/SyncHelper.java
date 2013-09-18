@@ -47,7 +47,6 @@ public class SyncHelper {
     public static final int FLAG_SYNC_REMOTE = 0x2;
 
     private static final int LOCAL_VERSION_CURRENT = 28;
-    //private static final String LOCAL_MAPVERSION_CURRENT = "\"vlh7Ig\"";
 
     private Context mContext;
 
@@ -115,15 +114,8 @@ public class SyncHelper {
                 LOGI(TAG, "Local syncing search suggestions");
                 batch.addAll(new SearchSuggestHandler(mContext).parse(
                         JSONHandler.parseResource(mContext, R.raw.search_suggest)));
-                /*LOGI(TAG, "Local syncing map");
-                MapPropertyHandler mapHandler = new MapPropertyHandler(mContext);
-                batch.addAll(mapHandler.parse(
-                        JSONHandler.parseResource(mContext, R.raw.map)));*/
-                //need to sync tile files before data is updated in content provider
-// We're not using the map                syncMapTiles(mapHandler.getTiles());
 
                 prefs.edit().putInt("local_data_version", LOCAL_VERSION_CURRENT).commit();
-                //prefs.edit().putString("local_mapdata_version", LOCAL_MAPVERSION_CURRENT).commit();
                 if (syncResult != null) {
                     ++syncResult.stats.numUpdates; // TODO: better way of indicating progress?
                     ++syncResult.stats.numEntries;
@@ -225,90 +217,12 @@ public class SyncHelper {
     }
 */
 
-/*
-    private ArrayList<ContentProviderOperation> remoteSyncMapData(String urlString,
-            SharedPreferences preferences) throws IOException {
-        final String localVersion = preferences.getString("local_mapdata_version", null);
-
-        ArrayList<ContentProviderOperation> batch = Lists.newArrayList();
-
-        TODO : Look at remote sync for map data
-
-        BasicHttpClient httpClient = new BasicHttpClient();
-        httpClient.setRequestLogger(mQuietLogger);
-        httpClient.addHeader("If-None-Match", localVersion);
-
-        LOGD(TAG,"Local map version: "+localVersion);
-        HttpResponse response = httpClient.get(urlString, null);
-        final int status = response.getStatus();
-
-        if (status == HttpURLConnection.HTTP_OK) {
-            // Data has been updated, otherwise would have received HTTP_NOT_MODIFIED
-            LOGI(TAG, "Remote syncing map data");
-            final List<String> etag = response.getHeaders().get("ETag");
-            if (etag != null && etag.size() > 0) {
-                MapPropertyHandler handler = new MapPropertyHandler(mContext);
-                batch.addAll(handler.parse(response.getBodyAsString()));
-                syncMapTiles(handler.getTiles());
-
-                // save new etag as version
-                preferences.edit().putString("local_mapdata_version", etag.get(0)).commit();
-            }
-        } //else: no update
-
-        return batch;
-    }*/
-
     private boolean isOnline() {
         ConnectivityManager cm = (ConnectivityManager) mContext.getSystemService(
                 Context.CONNECTIVITY_SERVICE);
         return cm.getActiveNetworkInfo() != null &&
                 cm.getActiveNetworkInfo().isConnectedOrConnecting();
     }
-
-    /**
-     * Synchronise the map overlay files either from the local assets (if available) or from a remote url.
-     *
-     * @param collection Set of tiles containing a local filename and remote url.
-     * @throws IOException
-     */
-/*    private void syncMapTiles(Collection<Tile> collection) throws IOException, SVGParseException {
-
-        //keep track of used files, unused files are removed
-        ArrayList<String> usedTiles = Lists.newArrayList();
-
- TODO : Look at remote sync for map data
-
-        for(Tile tile : collection){
-            final String filename = tile.filename;
-            final String url = tile.url;
-
-            usedTiles.add(filename);
-
-            if (!MapUtils.hasTile(mContext, filename)) {
-                // copy or download the tile if it is not stored yet
-                if (MapUtils.hasTileAsset(mContext, filename)) {
-                    // file already exists as an asset, copy it
-                    MapUtils.copyTileAsset(mContext, filename);
-                } else {
-                    // download the file
-                    File tileFile = MapUtils.getTileFile(mContext, filename);
-                    BasicHttpClient httpClient = new BasicHttpClient();
-                    httpClient.setRequestLogger(mQuietLogger);
-                    HttpResponse httpResponse = httpClient.get(url, null);
-                    writeFile(httpResponse.getBody(), tileFile);
-
-                    // ensure the file is valid SVG
-                    InputStream is = new FileInputStream(tileFile);
-                    SVG svg = SVGParser.getSVGFromInputStream(is);
-                    is.close();
-                }
-            }
-        }
-
-        MapUtils.removeUnusedTiles(mContext, usedTiles);
-
-    }*/
 
     /**
      * Write the byte array directly to a file.

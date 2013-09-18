@@ -49,14 +49,19 @@ public class BlocksHandler extends JSONHandler {
         try {
             Gson gson = new Gson();
             EventSlots eventSlots = gson.fromJson(json, EventSlots.class);
-            int numDays = eventSlots.day.length;
-            //2011-05-10T07:00:00.000-07:00
-            for (int i = 0; i < numDays; i++) {
-                Day day = eventSlots.day[i];
-                String date = day.date;
-                TimeSlot[] timeSlots = day.slot;
-                for (TimeSlot timeSlot : timeSlots) {
-                    parseSlot(date, timeSlot, batch);
+            if (eventSlots != null) {
+                final Day[] days = eventSlots.day;
+                if (days != null) {
+                    //2011-05-10T07:00:00.000-07:00
+                    for (Day day : days) {
+                        String date = day.date;
+                        TimeSlot[] timeSlots = day.slot;
+                        if (timeSlots != null) {
+                            for (TimeSlot timeSlot : timeSlots) {
+                                parseSlot(date, timeSlot, batch);
+                            }
+                        }
+                    }
                 }
             }
         } catch (Throwable e) {
