@@ -21,7 +21,6 @@ repositories {
 }
 
 dependencies {
-    compile 'com.google.android.gms:play-services:3.+'
     compile 'com.android.support:appcompat-v7:18.0.0'
     compile 'com.google.android.apps.dashclock:dashclock-api:+'
     compile 'com.google.code.gson:gson:2.+'
