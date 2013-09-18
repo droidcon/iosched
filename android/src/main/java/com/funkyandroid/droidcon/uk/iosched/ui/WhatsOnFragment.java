@@ -247,8 +247,6 @@ public class WhatsOnFragment extends Fragment implements
                             Intent announcementIntent = new Intent(Intent.ACTION_VIEW,
                                     Uri.parse(url));
                             announcementIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-                            UIUtils.preferPackageForIntent(getActivity(), announcementIntent,
-                                    UIUtils.GOOGLE_PLUS_PACKAGE_NAME);
                             try {
                                 startActivity(announcementIntent);
                             } catch (ActivityNotFoundException ignored) {

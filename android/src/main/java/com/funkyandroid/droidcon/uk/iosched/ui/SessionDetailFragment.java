@@ -575,8 +575,6 @@ public class SessionDetailFragment extends Fragment implements
                         Intent speakerProfileIntent = new Intent(Intent.ACTION_VIEW,
                                 Uri.parse(speakerUrl));
                         speakerProfileIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-                        UIUtils.preferPackageForIntent(getActivity(), speakerProfileIntent,
-                                UIUtils.GOOGLE_PLUS_PACKAGE_NAME);
                         startActivity(speakerProfileIntent);
                     }
                 });

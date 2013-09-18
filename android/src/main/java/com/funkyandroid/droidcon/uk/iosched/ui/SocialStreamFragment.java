@@ -174,7 +174,7 @@ public class SocialStreamFragment extends ListFragment implements
                         .getIntent();
 
                 UIUtils.preferPackageForIntent(getActivity(), intent,
-                        UIUtils.GOOGLE_PLUS_PACKAGE_NAME);
+                        UIUtils.TWITTER_PACKAGE_NAME);
 
                 startActivity(intent);
 

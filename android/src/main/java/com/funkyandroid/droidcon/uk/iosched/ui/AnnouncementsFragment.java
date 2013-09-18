@@ -145,7 +145,7 @@ public class AnnouncementsFragment extends ListFragment implements
         Intent postDetailIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
         postDetailIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
         UIUtils.preferPackageForIntent(getActivity(), postDetailIntent,
-                UIUtils.GOOGLE_PLUS_PACKAGE_NAME);
+                UIUtils.TWITTER_PACKAGE_NAME);
         startActivity(postDetailIntent);
     }
 
