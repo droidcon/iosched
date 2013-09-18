@@ -124,7 +124,7 @@ public class ExploreFragment extends ListFragment implements
     /** {@inheritDoc} */
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
-        final Cursor cursor = (Cursor) mAdapter.getItem(position - 1); // - 1 to account for header
+        final Cursor cursor = (Cursor) mAdapter.getItem(position);
 
         String trackId = ScheduleContract.Tracks.ALL_TRACK_ID;
         int trackMeta = ScheduleContract.Tracks.TRACK_META_NONE;

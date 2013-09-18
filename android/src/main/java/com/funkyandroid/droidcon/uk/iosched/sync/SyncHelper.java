@@ -46,8 +46,8 @@ public class SyncHelper {
     public static final int FLAG_SYNC_LOCAL = 0x1;
     public static final int FLAG_SYNC_REMOTE = 0x2;
 
-    private static final int LOCAL_VERSION_CURRENT = 27;
-    // private static final String LOCAL_MAPVERSION_CURRENT = "\"vlh7Ig\"";
+    private static final int LOCAL_VERSION_CURRENT = 28;
+    //private static final String LOCAL_MAPVERSION_CURRENT = "\"vlh7Ig\"";
 
     private Context mContext;
 
@@ -153,8 +153,6 @@ public class SyncHelper {
             batch.addAll(new SpeakersHandler(mContext).fetchAndParse(conferenceAPI));
             LOGI(TAG, "Remote syncing sessions");
             batch.addAll(new SessionsHandler(mContext).fetchAndParse(conferenceAPI));
-            /*// Map sync
-            batch.addAll(remoteSyncMapData(Config.GET_MAP_URL,prefs));*/
             LOGD(TAG, "Remote sync took " + (System.currentTimeMillis() - startRemote) + "ms");
             if (syncResult != null) {
                 ++syncResult.stats.numUpdates; // TODO: better way of indicating progress?

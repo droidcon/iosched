@@ -1,7 +1,11 @@
 package com.funkyandroid.droidcon.uk.droidconsched.io.model;
 
 import com.funkyandroid.droidcon.uk.droidconsched.io.ServerResponse;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -79,5 +83,21 @@ public class TrackResponse extends ServerResponse {
     {
         this.title = title;
         return this;
+    }
+
+    @Override
+    protected boolean useClassSpecificSetter(JSONObject jsonObject, final String key)
+            throws JSONException {
+        if(!"sessions".equals(key)) {
+            return false;
+        }
+
+        JSONArray array = jsonObject.getJSONArray("sessions");
+        List<String> sessionsList = new ArrayList<String>(array.length());
+        for(int i = 0 ; i < array.length() ; i++) {
+            sessionsList.add(array.getString(i));
+        }
+        setSessions(sessionsList);
+        return true;
     }
 }
