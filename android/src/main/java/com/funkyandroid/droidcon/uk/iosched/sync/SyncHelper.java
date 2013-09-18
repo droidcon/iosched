@@ -158,8 +158,6 @@ public class SyncHelper {
             batch.addAll(new SpeakersHandler(mContext).fetchAndParse(conferenceAPI));
             LOGI(TAG, "Remote syncing sessions");
             batch.addAll(new SessionsHandler(mContext).fetchAndParse(conferenceAPI));
-            // Map sync
-            batch.addAll(remoteSyncMapData(Config.GET_MAP_URL,prefs));
             LOGD(TAG, "Remote sync took " + (System.currentTimeMillis() - startRemote) + "ms");
             if (syncResult != null) {
                 ++syncResult.stats.numUpdates; // TODO: better way of indicating progress?

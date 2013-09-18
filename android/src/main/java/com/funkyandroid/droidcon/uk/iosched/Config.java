@@ -25,18 +25,10 @@ public class Config {
 
     // OAuth 2.0 related config
     public static final String APP_NAME = "DroidconUK2013-Android";
-    // TODO: Add your Google API key here.
-    public static final String API_KEY = "YOUR_API_KEY_HERE";
 
     // Conference API-specific config
     public static final String EVENT_ID = "droidconuk2013";
-    public static final String CONFERENCE_IMAGE_PREFIX_URL = "https://developers.google.com";
-
-    // Announcements
-    public static final String ANNOUNCEMENTS_PLUS_ID = "111395306401981598462";
-
-    // Static file host for the map data
-    public static final String GET_MAP_URL = "http://2013.ioschedmap.appspot.com/map.json";
+    public static final String CONFERENCE_IMAGE_PREFIX_URL = "http://uk.droidcon.com/2013/wp-content/uploads/";
 
     // Conference public WiFi AP parameters
     public static final String WIFI_SSID = "DroidconUK";        // TODO: set real Droidcon WiFi SSID
