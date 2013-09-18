@@ -114,7 +114,8 @@ public class ServerResponse {
                 method.invoke(this, jsonObject.getJSONObject(key));
             } else {
                 if(!useClassSpecificSetter(jsonObject, key)) {
-                    Log.w("Server Response", "Unable to deal with setter for "+key+" in "+getClass().getCanonicalName());
+                    Log.w("Server Response", "Unable to deal with setter for "+key+" of type "+
+                            jsonObject.get(key).getClass().getCanonicalName()+" in "+getClass().getCanonicalName());
                 }
             }
         }

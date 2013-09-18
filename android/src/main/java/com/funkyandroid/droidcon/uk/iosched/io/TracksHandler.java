@@ -19,12 +19,13 @@ package com.funkyandroid.droidcon.uk.iosched.io;
 import android.content.ContentProviderOperation;
 import android.content.Context;
 import android.graphics.Color;
-import com.funkyandroid.droidcon.uk.iosched.io.model.Track;
-import com.funkyandroid.droidcon.uk.iosched.io.model.Tracks;
+import com.funkyandroid.droidcon.uk.droidconsched.io.model.TracksResponse;
+import com.funkyandroid.droidcon.uk.droidconsched.io.model.TrackResponse;
 import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract;
 import com.funkyandroid.droidcon.uk.iosched.util.Lists;
 import com.funkyandroid.droidcon.uk.iosched.util.ParserUtils;
-import com.google.gson.Gson;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -46,31 +47,30 @@ public class TracksHandler extends JSONHandler {
         batch.add(ContentProviderOperation.newDelete(
                 ScheduleContract.addCallerIsSyncAdapterParameter(
                         ScheduleContract.Tracks.CONTENT_URI)).build());
-        Tracks tracksJson = new Gson().fromJson(json, Tracks.class);
-        if (tracksJson != null) {
-            final Track[] tracks = tracksJson.getTrack();
-            if (tracks != null) {
-                for (Track track : tracks) {
-                    parseTrack(track, batch);
-                }
-            }
+        TracksResponse response = new TracksResponse();
+        try {
+            response.fromJSON(new JSONObject(json));
+        } catch(JSONException e) {
+            return batch;
         }
+
+        for(TrackResponse track : response.getTracks()) {
+            parseTrack(track, batch);
+        }
+
         return batch;
     }
 
-    private static void parseTrack(Track track, ArrayList<ContentProviderOperation> batch) {
+    private static void parseTrack(TrackResponse track, ArrayList<ContentProviderOperation> batch) {
         ContentProviderOperation.Builder builder = ContentProviderOperation.newInsert(
                 ScheduleContract.addCallerIsSyncAdapterParameter(
                         ScheduleContract.Tracks.CONTENT_URI));
-        builder.withValue(ScheduleContract.Tracks.TRACK_ID, track.id);
-        builder.withValue(ScheduleContract.Tracks.TRACK_NAME, track.name);
-        builder.withValue(ScheduleContract.Tracks.TRACK_COLOR, Color.parseColor(track.color));
-        builder.withValue(ScheduleContract.Tracks.TRACK_ABSTRACT, track._abstract);
-        builder.withValue(ScheduleContract.Tracks.TRACK_LEVEL, track.level);
-        builder.withValue(ScheduleContract.Tracks.TRACK_ORDER_IN_LEVEL,
-                track.order_in_level);
-        builder.withValue(ScheduleContract.Tracks.TRACK_META, track.meta);
-        builder.withValue(ScheduleContract.Tracks.TRACK_HASHTAG, ParserUtils.sanitizeId(track.name));
+        builder.withValue(ScheduleContract.Tracks.TRACK_ID, track.getId());
+        builder.withValue(ScheduleContract.Tracks.TRACK_NAME, track.getTitle());
+        builder.withValue(ScheduleContract.Tracks.TRACK_COLOR, Color.parseColor(track.getColour()));
+        builder.withValue(ScheduleContract.Tracks.TRACK_ABSTRACT, track.getDescription());
+        builder.withValue(ScheduleContract.Tracks.TRACK_META, track.getMeta());
+        builder.withValue(ScheduleContract.Tracks.TRACK_HASHTAG, ParserUtils.sanitizeId(track.getTitle()));
         batch.add(builder.build());
     }
 }

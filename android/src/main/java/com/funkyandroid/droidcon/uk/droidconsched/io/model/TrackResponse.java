@@ -26,6 +26,10 @@ public class TrackResponse extends ServerResponse {
 
     private String title;
 
+    private int meta;
+
+    private String colour;
+
     public TrackResponse()
     {
     }
@@ -83,6 +87,22 @@ public class TrackResponse extends ServerResponse {
     {
         this.title = title;
         return this;
+    }
+
+    public int getMeta() {
+        return meta;
+    }
+
+    public void setMeta(Integer meta) {
+        this.meta = meta;
+    }
+
+    public String getColour() {
+        return colour;
+    }
+
+    public void setColour(String colour) {
+        this.colour = colour;
     }
 
     @Override
