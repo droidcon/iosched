@@ -52,8 +52,4 @@
      <!-- Widget -->
     <dimen name="widget_margin">8dp</dimen>
 
-    <!-- Map -->
-    <dimen name="map_content_padding">8dp</dimen>
-    <dimen name="map_infowindow_width">300dp</dimen>
-
 </resources>

@@ -47,9 +47,13 @@ public class TracksHandler extends JSONHandler {
                 ScheduleContract.addCallerIsSyncAdapterParameter(
                         ScheduleContract.Tracks.CONTENT_URI)).build());
         Tracks tracksJson = new Gson().fromJson(json, Tracks.class);
-        int noOfTracks = tracksJson.getTrack().length;
-        for (int i = 0; i < noOfTracks; i++) {
-            parseTrack(tracksJson.getTrack()[i], batch);
+        if (tracksJson != null) {
+            final Track[] tracks = tracksJson.getTrack();
+            if (tracks != null) {
+                for (Track track : tracks) {
+                    parseTrack(track, batch);
+                }
+            }
         }
         return batch;
     }

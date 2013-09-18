@@ -39,7 +39,7 @@ public class SearchSuggestHandler extends JSONHandler {
         final ArrayList<ContentProviderOperation> batch = Lists.newArrayList();
 
         SearchSuggestions suggestions = new Gson().fromJson(json, SearchSuggestions.class);
-        if (suggestions.words != null) {
+        if (suggestions != null && suggestions.words != null) {
             // Clear out suggestions
             batch.add(ContentProviderOperation
                     .newDelete(ScheduleContract.addCallerIsSyncAdapterParameter(
