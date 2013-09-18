@@ -34,12 +34,6 @@ public class PrefUtils {
     public static final String PREF_LOCAL_TIMES = "pref_local_times";
 
     /**
-     * Boolean preference that when checked, indicates that the user will be attending the
-     * conference.
-     */
-    public static final String PREF_ATTENDEE_AT_VENUE = "pref_attendee_at_venue";
-
-    /**
      * Boolean preference that when checked, indicates that the user has completed account
      * authentication and the initial set up flow.
      */
@@ -58,7 +52,6 @@ public class PrefUtils {
     public static final String PREF_DEVSITE_PROFILE_AVAILABLE = "pref_devsite_profile_available";
 
     private static int sIsUsingLocalTime = -1;
-    private static int sAttendeeAtVenue = -1;
 
     public static TimeZone getDisplayTimeZone(Context context) {
         return isUsingLocalTime(context)
@@ -84,23 +77,6 @@ public class PrefUtils {
         sp.edit().putBoolean(PREF_LOCAL_TIMES, usingLocalTime).commit();
     }
 
-    public static boolean isAttendeeAtVenue(final Context context) {
-        return isAttendeeAtVenue(context, false);
-    }
-
-    public static boolean isAttendeeAtVenue(final Context context, boolean forceRequery) {
-        return true;
-
-        /* For droidcon we're not live streaming so physical presence is irrelevant
-        if (sAttendeeAtVenue == -1 || forceRequery) {
-            SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
-            sAttendeeAtVenue = sp.getBoolean(PREF_ATTENDEE_AT_VENUE, false) ? 1 : 0;
-        }
-
-        return sAttendeeAtVenue == 1;
-         */
-    }
-
     public static void markSetupDone(final Context context) {
         SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
         sp.edit().putBoolean(PREF_SETUP_DONE, true).commit();
@@ -118,11 +94,6 @@ public class PrefUtils {
         }
 
         return sp.getBoolean(PREF_SETUP_DONE, false);
-    }
-
-    public static void setAttendeeAtVenue(final Context context, final boolean isAtVenue) {
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
-        sp.edit().putBoolean(PREF_ATTENDEE_AT_VENUE, isAtVenue).commit();
     }
 
     public static void markDevSiteProfileAvailable(final Context context, final boolean isAvailable) {

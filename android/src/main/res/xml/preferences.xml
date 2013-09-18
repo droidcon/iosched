@@ -22,10 +22,4 @@
         android:summary="@string/pref_local_times_description"
         android:defaultValue="false" />
 
-    <CheckBoxPreference
-        android:key="pref_attendee_at_venue"
-        android:title="@string/pref_attendee_at_venue_title"
-        android:summary="@string/pref_attendee_at_venue_description"
-        android:defaultValue="false" />
-
 </PreferenceScreen>

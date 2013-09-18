@@ -182,9 +182,6 @@ public class ScheduleFragment extends ListFragment implements
                 if (PrefUtils.PREF_LOCAL_TIMES.equals(key)) {
                     PrefUtils.isUsingLocalTime(getActivity(), true); // force update
                     mAdapter.notifyDataSetInvalidated();
-                } else if (PrefUtils.PREF_ATTENDEE_AT_VENUE.equals(key)) {
-                    PrefUtils.isAttendeeAtVenue(getActivity(), true); // force update
-                    getLoaderManager().restartLoader(0, null, ScheduleFragment.this);
                 }
             }
         }
@@ -223,15 +220,6 @@ public class ScheduleFragment extends ListFragment implements
     // LoaderCallbacks
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle data) {
-        String liveStreamedOnlyBlocksSelection = "("
-                + (UIUtils.shouldShowLiveSessionsOnly(getActivity())
-                ? ScheduleContract.Blocks.BLOCK_TYPE + " NOT IN ('"
-                + ScheduleContract.Blocks.BLOCK_TYPE_SESSION + "','"
-                + ScheduleContract.Blocks.BLOCK_TYPE_CODELAB + "','"
-                + ScheduleContract.Blocks.BLOCK_TYPE_OFFICE_HOURS + "','"
-                + ScheduleContract.Blocks.BLOCK_TYPE_FOOD + "')"
-                + " OR " + ScheduleContract.Blocks.NUM_LIVESTREAMED_SESSIONS + ">1 "
-                : "1==1") + ")";
         String onlyStarredOfficeHoursSelection = "("
                 + ScheduleContract.Blocks.BLOCK_TYPE + " != '"
                 + ScheduleContract.Blocks.BLOCK_TYPE_OFFICE_HOURS
@@ -242,7 +230,7 @@ public class ScheduleFragment extends ListFragment implements
         return new CursorLoader(getActivity(),
                 ScheduleContract.Blocks.CONTENT_URI,
                 BlocksQuery.PROJECTION,
-                liveStreamedOnlyBlocksSelection + " AND " + onlyStarredOfficeHoursSelection + " AND " + excludeSandbox,
+                onlyStarredOfficeHoursSelection + " AND " + excludeSandbox,
                 null,
                 ScheduleContract.Blocks.DEFAULT_SORT);
     }
@@ -340,7 +328,6 @@ public class ScheduleFragment extends ListFragment implements
 
             String subtitle;
 
-            boolean isLiveStreamed = false;
             primaryTouchTargetView.setOnLongClickListener(null);
             primaryTouchTargetView.setSelected(false);
 
@@ -403,8 +390,6 @@ public class ScheduleFragment extends ListFragment implements
                         subtitle = getString(R.string.session_finished);
                     }
 
-                    isLiveStreamed = !TextUtils.isEmpty(
-                            cursor.getString(BlocksQuery.STARRED_SESSION_LIVESTREAM_URL));
                     extraButton.setVisibility(View.VISIBLE);
                     extraButton.setOnClickListener(allSessionsListener);
                     extraButton.setEnabled(!mActionModeStarted);
@@ -521,26 +506,10 @@ public class ScheduleFragment extends ListFragment implements
 
                 boolean enabled = canViewStream && !mActionModeStarted;
 
-                isLiveStreamed = true;
                 subtitle = getString(R.string.keynote_room);
 
                 titleView.setText(starredSessionTitle);
                 extraButton.setVisibility(View.GONE);
-                primaryTouchTargetView.setEnabled(enabled);
-                primaryTouchTargetView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        if (mActionModeStarted) {
-                            return;
-                        }
-
-                        final Uri sessionUri = ScheduleContract.Sessions.buildSessionUri(
-                                starredSessionId);
-                        Intent livestreamIntent = new Intent(Intent.ACTION_VIEW, sessionUri);
-                        livestreamIntent.setClass(getActivity(), SessionLivestreamActivity.class);
-                        startActivity(livestreamIntent);
-                    }
-                });
 
             } else {
                 subtitle = blockMeta;
@@ -562,10 +531,10 @@ public class ScheduleFragment extends ListFragment implements
                     DateUtils.FORMAT_SHOW_TIME,
                     PrefUtils.getDisplayTimeZone(context).getID()).toString());
 
-            // Show past/present/future and livestream status for this block.
-            UIUtils.updateTimeAndLivestreamBlockUI(context,
-                    blockStart, blockEnd, isLiveStreamed,
-                    titleView, subtitleView, subtitle);
+            // Show past/present/future status for this block.
+            UIUtils.updateTimeBlockUI(context,
+                                      blockStart, blockEnd,
+                                      titleView, subtitleView, subtitle);
         }
     }
 
@@ -581,14 +550,12 @@ public class ScheduleFragment extends ListFragment implements
                 ScheduleContract.Blocks.BLOCK_META,
                 ScheduleContract.Blocks.SESSIONS_COUNT,
                 ScheduleContract.Blocks.NUM_STARRED_SESSIONS,
-                ScheduleContract.Blocks.NUM_LIVESTREAMED_SESSIONS,
                 ScheduleContract.Blocks.STARRED_SESSION_ID,
                 ScheduleContract.Blocks.STARRED_SESSION_TITLE,
                 ScheduleContract.Blocks.STARRED_SESSION_ROOM_NAME,
                 ScheduleContract.Blocks.STARRED_SESSION_ROOM_ID,
                 ScheduleContract.Blocks.STARRED_SESSION_HASHTAGS,
                 ScheduleContract.Blocks.STARRED_SESSION_URL,
-                ScheduleContract.Blocks.STARRED_SESSION_LIVESTREAM_URL,
         };
 
         int _ID = 0;
@@ -600,14 +567,12 @@ public class ScheduleFragment extends ListFragment implements
         int BLOCK_META = 6;
         int SESSIONS_COUNT = 7;
         int NUM_STARRED_SESSIONS = 8;
-        int NUM_LIVESTREAMED_SESSIONS = 9;
-        int STARRED_SESSION_ID = 10;
-        int STARRED_SESSION_TITLE = 11;
-        int STARRED_SESSION_ROOM_NAME = 12;
-        int STARRED_SESSION_ROOM_ID = 13;
-        int STARRED_SESSION_HASHTAGS = 14;
-        int STARRED_SESSION_URL = 15;
-        int STARRED_SESSION_LIVESTREAM_URL = 16;
+        int STARRED_SESSION_ID = 9;
+        int STARRED_SESSION_TITLE = 10;
+        int STARRED_SESSION_ROOM_NAME = 11;
+        int STARRED_SESSION_ROOM_ID = 12;
+        int STARRED_SESSION_HASHTAGS = 13;
+        int STARRED_SESSION_URL = 14;
     }
 
     @Override

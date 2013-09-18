@@ -129,8 +129,6 @@ public class ScheduleContract {
         String SESSION_STARRED = "session_starred";
         /** Key for session Calendar event. (Used in ICS or above) */
         String SESSION_CAL_EVENT_ID = "session_cal_event_id";
-        /** The YouTube live stream URL. */
-        String SESSION_LIVESTREAM_URL = "session_livestream_url";
         /** The Moderator URL. */
         String SESSION_MODERATOR_URL = "session_moderator_url";
     }
@@ -269,12 +267,6 @@ public class ScheduleContract {
         public static final String NUM_STARRED_SESSIONS = "num_starred_sessions";
 
         /**
-         * Flag indicating the number of sessions inside this block that have a
-         * {@link Sessions#SESSION_LIVESTREAM_URL} set.
-         */
-        public static final String NUM_LIVESTREAMED_SESSIONS = "num_livestreamed_sessions";
-
-        /**
          * The {@link Sessions#SESSION_ID} of the first starred session in this
          * block.
          */
@@ -285,13 +277,6 @@ public class ScheduleContract {
          * this block.
          */
         public static final String STARRED_SESSION_TITLE = "starred_session_title";
-
-        /**
-         * The {@link Sessions#SESSION_LIVESTREAM_URL} of the first starred
-         * session in this block.
-         */
-        public static final String STARRED_SESSION_LIVESTREAM_URL =
-                "starred_session_livestream_url";
 
         /**
          * The {@link Rooms#ROOM_NAME} of the first starred session in this
@@ -520,9 +505,6 @@ public class ScheduleContract {
         public static final String DEFAULT_SORT = BlocksColumns.BLOCK_START + " ASC,"
                 + SessionsColumns.SESSION_TITLE + " COLLATE NOCASE ASC";
 
-        public static final String LIVESTREAM_SELECTION =
-                SESSION_LIVESTREAM_URL + " is not null AND " + SESSION_LIVESTREAM_URL + "!=''";
-
         // Used to fetch sessions for a particular time
         public static final String AT_TIME_SELECTION =
                 BLOCK_START + " < ? and " + BLOCK_END + " " + "> ?";
@@ -531,17 +513,6 @@ public class ScheduleContract {
         public static String[] buildAtTimeSelectionArgs(long time) {
             final String timeString = String.valueOf(time);
             return new String[] { timeString, timeString };
-        }
-
-        // Used to fetch upcoming sessions
-        public static final String UPCOMING_SELECTION =
-                BLOCK_START + " = (select min(" + BLOCK_START + ") from " +
-                ScheduleDatabase.Tables.BLOCKS_JOIN_SESSIONS + " where " + LIVESTREAM_SELECTION +
-                " and " + BLOCK_START + " >" + " ?)";
-
-        // Builds selectionArgs for {@link UPCOMING_SELECTION}
-        public static String[] buildUpcomingSelectionArgs(long minTime) {
-            return new String[] { String.valueOf(minTime) };
         }
 
         /** Build {@link Uri} for requested {@link #SESSION_ID}. */

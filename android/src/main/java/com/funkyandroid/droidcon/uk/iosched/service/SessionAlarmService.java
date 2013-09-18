@@ -16,27 +16,21 @@
 
 package com.funkyandroid.droidcon.uk.iosched.service;
 
-import android.graphics.Bitmap;
-import com.funkyandroid.droidcon.uk.iosched.R;
-import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract;
-import com.funkyandroid.droidcon.uk.iosched.ui.HomeActivity;
-import com.funkyandroid.droidcon.uk.iosched.ui.MapFragment;
-import com.funkyandroid.droidcon.uk.iosched.util.PrefUtils;
-import com.funkyandroid.droidcon.uk.iosched.util.UIUtils;
-
-import android.app.AlarmManager;
-import android.app.IntentService;
-import android.app.Notification;
-import android.app.NotificationManager;
-import android.app.PendingIntent;
+import android.app.*;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
+import com.funkyandroid.droidcon.uk.iosched.R;
+import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract;
+import com.funkyandroid.droidcon.uk.iosched.ui.HomeActivity;
+import com.funkyandroid.droidcon.uk.iosched.ui.MapFragment;
+import com.funkyandroid.droidcon.uk.iosched.util.UIUtils;
 
 import java.util.ArrayList;
 
@@ -240,7 +234,7 @@ public class SessionAlarmService extends IntentService {
                     String.format(res.getString(R.string.snooze_x_min), 5),
                     createSnoozeIntent(sessionStart, sessionEnd, 5));
         }
-        if (starredCount == 1 && PrefUtils.isAttendeeAtVenue(this)) {
+        if (starredCount == 1) {
             notifBuilder.addAction(R.drawable.ic_map_holo_dark,
                     res.getString(R.string.title_map),
                     createRoomMapIntent(starredSessionRoomIds.get(0)));

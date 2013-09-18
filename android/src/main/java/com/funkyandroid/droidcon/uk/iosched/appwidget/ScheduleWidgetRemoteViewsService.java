@@ -19,7 +19,6 @@ package com.funkyandroid.droidcon.uk.iosched.appwidget;
 import com.funkyandroid.droidcon.uk.iosched.R;
 import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract;
 import com.funkyandroid.droidcon.uk.iosched.ui.HomeActivity;
-import com.funkyandroid.droidcon.uk.iosched.ui.SessionLivestreamActivity;
 import com.funkyandroid.droidcon.uk.iosched.ui.SimpleSectionedListAdapter;
 import com.funkyandroid.droidcon.uk.iosched.ui.SimpleSectionedListAdapter.Section;
 import com.funkyandroid.droidcon.uk.iosched.ui.TaskStackBuilderProxyActivity;
@@ -241,17 +240,7 @@ public class ScheduleWidgetRemoteViewsService extends RemoteViewsService {
                             : res.getColor(R.color.body_text_disabled));
                     rv.setViewVisibility(R.id.extra_button, View.GONE);
 
-                    if (canViewStream) {
-                        Intent fillIntent = TaskStackBuilderProxyActivity.getFillIntent(
-                                homeIntent,
-                                new Intent(Intent.ACTION_VIEW, ScheduleContract.Sessions
-                                        .buildSessionUri(starredSessionId))
-                                        .setClass(mContext, SessionLivestreamActivity.class));
-                        rv.setOnClickFillInIntent(R.id.list_item_middle_container, fillIntent);
-                    } else {
-                        rv.setOnClickFillInIntent(R.id.list_item_middle_container, new Intent());
-                    }
-
+                    rv.setOnClickFillInIntent(R.id.list_item_middle_container, new Intent());
                 } else {
                     rv.setTextViewText(R.id.block_title, blockTitle);
                     rv.setTextColor(R.id.block_title, res.getColor(R.color.body_text_disabled));
@@ -305,15 +294,6 @@ public class ScheduleWidgetRemoteViewsService extends RemoteViewsService {
                 mCursor.close();
             }
 
-            String liveStreamedOnlyBlocksSelection = "("
-                    + (UIUtils.shouldShowLiveSessionsOnly(mContext)
-                    ? ScheduleContract.Blocks.BLOCK_TYPE + " NOT IN ('"
-                    + ScheduleContract.Blocks.BLOCK_TYPE_SESSION + "','"
-                    + ScheduleContract.Blocks.BLOCK_TYPE_CODELAB + "','"
-                    + ScheduleContract.Blocks.BLOCK_TYPE_OFFICE_HOURS + "','"
-                    + ScheduleContract.Blocks.BLOCK_TYPE_FOOD + "')"
-                    + " OR " + ScheduleContract.Blocks.NUM_LIVESTREAMED_SESSIONS + ">1 "
-                    : "1==1") + ")";
             String onlyStarredOfficeHoursSelection = "("
                     + ScheduleContract.Blocks.BLOCK_TYPE + " != '"
                     + ScheduleContract.Blocks.BLOCK_TYPE_OFFICE_HOURS
@@ -323,7 +303,6 @@ public class ScheduleWidgetRemoteViewsService extends RemoteViewsService {
             mCursor = mContext.getContentResolver().query(ScheduleContract.Blocks.CONTENT_URI,
                     BlocksQuery.PROJECTION,
                     ScheduleContract.Blocks.BLOCK_END + " >= ? AND "
-                            + liveStreamedOnlyBlocksSelection + " AND "
                             + onlyStarredOfficeHoursSelection + " AND "
                             + excludeSandbox,
                     new String[]{
@@ -379,7 +358,6 @@ public class ScheduleWidgetRemoteViewsService extends RemoteViewsService {
                 ScheduleContract.Blocks.BLOCK_TYPE,
                 ScheduleContract.Blocks.BLOCK_META,
                 ScheduleContract.Blocks.NUM_STARRED_SESSIONS,
-                ScheduleContract.Blocks.NUM_LIVESTREAMED_SESSIONS,
                 ScheduleContract.Blocks.STARRED_SESSION_ID,
                 ScheduleContract.Blocks.STARRED_SESSION_TITLE,
                 ScheduleContract.Blocks.STARRED_SESSION_ROOM_NAME,
@@ -393,9 +371,8 @@ public class ScheduleWidgetRemoteViewsService extends RemoteViewsService {
         int BLOCK_TYPE = 5;
         int BLOCK_META = 6;
         int NUM_STARRED_SESSIONS = 7;
-        int NUM_LIVESTREAMED_SESSIONS = 8;
-        int STARRED_SESSION_ID = 9;
-        int STARRED_SESSION_TITLE = 10;
-        int STARRED_SESSION_ROOM_NAME = 11;
+        int STARRED_SESSION_ID = 8;
+        int STARRED_SESSION_TITLE = 9;
+        int STARRED_SESSION_ROOM_NAME = 10;
     }
 }

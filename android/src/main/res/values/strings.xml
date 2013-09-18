@@ -71,7 +71,6 @@
     <string name="other_tracks">Other tracks</string>
 
     <string name="empty_sessions">No sessions found.</string>
-    <string name="empty_live_streamed_sessions">No live streamed sessions found.</string>
     <string name="empty_session_detail">No session details found.</string>
     <string name="empty_sandbox">No developer sandbox companies found.</string>
     <string name="empty_social_stream">No posts found.</string>
@@ -92,17 +91,6 @@
     <string name="session_link_moderator">Moderator</string>
     <string name="session_link_pdf">Slides (PDF)</string>
     <string name="session_link_notes">Official notes</string>
-    <string name="session_link_livestream">Watch on I/O Live</string>
-
-    <string name="session_livestream_title">I/O Live</string>
-    <string name="session_livestream_track_title">%s Track</string>
-    <string name="session_livestream_info">Info</string>
-    <string name="session_livestream_captions">Captions</string>
-    <string name="session_livestream_error_init">Sorry, there was an error initializing the YouTube Player (%1$s)</string>
-    <string name="session_livestream_error_playback">Sorry, there was an error loading the live stream, please try again later</string>
-    <string name="session_livestream_keynote_title">Droidcon London - %s</string>
-    <string name="session_livestream_keynote_desc">Droidcon London\'s much-anticipated kickoff event will make you among the first developers to see what we\'ve been working on here at Google. Grab some popcorn, kick back and enjoy the show directly from your Android powered device.</string>
-    <string name="session_livestream_play_pause">Play / Pause</string>
 
     <string name="codelab_title_template">Code Lab: <xliff:g id="title">%1$s</xliff:g></string>
 
@@ -110,7 +98,6 @@
     <string name="search_hint">Search sessions</string>
 
     <string name="share_template">Checking out \'<xliff:g id="title">%1$s</xliff:g>\' at <xliff:g id="hashtags">%2$s</xliff:g> <xliff:g id="url">%3$s</xliff:g></string>
-    <string name="share_livestream_template">Watching I/O Live: \'<xliff:g id="title">%1$s</xliff:g>\' at <xliff:g id="hashtags">%2$s</xliff:g> <xliff:g id="url">%3$s</xliff:g></string>
 
     <string name="add_to_schedule">Add to schedule</string>
     <string name="remove_from_schedule">In schedule</string>
@@ -142,7 +129,7 @@
     </plurals>
 
     <!-- Schedule -->
-    <string name="schedule_empty_slot_title_template">Browse<xliff:g id="block_type">%1$s</xliff:g>&#8230;</string>
+    <string name="schedule_empty_slot_title_template">Browse <xliff:g id="block_type">%1$s</xliff:g>&#8230;</string>
     <string name="schedule_empty_slot_subtitle">Empty slot</string>
     <string name="schedule_conflict_title"><xliff:g id="num_sessions">%1$s</xliff:g> chosen sessions</string>
     <string name="schedule_conflict_subtitle">Conflict in slot</string>
@@ -164,31 +151,9 @@
     <string name="map_infowindow_text_empty">-</string>
 
     <!-- EULA, login, and about -->
-    <string name="description_choose_account"><![CDATA[
-        <font color="#4d90fe"><b>Choose an account below. If you registered to attend Droidcon London,
-        make sure to use the same account.</b></font>
-    ]]></string>
-    <string name="description_setup_attendee_mode_header"><![CDATA[
-        <font color="#4d90fe"><b>Are you attending Droidcon London in person this year?</b></font>
-        <br><br>
-    ]]></string>
-    <string name="description_setup_attendee_mode_body"><![CDATA[
-        If not, we\'ll only show live-streamed sessions. You can always change this in Settings.
-    ]]></string>
-    <string name="description_setup_wifi_header"><![CDATA[
-        <font color="#4d90fe"><b>Configure Wi-Fi access on this device?</b></font>
-        <br><br>
-    ]]></string>
     <string name="description_setup_wifi_body"><![CDATA[
-        Since you\'re attending in person, we can set up this device to access the conference Wi-Fi network.
+        We can set up this device to access the conference Wi-Fi network automatically.
         By configuring your Wi-Fi now, you\'ll help prevent network congestion.
-    ]]></string>
-    <string name="description_sign_in_main"><![CDATA[
-        Welcome to the Droidcon London 2013 app, your official companion to the Droidcon London conference
-        taking place in London from October 24th to October 27th, 2013.<br>
-        <br>
-        We just need to ask you a couple of quick questions. Press the &quot;Sign-in&quot; button
-        to get started.
     ]]></string>
     <string name="calltoaction_wifi_configure"><![CDATA[
         <br><br>Tap \'Add Wi-Fi Network\' to proceed.
@@ -198,17 +163,6 @@
     ]]></string>
     <string name="wifi_dialog_button_configure">Add Wi-Fi Network</string>
     <string name="wifi_dialog_button_settings">Open Wi-Fi Settings</string>
-    <string-array name="selection_setup_wifi">
-        <item>Yes, add the conference Wi-Fi network now.</item>
-        <item>No thanks, I\'ll connect on my own.</item>
-    </string-array>
-    <string-array name="selection_setup_attendee">
-        <item>Yes, I\'ll be attending from London.</item>
-        <item>No, I\'ll be viewing from home or attending a Droidcon London Extended event.</item>
-    </string-array>
-    <string name="empty_accounts">No Google accounts are available. Add an account to continue.</string>
-    <string name="no_connection_cant_login">Can\'t sign in. Check your network connection.</string>
-    <string name="taking_a_while">This is taking a while&#8230;</string>
     <string name="about_eula">End User License Agreement</string>
     <string name="about_licenses">Open Source Licenses</string>
     <string name="about_body"><![CDATA[
@@ -263,8 +217,6 @@
     <string name="empty_widget_text_signed_out">Touch the Droidcon London 2013 logo above to sign in and begin using the app.</string>
 
     <string name="now_playing_badge"><![CDATA[<font color="#4d90fe"><small><b>NOW</b></small></font>]]></string>
-    <string name="live_available_badge"><![CDATA[<font color="#999999"><small><b>LIVE</b></small></font>]]></string>
-    <string name="live_now_badge"><![CDATA[<font color="#ff4444"><small><b>LIVE</b></small></font>]]></string>
     <string name="session_finished">Ended</string>
 
     <!-- Strings only used for accessibility -->
@@ -277,8 +229,6 @@
     <!-- Preferences -->
     <string name="pref_local_times_title">Show local times</string>
     <string name="pref_local_times_description">When checked, show local times instead of British Summer Time (the timezone at the conference)</string>
-    <string name="pref_attendee_at_venue_title">I\'ll be at Droidcon London!</string>
-    <string name="pref_attendee_at_venue_description">When checked, all sessions and on-site events will be shown. Otherwise, only live-streamed sessions will be shown.</string>
     <string name="wifi_install_error_message">Sorry, unable to update WiFi configuration</string>
     <string name="wifi_install_success_message">The Droidcon WiFi network has been successfully added to this device</string>
 
