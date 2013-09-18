@@ -21,8 +21,8 @@ import android.content.Context;
 import android.content.Intent;
 import com.funkyandroid.droidcon.uk.iosched.gcm.GCMCommand;
 import com.funkyandroid.droidcon.uk.iosched.sync.TriggerSyncReceiver;
-import com.google.gson.Gson;
-import com.google.gson.JsonSyntaxException;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.Random;
 
@@ -41,9 +41,10 @@ public class SyncCommand extends GCMCommand {
         SyncData syncData = null;
         if (extraData != null) {
             try {
-                Gson gson = new Gson();
-                syncData = gson.fromJson(extraData, SyncData.class);
-            } catch (JsonSyntaxException e) {
+                JSONObject root = new JSONObject(extraData);
+                int jitter = root.getInt("sync_jitter");
+                syncData = new SyncData(jitter);
+            } catch (JSONException e) {
                 LOGI(TAG, "Error while decoding extraData: " + e.toString());
             }
         }
@@ -74,8 +75,14 @@ public class SyncCommand extends GCMCommand {
 
     }
 
+    protected int getDefaultTriggerSyncMaxJitterMillis() {
+        return DEFAULT_TRIGGER_SYNC_MAX_JITTER_MILLIS;
+    }
+
     class SyncData {
         private int sync_jitter;
-        SyncData() {}
+        SyncData(int sync_jitter) {
+            this.sync_jitter = sync_jitter;
+        }
     }
 }

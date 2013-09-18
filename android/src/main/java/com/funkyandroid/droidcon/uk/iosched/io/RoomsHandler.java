@@ -16,14 +16,17 @@
 
 package com.funkyandroid.droidcon.uk.iosched.io;
 
+import android.util.Log;
+import com.funkyandroid.droidcon.uk.iosched.Config;
 import com.funkyandroid.droidcon.uk.iosched.io.model.Room;
 import com.funkyandroid.droidcon.uk.iosched.io.model.Rooms;
 import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract;
 import com.funkyandroid.droidcon.uk.iosched.util.Lists;
-import com.google.gson.Gson;
 
 import android.content.ContentProviderOperation;
 import android.content.Context;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -40,14 +43,14 @@ public class RoomsHandler extends JSONHandler {
 
     public ArrayList<ContentProviderOperation> parse(String json) throws IOException {
         final ArrayList<ContentProviderOperation> batch = Lists.newArrayList();
-        Rooms roomsJson = new Gson().fromJson(json, Rooms.class);
-        if (roomsJson != null) {
-            final Room[] rooms = roomsJson.rooms;
-            if (rooms != null) {
-                for (Room room : rooms) {
-                    parseRoom(room, batch);
-                }
+        Rooms roomsJson = new Rooms();
+        try {
+            roomsJson.fromJSON(new JSONObject(json));
+            for(Room room: roomsJson.getRooms()) {
+                parseRoom(room, batch);
             }
+        } catch(JSONException e) {
+            Log.e(Config.LOG_TAG, "Error parsing rooms", e);
         }
         return batch;
     }

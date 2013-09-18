@@ -16,8 +16,34 @@
 
 package com.funkyandroid.droidcon.uk.iosched.io.model;
 
-public class Room {
+import com.funkyandroid.droidcon.uk.droidconsched.io.ServerResponse;
+
+public class Room extends ServerResponse {
     public String id;
     public String name;
     public String floor;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getFloor() {
+        return floor;
+    }
+
+    public void setFloor(String floor) {
+        this.floor = floor;
+    }
 }

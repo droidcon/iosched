@@ -23,10 +23,10 @@ import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract;
 import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract.Blocks;
 import com.funkyandroid.droidcon.uk.iosched.util.Lists;
 import com.funkyandroid.droidcon.uk.iosched.util.ParserUtils;
-import com.google.gson.Gson;
 
 import android.content.ContentProviderOperation;
 import android.content.Context;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -47,21 +47,12 @@ public class BlocksHandler extends JSONHandler {
     public ArrayList<ContentProviderOperation> parse(String json) throws IOException {
         final ArrayList<ContentProviderOperation> batch = Lists.newArrayList();
         try {
-            Gson gson = new Gson();
-            EventSlots eventSlots = gson.fromJson(json, EventSlots.class);
-            if (eventSlots != null) {
-                final Day[] days = eventSlots.day;
-                if (days != null) {
-                    //2011-05-10T07:00:00.000-07:00
-                    for (Day day : days) {
-                        String date = day.date;
-                        TimeSlot[] timeSlots = day.slot;
-                        if (timeSlots != null) {
-                            for (TimeSlot timeSlot : timeSlots) {
-                                parseSlot(date, timeSlot, batch);
-                            }
-                        }
-                    }
+            EventSlots eventSlots = new EventSlots();
+            eventSlots.fromJSON(new JSONObject(json));
+            for(Day day : eventSlots.getDays()) {
+                String date = day.date;
+                for(TimeSlot timeSlot: day.getSlots()) {
+                    parseSlot(date, timeSlot, batch);
                 }
             }
         } catch (Throwable e) {

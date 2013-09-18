@@ -16,7 +16,40 @@
 
 package com.funkyandroid.droidcon.uk.iosched.io.model;
 
-public class Day {
+import com.funkyandroid.droidcon.uk.droidconsched.io.ServerArrayResponse;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.List;
+
+public class Day extends ServerArrayResponse<TimeSlot> {
     public String date;
-    public TimeSlot[] slot;
+
+    public List<TimeSlot> getSlots()
+    {
+        return getArrayContents();
+    }
+
+    @Override
+    protected String getArrayAttributeName() {
+        return "slot";
+    }
+
+    @Override
+    protected TimeSlot getNewObject() {
+        return new TimeSlot();
+    }
+
+    /**
+     * Read the name of the
+     * @param jsonObject The object to get the property data from.
+     * @throws JSONException
+     */
+    @Override
+    public void fromJSON(final JSONObject jsonObject)
+            throws JSONException {
+        date = jsonObject.getString("date");
+        super.fromJSON(jsonObject);
+    }
+
 }

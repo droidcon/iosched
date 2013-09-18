@@ -16,8 +16,26 @@
 
 package com.funkyandroid.droidcon.uk.iosched.io.model;
 
-public class EventSlots {
-    public Day[] day;
+import com.funkyandroid.droidcon.uk.droidconsched.io.ServerArrayResponse;
+
+import java.util.List;
+
+public class EventSlots extends ServerArrayResponse<Day> {
+
+    public List<Day> getDays()
+    {
+        return getArrayContents();
+    }
+
+    @Override
+    protected String getArrayAttributeName() {
+        return "day";
+    }
+
+    @Override
+    protected Day getNewObject() {
+        return new Day();
+    }
 }
 
 

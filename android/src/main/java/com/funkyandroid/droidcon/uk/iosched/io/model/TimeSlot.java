@@ -16,10 +16,52 @@
 
 package com.funkyandroid.droidcon.uk.iosched.io.model;
 
-public class TimeSlot {
+import com.funkyandroid.droidcon.uk.droidconsched.io.ServerResponse;
+
+public class TimeSlot extends ServerResponse {
     public String start;
     public String end;
     public String title;
     public String type;
     public String meta;
+
+    public String getStart() {
+        return start;
+    }
+
+    public void setStart(String start) {
+        this.start = start;
+    }
+
+    public String getEnd() {
+        return end;
+    }
+
+    public void setEnd(String end) {
+        this.end = end;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getMeta() {
+        return meta;
+    }
+
+    public void setMeta(String meta) {
+        this.meta = meta;
+    }
 }

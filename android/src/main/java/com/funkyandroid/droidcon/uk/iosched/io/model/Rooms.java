@@ -16,6 +16,25 @@
 
 package com.funkyandroid.droidcon.uk.iosched.io.model;
 
-public class Rooms {
-    public Room[] rooms;
+import com.funkyandroid.droidcon.uk.droidconsched.io.ServerArrayResponse;
+
+import java.util.List;
+
+public class Rooms extends ServerArrayResponse<Room> {
+
+    public List<Room> getRooms()
+    {
+        return getArrayContents();
+    }
+
+    @Override
+    protected String getArrayAttributeName() {
+        return "rooms";
+    }
+
+    @Override
+    protected Room getNewObject() {
+        return new Room();
+    }
+
 }

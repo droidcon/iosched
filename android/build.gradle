@@ -23,7 +23,6 @@ repositories {
 dependencies {
     compile 'com.android.support:appcompat-v7:18.0.0'
     compile 'com.google.android.apps.dashclock:dashclock-api:+'
-    compile 'com.google.code.gson:gson:2.+'
     compile fileTree(dir: 'libs', include: '*.jar')
 }
 

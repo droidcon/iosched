@@ -16,14 +16,18 @@
 
 package com.funkyandroid.droidcon.uk.iosched.io;
 
+import android.util.Log;
+import com.funkyandroid.droidcon.uk.iosched.Config;
 import com.funkyandroid.droidcon.uk.iosched.io.model.SearchSuggestions;
 import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract;
 import com.funkyandroid.droidcon.uk.iosched.util.Lists;
-import com.google.gson.Gson;
 
 import android.app.SearchManager;
 import android.content.ContentProviderOperation;
 import android.content.Context;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -38,22 +42,23 @@ public class SearchSuggestHandler extends JSONHandler {
             throws IOException {
         final ArrayList<ContentProviderOperation> batch = Lists.newArrayList();
 
-        SearchSuggestions suggestions = new Gson().fromJson(json, SearchSuggestions.class);
-        if (suggestions != null && suggestions.words != null) {
-            // Clear out suggestions
+        try {
+            JSONObject root = new JSONObject(json);
+            JSONArray suggestions = root.getJSONArray("words");
+
             batch.add(ContentProviderOperation
                     .newDelete(ScheduleContract.addCallerIsSyncAdapterParameter(
                             ScheduleContract.SearchSuggest.CONTENT_URI))
                     .build());
-
-            // Rebuild suggestions
-            for (String word : suggestions.words) {
+            for(int i = 0 ; i < suggestions.length() ; i++) {
                 batch.add(ContentProviderOperation
                         .newInsert(ScheduleContract.addCallerIsSyncAdapterParameter(
                                 ScheduleContract.SearchSuggest.CONTENT_URI))
-                        .withValue(SearchManager.SUGGEST_COLUMN_TEXT_1, word)
+                        .withValue(SearchManager.SUGGEST_COLUMN_TEXT_1, suggestions.getString(i))
                         .build());
             }
+        } catch (JSONException e) {
+            Log.e(Config.LOG_TAG, "Problem building word list", e);
         }
 
         return batch;
