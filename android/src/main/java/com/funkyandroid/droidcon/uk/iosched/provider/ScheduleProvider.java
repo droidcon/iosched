@@ -605,15 +605,11 @@ public class ScheduleProvider extends ContentProvider {
                         .table(Tables.BLOCKS)
                         .map(Blocks.SESSIONS_COUNT, Subquery.BLOCK_SESSIONS_COUNT)
                         .map(Blocks.NUM_STARRED_SESSIONS, Subquery.BLOCK_NUM_STARRED_SESSIONS)
-                        .map(Blocks.NUM_LIVESTREAMED_SESSIONS,
-                                Subquery.BLOCK_NUM_LIVESTREAMED_SESSIONS)
                         .map(Blocks.STARRED_SESSION_ID, Subquery.BLOCK_STARRED_SESSION_ID)
                         .map(Blocks.STARRED_SESSION_TITLE, Subquery.BLOCK_STARRED_SESSION_TITLE)
                         .map(Blocks.STARRED_SESSION_HASHTAGS,
                                 Subquery.BLOCK_STARRED_SESSION_HASHTAGS)
                         .map(Blocks.STARRED_SESSION_URL, Subquery.BLOCK_STARRED_SESSION_URL)
-                        .map(Blocks.STARRED_SESSION_LIVESTREAM_URL,
-                                Subquery.BLOCK_STARRED_SESSION_LIVESTREAM_URL)
                         .map(Blocks.STARRED_SESSION_ROOM_NAME,
                                 Subquery.BLOCK_STARRED_SESSION_ROOM_NAME)
                         .map(Blocks.STARRED_SESSION_ROOM_ID, Subquery.BLOCK_STARRED_SESSION_ROOM_ID);
@@ -625,8 +621,6 @@ public class ScheduleProvider extends ContentProvider {
                 return builder.table(Tables.BLOCKS)
                         .map(Blocks.SESSIONS_COUNT, Subquery.BLOCK_SESSIONS_COUNT)
                         .map(Blocks.NUM_STARRED_SESSIONS, Subquery.BLOCK_NUM_STARRED_SESSIONS)
-                        .map(Blocks.NUM_LIVESTREAMED_SESSIONS,
-                                Subquery.BLOCK_NUM_LIVESTREAMED_SESSIONS)
                         .where(Blocks.BLOCK_START + ">=?", startTime)
                         .where(Blocks.BLOCK_START + "<=?", endTime);
             }
@@ -635,8 +629,6 @@ public class ScheduleProvider extends ContentProvider {
                 return builder.table(Tables.BLOCKS)
                         .map(Blocks.SESSIONS_COUNT, Subquery.BLOCK_SESSIONS_COUNT)
                         .map(Blocks.NUM_STARRED_SESSIONS, Subquery.BLOCK_NUM_STARRED_SESSIONS)
-                        .map(Blocks.NUM_LIVESTREAMED_SESSIONS,
-                                Subquery.BLOCK_NUM_LIVESTREAMED_SESSIONS)
                         .where(Blocks.BLOCK_ID + "=?", blockId);
             }
             case BLOCKS_ID_SESSIONS: {
@@ -644,8 +636,6 @@ public class ScheduleProvider extends ContentProvider {
                 return builder.table(Tables.SESSIONS_JOIN_BLOCKS_ROOMS)
                         .map(Blocks.SESSIONS_COUNT, Subquery.BLOCK_SESSIONS_COUNT)
                         .map(Blocks.NUM_STARRED_SESSIONS, Subquery.BLOCK_NUM_STARRED_SESSIONS)
-                        .map(Blocks.NUM_LIVESTREAMED_SESSIONS,
-                                Subquery.BLOCK_NUM_LIVESTREAMED_SESSIONS)
                         .mapToTable(Sessions._ID, Tables.SESSIONS)
                         .mapToTable(Sessions.SESSION_ID, Tables.SESSIONS)
                         .mapToTable(Sessions.BLOCK_ID, Tables.SESSIONS)
@@ -657,8 +647,6 @@ public class ScheduleProvider extends ContentProvider {
                 return builder.table(Tables.SESSIONS_JOIN_BLOCKS_ROOMS)
                         .map(Blocks.SESSIONS_COUNT, Subquery.BLOCK_SESSIONS_COUNT)
                         .map(Blocks.NUM_STARRED_SESSIONS, Subquery.BLOCK_NUM_STARRED_SESSIONS)
-                        .map(Blocks.NUM_LIVESTREAMED_SESSIONS,
-                                Subquery.BLOCK_NUM_LIVESTREAMED_SESSIONS)
                         .mapToTable(Sessions._ID, Tables.SESSIONS)
                         .mapToTable(Sessions.SESSION_ID, Tables.SESSIONS)
                         .mapToTable(Sessions.BLOCK_ID, Tables.SESSIONS)
@@ -890,11 +878,6 @@ public class ScheduleProvider extends ContentProvider {
                 + Tables.SESSIONS + " WHERE " + Qualified.SESSIONS_BLOCK_ID + "="
                 + Qualified.BLOCKS_BLOCK_ID + " AND " + Qualified.SESSIONS_STARRED + "=1)";
 
-        String BLOCK_NUM_LIVESTREAMED_SESSIONS = "(SELECT COUNT(1) FROM "
-                + Tables.SESSIONS + " WHERE " + Qualified.SESSIONS_BLOCK_ID + "="
-                + Qualified.BLOCKS_BLOCK_ID
-                + " AND IFNULL(" + Qualified.SESSIONS_LIVESTREAM_URL + ",'')!='')";
-
         String BLOCK_STARRED_SESSION_ID = "(SELECT " + Qualified.SESSIONS_SESSION_ID + " FROM "
                 + Tables.SESSIONS + " WHERE " + Qualified.SESSIONS_BLOCK_ID + "="
                 + Qualified.BLOCKS_BLOCK_ID + " AND " + Qualified.SESSIONS_STARRED + "=1 "
@@ -911,13 +894,6 @@ public class ScheduleProvider extends ContentProvider {
                 + "ORDER BY " + Qualified.SESSIONS_TITLE + ")";
 
         String BLOCK_STARRED_SESSION_URL = "(SELECT " + Qualified.SESSIONS_URL + " FROM "
-                + Tables.SESSIONS + " WHERE " + Qualified.SESSIONS_BLOCK_ID + "="
-                + Qualified.BLOCKS_BLOCK_ID + " AND " + Qualified.SESSIONS_STARRED + "=1 "
-                + "ORDER BY " + Qualified.SESSIONS_TITLE + ")";
-
-        String BLOCK_STARRED_SESSION_LIVESTREAM_URL = "(SELECT "
-                + Qualified.SESSIONS_LIVESTREAM_URL
-                + " FROM "
                 + Tables.SESSIONS + " WHERE " + Qualified.SESSIONS_BLOCK_ID + "="
                 + Qualified.BLOCKS_BLOCK_ID + " AND " + Qualified.SESSIONS_STARRED + "=1 "
                 + "ORDER BY " + Qualified.SESSIONS_TITLE + ")";
@@ -978,8 +954,6 @@ public class ScheduleProvider extends ContentProvider {
         String SESSIONS_TITLE = Tables.SESSIONS + "." + Sessions.SESSION_TITLE;
         String SESSIONS_HASHTAGS = Tables.SESSIONS + "." + Sessions.SESSION_HASHTAGS;
         String SESSIONS_URL = Tables.SESSIONS + "." + Sessions.SESSION_URL;
-
-        String SESSIONS_LIVESTREAM_URL = Tables.SESSIONS + "." + Sessions.SESSION_LIVESTREAM_URL;
 
         String ROOMS_ROOM_NAME = Tables.ROOMS + "." + Rooms.ROOM_NAME;
         String ROOMS_ROOM_ID = Tables.ROOMS + "." + Rooms.ROOM_ID;

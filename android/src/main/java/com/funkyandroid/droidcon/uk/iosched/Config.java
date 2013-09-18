@@ -38,20 +38,6 @@ public class Config {
     // Static file host for the map data
     public static final String GET_MAP_URL = "http://2013.ioschedmap.appspot.com/map.json";
 
-    // YouTube API config
-    // TODO: Add your YouTube API key here.
-    public static final String YOUTUBE_API_KEY = "YOUR_API_KEY_HERE";
-    // YouTube share URL
-    public static final String YOUTUBE_SHARE_URL_PREFIX = "http://youtu.be/";
-
-    // Livestream captions config
-    public static final String PRIMARY_LIVESTREAM_CAPTIONS_URL =
-            "http://io-captions.appspot.com/?event=e1&android=t";
-    public static final String SECONDARY_LIVESTREAM_CAPTIONS_URL =
-            "http://io-captions.appspot.com/?event=e2&android=t";
-    public static final String PRIMARY_LIVESTREAM_TRACK = "android";
-    public static final String SECONDARY_LIVESTREAM_TRACK = "chrome";
-
     // Conference public WiFi AP parameters
     public static final String WIFI_SSID = "DroidconUK";        // TODO: set real Droidcon WiFi SSID
     public static final String WIFI_PASSPHRASE = "fillmein";    // TODO: set real Droidcon WiFi password

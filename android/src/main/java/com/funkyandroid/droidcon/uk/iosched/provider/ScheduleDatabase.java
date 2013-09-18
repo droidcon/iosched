@@ -16,31 +16,13 @@
 
 package com.funkyandroid.droidcon.uk.iosched.provider;
 
-import android.accounts.Account;
-import android.content.ContentResolver;
-
-import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract.AnnouncementsColumns;
-import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract.Blocks;
-import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract.BlocksColumns;
-import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract.FeedbackColumns;
-import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract.MapMarkerColumns;
-import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract.MapTileColumns;
-import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract.Rooms;
-import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract.RoomsColumns;
-import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract.Sessions;
-import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract.SessionsColumns;
-import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract.Speakers;
-import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract.SpeakersColumns;
-import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract.SyncColumns;
-import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract.Tracks;
-import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract.TracksColumns;
-import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract.Sandbox;
-
 import android.app.SearchManager;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.provider.BaseColumns;
+import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract.*;
 import com.funkyandroid.droidcon.uk.iosched.sync.SyncHelper;
 
 import static com.funkyandroid.droidcon.uk.iosched.util.LogUtils.*;
@@ -59,7 +41,8 @@ public class ScheduleDatabase extends SQLiteOpenHelper {
 
     private static final int VER_2013_LAUNCH = 104;  // 1.0
     private static final int VER_2013_RM2 = 105;  // 1.1
-    private static final int DATABASE_VERSION = VER_2013_RM2;
+    private static final int VER_2013_DROIDCON = 106;  // 1.2
+    private static final int DATABASE_VERSION = VER_2013_DROIDCON;
 
     private final Context mContext;
 
@@ -235,7 +218,6 @@ public class ScheduleDatabase extends SQLiteOpenHelper {
                 + SessionsColumns.SESSION_NOTES_URL + " TEXT,"
                 + SessionsColumns.SESSION_STARRED + " INTEGER NOT NULL DEFAULT 0,"
                 + SessionsColumns.SESSION_CAL_EVENT_ID + " INTEGER,"
-                + SessionsColumns.SESSION_LIVESTREAM_URL + " TEXT,"
                 + "UNIQUE (" + SessionsColumns.SESSION_ID + ") ON CONFLICT REPLACE)");
 
         db.execSQL("CREATE TABLE " + Tables.SPEAKERS + " ("
@@ -349,6 +331,50 @@ public class ScheduleDatabase extends SQLiteOpenHelper {
                 + "UNIQUE (" + MapMarkerColumns.MARKER_ID + ") ON CONFLICT REPLACE)");
     }
 
+    private void doMigration2013Droidcon(SQLiteDatabase db) {
+        db.execSQL("CREATE TABLE " + Tables.SESSIONS + " ("
+                   + BaseColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                   + SyncColumns.UPDATED + " INTEGER NOT NULL,"
+                   + SessionsColumns.SESSION_ID + " TEXT NOT NULL,"
+                   + Sessions.BLOCK_ID + " TEXT " + References.BLOCK_ID + ","
+                   + Sessions.ROOM_ID + " TEXT " + References.ROOM_ID + ","
+                   + SessionsColumns.SESSION_TYPE + " TEXT,"
+                   + SessionsColumns.SESSION_LEVEL + " TEXT,"
+                   + SessionsColumns.SESSION_TITLE + " TEXT,"
+                   + SessionsColumns.SESSION_ABSTRACT + " TEXT,"
+                   + SessionsColumns.SESSION_REQUIREMENTS + " TEXT,"
+                   + SessionsColumns.SESSION_TAGS + " TEXT,"
+                   + SessionsColumns.SESSION_HASHTAGS + " TEXT,"
+                   + SessionsColumns.SESSION_URL + " TEXT,"
+                   + SessionsColumns.SESSION_YOUTUBE_URL + " TEXT,"
+                   + SessionsColumns.SESSION_MODERATOR_URL + " TEXT,"
+                   + SessionsColumns.SESSION_PDF_URL + " TEXT,"
+                   + SessionsColumns.SESSION_NOTES_URL + " TEXT,"
+                   + SessionsColumns.SESSION_STARRED + " INTEGER NOT NULL DEFAULT 0,"
+                   + SessionsColumns.SESSION_CAL_EVENT_ID + " INTEGER,"
+                   + "UNIQUE (" + SessionsColumns.SESSION_ID + ") ON CONFLICT REPLACE)");
+
+        db.execSQL("CREATE TABLE " + Tables.BLOCKS + " ("
+                   + BaseColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                   + BlocksColumns.BLOCK_ID + " TEXT NOT NULL,"
+                   + BlocksColumns.BLOCK_TITLE + " TEXT NOT NULL,"
+                   + BlocksColumns.BLOCK_START + " INTEGER NOT NULL,"
+                   + BlocksColumns.BLOCK_END + " INTEGER NOT NULL,"
+                   + BlocksColumns.BLOCK_TYPE + " TEXT,"
+                   + BlocksColumns.BLOCK_META + " TEXT,"
+                   + "UNIQUE (" + BlocksColumns.BLOCK_ID + ") ON CONFLICT REPLACE)");
+
+        // Full-text search index. Update using updateSessionSearchIndex method.
+        // Use the porter tokenizer for simple stemming, so that "frustration" matches "frustrated."
+        db.execSQL("CREATE VIRTUAL TABLE " + Tables.SESSIONS_SEARCH + " USING fts3("
+                   + BaseColumns._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+                   + SessionsSearchColumns.BODY + " TEXT NOT NULL,"
+                   + SessionsSearchColumns.SESSION_ID
+                   + " TEXT NOT NULL " + References.SESSION_ID + ","
+                   + "UNIQUE (" + SessionsSearchColumns.SESSION_ID + ") ON CONFLICT REPLACE,"
+                   + "tokenize=porter)");
+    }
+
     /**
      * Updates the session search index. This should be done sparingly, as the queries are rather
      * complex.
@@ -408,12 +434,21 @@ public class ScheduleDatabase extends SQLiteOpenHelper {
                 // Apply new schema changes
                 doMigration2013RM2(db);
             case VER_2013_RM2:
-                version = VER_2013_RM2;
+                // Sessions and Blocks tables have changed schema from previous version.
+                LOGI(TAG, "Performing migration for DB version " + version);
+                // Reset SESSIONS* and BLOCKS tables
+                db.execSQL("DROP TABLE IF EXISTS " + Tables.SESSIONS);
+                db.execSQL("DROP TABLE IF EXISTS " + Tables.SESSIONS_SEARCH);
+                db.execSQL("DROP TABLE IF EXISTS " + Tables.BLOCKS);
+                // Apply new schema changes
+                doMigration2013Droidcon(db);
+            case VER_2013_DROIDCON:
+                version = VER_2013_DROIDCON;
                 LOGI(TAG, "DB at version " + version);
                 // Current version, no further action necessary
         }
 
-        LOGD(TAG, "after upgrade logic, at version " + version);
+        LOGD(TAG, "After upgrade logic, at version " + version);
         if (version != DATABASE_VERSION) {
             LOGW(TAG, "Destroying old data during upgrade");
 

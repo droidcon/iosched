@@ -318,26 +318,13 @@ public class SessionDetailFragment extends Fragment implements
             mRootView.findViewById(android.R.id.empty).setVisibility(View.VISIBLE);
         }
 
-        // Compile list of links (I/O live link, submit feedback, and normal links)
+        // Compile list of links (submit feedback, and normal links)
         ViewGroup linkContainer = (ViewGroup) mRootView.findViewById(R.id.links_container);
         linkContainer.removeAllViews();
 
         final Context context = mRootView.getContext();
 
         List<Pair<Integer, Intent>> links = new ArrayList<Pair<Integer, Intent>>();
-
-        final boolean hasLivestream = !TextUtils.isEmpty(
-                cursor.getString(SessionsQuery.LIVESTREAM_URL));
-        long currentTimeMillis = UIUtils.getCurrentTime(context);
-        if (UIUtils.hasHoneycomb() // Needs Honeycomb+ for the live stream
-                && hasLivestream
-                && currentTimeMillis > mSessionBlockStart
-                && currentTimeMillis <= mSessionBlockEnd) {
-            links.add(new Pair<Integer, Intent>(
-                    R.string.session_link_livestream,
-                    new Intent(Intent.ACTION_VIEW, mSessionUri)
-                            .setClass(context, SessionLivestreamActivity.class)));
-        }
 
         // Add session feedback link
         links.add(new Pair<Integer, Intent>(
@@ -409,9 +396,9 @@ public class SessionDetailFragment extends Fragment implements
         }
 
         // Show past/present/future and livestream status for this block.
-        UIUtils.updateTimeAndLivestreamBlockUI(context,
-                mSessionBlockStart, mSessionBlockEnd, hasLivestream,
-                null, mSubtitle, subtitle);
+        UIUtils.updateTimeBlockUI(context,
+                                  mSessionBlockStart, mSessionBlockEnd,
+                                  null, mSubtitle, subtitle);
 
         LOGD("Tracker", "Session: " + mTitleString);
     }
@@ -695,7 +682,6 @@ public class SessionDetailFragment extends Fragment implements
                 ScheduleContract.Sessions.SESSION_YOUTUBE_URL,
                 ScheduleContract.Sessions.SESSION_PDF_URL,
                 ScheduleContract.Sessions.SESSION_NOTES_URL,
-                ScheduleContract.Sessions.SESSION_LIVESTREAM_URL,
                 ScheduleContract.Sessions.SESSION_MODERATOR_URL,
                 ScheduleContract.Sessions.ROOM_ID,
                 ScheduleContract.Rooms.ROOM_NAME,
@@ -713,10 +699,9 @@ public class SessionDetailFragment extends Fragment implements
         int YOUTUBE_URL = 9;
         int PDF_URL = 10;
         int NOTES_URL = 11;
-        int LIVESTREAM_URL = 12;
-        int MODERATOR_URL = 13;
-        int ROOM_ID = 14;
-        int ROOM_NAME = 15;
+        int MODERATOR_URL = 12;
+        int ROOM_ID = 13;
+        int ROOM_NAME = 14;
 
         int[] LINKS_INDICES = {
                 URL,
