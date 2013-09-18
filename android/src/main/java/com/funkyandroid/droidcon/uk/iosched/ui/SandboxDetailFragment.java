@@ -123,26 +123,6 @@ public class SandboxDetailFragment extends Fragment implements
     }
 
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.sandbox_detail, menu);
-    }
-
-    /*@Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        SessionsHelper helper = new SessionsHelper(getActivity());
-        switch (item.getItemId()) {
-            case R.id.menu_map:
-                if (mRoomId != null && mCompanyName != null) {
-                    LOGD("Tracker", "Map: " + mCompanyName);
-
-                    helper.startMapActivity(mRoomId);
-                    return true;
-                }
-        }
-        return false;
-    }*/
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState) {
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_sandbox_detail, null);

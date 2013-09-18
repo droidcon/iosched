@@ -17,7 +17,6 @@
 package com.funkyandroid.droidcon.uk.iosched.ui;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.database.ContentObserver;
 import android.database.Cursor;
@@ -34,13 +33,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
-
 import com.funkyandroid.droidcon.uk.iosched.R;
 import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract;
 import com.funkyandroid.droidcon.uk.iosched.ui.TracksAdapter.TracksQuery;
 import com.funkyandroid.droidcon.uk.iosched.ui.tablet.SessionsSandboxMultiPaneActivity;
 import com.funkyandroid.droidcon.uk.iosched.ui.tablet.TracksDropdownFragment;
-import com.funkyandroid.droidcon.uk.iosched.util.UIUtils;
 
 /**
  * A simple {@link ListFragment} that renders a list of tracks with available
@@ -71,7 +68,6 @@ public class ExploreFragment extends ListFragment implements
         final ListView listView = getListView();
         listView.setSelector(android.R.color.transparent);
         listView.setCacheColorHint(Color.WHITE);
-        addMapHeaderView();
 
         mAdapter = new TracksAdapter(getActivity(), false);
         setListAdapter(mAdapter);
@@ -88,28 +84,6 @@ public class ExploreFragment extends ListFragment implements
                 }
             }
         });
-    }
-
-    private void addMapHeaderView() {
-/* TODO: Look at whether we want to do a map
-        ListView listView = getListView();
-        final Context context = listView.getContext();
-        View mapHeaderContainerView = LayoutInflater.from(context).inflate(
-                R.layout.list_item_track_map, listView, false);
-
-        View mapButton = mapHeaderContainerView.findViewById(R.id.map_button);
-        mapButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // Launch map of conference venue
-                startActivity(new Intent(context,
-                        UIUtils.getMapActivityClass(getActivity())));
-            }
-        });
-
-        listView.addHeaderView(mapHeaderContainerView);
-        listView.setHeaderDividersEnabled(false);
-*/
     }
 
     @Override

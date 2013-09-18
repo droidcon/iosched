@@ -28,12 +28,10 @@ import android.support.v4.app.ShareCompat;
 import android.view.ActionProvider;
 import android.view.MenuItem;
 import android.widget.ShareActionProvider;
-
 import com.funkyandroid.droidcon.uk.iosched.R;
 import com.funkyandroid.droidcon.uk.iosched.appwidget.ScheduleWidgetProvider;
 import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract;
 import com.funkyandroid.droidcon.uk.iosched.service.ScheduleUpdaterService;
-import com.funkyandroid.droidcon.uk.iosched.ui.MapFragment;
 import com.funkyandroid.droidcon.uk.iosched.ui.SocialStreamActivity;
 import com.funkyandroid.droidcon.uk.iosched.ui.SocialStreamFragment;
 
@@ -51,13 +49,6 @@ public final class SessionsHelper {
 
     public SessionsHelper(Activity activity) {
         mActivity = activity;
-    }
-
-    public void startMapActivity(String roomId) {
-        Intent intent = new Intent(mActivity.getApplicationContext(),
-                UIUtils.getMapActivityClass(mActivity));
-        intent.putExtra(MapFragment.EXTRA_ROOM, roomId);
-        mActivity.startActivity(intent);
     }
 
     public Intent createShareIntent(int messageTemplateResId, String title, String hashtags,
