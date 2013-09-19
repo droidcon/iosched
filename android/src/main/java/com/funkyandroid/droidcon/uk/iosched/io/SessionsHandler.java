@@ -48,9 +48,6 @@ public class SessionsHandler {
 
     private static final String TAG = makeLogTag(SessionsHandler.class);
 
-    private static final String BASE_SESSION_URL
-            = "https://developers.google.com/events/io/sessions/";
-
     private static final String EVENT_TYPE_KEYNOTE = Sessions.SESSION_TYPE_KEYNOTE;
     private static final String EVENT_TYPE_OFFICE_HOURS = Sessions.SESSION_TYPE_OFFICE_HOURS;
     private static final String EVENT_TYPE_CODELAB = Sessions.SESSION_TYPE_CODELAB;
@@ -338,7 +335,7 @@ public class SessionsHandler {
                                 .withValue(ScheduleContract.Sandbox.COMPANY_ID, sessionId)
                                 .withValue(ScheduleContract.Sandbox.COMPANY_NAME, sessionTitle)
                                 .withValue(ScheduleContract.Sandbox.COMPANY_DESC, sessionAbstract)
-                                .withValue(ScheduleContract.Sandbox.COMPANY_URL, makeSessionUrl(sessionId))
+                                .withValue(ScheduleContract.Sandbox.COMPANY_URL, session.getWebLink())
                                 .withValue(ScheduleContract.Sandbox.COMPANY_LOGO_URL, session.getIconUrl())
                                 .withValue(ScheduleContract.Sandbox.ROOM_ID, sanitizeId(session.getLocation()))
                                 .withValue(ScheduleContract.Sandbox.TRACK_ID, (track != null ? track.getId() : null))
@@ -358,7 +355,7 @@ public class SessionsHandler {
                                 .withValue(Sessions.SESSION_ABSTRACT, sessionAbstract)
                                 .withValue(Sessions.SESSION_HASHTAGS, hashtag)
                                 .withValue(Sessions.SESSION_TAGS, null)             // Not available
-                                .withValue(Sessions.SESSION_URL, makeSessionUrl(sessionId))
+                                .withValue(Sessions.SESSION_URL, session.getWebLink())
                                 .withValue(Sessions.SESSION_MODERATOR_URL, null)    // Not available
                                 .withValue(Sessions.SESSION_REQUIREMENTS, null)     // Not available
                                 .withValue(Sessions.SESSION_STARRED, inSchedule)
@@ -415,14 +412,6 @@ public class SessionsHandler {
         }
 
         return batch;
-    }
-
-    private String makeSessionUrl(String sessionId) {
-        if (TextUtils.isEmpty(sessionId)) {
-            return null;
-        }
-
-        return BASE_SESSION_URL + sessionId;
     }
 
 }
