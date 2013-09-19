@@ -34,6 +34,8 @@ public class SessionResponse extends ServerResponse {
 
     private String title;
 
+    private String webLink;
+
     public SessionResponse()
     {
     }
@@ -135,6 +137,14 @@ public class SessionResponse extends ServerResponse {
     {
         this.title = title;
         return this;
+    }
+
+    public String getWebLink() {
+        return webLink;
+    }
+
+    public void setWebLink(String webLink) {
+        this.webLink = webLink;
     }
 
     @Override
