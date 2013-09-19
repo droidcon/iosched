@@ -154,9 +154,7 @@
     <string name="about_licenses">Open Source Licenses</string>
     <string name="about_body"><![CDATA[
         <b>Droidcon London 2013</b><br>
-        Version %s<br><br>
-        <a href="http://m.google.com/utos">Terms of Service</a><br><br>
-        <a href="http://www.google.com/policies/privacy/">Privacy Policy</a>
+        Version %s
     ]]></string>
 
     <!--suppress AndroidLintTypographyOther -->
@@ -164,18 +162,15 @@
         By downloading, installing or using this application or any portion thereof
         (\"Application\"), you agree to these terms and conditions.<br>
         <br>
-        Your use of this Application is governed by: (a) the Google Terms of Service
-        (<a href="http://m.google.com/utos">m.google.com/utos</a>); (b) Google\'s Privacy Policy
-        (<a href="http://www.google.com/policies/privacy">http://www.google.com/policies/privacy</a>);
-        and (c) any applicable Google Service-specific terms of service or privacy policies.
-        Google\'s terms of service and privacy policies may be updated from time to time and without
-        notice.<br>
-        <br>
-        This Application collects certain information as you use it, including via Google Analytics.
-        Google\'s Privacy Policy explains how Google treats your information and protects your
-        privacy when you use the Application.  You agree to the use of your data in accordance
-        with Google\'s privacy policy.
-    ]]></string>
+        THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND
+        ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES
+        OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL
+        THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
+        EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE
+        GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED
+        AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING
+        NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+        OF THE POSSIBILITY OF SUCH DAMAGE.    ]]></string>
 
     <!-- Session notification -->
     <plurals name="session_notification_ticker">
