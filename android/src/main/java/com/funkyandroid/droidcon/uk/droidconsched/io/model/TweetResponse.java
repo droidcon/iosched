@@ -7,13 +7,29 @@ import com.funkyandroid.droidcon.uk.droidconsched.io.ServerResponse;
  */
 public class TweetResponse extends ServerResponse {
 
+    // Tweet details
     private String id;
-
-    private String name;
 
     private String text;
 
     private String url = null;
+
+    private Long retweetCount;
+
+    private Long createdAt;
+
+
+    // Tweet creator information
+    private String name;
+
+    private String screenName;
+
+    private Long userId;
+
+    private Boolean verified;
+
+    private String profileImageURL;
+
 
     public String getId() {
         return id;
@@ -37,6 +53,54 @@ public class TweetResponse extends ServerResponse {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public Long getRetweetCount() {
+        return retweetCount;
+    }
+
+    public void setRetweetCount(Long retweetCount) {
+        this.retweetCount = retweetCount;
+    }
+
+    public Long getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Long createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public String getScreenName() {
+        return screenName;
+    }
+
+    public void setScreenName(String screenName) {
+        this.screenName = screenName;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public Boolean getVerified() {
+        return verified;
+    }
+
+    public void setVerified(Boolean verified) {
+        this.verified = verified;
+    }
+
+    public String getProfileImageURL() {
+        return profileImageURL;
+    }
+
+    public void setProfileImageURL(String profileImageURL) {
+        this.profileImageURL = profileImageURL;
     }
 
     /**
