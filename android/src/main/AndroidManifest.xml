@@ -18,8 +18,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.funkyandroid.droidcon.uk.iosched"
-    android:versionCode="201304"
-    android:versionName="2013.04"
+    android:versionCode="201305"
+    android:versionName="2013.05"
     android:installLocation="auto">
 
     <uses-sdk
