@@ -16,7 +16,6 @@
 
 package com.funkyandroid.droidcon.uk.iosched.ui;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -26,14 +25,12 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.app.ShareCompat;
 import android.support.v4.content.AsyncTaskLoader;
 import android.support.v4.content.Loader;
-import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.*;
 import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
-
 import com.funkyandroid.droidcon.uk.droidconsched.io.model.TweetResponse;
 import com.funkyandroid.droidcon.uk.droidconsched.io.model.Tweets;
 import com.funkyandroid.droidcon.uk.droidconsched.io.model.TweetsResponse;
@@ -66,12 +63,6 @@ public class SocialStreamFragment extends ListFragment implements
     private static final String STATE_POSITION = "position";
     private static final String STATE_TOP = "top";
 
-    private static final long MAX_RESULTS_PER_REQUEST = 20;
-    private static final String PLUS_RESULT_FIELDS =
-            "nextPageToken,items(id,annotation,updated,url,verb,actor(displayName,image)," +
-            "object(actor/displayName,attachments(displayName,image/url,objectType," +
-            "thumbnails(image/url,url),url),content,plusoners/totalItems,replies/totalItems," +
-            "resharers/totalItems))";
     private static final int STREAM_LOADER_ID = 0;
 
     private String mSearchString;
@@ -84,20 +75,6 @@ public class SocialStreamFragment extends ListFragment implements
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        final Intent intent = BaseActivity.fragmentArgumentsToIntent(getArguments());
-
-        // mSearchString can be populated before onCreate() by called refresh(String)
-        if (TextUtils.isEmpty(mSearchString)) {
-            mSearchString = intent.getStringExtra(EXTRA_QUERY);
-        }
-        if (TextUtils.isEmpty(mSearchString)) {
-            mSearchString = UIUtils.CONFERENCE_HASHTAG;
-        }
-
-        if (!mSearchString.startsWith("#")) {
-            mSearchString = "#" + mSearchString;
-        }
 
         setHasOptionsMenu(true);
     }
@@ -224,7 +201,7 @@ public class SocialStreamFragment extends ListFragment implements
 
         if (isAdded()) {
             Loader loader = getLoaderManager().getLoader(STREAM_LOADER_ID);
-            ((StreamLoader) loader).init(mSearchString);
+            ((StreamLoader) loader).init();
         }
 
         loadMoreResults();
@@ -275,7 +252,7 @@ public class SocialStreamFragment extends ListFragment implements
 
     @Override
     public Loader<List<TweetResponse>> onCreateLoader(int id, Bundle args) {
-        return new StreamLoader(getActivity(), mSearchString);
+        return new StreamLoader(getActivity());
 
     }
 
@@ -327,18 +304,16 @@ public class SocialStreamFragment extends ListFragment implements
 
     private static class StreamLoader extends AsyncTaskLoader<List<TweetResponse>> {
         List<TweetResponse> mActivities;
-        private String mSearchString;
         private String mNextPageToken;
         private boolean mIsLoading;
         private boolean mHasError;
 
-        public StreamLoader(Context context, String searchString) {
+        public StreamLoader(Context context) {
             super(context);
-            init(searchString);
+            init();
         }
 
-        private void init(String searchString) {
-            mSearchString = searchString;
+        private void init() {
             mHasError = false;
             mNextPageToken = null;
             mIsLoading = true;
@@ -413,7 +388,6 @@ public class SocialStreamFragment extends ListFragment implements
         }
 
         public void setSearchString(String searchString) {
-            mSearchString = searchString;
         }
 
         public void refresh() {
