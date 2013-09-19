@@ -85,7 +85,7 @@ public class TrackInfoHelperFragment extends ListFragment implements
             mTrackId = ScheduleContract.Tracks.ALL_TRACK_ID;
             mInfo.name = getString(R.string.all_tracks);
             mInfo.color = 0;
-            mInfo.meta = ScheduleContract.Tracks.TRACK_META_NONE;
+            mInfo.meta = ScheduleContract.Tracks.TRACK_META_SESSIONS_ONLY;
             mInfo.level = 1;
             mInfo.hashtag = "";
 
