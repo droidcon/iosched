@@ -15,13 +15,17 @@
   -->
 <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        style="@style/StreamActivity">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/ListItemContainerBase">
 
     <View
             android:id="@+id/left_border"
             android:layout_width="@dimen/stream_left_bg_width"
             android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
             android:background="@drawable/transparent_background_pattern"/>
 
     <com.funkyandroid.droidcon.uk.iosched.ui.widget.BezelImageView

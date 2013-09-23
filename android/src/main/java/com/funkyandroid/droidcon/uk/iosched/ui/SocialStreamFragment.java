@@ -93,6 +93,7 @@ public class SocialStreamFragment extends ListFragment implements
         final View layoutRoot = super.onCreateView(inflater, container, savedInstanceState);
         ListView lv = (ListView) layoutRoot.findViewById(android.R.id.list);
         lv.setDivider(getResources().getDrawable(R.drawable.stream_list_separator));
+        lv.setDividerHeight(1);
 
         // Add some padding if the parent layout is too wide to avoid stretching the items too much
         // emulating the activity_letterboxed_when_large layout behaviour
