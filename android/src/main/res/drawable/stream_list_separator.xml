@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<inset
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:drawable="@color/stream_list_divider_color"
+        android:insetLeft="@dimen/schedule_block_time_width"
+        android:insetRight="@dimen/stream_item_content_padding"/>

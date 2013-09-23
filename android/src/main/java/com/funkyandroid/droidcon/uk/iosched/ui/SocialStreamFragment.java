@@ -89,7 +89,24 @@ public class SocialStreamFragment extends ListFragment implements
             mListViewStatePosition = -1;
             mListViewStateTop = 0;
         }
-        return super.onCreateView(inflater, container, savedInstanceState);
+
+        final View layoutRoot = super.onCreateView(inflater, container, savedInstanceState);
+        ListView lv = (ListView) layoutRoot.findViewById(android.R.id.list);
+        lv.setDivider(getResources().getDrawable(R.drawable.stream_list_separator));
+
+        // Add some padding if the parent layout is too wide to avoid stretching the items too much
+        // emulating the activity_letterboxed_when_large layout behaviour
+        if (container.getWidth() >= getResources().getDimensionPixelSize(R.dimen.stream_max_width)) {
+            container.setBackgroundResource(R.drawable.grey_background_pattern);
+
+            lv.setBackgroundResource(R.drawable.grey_frame_on_white);
+
+            final ViewGroup.LayoutParams lp = lv.getLayoutParams();
+            lp.width = getResources().getDimensionPixelSize(R.dimen.stream_max_width);
+            lv.setLayoutParams(lp);
+            lv.requestLayout();
+        }
+        return layoutRoot;
     }
 
     @Override
@@ -110,7 +127,7 @@ public class SocialStreamFragment extends ListFragment implements
 
         final ListView listView = getListView();
         if (!UIUtils.isTablet(getActivity())) {
-            view.setBackgroundColor(getResources().getColor(R.color.plus_stream_spacer_color));
+            view.setBackgroundColor(getResources().getColor(R.color.stream_spacer_color));
         }
 
         if (getArguments() != null

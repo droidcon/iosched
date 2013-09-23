@@ -46,9 +46,20 @@
     <dimen name="speaker_image_size">48dp</dimen>
     <dimen name="speaker_image_padding">8dp</dimen>
     <dimen name="sandbox_company_image_size">100dp</dimen>
-    <!-- Google+ -->
-    <dimen name="stream_name_text_size">16sp</dimen>
-    
+
+    <!-- Twitter Stream -->
+    <dimen name="stream_name_text_size">21sp</dimen>
+    <dimen name="stream_content_text_size">18sp</dimen>
+    <dimen name="stream_rt_text_size">14sp</dimen>
+    <dimen name="stream_details_text_size">14sp</dimen>
+    <dimen name="stream_image_left_margin">16dp</dimen>
+    <dimen name="stream_image_size">64dp</dimen>
+    <dimen name="stream_item_content_padding">8dp</dimen>
+    <dimen name="stream_left_bg_width">48dp</dimen>
+    <dimen name="stream_glyph_padding">8dp</dimen>
+    <dimen name="stream_glyph_padding_half">4dp</dimen>
+    <dimen name="stream_max_width">400dp</dimen>
+
      <!-- Widget -->
     <dimen name="widget_margin">8dp</dimen>
 

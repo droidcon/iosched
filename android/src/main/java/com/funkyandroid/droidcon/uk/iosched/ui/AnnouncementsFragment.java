@@ -97,7 +97,7 @@ public class AnnouncementsFragment extends ListFragment implements
 
         final ListView listView = getListView();
         if (!UIUtils.isTablet(getActivity())) {
-            view.setBackgroundColor(getResources().getColor(R.color.plus_stream_spacer_color));
+            view.setBackgroundColor(getResources().getColor(R.color.stream_spacer_color));
         }
 
         if (getArguments() != null
