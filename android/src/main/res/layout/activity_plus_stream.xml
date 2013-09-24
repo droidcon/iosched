@@ -17,5 +17,5 @@
     android:id="@+id/root_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="@dimen/plus_stream_padding_horizontal"
-    android:paddingRight="@dimen/plus_stream_padding_horizontal" />
+    android:paddingLeft="@dimen/social_stream_padding_horizontal"
+    android:paddingRight="@dimen/social_stream_padding_horizontal" />

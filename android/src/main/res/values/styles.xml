@@ -132,6 +132,11 @@
         <item name="android:minHeight">?android:listPreferredItemHeight</item>
     </style>
 
+    <style name="StreamListItem">
+        <item name="android:background">@drawable/stream_list_item_bg</item>
+        <item name="android:minHeight">?android:listPreferredItemHeight</item>
+    </style>
+
     <!-- SimpleListItems are items whose containers provides the appropriate padding, and
          usually the container and content are a single view. -->
     <style name="SimpleListItem" parent="ListItemContainerBase">
@@ -434,14 +439,15 @@
     </style>
 
     <style name="StreamTimestamp" parent="StreamTextSmall">
-        <item name="android:layout_marginTop">@dimen/stream_item_content_padding</item>
+        <item name="android:layout_marginRight">@dimen/stream_item_content_padding</item>
+        <item name="android:layout_alignParentRight">true</item>
     </style>
 
     <style name="StreamContent">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginTop">@dimen/stream_item_content_padding</item>
-        <item name="android:layout_marginBottom">@dimen/stream_item_content_padding</item>
+        <item name="android:layout_marginTop">@dimen/stream_item_content_padding_half</item>
+        <item name="android:paddingBottom">@dimen/stream_item_content_padding</item>
         <item name="android:ellipsize">end</item>
         <item name="android:textColor">@color/stream_content_text_color</item>
         <item name="android:textColorLink">@color/accent_1</item>
@@ -497,9 +503,10 @@
         <item name="android:layout_height">@dimen/stream_image_size</item>
         <item name="android:layout_marginLeft">@dimen/stream_image_left_margin</item>
         <item name="android:layout_marginTop">@dimen/stream_item_content_padding</item>
+        <item name="android:focusable">false</item>
         <item name="maskDrawable">@drawable/circle_mask</item>
         <item name="borderDrawable">@drawable/circle_border</item>
-        <item name="desaturateOnPress">true</item>
+        <item name="desaturateOnPress">false</item>
     </style>
 
     <style name="SpeakerDetailHeader" parent="@style/TextHeader3">

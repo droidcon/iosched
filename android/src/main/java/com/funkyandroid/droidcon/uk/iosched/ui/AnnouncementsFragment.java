@@ -103,7 +103,7 @@ public class AnnouncementsFragment extends ListFragment implements
         if (getArguments() != null
                 && getArguments().getBoolean(EXTRA_ADD_VERTICAL_MARGINS, false)) {
             int verticalMargin = getResources().getDimensionPixelSize(
-                    R.dimen.plus_stream_padding_vertical);
+                    R.dimen.social_stream_padding_vertical);
             if (verticalMargin > 0) {
                 listView.setClipToPadding(false);
                 listView.setPadding(0, verticalMargin, 0, verticalMargin);

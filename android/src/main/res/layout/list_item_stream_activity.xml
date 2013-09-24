@@ -17,16 +17,16 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/ListItemContainerBase">
+        style="@style/StreamListItem">
 
-    <View
+    <!--View
             android:id="@+id/left_border"
             android:layout_width="@dimen/stream_left_bg_width"
             android:layout_height="match_parent"
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentBottom="true"
-            android:background="@drawable/transparent_background_pattern"/>
+            android:background="#eee"/-->
 
     <com.funkyandroid.droidcon.uk.iosched.ui.widget.BezelImageView
             android:id="@+id/stream_user_pic"
@@ -38,6 +38,7 @@
             android:layout_toRightOf="@id/stream_user_pic"
             android:layout_toLeftOf="@+id/stream_retweets"
             android:drawableLeft="@drawable/ic_verified_badge"
+            android:layout_alignWithParentIfMissing="true"
             android:text="Sebastiano Poggi"
             style="@style/StreamUserName"/>
 
@@ -57,8 +58,8 @@
 
     <TextView
             android:id="@+id/stream_timestamp"
-            android:layout_below="@id/stream_retweets"
-            android:layout_alignRight="@id/stream_retweets"
+            android:layout_below="@id/stream_user_name"
+            android:layout_alignParentRight="true"
             android:text="18 September"
             style="@style/StreamTimestamp"/>
 

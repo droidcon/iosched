@@ -21,8 +21,22 @@ import android.support.v4.app.Fragment;
 import android.view.Menu;
 import android.view.MenuItem;
 import com.funkyandroid.droidcon.uk.iosched.R;
+import com.funkyandroid.droidcon.uk.iosched.util.ImageLoader;
+import com.funkyandroid.droidcon.uk.iosched.util.UIUtils;
 
-public class SocialStreamActivity extends SimpleSinglePaneActivity {
+public class SocialStreamActivity extends SimpleSinglePaneActivity implements ImageLoader.ImageLoaderProvider {
+
+    private ImageLoader mImageLoader;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        mImageLoader = new ImageLoader(this, R.drawable.person_image_empty)
+            .setMaxImageSize(getResources().getDimensionPixelSize(R.dimen.stream_image_size))
+            .setFadeInImage(UIUtils.hasHoneycombMR1());
+    }
+
     @Override
     protected Fragment onCreatePane() {
         setIntent(getIntent().putExtra(SocialStreamFragment.EXTRA_ADD_VERTICAL_MARGINS, true));
@@ -55,5 +69,10 @@ public class SocialStreamActivity extends SimpleSinglePaneActivity {
                 return true;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public ImageLoader getImageLoaderInstance() {
+        return mImageLoader;
     }
 }

@@ -252,4 +252,5 @@
     <string name="dashclock_extension_description">
         Displays the next few items in your Droidcon London 2013 schedule.
     </string>
+    <string name="stream_retweets">%d RT</string>
 </resources>
