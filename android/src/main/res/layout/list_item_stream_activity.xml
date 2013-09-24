@@ -19,32 +19,20 @@
         android:layout_height="wrap_content"
         style="@style/StreamListItem">
 
-    <!--View
-            android:id="@+id/left_border"
-            android:layout_width="@dimen/stream_left_bg_width"
-            android:layout_height="match_parent"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentBottom="true"
-            android:background="#eee"/-->
-
     <com.funkyandroid.droidcon.uk.iosched.ui.widget.BezelImageView
             android:id="@+id/stream_user_pic"
-            style="@style/StreamTweepPicture"
-            android:src="@drawable/person_image_empty"/>
+            style="@style/StreamTweepPicture"/>
 
     <TextView
             android:id="@+id/stream_user_name"
             android:layout_toRightOf="@id/stream_user_pic"
             android:layout_toLeftOf="@+id/stream_retweets"
-            android:drawableLeft="@drawable/ic_verified_badge"
+            android:layout_alignBaseline="@+id/stream_retweets"
             android:layout_alignWithParentIfMissing="true"
-            android:text="Sebastiano Poggi"
             style="@style/StreamUserName"/>
 
     <TextView
             android:id="@+id/stream_retweets"
-            android:text="3 RT"
             style="@style/StreamRetweet"/>
 
     <TextView
@@ -53,14 +41,12 @@
             android:layout_alignLeft="@id/stream_user_name"
             android:layout_alignBaseline="@+id/stream_timestamp"
             android:layout_toLeftOf="@+id/stream_timestamp"
-            android:text="\@seebrock3r"
             style="@style/StreamTextSmall"/>
 
     <TextView
             android:id="@+id/stream_timestamp"
             android:layout_below="@id/stream_user_name"
             android:layout_alignParentRight="true"
-            android:text="18 September"
             style="@style/StreamTimestamp"/>
 
     <com.funkyandroid.droidcon.uk.iosched.ui.widget.TweetTextView
@@ -68,7 +54,6 @@
             android:layout_below="@id/stream_user_handle"
             android:layout_alignLeft="@id/stream_user_handle"
             android:layout_alignRight="@+id/stream_timestamp"
-            android:text="Look mama! I'm famous! #droidconUK pic.twitter.com/image/12345"
             style="@style/StreamContent"/>
 
 </RelativeLayout>

@@ -506,6 +506,7 @@
         <item name="android:layout_marginLeft">@dimen/stream_image_left_margin</item>
         <item name="android:layout_marginRight">@dimen/stream_image_right_margin</item>
         <item name="android:layout_marginTop">@dimen/stream_item_content_padding</item>
+        <item name="android:src">@drawable/person_image_empty</item>
         <item name="android:focusable">false</item>
         <item name="android:clickable">false</item>
         <item name="maskDrawable">@drawable/circle_mask</item>
