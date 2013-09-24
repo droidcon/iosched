@@ -57,7 +57,7 @@
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginTop">@dimen/stream_item_content_padding</item>
-        <item name="android:layout_marginLeft">8dp</item>
+        <item name="android:layout_marginLeft">@dimen/stream_item_content_padding</item>
         <item name="android:layout_marginRight">@dimen/stream_item_content_padding</item>
         <item name="android:drawablePadding">@dimen/stream_glyph_padding</item>
         <item name="android:ellipsize">end</item>
@@ -72,6 +72,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:drawablePadding">@dimen/stream_glyph_padding</item>
         <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
         <item name="android:textColor">@color/stream_secondary_text_color</item>
         <item name="android:textSize">@dimen/stream_details_text_size</item>
         <item name="android:textAlignment">viewStart</item>
@@ -90,6 +91,7 @@
 
     <style name="StreamTimestamp" parent="StreamTextSmall">
         <item name="android:layout_marginRight">@dimen/stream_item_content_padding</item>
+        <item name="android:layout_marginLeft">@dimen/stream_item_content_padding</item>
         <item name="android:layout_alignParentRight">true</item>
     </style>
 
