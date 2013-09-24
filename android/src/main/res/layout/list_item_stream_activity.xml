@@ -63,7 +63,7 @@
             android:text="18 September"
             style="@style/StreamTimestamp"/>
 
-    <TextView
+    <com.funkyandroid.droidcon.uk.iosched.ui.widget.TweetTextView
             android:id="@+id/stream_content"
             android:layout_below="@id/stream_user_handle"
             android:layout_alignLeft="@id/stream_user_handle"
