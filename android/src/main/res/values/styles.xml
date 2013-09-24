@@ -504,9 +504,10 @@
         <item name="android:layout_marginLeft">@dimen/stream_image_left_margin</item>
         <item name="android:layout_marginTop">@dimen/stream_item_content_padding</item>
         <item name="android:focusable">false</item>
+        <item name="android:clickable">false</item>
         <item name="maskDrawable">@drawable/circle_mask</item>
-        <item name="borderDrawable">@drawable/circle_border</item>
-        <item name="desaturateOnPress">false</item>
+        <item name="borderDrawable">@android:color/transparent</item>
+        <item name="desaturateOnPress">true</item>
     </style>
 
     <style name="SpeakerDetailHeader" parent="@style/TextHeader3">

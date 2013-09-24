@@ -131,7 +131,8 @@ public class SocialStreamFragment extends ListFragment implements
 
         lv.setOnScrollListener(this);
         lv.setDrawSelectorOnTop(true);
-        lv.setDividerHeight(0);
+        lv.setDivider(getResources().getDrawable(R.drawable.stream_list_divider));
+        lv.setDividerHeight(getResources().getDimensionPixelSize(R.dimen.stream_divider_height));
 
         setListAdapter(mStreamAdapter);
     }
