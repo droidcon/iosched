@@ -398,15 +398,25 @@
 
     <!-- Stream -->
 
-    <style name="StreamActivity">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">wrap_content</item>
+    <style name="StreamTweepPicture">
+        <item name="android:layout_width">@dimen/stream_image_size</item>
+        <item name="android:layout_height">@dimen/stream_image_size</item>
+        <item name="android:layout_marginLeft">@dimen/stream_image_left_margin</item>
+        <item name="android:layout_marginRight">@dimen/stream_image_right_margin</item>
+        <item name="android:layout_marginTop">@dimen/stream_item_content_padding</item>
+        <item name="android:scaleType">centerCrop</item>
+        <item name="android:src">@drawable/person_image_empty</item>
+        <item name="android:focusable">false</item>
+        <item name="android:clickable">false</item>
+        <item name="maskDrawable">@drawable/circle_mask</item>
+        <item name="borderDrawable">@android:color/transparent</item>
+        <item name="desaturateOnPress">true</item>
     </style>
 
     <style name="StreamUserName">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginTop">@dimen/stream_item_content_padding</item>
+        <item name="android:layout_marginTop">@dimen/stream_item_content_padding_double</item>
         <item name="android:layout_marginLeft">@dimen/stream_item_content_padding</item>
         <item name="android:layout_marginRight">@dimen/stream_item_content_padding</item>
         <item name="android:drawablePadding">@dimen/stream_glyph_padding</item>
@@ -428,13 +438,13 @@
     </style>
 
     <style name="StreamRetweet" parent="StreamTextSmall">
-        <item name="android:layout_marginTop">@dimen/stream_item_content_padding</item>
+        <item name="android:layout_marginTop">@dimen/stream_item_content_padding_double</item>
         <item name="android:layout_marginLeft">@dimen/stream_item_content_padding</item>
         <item name="android:layout_marginRight">@dimen/stream_item_content_padding</item>
         <item name="android:drawableRight">@drawable/ic_retweet_glyph</item>
         <item name="android:drawablePadding">@dimen/stream_glyph_padding_half</item>
         <item name="android:layout_alignParentRight">true</item>
-        <item name="android:paddingTop">@dimen/stream_item_content_padding</item>
+        <item name="android:paddingTop">@dimen/stream_item_content_padding_half</item>
         <item name="android:textSize">@dimen/stream_rt_text_size</item>
     </style>
 
@@ -497,21 +507,6 @@
         <item name="android:layout_marginRight">@dimen/speaker_image_padding</item>
         <item name="android:clickable">true</item>
         <item name="android:focusable">true</item>
-    </style>
-
-    <style name="StreamTweepPicture">
-        <item name="android:scaleType">centerCrop</item>
-        <item name="android:layout_width">@dimen/stream_image_size</item>
-        <item name="android:layout_height">@dimen/stream_image_size</item>
-        <item name="android:layout_marginLeft">@dimen/stream_image_left_margin</item>
-        <item name="android:layout_marginRight">@dimen/stream_image_right_margin</item>
-        <item name="android:layout_marginTop">@dimen/stream_item_content_padding</item>
-        <item name="android:src">@drawable/person_image_empty</item>
-        <item name="android:focusable">false</item>
-        <item name="android:clickable">false</item>
-        <item name="maskDrawable">@drawable/circle_mask</item>
-        <item name="borderDrawable">@android:color/transparent</item>
-        <item name="desaturateOnPress">true</item>
     </style>
 
     <style name="SpeakerDetailHeader" parent="@style/TextHeader3">

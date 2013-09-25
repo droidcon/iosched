@@ -27,7 +27,6 @@
             android:id="@+id/stream_user_name"
             android:layout_toRightOf="@id/stream_user_pic"
             android:layout_toLeftOf="@+id/stream_retweets"
-            android:layout_alignBaseline="@+id/stream_retweets"
             android:layout_alignWithParentIfMissing="true"
             style="@style/StreamUserName"/>
 
