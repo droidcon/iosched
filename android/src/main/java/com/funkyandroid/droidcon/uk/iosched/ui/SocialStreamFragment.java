@@ -114,9 +114,9 @@ public class SocialStreamFragment extends ListFragment implements
         super.onViewCreated(view, savedInstanceState);
 
         final ListView lv = getListView();
-        if (!UIUtils.isTablet(getActivity())) {
+        /*if (!UIUtils.isTablet(getActivity())) {
             view.setBackgroundColor(getResources().getColor(R.color.stream_spacer_color));
-        }
+        }*/
 
         // Add some padding if the parent layout is too wide to avoid stretching the items too much
         // emulating the activity_letterboxed_when_large layout behaviour
@@ -133,6 +133,7 @@ public class SocialStreamFragment extends ListFragment implements
         lv.setDrawSelectorOnTop(true);
         lv.setDivider(getResources().getDrawable(R.drawable.stream_list_divider));
         lv.setDividerHeight(getResources().getDimensionPixelSize(R.dimen.stream_divider_height));
+        //view.setBackgroundColor(getResources().getColor(R.color.stream_list_bg_color));
 
         setListAdapter(mStreamAdapter);
     }

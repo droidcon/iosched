@@ -61,7 +61,7 @@
     <dimen name="stream_left_bg_width">48dp</dimen>
     <dimen name="stream_glyph_padding">8dp</dimen>
     <dimen name="stream_glyph_padding_half">4dp</dimen>
-    <dimen name="stream_divider_height">1dp</dimen>
+    <dimen name="stream_divider_height">1px</dimen>
 
      <!-- Widget -->
     <dimen name="widget_margin">8dp</dimen>
