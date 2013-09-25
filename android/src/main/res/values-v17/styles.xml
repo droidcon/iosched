@@ -49,37 +49,62 @@
     <!-- Stream -->
 
     <style name="StreamActivity">
-        <item name="android:background">@drawable/stream_item_background</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:paddingTop">5dp</item>
-        <item name="android:orientation">vertical</item>
     </style>
 
     <style name="StreamUserName">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_alignParentTop">true</item>
-        <item name="android:layout_marginTop">4dp</item>
-        <item name="android:layout_marginRight">10dp</item>
+        <item name="android:layout_marginTop">@dimen/stream_item_content_padding_double</item>
+        <item name="android:layout_marginLeft">@dimen/stream_item_content_padding</item>
+        <item name="android:layout_marginRight">@dimen/stream_item_content_padding</item>
+        <item name="android:drawablePadding">@dimen/stream_glyph_padding</item>
+        <item name="android:ellipsize">end</item>
         <item name="android:maxLines">1</item>
-        <item name="android:textStyle">italic</item>
         <item name="android:textColor">@color/body_text_1</item>
         <item name="android:textSize">@dimen/stream_name_text_size</item>
-        <item name="android:textAlignment">viewEnd</item>
+        <item name="android:fontFamily">sans-serif-condensed</item>
+    </style>
+
+    <style name="StreamTextSmall">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:drawablePadding">@dimen/stream_glyph_padding</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textColor">@color/stream_secondary_text_color</item>
+        <item name="android:textSize">@dimen/stream_details_text_size</item>
+        <item name="android:textAlignment">viewStart</item>
+    </style>
+
+    <style name="StreamRetweet" parent="StreamTextSmall">
+        <item name="android:layout_marginTop">@dimen/stream_item_content_padding_double</item>
+        <item name="android:layout_marginLeft">@dimen/stream_item_content_padding</item>
+        <item name="android:layout_marginRight">@dimen/stream_item_content_padding</item>
+        <item name="android:drawableRight">@drawable/ic_retweet_glyph</item>
+        <item name="android:drawablePadding">@dimen/stream_glyph_padding_half</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:paddingTop">@dimen/stream_item_content_padding_half</item>
+        <item name="android:textSize">@dimen/stream_rt_text_size</item>
+    </style>
+
+    <style name="StreamTimestamp" parent="StreamTextSmall">
+        <item name="android:layout_marginRight">@dimen/stream_item_content_padding</item>
+        <item name="android:layout_marginLeft">@dimen/stream_item_content_padding</item>
+        <item name="android:layout_alignParentRight">true</item>
     </style>
 
     <style name="StreamContent">
-        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:layout_marginStart">16dp</item>
-        <item name="android:layout_marginEnd">16dp</item>
+        <item name="android:layout_marginTop">@dimen/stream_item_content_padding_half</item>
+        <item name="android:paddingBottom">@dimen/stream_item_content_padding</item>
         <item name="android:ellipsize">end</item>
-        <item name="android:textColor">@color/body_text_1</item>
+        <item name="android:textColor">@color/stream_content_text_color</item>
         <item name="android:textColorLink">@color/accent_1</item>
-        <item name="android:textSize">@dimen/text_size_medium</item>
-        <item name="android:visibility">gone</item>
-        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:textSize">@dimen/stream_content_text_size</item>
+        <item name="android:visibility">visible</item>
         <item name="android:textAlignment">viewStart</item>
     </style>
 

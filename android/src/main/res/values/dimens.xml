@@ -25,8 +25,8 @@
     <dimen name="action_button_min_width">56dp</dimen>
     <dimen name="multipane_half_padding">8dp</dimen>
     <dimen name="multipane_padding">16dp</dimen>
-    <dimen name="plus_stream_padding_horizontal">0dp</dimen>
-    <dimen name="plus_stream_padding_vertical">0dp</dimen>
+    <dimen name="social_stream_padding_horizontal">0dp</dimen>
+    <dimen name="social_stream_padding_vertical">0dp</dimen>
     <dimen name="list_scroll_top_offset">16dp</dimen>
     <dimen name="schedule_block_time_width">72dp</dimen>
     <dimen name="map_multipane_right_padding">48dp</dimen>
@@ -46,9 +46,23 @@
     <dimen name="speaker_image_size">48dp</dimen>
     <dimen name="speaker_image_padding">8dp</dimen>
     <dimen name="sandbox_company_image_size">100dp</dimen>
-    <!-- Google+ -->
-    <dimen name="stream_name_text_size">16sp</dimen>
-    
+
+    <!-- Twitter Stream -->
+    <dimen name="stream_name_text_size">18sp</dimen>
+    <dimen name="stream_content_text_size">16sp</dimen>
+    <dimen name="stream_rt_text_size">14sp</dimen>
+    <dimen name="stream_details_text_size">14sp</dimen>
+    <dimen name="stream_image_left_margin">16dp</dimen>
+    <dimen name="stream_image_right_margin">16dp</dimen>
+    <dimen name="stream_image_size">64dp</dimen>
+    <dimen name="stream_item_content_padding">8dp</dimen>
+    <dimen name="stream_item_content_padding_double">16dp</dimen>
+    <dimen name="stream_item_content_padding_half">4dp</dimen>
+    <dimen name="stream_left_bg_width">48dp</dimen>
+    <dimen name="stream_glyph_padding">8dp</dimen>
+    <dimen name="stream_glyph_padding_half">4dp</dimen>
+    <dimen name="stream_divider_height">1px</dimen>
+
      <!-- Widget -->
     <dimen name="widget_margin">8dp</dimen>
 

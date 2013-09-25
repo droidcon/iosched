@@ -23,8 +23,9 @@
     <dimen name="track_dropdown_width">288dp</dimen>
     <dimen name="sliding_pane_width">300dp</dimen>
 
-    <dimen name="plus_stream_padding_horizontal">64dp</dimen>
-    <dimen name="plus_stream_padding_vertical">16dp</dimen>
+    <dimen name="social_stream_padding_horizontal">64dp</dimen>
+    <dimen name="social_stream_padding_vertical">16dp</dimen>
+    <dimen name="stream_image_right_margin">0dp</dimen>
 
     <!-- body content -->
     <dimen name="text_size_xlarge">32sp</dimen>

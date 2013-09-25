@@ -41,6 +41,7 @@ import com.funkyandroid.droidcon.uk.iosched.gcm.ServerUtilities;
 import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract;
 import com.funkyandroid.droidcon.uk.iosched.sync.SyncHelper;
 import com.funkyandroid.droidcon.uk.iosched.util.HelpUtils;
+import com.funkyandroid.droidcon.uk.iosched.util.ImageLoader;
 import com.funkyandroid.droidcon.uk.iosched.util.UIUtils;
 import com.funkyandroid.droidcon.uk.iosched.util.WiFiUtils;
 import com.google.android.gcm.GCMRegistrar;
@@ -49,7 +50,8 @@ import static com.funkyandroid.droidcon.uk.iosched.util.LogUtils.*;
 
 public class HomeActivity extends BaseActivity implements
         ActionBar.TabListener,
-        ViewPager.OnPageChangeListener {
+        ViewPager.OnPageChangeListener,
+        ImageLoader.ImageLoaderProvider {
 
     private static final String TAG = makeLogTag(HomeActivity.class);
 
@@ -59,6 +61,7 @@ public class HomeActivity extends BaseActivity implements
 
     private Object mSyncObserverHandle;
 
+    private ImageLoader mImageLoader;
     private SocialStreamFragment mSocialStreamFragment;
 
     private ViewPager mViewPager;
@@ -116,6 +119,10 @@ public class HomeActivity extends BaseActivity implements
         getSupportActionBar().setHomeButtonEnabled(false);
 
         LOGD("Tracker", homeScreenLabel);
+
+        mImageLoader = new ImageLoader(this, R.drawable.person_image_empty)
+            .setMaxImageSize(getResources().getDimensionPixelSize(R.dimen.stream_image_size))
+            .setFadeInImage(UIUtils.hasHoneycombMR1());
 
         // Sync data on load
         /*
@@ -361,6 +368,11 @@ public class HomeActivity extends BaseActivity implements
 
         // Refresh options menu.  Menu item visibility could be altered by user preferences.
         supportInvalidateOptionsMenu();
+    }
+
+    @Override
+    public ImageLoader getImageLoaderInstance() {
+        return mImageLoader;
     }
 
     void setRefreshActionButtonState(boolean refreshing) {

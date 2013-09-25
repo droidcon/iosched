@@ -16,7 +16,6 @@
 
 package com.funkyandroid.droidcon.uk.iosched.ui;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
@@ -27,18 +26,15 @@ import android.support.v4.app.ShareCompat;
 import android.support.v4.content.AsyncTaskLoader;
 import android.support.v4.content.Loader;
 import android.text.TextUtils;
-import android.util.TypedValue;
+import android.text.format.DateUtils;
 import android.view.*;
-import android.widget.AbsListView;
-import android.widget.BaseAdapter;
-import android.widget.ListView;
-import android.widget.TextView;
-
+import android.widget.*;
 import com.funkyandroid.droidcon.uk.droidconsched.io.model.TweetResponse;
 import com.funkyandroid.droidcon.uk.droidconsched.io.model.Tweets;
 import com.funkyandroid.droidcon.uk.droidconsched.io.model.TweetsResponse;
 import com.funkyandroid.droidcon.uk.iosched.Config;
 import com.funkyandroid.droidcon.uk.iosched.R;
+import com.funkyandroid.droidcon.uk.iosched.util.ImageLoader;
 import com.funkyandroid.droidcon.uk.iosched.util.UIUtils;
 
 import java.io.IOException;
@@ -66,15 +62,10 @@ public class SocialStreamFragment extends ListFragment implements
     private static final String STATE_POSITION = "position";
     private static final String STATE_TOP = "top";
 
-    private static final long MAX_RESULTS_PER_REQUEST = 20;
-    private static final String PLUS_RESULT_FIELDS =
-            "nextPageToken,items(id,annotation,updated,url,verb,actor(displayName,image)," +
-            "object(actor/displayName,attachments(displayName,image/url,objectType," +
-            "thumbnails(image/url,url),url),content,plusoners/totalItems,replies/totalItems," +
-            "resharers/totalItems))";
     private static final int STREAM_LOADER_ID = 0;
 
     private String mSearchString;
+    private ImageLoader mImageLoader;
 
     private List<TweetResponse> mStream = new ArrayList<TweetResponse>();
     private StreamAdapter mStreamAdapter = new StreamAdapter();
@@ -84,20 +75,6 @@ public class SocialStreamFragment extends ListFragment implements
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        final Intent intent = BaseActivity.fragmentArgumentsToIntent(getArguments());
-
-        // mSearchString can be populated before onCreate() by called refresh(String)
-        if (TextUtils.isEmpty(mSearchString)) {
-            mSearchString = intent.getStringExtra(EXTRA_QUERY);
-        }
-        if (TextUtils.isEmpty(mSearchString)) {
-            mSearchString = UIUtils.CONFERENCE_HASHTAG;
-        }
-
-        if (!mSearchString.startsWith("#")) {
-            mSearchString = "#" + mSearchString;
-        }
 
         setHasOptionsMenu(true);
     }
@@ -112,6 +89,7 @@ public class SocialStreamFragment extends ListFragment implements
             mListViewStatePosition = -1;
             mListViewStateTop = 0;
         }
+
         return super.onCreateView(inflater, container, savedInstanceState);
     }
 
@@ -125,36 +103,37 @@ public class SocialStreamFragment extends ListFragment implements
         // fragments because their mIndex is -1 (haven't been added to the activity yet). Thus,
         // we do this in onActivityCreated.
         getLoaderManager().initLoader(STREAM_LOADER_ID, null, this);
+
+        if (getActivity() instanceof ImageLoader.ImageLoaderProvider) {
+            mImageLoader = ((ImageLoader.ImageLoaderProvider) getActivity()).getImageLoaderInstance();
+        }
     }
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        final ListView listView = getListView();
-        if (!UIUtils.isTablet(getActivity())) {
-            view.setBackgroundColor(getResources().getColor(R.color.plus_stream_spacer_color));
-        }
+        final ListView lv = getListView();
+        /*if (!UIUtils.isTablet(getActivity())) {
+            view.setBackgroundColor(getResources().getColor(R.color.stream_spacer_color));
+        }*/
 
-        if (getArguments() != null
-                && getArguments().getBoolean(EXTRA_ADD_VERTICAL_MARGINS, false)) {
-            int verticalMargin = getResources().getDimensionPixelSize(
-                    R.dimen.plus_stream_padding_vertical);
+        // Add some padding if the parent layout is too wide to avoid stretching the items too much
+        // emulating the activity_letterboxed_when_large layout behaviour
+        if (getArguments() != null && getArguments().getBoolean(EXTRA_ADD_VERTICAL_MARGINS, false)) {
+
+            int verticalMargin = getResources().getDimensionPixelSize(R.dimen.social_stream_padding_vertical);
             if (verticalMargin > 0) {
-                listView.setClipToPadding(false);
-                listView.setPadding(0, verticalMargin, 0, verticalMargin);
+                lv.setClipToPadding(false);
+                lv.setPadding(0, verticalMargin, 0, verticalMargin);
             }
         }
 
-        listView.setOnScrollListener(this);
-        listView.setDrawSelectorOnTop(true);
-        listView.setDivider(getResources().getDrawable(android.R.color.transparent));
-        listView.setDividerHeight(getResources()
-                .getDimensionPixelSize(R.dimen.page_margin_width));
-
-        TypedValue v = new TypedValue();
-        getActivity().getTheme().resolveAttribute(R.attr.activatableItemBackground, v, true);
-        listView.setSelector(v.resourceId);
+        lv.setOnScrollListener(this);
+        lv.setDrawSelectorOnTop(true);
+        lv.setDivider(getResources().getDrawable(R.drawable.stream_list_divider));
+        lv.setDividerHeight(getResources().getDimensionPixelSize(R.dimen.stream_divider_height));
+        //view.setBackgroundColor(getResources().getColor(R.color.stream_list_bg_color));
 
         setListAdapter(mStreamAdapter);
     }
@@ -224,7 +203,7 @@ public class SocialStreamFragment extends ListFragment implements
 
         if (isAdded()) {
             Loader loader = getLoaderManager().getLoader(STREAM_LOADER_ID);
-            ((StreamLoader) loader).init(mSearchString);
+            ((StreamLoader) loader).init();
         }
 
         loadMoreResults();
@@ -252,30 +231,27 @@ public class SocialStreamFragment extends ListFragment implements
     @Override
     public void onScrollStateChanged(AbsListView listView, int scrollState) {
         // Pause disk cache access to ensure smoother scrolling
-        /*
-            TODO: Improve image loading
         if (scrollState == AbsListView.OnScrollListener.SCROLL_STATE_FLING) {
             mImageLoader.stopProcessingQueue();
         } else {
             mImageLoader.startProcessingQueue();
         }
-         */
     }
 
     @Override
     public void onScroll(AbsListView absListView, int firstVisibleItem, int visibleItemCount,
             int totalItemCount) {
         if (!isStreamLoading()
-                && streamHasMoreResults()
                 && visibleItemCount != 0
-                && firstVisibleItem + visibleItemCount >= totalItemCount - 1) {
+                && firstVisibleItem + visibleItemCount >= totalItemCount - 1
+                && streamHasMoreResults()) {
             loadMoreResults();
         }
     }
 
     @Override
     public Loader<List<TweetResponse>> onCreateLoader(int id, Bundle args) {
-        return new StreamLoader(getActivity(), mSearchString);
+        return new StreamLoader(getActivity());
 
     }
 
@@ -327,18 +303,16 @@ public class SocialStreamFragment extends ListFragment implements
 
     private static class StreamLoader extends AsyncTaskLoader<List<TweetResponse>> {
         List<TweetResponse> mActivities;
-        private String mSearchString;
         private String mNextPageToken;
         private boolean mIsLoading;
         private boolean mHasError;
 
-        public StreamLoader(Context context, String searchString) {
+        public StreamLoader(Context context) {
             super(context);
-            init(searchString);
+            init();
         }
 
-        private void init(String searchString) {
-            mSearchString = searchString;
+        private void init() {
             mHasError = false;
             mNextPageToken = null;
             mIsLoading = true;
@@ -413,7 +387,6 @@ public class SocialStreamFragment extends ListFragment implements
         }
 
         public void setSearchString(String searchString) {
-            mSearchString = searchString;
         }
 
         public void refresh() {
@@ -478,7 +451,7 @@ public class SocialStreamFragment extends ListFragment implements
                     ? mStream.get(position).getId().hashCode()
                     : -1;
             */
-            return -1;
+            return position;
         }
 
         @Override
@@ -502,17 +475,38 @@ public class SocialStreamFragment extends ListFragment implements
                 return convertView;
 
             } else {
-                TweetResponse activity = (TweetResponse) getItem(position);
+                TweetResponse tweet = (TweetResponse) getItem(position);
                 if (convertView == null) {
                     convertView = getLayoutInflater(null).inflate(
                             R.layout.list_item_stream_activity, parent, false);
                 }
 
-                ((TextView)convertView.findViewById(R.id.stream_user_name)).setText(activity.getName());
+                TextView textView = (TextView) convertView.findViewById(R.id.stream_user_name);
+                textView.setText(tweet.getName());
+                textView.setCompoundDrawablesWithIntrinsicBounds(
+                    tweet.getVerified() ? R.drawable.ic_verified_badge : 0, 0, 0, 0);
 
-                TextView content = (TextView)convertView.findViewById(R.id.stream_content);
-                content.setText(activity.getText());
-                content.setVisibility(View.VISIBLE);
+                ((TextView)convertView.findViewById(R.id.stream_user_handle)).setText("@" + tweet.getScreenName());
+                ((TextView)convertView.findViewById(R.id.stream_timestamp)).setText(
+                    DateUtils.getRelativeTimeSpanString(tweet.getCreatedAt()));
+
+                textView = (TextView)convertView.findViewById(R.id.stream_content);
+                textView.setText(tweet.getText());
+
+                textView = (TextView)convertView.findViewById(R.id.stream_retweets);
+                final Long retweetCount = tweet.getRetweetCount();
+                if (retweetCount > 0) {
+                    textView.setVisibility(View.VISIBLE);
+                    textView.setText(getString(R.string.stream_retweets, retweetCount));
+                }
+                else {
+                    textView.setVisibility(View.GONE);
+                }
+
+                if (!TextUtils.isEmpty(tweet.getProfileImageURL()) && mImageLoader != null) {
+                    mImageLoader.get(tweet.getProfileImageURL(),
+                                     (ImageView) convertView.findViewById(R.id.stream_user_pic));
+                }
 
                 return convertView;
             }
