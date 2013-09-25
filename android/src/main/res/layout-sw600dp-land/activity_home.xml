@@ -15,7 +15,8 @@
   -->
 
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="horizontal"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:baselineAligned="false"
@@ -41,14 +42,16 @@
             <fragment android:name="com.funkyandroid.droidcon.uk.iosched.ui.ScheduleFragment"
                 android:id="@+id/fragment_my_schedule"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                tools:layout="@layout/fragment_list_with_empty_container"/>
         </FrameLayout>
 
         <fragment android:name="com.funkyandroid.droidcon.uk.iosched.ui.WhatsOnFragment"
             android:id="@+id/fragment_whats_on"
             android:layout_width="match_parent"
             android:layout_height="@dimen/whats_on_height"
-            android:layout_margin="@dimen/multipane_half_padding" />
+            android:layout_margin="@dimen/multipane_half_padding"
+            tools:layout="@layout/fragment_whats_on"/>
     </LinearLayout>
 
     <LinearLayout android:orientation="vertical"
@@ -71,7 +74,8 @@
             <fragment android:name="com.funkyandroid.droidcon.uk.iosched.ui.ExploreFragment"
                 android:id="@+id/fragment_tracks"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                tools:layout="@layout/fragment_list_with_empty_container_inset"/>
         </FrameLayout>
     </LinearLayout>
 
@@ -90,11 +94,13 @@
         <FrameLayout android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:layout_margin="@dimen/multipane_half_padding">
+            android:layout_margin="@dimen/multipane_half_padding"
+            android:background="@drawable/grey_frame">
             <fragment android:name="com.funkyandroid.droidcon.uk.iosched.ui.SocialStreamFragment"
                 android:id="@+id/fragment_stream"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                android:layout_height="match_parent"
+                tools:layout="@layout/fragment_list_with_empty_container"/>
         </FrameLayout>
 
     </LinearLayout>

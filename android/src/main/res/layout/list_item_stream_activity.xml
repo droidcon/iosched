@@ -13,15 +13,46 @@
   See the License for the specific language governing permissions and
   limitations under the License.
   -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    style="@style/StreamActivity">
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/StreamListItem">
 
-    <TextView
-        android:id="@+id/stream_content"
-        style="@style/StreamContent" />
+    <com.funkyandroid.droidcon.uk.iosched.ui.widget.BezelImageView
+            android:id="@+id/stream_user_pic"
+            style="@style/StreamTweepPicture"/>
 
     <TextView
             android:id="@+id/stream_user_name"
-            style="@style/StreamUserName" />
+            android:layout_toRightOf="@id/stream_user_pic"
+            android:layout_toLeftOf="@+id/stream_retweets"
+            android:layout_alignWithParentIfMissing="true"
+            style="@style/StreamUserName"/>
 
-</LinearLayout>
+    <TextView
+            android:id="@+id/stream_retweets"
+            style="@style/StreamRetweet"/>
+
+    <TextView
+            android:id="@+id/stream_user_handle"
+            android:layout_below="@id/stream_user_name"
+            android:layout_alignLeft="@id/stream_user_name"
+            android:layout_alignBaseline="@+id/stream_timestamp"
+            android:layout_toLeftOf="@+id/stream_timestamp"
+            style="@style/StreamTextSmall"/>
+
+    <TextView
+            android:id="@+id/stream_timestamp"
+            android:layout_below="@id/stream_user_name"
+            android:layout_alignParentRight="true"
+            style="@style/StreamTimestamp"/>
+
+    <com.funkyandroid.droidcon.uk.iosched.ui.widget.TweetTextView
+            android:id="@+id/stream_content"
+            android:layout_below="@id/stream_user_handle"
+            android:layout_alignLeft="@id/stream_user_handle"
+            android:layout_alignRight="@+id/stream_timestamp"
+            style="@style/StreamContent"/>
+
+</RelativeLayout>

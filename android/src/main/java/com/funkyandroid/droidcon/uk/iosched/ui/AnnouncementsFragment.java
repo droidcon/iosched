@@ -97,13 +97,13 @@ public class AnnouncementsFragment extends ListFragment implements
 
         final ListView listView = getListView();
         if (!UIUtils.isTablet(getActivity())) {
-            view.setBackgroundColor(getResources().getColor(R.color.plus_stream_spacer_color));
+            view.setBackgroundColor(getResources().getColor(R.color.stream_spacer_color));
         }
 
         if (getArguments() != null
                 && getArguments().getBoolean(EXTRA_ADD_VERTICAL_MARGINS, false)) {
             int verticalMargin = getResources().getDimensionPixelSize(
-                    R.dimen.plus_stream_padding_vertical);
+                    R.dimen.social_stream_padding_vertical);
             if (verticalMargin > 0) {
                 listView.setClipToPadding(false);
                 listView.setPadding(0, verticalMargin, 0, verticalMargin);
