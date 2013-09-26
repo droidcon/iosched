@@ -154,7 +154,8 @@
     <string name="about_licenses">Open Source Licenses</string>
     <string name="about_body"><![CDATA[
         <b>Droidcon London 2013</b><br>
-        Version %s
+        Version %s<br/>
+        (Based on iosched 2013)
     ]]></string>
 
     <!--suppress AndroidLintTypographyOther -->
