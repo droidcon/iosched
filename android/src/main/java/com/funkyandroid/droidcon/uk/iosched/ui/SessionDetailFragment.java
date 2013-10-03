@@ -327,10 +327,12 @@ public class SessionDetailFragment extends Fragment implements
         List<Pair<Integer, Intent>> links = new ArrayList<Pair<Integer, Intent>>();
 
         // Add session feedback link
-        links.add(new Pair<Integer, Intent>(
-                R.string.session_feedback_submitlink,
-                new Intent(Intent.ACTION_VIEW, mSessionUri, getActivity(), SessionFeedbackActivity.class)
-        ));
+        if(getResources().getBoolean(R.bool.has_feedback_enabled)) {
+            links.add(new Pair<Integer, Intent>(
+                    R.string.session_feedback_submitlink,
+                    new Intent(Intent.ACTION_VIEW, mSessionUri, getActivity(), SessionFeedbackActivity.class)
+            ));
+        }
 
         for (int i = 0; i < SessionsQuery.LINKS_INDICES.length; i++) {
             final String linkUrl = cursor.getString(SessionsQuery.LINKS_INDICES[i]);
