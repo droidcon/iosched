@@ -130,7 +130,8 @@
 
         <activity
             android:name=".ui.NfcBadgeActivity"
-            android:theme="@android:style/Theme.NoDisplay">
+            android:theme="@android:style/Theme.NoDisplay"
+            android:enabled="@bool/has_nfc_badges">
             <intent-filter android:priority="-999">
                 <action android:name="android.nfc.action.NDEF_DISCOVERED" />
                 <category android:name="android.intent.category.DEFAULT" />
