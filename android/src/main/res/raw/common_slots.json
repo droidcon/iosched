@@ -45,28 +45,6 @@
           "meta": "Level 1"
         }
       ]
-    },
-    {
-      "date": "2013-10-26",
-      "slot": [
-        {
-          "start": "08:00",
-          "end": "20:00",
-          "title": "Hackathon",
-          "meta": "Level 1"
-        }
-      ]
-    },
-    {
-      "date": "2013-10-27",
-      "slot": [
-         {
-             "start": "08:00",
-             "end": "20:00",
-             "title": "Hackathon",
-             "meta": "Level 1"
-        }
-      ]
     }
   ]
 }
