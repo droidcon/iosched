@@ -166,7 +166,7 @@ public class ServerRequest<T extends ServerResponse> {
             getterName.append(Character.toUpperCase(urlSection.charAt(1)));
             getterName.append(urlSection.substring(2, urlSection.length()-1));
             Method getter = getClass().getMethod(getterName.toString(), GETTER_PARAMETERS);
-            Object value = getter.invoke(this, null);
+            Object value = getter.invoke(this, (Object[])null);
             result.append(value.toString());
             result.append('/');
         }
