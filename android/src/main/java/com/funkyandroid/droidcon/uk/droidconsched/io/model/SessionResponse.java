@@ -36,6 +36,8 @@ public class SessionResponse extends ServerResponse {
 
     private String webLink;
 
+    private int flags;
+
     public SessionResponse()
     {
     }
@@ -145,6 +147,14 @@ public class SessionResponse extends ServerResponse {
 
     public void setWebLink(String webLink) {
         this.webLink = webLink;
+    }
+
+    public int getFlags() {
+        return flags;
+    }
+
+    public void setFlags(Integer flags) {
+        this.flags = flags;
     }
 
     @Override

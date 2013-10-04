@@ -226,6 +226,11 @@ public class SessionsHandler {
                                 ? PARSE_FLAG_FORCE_SCHEDULE_ADD
                                 : PARSE_FLAG_FORCE_SCHEDULE_REMOVE);
                     }
+                    if(session.getFlags() != 0) {
+                        // Allow data set flags to override locally
+                        // set ones (e.g. single talk slot additions).
+                        flags = session.getFlags();
+                    }
 
                     if (TextUtils.isEmpty(sessionId)) {
                         LOGW(TAG, "Found session with empty ID in API response.");
