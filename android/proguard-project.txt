@@ -34,7 +34,6 @@
 -keep public class * extends android.preference.Preference
 -keep public class * extends android.support.v4.app.Fragment
 -keep public class * extends android.app.Fragment
--keep public class com.android.vending.licensing.ILicensingService
 
 # For native methods, see http://proguard.sourceforge.net/manual/examples.html#native
 -keepclasseswithmembernames class * {
@@ -79,27 +78,20 @@
 # platform version.  We know about them, and they are safe.
 -dontwarn android.support.**
 
-# Needed by google-http-client to keep generic types and @Key annotations accessed via reflection
--keepclassmembers class * {
-  @com.google.api.client.util.Key <fields>;
+# Keep ServerResponse objects so they can 
+-keepclassmembers class * extends com.funkyandroid.droidcon.uk.droidconsched.io.ServerResponse {
+  public <init>();
+  public void set*(%);
+  public void set*(**);
+  public ** set*(%);
+  public ** set*(**);
+  public % set*(%);
+  public % set*(**);
+  public % get*();
+  public ** get*();
 }
 
-# Needed just to be safe in terms of keeping Google API service model classes
--keep class com.google.api.services.*.model.*
--keep class com.google.api.client.**
--keepattributes Signature,RuntimeVisibleAnnotations,AnnotationDefault
-
-# See https://groups.google.com/forum/#!topic/guava-discuss/YCZzeCiIVoI
--dontwarn com.google.common.collect.MinMaxPriorityQueue
-
-# Assume dependency libraries Just Work(TM)
--dontwarn com.google.android.youtube.**
--dontwarn com.google.android.analytics.**
--dontwarn com.google.common.**
-
-# Don't discard Guava classes that raise warnings
--keep class com.google.common.collect.MapMakerInternalMap$ReferenceEntry
--keep class com.google.common.cache.LocalCache$ReferenceEntry
-
-# Make sure that Google Analytics doesn't get removed
--keep class com.google.analytics.tracking.android.CampaignTrackingReceiver
+-keepclassmembers class * extends com.funkyandroid.droidcon.uk.droidconsched.io.ServerRequest {
+  public % get*();
+  public ** get*();
+}
