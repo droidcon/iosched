@@ -15,6 +15,6 @@
   -->
 
 <resources>
-    <item name="whats_on_background" type="drawable" format="reference">@drawable/grey_frame_on_white</item>
+    <item name="whats_on_background" type="drawable" format="reference">@drawable/actionbar_split_background</item>
     <item name="stream_item_background" type="drawable" format="reference">@drawable/grey_frame_on_white</item>
 </resources>
