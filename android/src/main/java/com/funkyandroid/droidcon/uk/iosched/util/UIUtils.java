@@ -558,12 +558,8 @@ public class UIUtils {
 
     public static long getCurrentTime(final Context context) {
         if (BuildConfig.DEBUG) {
-            SharedPreferences mockPrefs = context.getSharedPreferences("mock_data", Context.MODE_PRIVATE);
-            if(!mockPrefs.contains("mock_current_time")) {
-                return System.currentTimeMillis();
-            }
-
-            return mockPrefs.getLong("mock_current_time", System.currentTimeMillis())
+            return context.getSharedPreferences("mock_data", Context.MODE_PRIVATE)
+                    .getLong("mock_current_time", sAppLoadTime)
                     + System.currentTimeMillis() - sAppLoadTime;
         } else {
             return System.currentTimeMillis();
