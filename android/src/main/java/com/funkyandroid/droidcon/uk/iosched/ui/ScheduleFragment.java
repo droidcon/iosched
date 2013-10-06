@@ -360,7 +360,7 @@ public class ScheduleFragment extends ListFragment implements
                     titleView.setText(getString(R.string.schedule_empty_slot_title_template,
                             TextUtils.isEmpty(blockTitle)
                                     ? ""
-                                    : (" " + blockTitle.toLowerCase())));
+                                    : blockTitle.toLowerCase()));
                     titleView.setTextColor(res.getColorStateList(
                             R.color.body_text_1_positive_stateful));
                     subtitle = getString(R.string.schedule_empty_slot_subtitle);
