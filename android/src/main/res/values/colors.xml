@@ -37,4 +37,5 @@
     <color name="stream_content_text_color">#444</color>
 
     <color name="whats_on_text">#dddddd</color>
+    <color name="whats_on_bg_color">#80000000</color>
 </resources>

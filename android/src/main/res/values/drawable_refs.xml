@@ -15,5 +15,5 @@
   -->
 
 <resources>
-    <item name="whats_on_background" type="drawable" format="reference">@drawable/actionbar_split_background</item>
+    <item name="whats_on_background" type="drawable" format="reference">@color/whats_on_bg_color</item>
 </resources>
