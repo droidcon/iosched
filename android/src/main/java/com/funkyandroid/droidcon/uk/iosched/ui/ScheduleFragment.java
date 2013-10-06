@@ -325,6 +325,7 @@ public class ScheduleFragment extends ListFragment implements
             final View primaryTouchTargetView = view.findViewById(R.id.list_item_middle_container);
 
             final Resources res = getResources();
+            view.setBackgroundDrawable(res.getDrawable(R.drawable.schedule_list_item_bg_normal));
 
             String subtitle;
 
@@ -365,6 +366,7 @@ public class ScheduleFragment extends ListFragment implements
                             R.color.body_text_1_positive_stateful));
                     subtitle = getString(R.string.schedule_empty_slot_subtitle);
                     extraButton.setVisibility(View.GONE);
+                    view.setBackgroundDrawable(res.getDrawable(R.drawable.schedule_list_item_bg_accent));
 
                     primaryTouchTargetView.setOnClickListener(allSessionsListener);
                     primaryTouchTargetView.setEnabled(!mActionModeStarted);

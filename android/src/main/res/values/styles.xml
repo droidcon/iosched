@@ -134,7 +134,7 @@
 
     <!-- List views and list items -->
     <style name="ListItemContainerSchedule" parent="ListItemContainerBase">
-        <item name="android:background">@drawable/schedule_list_item_bg</item>
+        <item name="android:background">@drawable/schedule_list_item_bg_normal</item>
     </style>
 
     <style name="StreamListItem">
