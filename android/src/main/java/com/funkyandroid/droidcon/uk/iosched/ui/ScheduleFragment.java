@@ -24,6 +24,7 @@ import android.content.res.Resources;
 import android.database.ContentObserver;
 import android.database.Cursor;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -337,6 +338,27 @@ public class ScheduleFragment extends ListFragment implements
             titleView.setTextColor(res.getColorStateList(R.color.body_text_1_stateful));
             subtitleView.setTextColor(res.getColorStateList(R.color.body_text_2_stateful));
 
+            // Handle the "current block"
+            long currentTimeMillis = UIUtils.getCurrentTime(context);
+            boolean currentBlock = currentTimeMillis > blockStart && currentTimeMillis < blockEnd;
+
+            if (currentBlock) {
+                subtitleView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_live_now_glyph, 0, 0, 0);
+                subtitleView.setTextColor(res.getColor(R.color.body_text_4));
+                timeView.setTextColor(res.getColor(R.color.body_text_4));
+                timeView.setTypeface(Typeface.DEFAULT_BOLD);
+                endtimeView.setTextColor(res.getColor(R.color.body_text_3));
+                endtimeView.setTypeface(Typeface.DEFAULT_BOLD);
+            }
+            else {
+                subtitleView.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                subtitleView.setTextColor(res.getColor(R.color.body_text_2));
+                timeView.setTextColor(res.getColor(R.color.body_text_2));
+                timeView.setTypeface(Typeface.DEFAULT);
+                endtimeView.setTextColor(res.getColor(R.color.body_text_3));
+                endtimeView.setTypeface(Typeface.DEFAULT);
+            }
+
             if (ScheduleContract.Blocks.BLOCK_TYPE_SESSION.equals(type)
                     || ScheduleContract.Blocks.BLOCK_TYPE_CODELAB.equals(type)
                     || ScheduleContract.Blocks.BLOCK_TYPE_OFFICE_HOURS.equals(type)) {
@@ -385,7 +407,6 @@ public class ScheduleFragment extends ListFragment implements
                     }
 
                     // Determine if the session is in the past
-                    long currentTimeMillis = UIUtils.getCurrentTime(context);
                     boolean conferenceEnded = currentTimeMillis > UIUtils.CONFERENCE_END_MILLIS;
                     boolean blockEnded = currentTimeMillis > blockEnd;
                     if (blockEnded && !conferenceEnded) {
@@ -496,17 +517,8 @@ public class ScheduleFragment extends ListFragment implements
                 }
 
             } else if (ScheduleContract.Blocks.BLOCK_TYPE_KEYNOTE.equals(type)) {
-                final String starredSessionId = cursor.getString(BlocksQuery.STARRED_SESSION_ID);
                 final String starredSessionTitle =
                         cursor.getString(BlocksQuery.STARRED_SESSION_TITLE);
-
-                long currentTimeMillis = UIUtils.getCurrentTime(context);
-                boolean past = (currentTimeMillis > blockEnd
-                        && currentTimeMillis < UIUtils.CONFERENCE_END_MILLIS);
-                boolean present = !past && (currentTimeMillis >= blockStart);
-                boolean canViewStream = present && UIUtils.hasHoneycomb();
-
-                boolean enabled = canViewStream && !mActionModeStarted;
 
                 subtitle = getString(R.string.keynote_room);
 

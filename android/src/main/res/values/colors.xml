@@ -15,9 +15,10 @@
   -->
 <resources>
     <color name="body_text_1">#ff000000</color>
-    <color name="body_text_2">#77000000</color>
-    <color name="body_text_3">#33000000</color>
-    <color name="body_text_disabled">#44000000</color>
+    <color name="body_text_2">#79000000</color>
+    <color name="body_text_3">#44000000</color>
+    <color name="body_text_4">#99000000</color>
+    <color name="body_text_disabled">#88000000</color>
 
     <color name="body_text_1_inverse">#ffffffff</color>
     <color name="body_text_2_inverse">#99ffffff</color>
