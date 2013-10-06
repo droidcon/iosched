@@ -148,7 +148,7 @@ public class ScheduleWidgetRemoteViewsService extends RemoteViewsService {
                                         ? ""
                                         : (" " + blockTitle.toLowerCase())));
                         rv.setTextColor(R.id.block_title,
-                                res.getColor(R.color.body_text_1_positive));
+                                res.getColor(R.color.body_text_1));
                         rv.setTextViewText(R.id.block_subtitle, mContext.getString(
                                 R.string.schedule_empty_slot_subtitle));
                         rv.setViewVisibility(R.id.extra_button, View.GONE);
