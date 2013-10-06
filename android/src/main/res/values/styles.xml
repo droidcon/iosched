@@ -116,7 +116,7 @@
     </style>
 
     <style name="ActionBar.TitleText" parent="FrameworkRoot.ActionBar.TitleText">
-        <item name="android:textColor">#cccccc</item>
+        <item name="android:textColor">#fff</item>
         <item name="android:fontFamily">sans-serif-light</item>
     </style>
 
