@@ -29,8 +29,6 @@
     <dimen name="social_stream_padding_vertical">0dp</dimen>
     <dimen name="list_scroll_top_offset">16dp</dimen>
     <dimen name="schedule_block_time_width">72dp</dimen>
-    <dimen name="map_multipane_right_padding">48dp</dimen>
-    <dimen name="map_info_maxwidth">400dp</dimen>
     <dimen name="add_to_schedule_button_height">48dp</dimen>
     <dimen name="indeterminate_progress_size">16dp</dimen>
     <dimen name="rating_bar_thumb_offset">0dp</dimen>
@@ -58,7 +56,6 @@
     <dimen name="stream_item_content_padding">8dp</dimen>
     <dimen name="stream_item_content_padding_double">16dp</dimen>
     <dimen name="stream_item_content_padding_half">4dp</dimen>
-    <dimen name="stream_left_bg_width">48dp</dimen>
     <dimen name="stream_glyph_padding">8dp</dimen>
     <dimen name="stream_glyph_padding_half">4dp</dimen>
     <dimen name="stream_divider_height">1px</dimen>

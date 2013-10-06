@@ -30,19 +30,11 @@
 
     <color name="sliding_pane_content_fade">#cceeeeee</color>
     <color name="sticky_block_background">#ddffffff</color>
-    
-    <color name="map_info_1">#ff000000</color>
-    <color name="map_info_2">#ff777777</color>
-    <color name="map_floorselect_active">#FF000000</color>
-    <color name="map_floorselect_inactive">#FF333333</color>
-
-    <color name="dark_divider">#32000000</color>
 
     <!-- Twitter stream -->
     <color name="stream_spacer_color">#eee</color>
     <color name="stream_secondary_text_color">#898989</color>
     <color name="stream_content_text_color">#444</color>
-    <color name="stream_list_bg_color">#fff</color>
 
     <color name="whats_on_text">#dddddd</color>
 </resources>

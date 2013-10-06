@@ -23,13 +23,9 @@
     <string name="description_remove_schedule">Remove from schedule</string>
     <string name="description_social_stream">View Tweets</string>
     <string name="description_compose">New post</string>
-    <string name="description_add_account">Add account</string>
     <string name="description_about">About</string>
     <string name="description_configure_wifi">Configure Wi-Fi</string>
     <string name="description_settings">Settings</string>
-    <string name="description_sign_out">Sign out</string>
-    <string name="description_captions">Captions</string>
-    <string name="description_presentation">Toggle Screen Output</string>
 
     <string name="title_sessions">Sessions</string>
     <string name="title_session_detail">Session Information</string>
@@ -74,10 +70,8 @@
     <string name="empty_social_stream">No posts found.</string>
     <string name="empty_announcements">Announcements will appear here.</string>
     <string name="empty_waiting_for_sync">Waiting for sync&#8230;</string>
-    <string name="empty_captions">No captions found for this session.</string>
 
     <string name="unknown_room">(Unspecified Room)</string>
-    <string name="codelab_room">Code Labs (Level 2)</string>
     <string name="keynote_room">Level 3</string>
 
     <string name="session_links">More</string>
@@ -193,18 +187,14 @@
     <!-- Others -->
     <string name="ok">OK</string>
     <string name="loading">Loading&#8230;</string>
-    <string name="retry">Retry</string>
     <string name="stream_error">Couldn\'t load the Twitter feed.</string>
-    <string name="stream_originally_shared">Originally shared by <xliff:g id="name">%s</xliff:g></string>
     <string name="empty_widget_text">No more upcoming sessions.\nSee you next year!</string>
-    <string name="empty_widget_text_signed_out">Touch the Droidcon London 2013 logo above to sign in and begin using the app.</string>
 
     <string name="now_playing_badge"><![CDATA[<font color="#4d90fe"><small><b>NOW</b></small></font>]]></string>
     <string name="session_finished">Ended</string>
 
     <!-- Strings only used for accessibility -->
     <string name="speaker_googleplus_profile">Google+ profile: <xliff:g id="speakername">%1$s</xliff:g></string>
-    <string name="close_detail_pane">Close detail pane</string>
     <string name="more_sessions">More sessions</string>
     <string name="more_announcements">More announcements</string>
     <string name="plus_one_description_standard">Touch to plus one.</string>

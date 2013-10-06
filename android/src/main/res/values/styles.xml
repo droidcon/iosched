@@ -14,7 +14,7 @@
   limitations under the License.
   -->
 
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:ignore="newApi">
     <!-- Empty parent idiom -->
     <style name="NoParent" />
 
@@ -37,7 +37,7 @@
 
     <style name="FrameworkRoot.ActionBar" parent="Widget.AppCompat.Light.ActionBar" />
     <style name="FrameworkRoot.ActionBar.TitleText" parent="TextAppearance.AppCompat.Widget.ActionBar.Title" />
-    <style name="FrameworkRoot.ActionBar.TabBar" parent="Widget.AppCompat.Base.ActionBar.TabBar" />
+    <style name="FrameworkRoot.ActionBar.TabBar" parent="Widget.AppCompat.ActionBar.TabBar" />
     <style name="FrameworkRoot.ActionBar.TabText" parent="Widget.AppCompat.ActionBar.TabText" />
     <style name="FrameworkRoot.ActionBar.TabView" parent="Widget.AppCompat.ActionBar.TabView"/>
 
@@ -52,6 +52,8 @@
         <item name="android:windowContentOverlay">@null</item>
         <item name="android:actionBarStyle">@style/ActionBar</item>
         <item name="actionBarStyle">@style/ActionBar</item>
+        <item name="android:actionBarTabBarStyle">@style/ActionBar.TabBar</item>
+        <item name="actionBarTabBarStyle">@style/ActionBar.TabBar</item>
         <item name="android:actionBarTabStyle">@style/ActionBar.TabView</item>
         <item name="actionBarTabStyle">@style/ActionBar.TabView</item>
         <item name="android:actionBarTabTextStyle">@style/ActionBar.TabText</item>
@@ -124,6 +126,11 @@
 
     <style name="ActionBar.TabView" parent="FrameworkRoot.ActionBar.TabView">
         <item name="android:background">@drawable/tab_color_ab</item>
+    </style>
+
+    <style name="ActionBar.TabBar" parent="FrameworkRoot.ActionBar.TabBar">
+        <item name="android:divider">@drawable/divider_vertical_holo_dark</item>
+        <item name="divider">@drawable/divider_vertical_holo_dark</item>
     </style>
 
     <!-- List views and list items -->
