@@ -15,6 +15,6 @@
   -->
 
 <resources>
-    <item name="whats_on_background" type="drawable" format="reference">@drawable/whats_on_background</item>
+    <item name="whats_on_background" type="drawable" format="reference">@color/whats_on_bg_color</item>
     <item name="stream_item_background" type="drawable" format="reference">@drawable/grey_frame_on_white</item>
 </resources>
