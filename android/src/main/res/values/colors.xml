@@ -15,35 +15,27 @@
   -->
 <resources>
     <color name="body_text_1">#ff000000</color>
-    <color name="body_text_2">#77000000</color>
-    <color name="body_text_3">#33000000</color>
-    <color name="body_text_disabled">#44000000</color>
+    <color name="body_text_2">#79000000</color>
+    <color name="body_text_3">#44000000</color>
+    <color name="body_text_4">#99000000</color>
+    <color name="body_text_disabled">#88000000</color>
 
     <color name="body_text_1_inverse">#ffffffff</color>
     <color name="body_text_2_inverse">#99ffffff</color>
 
-    <color name="body_text_1_positive">#ff4CAA47</color>
-
-    <color name="accent_1">#ff4d90fe</color>
+    <color name="accent_1">#94bf28</color>
 
     <color name="all_track_color">#ff222222</color>
     <color name="home_pane_header">#99000000</color>
 
     <color name="sliding_pane_content_fade">#cceeeeee</color>
     <color name="sticky_block_background">#ddffffff</color>
-    
-    <color name="map_info_1">#ff000000</color>
-    <color name="map_info_2">#ff777777</color>
-    <color name="map_floorselect_active">#FF000000</color>
-    <color name="map_floorselect_inactive">#FF333333</color>
-
-    <color name="dark_divider">#32000000</color>
 
     <!-- Twitter stream -->
     <color name="stream_spacer_color">#eee</color>
     <color name="stream_secondary_text_color">#898989</color>
     <color name="stream_content_text_color">#444</color>
-    <color name="stream_list_bg_color">#fff</color>
 
     <color name="whats_on_text">#dddddd</color>
+    <color name="whats_on_bg_color">#80000000</color>
 </resources>
