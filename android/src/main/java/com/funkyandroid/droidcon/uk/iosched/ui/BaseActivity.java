@@ -20,6 +20,7 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -50,8 +51,8 @@ public abstract class BaseActivity extends ActionBarActivity {
                 && getResources().getConfiguration().orientation
                 != Configuration.ORIENTATION_LANDSCAPE) {
             // Only show the tab bar's shadow
-            getSupportActionBar().setBackgroundDrawable(getResources().getDrawable(
-                    R.drawable.actionbar_background_noshadow));
+            getSupportActionBar().setBackgroundDrawable(
+                new ColorDrawable(getResources().getColor(R.color.accent_1)));
         }
     }
 

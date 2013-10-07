@@ -14,17 +14,17 @@
   limitations under the License.
   -->
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:baselineAligned="false"
-    style="@style/ListItemContainerBase">
+    style="@style/ListItemContainerSchedule">
 
     <LinearLayout android:id="@+id/block_time_container"
         android:orientation="vertical"
         android:layout_width="@dimen/schedule_block_time_width"
         android:layout_height="match_parent"
-        android:background="@drawable/transparent_background_pattern"
         android:padding="8dp">
 
         <TextView android:id="@+id/block_time"
@@ -32,14 +32,16 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/text_size_small"
             android:textColor="@color/body_text_2"
-            android:paddingTop="@dimen/text_size_diff_large_small" />
+            android:paddingTop="@dimen/text_size_diff_large_small"
+            tools:text="10:00"/>
 
         <TextView android:id="@+id/block_endtime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="@dimen/text_size_small"
             android:textColor="@color/body_text_3"
-            android:paddingTop="4dp"/>
+            android:paddingTop="4dp"
+            tools:text="11:00"/>
     </LinearLayout>
 
     <LinearLayout android:id="@+id/list_item_middle_container"
@@ -58,7 +60,8 @@
             android:layout_marginRight="?listPreferredItemPaddingRight"
             android:paddingTop="8dp"
             android:duplicateParentState="true"
-            style="@style/ListItemTitle" />
+            style="@style/ListItemTitle"
+            tools:text="Welcome to Droidcon" />
 
         <TextView android:id="@+id/block_subtitle"
             android:layout_width="wrap_content"
@@ -67,7 +70,8 @@
             android:layout_marginRight="?listPreferredItemPaddingRight"
             android:paddingBottom="8dp"
             android:duplicateParentState="true"
-            style="@style/ListItemSubtitle" />
+            style="@style/ListItemSubtitle"
+            tools:text="Level 1" />
     </LinearLayout>
 
     <ImageButton android:id="@+id/extra_button"

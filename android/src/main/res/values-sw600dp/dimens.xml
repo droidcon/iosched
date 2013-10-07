@@ -17,7 +17,6 @@
 
     <!-- UI elements -->
     <dimen name="thickbar_height">200dp</dimen>
-    <dimen name="detail_breadcrumb_height">48dp</dimen>
     <dimen name="tab_height">56dp</dimen>
     <dimen name="action_button_min_width">64dp</dimen>
     <dimen name="track_dropdown_width">288dp</dimen>
