@@ -35,7 +35,7 @@
         <item name="listPreferredItemHeightSmall">@dimen/compat_list_preferred_item_height_small</item>
     </style>
 
-    <style name="FrameworkRoot.ActionBar" parent="Widget.AppCompat.Light.ActionBar" />
+    <style name="FrameworkRoot.ActionBar" parent="Widget.AppCompat.ActionBar" />
     <style name="FrameworkRoot.ActionBar.TitleText" parent="TextAppearance.AppCompat.Widget.ActionBar.Title" />
     <style name="FrameworkRoot.ActionBar.TabBar" parent="Widget.AppCompat.ActionBar.TabBar" />
     <style name="FrameworkRoot.ActionBar.TabText" parent="Widget.AppCompat.ActionBar.TabText" />
