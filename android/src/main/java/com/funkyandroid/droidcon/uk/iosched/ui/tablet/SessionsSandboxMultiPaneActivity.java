@@ -28,12 +28,7 @@ import android.support.v4.widget.SlidingPaneLayout;
 import android.support.v7.app.ActionBar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.SearchView;
-import android.widget.SpinnerAdapter;
-import android.widget.TextView;
 import com.funkyandroid.droidcon.uk.iosched.R;
 import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract;
 import com.funkyandroid.droidcon.uk.iosched.ui.*;
@@ -106,11 +101,6 @@ public class SessionsSandboxMultiPaneActivity extends BaseActivity implements
         routeIntent(getIntent(), savedInstanceState != null);
 
         if (savedInstanceState != null) {
-            if (mFullUI) {
-                int viewType = savedInstanceState.getInt(STATE_VIEW_TYPE);
-                getSupportActionBar().setSelectedNavigationItem(viewType);
-            }
-
             mDetailFragment = fm.findFragmentById(R.id.fragment_container_detail);
             updateDetailBackground();
         }
@@ -146,7 +136,6 @@ public class SessionsSandboxMultiPaneActivity extends BaseActivity implements
                         TracksDropdownFragment.VIEW_TYPE_SESSIONS);
                 String selectedTrackId = ScheduleContract.Tracks.getTrackId(uri);
                 loadTrackList(defaultViewType, selectedTrackId);
-                getSupportActionBar().setSelectedNavigationItem(defaultViewType);
                 onTrackSelected(selectedTrackId);
                 mSlidingPaneLayout.openPane();
             }
@@ -179,27 +168,6 @@ public class SessionsSandboxMultiPaneActivity extends BaseActivity implements
                 }
             }
 
-        } else if (ScheduleContract.Sandbox.CONTENT_TYPE.equals(mimeType)) {
-            // Load a sandbox company list
-            mViewType = TracksDropdownFragment.VIEW_TYPE_SANDBOX;
-            showFullUI(false);
-            if (!updateSurfaceOnly) {
-                loadSandboxList(uri, null);
-                mSlidingPaneLayout.openPane();
-            }
-
-        } else if (ScheduleContract.Sandbox.CONTENT_ITEM_TYPE.equals(mimeType)) {
-            // Load company details
-            mViewType = TracksDropdownFragment.VIEW_TYPE_SANDBOX;
-            showFullUI(false);
-            if (!updateSurfaceOnly) {
-                Uri masterUri = intent.getParcelableExtra(EXTRA_MASTER_URI);
-                if (masterUri == null) {
-                    masterUri = ScheduleContract.Sandbox.CONTENT_URI;
-                }
-                loadSandboxList(masterUri, ScheduleContract.Sandbox.getCompanyId(uri));
-                loadSandboxDetail(uri);
-            }
         }
 
         updateDetailBackground();
@@ -207,79 +175,19 @@ public class SessionsSandboxMultiPaneActivity extends BaseActivity implements
 
     private void showFullUI(boolean fullUI) {
         mFullUI = fullUI;
-        final ActionBar actionBar = getSupportActionBar();
         final FragmentManager fm = getSupportFragmentManager();
 
         if (fullUI) {
-            actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_LIST);
-            actionBar.setDisplayShowTitleEnabled(false);
-            actionBar.setListNavigationCallbacks(mActionBarSpinnerAdapter, this);
+            onNavigationItemSelected(0, 0);
             fm.beginTransaction()
                     .show(fm.findFragmentById(R.id.fragment_tracks_dropdown))
                     .commit();
         } else {
-            actionBar.setNavigationMode(ActionBar.NAVIGATION_MODE_STANDARD);
-            actionBar.setDisplayShowTitleEnabled(true);
-
             fm.beginTransaction()
                     .hide(fm.findFragmentById(R.id.fragment_tracks_dropdown))
                     .commit();
         }
     }
-
-    private SpinnerAdapter mActionBarSpinnerAdapter = new BaseAdapter() {
-        @Override
-        public int getCount() {
-            return 3;
-        }
-
-        @Override
-        public Object getItem(int position) {
-            return position;
-        }
-
-        @Override
-        public long getItemId(int position) {
-            return position + 1;
-        }
-
-        private int getLabelResId(int position) {
-            switch (position) {
-                case TracksDropdownFragment.VIEW_TYPE_SESSIONS:
-                    return R.string.title_sessions;
-                case TracksDropdownFragment.VIEW_TYPE_OFFICE_HOURS:
-                    return R.string.title_office_hours;
-                case TracksDropdownFragment.VIEW_TYPE_SANDBOX:
-                    return R.string.title_sandbox;
-            }
-            return 0;
-        }
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup container) {
-            if (convertView == null) {
-                convertView = getLayoutInflater().inflate(
-                        android.R.layout.simple_spinner_item,
-                        container, false);
-            }
-            ((TextView) convertView.findViewById(android.R.id.text1)).setText(
-                    getLabelResId(position));
-            return convertView;
-        }
-
-        @Override
-        public View getDropDownView(int position, View convertView,
-                ViewGroup container) {
-            if (convertView == null) {
-                convertView = getLayoutInflater().inflate(
-                        android.R.layout.simple_spinner_dropdown_item,
-                        container, false);
-            }
-            ((TextView) convertView.findViewById(android.R.id.text1)).setText(
-                    getLabelResId(position));
-            return convertView;
-        }
-    };
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -429,12 +337,6 @@ public class SessionsSandboxMultiPaneActivity extends BaseActivity implements
             case TracksDropdownFragment.VIEW_TYPE_SESSIONS:
                 trackType = getString(R.string.title_sessions);
                 break;
-            case TracksDropdownFragment.VIEW_TYPE_OFFICE_HOURS:
-                trackType = getString(R.string.title_office_hours);
-                break;
-            case TracksDropdownFragment.VIEW_TYPE_SANDBOX:
-                trackType = getString(R.string.title_sandbox);
-                break;
         }
 
         LOGD("Tracker", trackType + ": " + mTracksDropdownFragment.getTrackName());
@@ -453,23 +355,6 @@ public class SessionsSandboxMultiPaneActivity extends BaseActivity implements
                         .appendQueryParameter(ScheduleContract.Sessions.QUERY_PARAMETER_FILTER,
                                 ScheduleContract.Sessions.QUERY_VALUE_FILTER_SESSIONS_CODELABS_ONLY)
                         .build(), null);
-                break;
-
-            case TracksDropdownFragment.VIEW_TYPE_OFFICE_HOURS:
-                loadSessionList((allTracks
-                        ? ScheduleContract.Sessions.CONTENT_URI
-                        : ScheduleContract.Tracks.buildSessionsUri(trackId))
-                        .buildUpon()
-                        .appendQueryParameter(
-                                ScheduleContract.Sessions.QUERY_PARAMETER_FILTER,
-                                ScheduleContract.Sessions.QUERY_VALUE_FILTER_OFFICE_HOURS_ONLY)
-                        .build(), null);
-                break;
-
-            case TracksDropdownFragment.VIEW_TYPE_SANDBOX:
-                loadSandboxList(allTracks
-                        ? ScheduleContract.Sandbox.CONTENT_URI
-                        : ScheduleContract.Tracks.buildSandboxUri(trackId), null);
                 break;
         }
     }
@@ -516,24 +401,6 @@ public class SessionsSandboxMultiPaneActivity extends BaseActivity implements
                         .appendQueryParameter(ScheduleContract.Sessions.QUERY_PARAMETER_FILTER,
                                 ScheduleContract.Sessions.QUERY_VALUE_FILTER_SESSIONS_CODELABS_ONLY)
                         .build(), mTrackInfoLoadCookie);
-                break;
-
-            case TracksDropdownFragment.VIEW_TYPE_OFFICE_HOURS:
-                loadSessionList((allTracks
-                        ? ScheduleContract.Sessions.CONTENT_URI
-                        : ScheduleContract.Tracks.buildSessionsUri(trackId))
-                        .buildUpon()
-                        .appendQueryParameter(
-                                ScheduleContract.Sessions.QUERY_PARAMETER_FILTER,
-                                ScheduleContract.Sessions.QUERY_VALUE_FILTER_OFFICE_HOURS_ONLY)
-                        .build(), mTrackInfoLoadCookie);
-                break;
-
-            case TracksDropdownFragment.VIEW_TYPE_SANDBOX:
-                loadSandboxList(allTracks
-                        ? ScheduleContract.Sandbox.CONTENT_URI
-                        : ScheduleContract.Tracks.buildSandboxUri(trackId),
-                        mTrackInfoLoadCookie);
                 break;
         }
     }
