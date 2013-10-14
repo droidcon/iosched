@@ -34,6 +34,9 @@ public class Config {
     public static final String WIFI_SSID = "droidcon";
     public static final String WIFI_PASSPHRASE = "droidcon13";
 
+    // Conference hashtag
+    public static final String CONFERENCE_HASHTAG = "#droidconuk";
+
     // GCM config
     // TODO: Add your GCM information here.
     public static final String GCM_SERVER_URL = "https://YOUR_GCM_APP_ID_HERE.appspot.com";

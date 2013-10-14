@@ -149,7 +149,7 @@ public class SocialStreamFragment extends ListFragment implements
             case R.id.menu_compose:
                 Intent intent = ShareCompat.IntentBuilder.from(getActivity())
                         .setType("text/plain")
-                        .setText(mSearchString + "\n\n")
+                        .setText(Config.CONFERENCE_HASHTAG + "\n\n")
                         .getIntent();
 
                 UIUtils.preferPackageForIntent(getActivity(), intent,
