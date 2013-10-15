@@ -10,9 +10,6 @@ import com.funkyandroid.droidcon.uk.droidconsched.io.model.Users;
  * @author Al Sutton, Funky Android Ltd. (http://funkyandroid.com/)
  */
 public class ConferenceAPI {
-    public static final String DEFAULT_ROOT_URL = "https://www.googleapis.com/";
-    public static final String DEFAULT_SERVICE_PATH = "googledevelopers/v1/";
-    public static final String DEFAULT_BASE_URL = "https://www.googleapis.com/googledevelopers/v1/";
 
     public ConferenceAPI()
     {
