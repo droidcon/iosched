@@ -42,7 +42,8 @@ public class ScheduleDatabase extends SQLiteOpenHelper {
     private static final int VER_2013_LAUNCH = 104;  // 1.0
     private static final int VER_2013_RM2 = 105;  // 1.1
     private static final int VER_2013_DROIDCON = 106;  // 1.2
-    private static final int DATABASE_VERSION = VER_2013_DROIDCON;
+    private static final int VER_2013_DROIDCON_LAUNCH = 107;  // 1.2
+    private static final int DATABASE_VERSION = VER_2013_DROIDCON_LAUNCH;
 
     private final Context mContext;
 
@@ -424,6 +425,14 @@ public class ScheduleDatabase extends SQLiteOpenHelper {
         int version = oldVersion;
 
         switch (version) {
+            // Clear all the data for the DCUK launch. This ensures
+            // some of the data issues from early betas don't affect
+            // users.
+            case VER_2013_DROIDCON_LAUNCH:
+                deleteAllTables(db);
+                onCreate(db);
+                break;
+
             // Note: Data from prior years not preserved.
             case VER_2013_LAUNCH:
                 LOGI(TAG, "Performing migration for DB version " + version);
@@ -452,30 +461,38 @@ public class ScheduleDatabase extends SQLiteOpenHelper {
         if (version != DATABASE_VERSION) {
             LOGW(TAG, "Destroying old data during upgrade");
 
-            db.execSQL("DROP TABLE IF EXISTS " + Tables.BLOCKS);
-            db.execSQL("DROP TABLE IF EXISTS " + Tables.TRACKS);
-            db.execSQL("DROP TABLE IF EXISTS " + Tables.ROOMS);
-            db.execSQL("DROP TABLE IF EXISTS " + Tables.SESSIONS);
-            db.execSQL("DROP TABLE IF EXISTS " + Tables.SPEAKERS);
-            db.execSQL("DROP TABLE IF EXISTS " + Tables.SESSIONS_SPEAKERS);
-            db.execSQL("DROP TABLE IF EXISTS " + Tables.SESSIONS_TRACKS);
-            db.execSQL("DROP TABLE IF EXISTS " + Tables.SANDBOX);
-            db.execSQL("DROP TABLE IF EXISTS " + Tables.ANNOUNCEMENTS);
-            db.execSQL("DROP TABLE IF EXISTS " + Tables.FEEDBACK);
-
-            db.execSQL("DROP TRIGGER IF EXISTS " + Triggers.SESSIONS_TRACKS_DELETE);
-            db.execSQL("DROP TRIGGER IF EXISTS " + Triggers.SESSIONS_SPEAKERS_DELETE);
-            db.execSQL("DROP TRIGGER IF EXISTS " + Triggers.SESSIONS_FEEDBACK_DELETE);
-
-            db.execSQL("DROP TABLE IF EXISTS " + Tables.SESSIONS_SEARCH);
-            db.execSQL("DROP TABLE IF EXISTS " + Tables.SEARCH_SUGGEST);
-            db.execSQL("DROP TABLE IF EXISTS " + Tables.MAPMARKERS);
-            db.execSQL("DROP TABLE IF EXISTS " + Tables.MAPTILES);
+            deleteAllTables(db);
 
             onCreate(db);
         }
 
         SyncHelper.requestManualSync(mContext);
+    }
+
+    /**
+     * Delete all the tables in the database
+     */
+
+    private void deleteAllTables(final SQLiteDatabase db) {
+        db.execSQL("DROP TABLE IF EXISTS " + Tables.BLOCKS);
+        db.execSQL("DROP TABLE IF EXISTS " + Tables.TRACKS);
+        db.execSQL("DROP TABLE IF EXISTS " + Tables.ROOMS);
+        db.execSQL("DROP TABLE IF EXISTS " + Tables.SESSIONS);
+        db.execSQL("DROP TABLE IF EXISTS " + Tables.SPEAKERS);
+        db.execSQL("DROP TABLE IF EXISTS " + Tables.SESSIONS_SPEAKERS);
+        db.execSQL("DROP TABLE IF EXISTS " + Tables.SESSIONS_TRACKS);
+        db.execSQL("DROP TABLE IF EXISTS " + Tables.SANDBOX);
+        db.execSQL("DROP TABLE IF EXISTS " + Tables.ANNOUNCEMENTS);
+        db.execSQL("DROP TABLE IF EXISTS " + Tables.FEEDBACK);
+
+        db.execSQL("DROP TRIGGER IF EXISTS " + Triggers.SESSIONS_TRACKS_DELETE);
+        db.execSQL("DROP TRIGGER IF EXISTS " + Triggers.SESSIONS_SPEAKERS_DELETE);
+        db.execSQL("DROP TRIGGER IF EXISTS " + Triggers.SESSIONS_FEEDBACK_DELETE);
+
+        db.execSQL("DROP TABLE IF EXISTS " + Tables.SESSIONS_SEARCH);
+        db.execSQL("DROP TABLE IF EXISTS " + Tables.SEARCH_SUGGEST);
+        db.execSQL("DROP TABLE IF EXISTS " + Tables.MAPMARKERS);
+        db.execSQL("DROP TABLE IF EXISTS " + Tables.MAPTILES);
     }
 
     public static void deleteDatabase(Context context) {
