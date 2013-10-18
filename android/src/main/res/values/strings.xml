@@ -72,7 +72,7 @@
     <string name="empty_waiting_for_sync">Waiting for sync&#8230;</string>
 
     <string name="unknown_room">(Unspecified Room)</string>
-    <string name="keynote_room">Level 3</string>
+    <string name="keynote_room">Auditorium</string>
 
     <string name="session_links">More</string>
     <string name="session_requirements">Requirements</string>
