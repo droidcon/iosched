@@ -46,6 +46,13 @@ public class BlocksHandler extends JSONHandler {
 
     public ArrayList<ContentProviderOperation> parse(String json) throws IOException {
         final ArrayList<ContentProviderOperation> batch = Lists.newArrayList();
+
+        // Clear out any existing common slots to avoid duplicates
+        ContentProviderOperation.Builder builder = ContentProviderOperation
+                .newDelete(ScheduleContract.addCallerIsSyncAdapterParameter(Blocks.CONTENT_URI));
+        builder.withSelection(Blocks.BLOCK_TYPE+" = ?", new String[] {Blocks.BLOCK_TYPE_GENERIC} );
+        batch.add(builder.build());
+
         try {
             EventSlots eventSlots = new EventSlots();
             eventSlots.fromJSON(new JSONObject(json));
