@@ -31,8 +31,8 @@ public class Config {
     public static final String CONFERENCE_IMAGE_PREFIX_URL = "http://uk.droidcon.com/2013/wp-content/uploads/";
 
     // Conference public WiFi AP parameters
-    public static final String WIFI_SSID = "droidcon";
-    public static final String WIFI_PASSPHRASE = "droidcon13";
+    public static final String WIFI_SSID = "Droidcon";
+    public static final String WIFI_PASSPHRASE = "DroidconW1F1";
 
     // Conference hashtag
     public static final String CONFERENCE_HASHTAG = "#droidconuk";
