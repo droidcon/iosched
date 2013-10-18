@@ -474,7 +474,7 @@ public class SessionDetailFragment extends Fragment implements
             });
 
             AnimatorSet inAnimator = new AnimatorSet();
-            outAnimator.setDuration(duration);
+            inAnimator.setDuration(duration);
             inAnimator.playTogether(
                     ObjectAnimator.ofFloat(imageView, View.ALPHA, 1f),
                     ObjectAnimator.ofFloat(imageView, View.SCALE_X, 0f, 1f),
