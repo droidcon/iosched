@@ -46,7 +46,7 @@ public class SyncHelper {
     public static final int FLAG_SYNC_LOCAL = 0x1;
     public static final int FLAG_SYNC_REMOTE = 0x2;
 
-    private static final int LOCAL_VERSION_CURRENT = 2013121;
+    private static final int LOCAL_VERSION_CURRENT = 2013131;
 
     private Context mContext;
 
