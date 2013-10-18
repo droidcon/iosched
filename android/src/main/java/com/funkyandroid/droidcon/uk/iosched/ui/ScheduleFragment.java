@@ -519,11 +519,24 @@ public class ScheduleFragment extends ListFragment implements
             } else if (ScheduleContract.Blocks.BLOCK_TYPE_KEYNOTE.equals(type)) {
                 final String starredSessionTitle =
                         cursor.getString(BlocksQuery.STARRED_SESSION_TITLE);
+                final String starredSessionId =
+                        cursor.getString(BlocksQuery.STARRED_SESSION_ID);
 
                 subtitle = getString(R.string.keynote_room);
-
                 titleView.setText(starredSessionTitle);
                 extraButton.setVisibility(View.GONE);
+                primaryTouchTargetView.setEnabled(true);
+                primaryTouchTargetView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        final Uri sessionUri = ScheduleContract.Sessions.buildSessionUri(starredSessionId);
+                        final Intent intent = new Intent(Intent.ACTION_VIEW, sessionUri);
+                        intent.putExtra(SessionsSandboxMultiPaneActivity.EXTRA_MASTER_URI,
+                                ScheduleContract.Blocks.buildSessionsUri(blockId));
+                        intent.putExtra(Intent.EXTRA_TITLE, blockTimeString);
+                        startActivity(intent);
+                    }
+                });
 
             } else {
                 subtitle = blockMeta;

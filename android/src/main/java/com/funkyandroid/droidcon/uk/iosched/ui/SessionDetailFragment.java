@@ -76,6 +76,7 @@ public class SessionDetailFragment extends Fragment implements
     private String mHashtags;
     private String mUrl;
     private String mRoomId;
+    private String mType;
 
     private boolean mStarred;
     private boolean mInitStarred;
@@ -174,7 +175,9 @@ public class SessionDetailFragment extends Fragment implements
         mAddSchedulePlaceholderView = rootView.findViewById(
                 R.id.add_to_schedule_button_placeholder);
         if (mAddSchedulePlaceholderView == null) {
-            mAddScheduleButton.setVisibility(View.VISIBLE);
+            if(mType != null && !ScheduleContract.Sessions.SESSION_TYPE_KEYNOTE.equals(mType)) {
+                mAddScheduleButton.setVisibility(View.VISIBLE);
+            }
             return;
         }
 
@@ -204,7 +207,9 @@ public class SessionDetailFragment extends Fragment implements
         @Override
         public void onGlobalLayout() {
             onScrollChanged();
-            mAddScheduleButton.setVisibility(View.VISIBLE);
+            if(mType != null && !ScheduleContract.Sessions.SESSION_TYPE_KEYNOTE.equals(mType)) {
+                mAddScheduleButton.setVisibility(View.VISIBLE);
+            }
         }
     };
 
@@ -270,6 +275,7 @@ public class SessionDetailFragment extends Fragment implements
         mTitleString = cursor.getString(SessionsQuery.TITLE);
 
         // Format time block this session occupies
+        mType = cursor.getString(SessionsQuery.TYPE);
         mSessionBlockStart = cursor.getLong(SessionsQuery.BLOCK_START);
         mSessionBlockEnd = cursor.getLong(SessionsQuery.BLOCK_END);
         String roomName = cursor.getString(SessionsQuery.ROOM_NAME);
@@ -679,6 +685,7 @@ public class SessionDetailFragment extends Fragment implements
                 ScheduleContract.Sessions.SESSION_MODERATOR_URL,
                 ScheduleContract.Sessions.ROOM_ID,
                 ScheduleContract.Rooms.ROOM_NAME,
+                ScheduleContract.Sessions.SESSION_TYPE,
         };
 
         int BLOCK_START = 0;
@@ -696,6 +703,7 @@ public class SessionDetailFragment extends Fragment implements
         int MODERATOR_URL = 12;
         int ROOM_ID = 13;
         int ROOM_NAME = 14;
+        int TYPE = 15;
 
         int[] LINKS_INDICES = {
                 URL,
