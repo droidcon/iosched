@@ -17,8 +17,8 @@
 <manifest
     xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.funkyandroid.droidcon.uk.iosched"
-    android:versionCode="201313"
-    android:versionName="2013.13"
+    android:versionCode="201314"
+    android:versionName="2013.14"
     android:installLocation="auto">
 
     <uses-sdk
