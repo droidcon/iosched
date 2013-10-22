@@ -25,9 +25,10 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Build;
 import android.support.v4.app.ShareCompat;
-import android.view.ActionProvider;
+import android.support.v4.view.ActionProvider;
+import android.support.v4.view.MenuItemCompat;
+import android.support.v7.widget.ShareActionProvider;
 import android.view.MenuItem;
-import android.widget.ShareActionProvider;
 import com.funkyandroid.droidcon.uk.iosched.R;
 import com.funkyandroid.droidcon.uk.iosched.appwidget.ScheduleWidgetProvider;
 import com.funkyandroid.droidcon.uk.iosched.provider.ScheduleContract;
@@ -64,7 +65,7 @@ public final class SessionsHelper {
     public void tryConfigureShareMenuItem(MenuItem menuItem, int messageTemplateResId,
             final String title, String hashtags, String url) {
         if (UIUtils.hasICS()) {
-            ActionProvider itemProvider = menuItem.getActionProvider();
+            ActionProvider itemProvider = MenuItemCompat.getActionProvider(menuItem);
             ShareActionProvider provider;
             if (!(itemProvider instanceof ShareActionProvider)) {
                 provider = new ShareActionProvider(mActivity);
@@ -81,7 +82,7 @@ public final class SessionsHelper {
                         }
                     });
 
-            menuItem.setActionProvider(provider);
+            MenuItemCompat.setActionProvider(menuItem, provider);
         }
     }
 
