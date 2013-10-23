@@ -62,13 +62,27 @@
           "end": "09:00",
           "title": "Welcome to Day Two and Amazon Breakfast"
         },
+      {
+          "start": "11:15",
+          "end": "11:45",
+          "type": "food",
+          "title": "Coffee Break",
+          "meta": "Main area"
+      },
         {
           "start": "13:15",
           "end": "14:15",
           "type": "food",
           "title": "Lunch",
           "meta": "Main area"
-        }
+        },
+          {
+              "start": "15:45",
+              "end": "16:15",
+              "type": "food",
+              "title": "Coffee Break",
+              "meta": "Main area"
+          }
       ]
     }
   ]
