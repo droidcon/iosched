@@ -535,9 +535,9 @@ public class UIUtils {
     }
 
     public static boolean isTablet(Context context) {
-        return (context.getResources().getConfiguration().screenLayout
-                & Configuration.SCREENLAYOUT_SIZE_MASK)
-                >= Configuration.SCREENLAYOUT_SIZE_LARGE;
+        Configuration config = context.getResources().getConfiguration();
+        int minDp = Math.min(config.screenWidthDp, config.screenHeightDp);
+        return minDp >= 600;
     }
 
     public static boolean isHoneycombTablet(Context context) {
