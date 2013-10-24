@@ -53,6 +53,10 @@ public class BlocksHandler extends JSONHandler {
         builder.withSelection(Blocks.BLOCK_TYPE+" = ?", new String[] {Blocks.BLOCK_TYPE_GENERIC} );
         batch.add(builder.build());
 
+        builder = ContentProviderOperation.newDelete(ScheduleContract.addCallerIsSyncAdapterParameter(Blocks.CONTENT_URI));
+        builder.withSelection(Blocks.BLOCK_TYPE+" = ?", new String[] {Blocks.BLOCK_TYPE_FOOD} );
+        batch.add(builder.build());
+
         try {
             EventSlots eventSlots = new EventSlots();
             eventSlots.fromJSON(new JSONObject(json));
