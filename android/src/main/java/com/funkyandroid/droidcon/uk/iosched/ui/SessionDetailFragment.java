@@ -762,6 +762,9 @@ public class SessionDetailFragment extends Fragment implements
 
         if (loader.getId() == SessionsQuery._TOKEN) {
             onSessionQueryComplete(cursor);
+            if(mType != null && !ScheduleContract.Sessions.SESSION_TYPE_KEYNOTE.equals(mType)) {
+                mAddScheduleButton.setVisibility(View.VISIBLE);
+            }
         } else if (loader.getId() == SpeakersQuery._TOKEN) {
             onSpeakersQueryComplete(cursor);
         } else {
