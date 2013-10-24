@@ -35,11 +35,17 @@
           "title": "Coffee Break",
           "meta": "Main area"
         },
+          {
+              "start": "16:25",
+              "end": "17:00",
+              "title": "Community Democamp",
+              "meta": "Show off your app"
+          },
         {
             "start": "17:40",
             "end": "18:30",
             "title": "Democamp",
-            "meta": "Show off your app"
+            "meta": "App demonstrations"
         },
         {
             "start": "18:45",
