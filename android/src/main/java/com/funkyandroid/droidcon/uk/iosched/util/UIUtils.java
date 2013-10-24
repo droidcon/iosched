@@ -535,9 +535,12 @@ public class UIUtils {
     }
 
     public static boolean isTablet(Context context) {
-        Configuration config = context.getResources().getConfiguration();
-        int minDp = Math.min(config.screenWidthDp, config.screenHeightDp);
-        return minDp >= 600;
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+            return new PostGBUIUtils().isTablet(context);
+        }
+        return (context.getResources().getConfiguration().screenLayout
+               & Configuration.SCREENLAYOUT_SIZE_MASK)
+                 >= Configuration.SCREENLAYOUT_SIZE_LARGE;
     }
 
     public static boolean isHoneycombTablet(Context context) {
