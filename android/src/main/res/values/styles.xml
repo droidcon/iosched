@@ -332,7 +332,7 @@
         <item name="android:layout_weight">1</item>
         <item name="android:textSize">@dimen/text_size_medium</item>
         <item name="android:textStyle">bold</item>
-        <item name="android:textColor">@color/body_text_1</item>
+        <item name="android:textColor">@color/whats_on_text</item>
         <item name="android:singleLine">true</item>
         <item name="android:gravity">bottom</item>
         <item name="android:maxLines">1</item>
@@ -342,7 +342,7 @@
     <style name="AnnouncementSubTitle" parent="AnnouncementTitle">
         <item name="android:layout_weight">1</item>
         <item name="android:textStyle">normal</item>
-        <item name="android:textColor">@color/body_text_2</item>
+        <item name="android:textColor">@color/whats_on_text</item>
         <item name="android:singleLine">true</item>
         <item name="android:gravity">top</item>
     </style>
