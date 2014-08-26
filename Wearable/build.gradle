@@ -34,6 +34,14 @@ android {
         versionCode 1
         versionName "1.0"
     }
+
+    productFlavors {
+        droidconuk {
+            applicationId "com.conferenceengineer.iosched.event1002"
+        }
+    }
+
+
     signingConfigs {
         debug {
             storeFile file(iosched14_android_debugkey_storefile)

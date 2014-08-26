@@ -29,7 +29,24 @@ android {
     compileSdkVersion lpreview ? "android-L" : 19
     buildToolsVersion "20.0.0"
 
-    productFlavors { lpreview ? lpreview{} : classic{} }
+    productFlavors { 
+	lpreview ? lpreview{} : classic{} 
+
+        droidconuk {
+            applicationId "com.conferenceengineer.iosched.event1002"
+        }
+    }
+
+    sourceSets {
+        droidconuk.java.srcDirs = [ 
+            lpreview ? 'src/lpreview/java' :'src/classic/java',
+            'src/droidconuk/java/' 
+        ]
+        droidconuk.resources.srcDirs = [ 
+            lpreview ? 'src/lpreview/res' : 'src/classic/res', 
+            'src/droidconuk/res' 
+        ] 
+    }
 
     defaultConfig lpreview ? {} : {
         // Non-L-preview configuration
