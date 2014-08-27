@@ -15,6 +15,7 @@
  */
 
 lpreview = hasProperty('lpreview') ? lpreview.toBoolean() : false;
+ext.ioschedSourceBase = lpreview ? 'src/lpreview/' : 'src/classic/';
 
 apply plugin: 'com.android.application'
 
@@ -30,7 +31,7 @@ android {
     buildToolsVersion "20.0.0"
 
     productFlavors { 
-	lpreview ? lpreview{} : classic{} 
+        io2014 {} 
 
         droidconuk {
             applicationId "com.conferenceengineer.iosched.event1002"
@@ -38,13 +39,13 @@ android {
     }
 
     sourceSets {
-        droidconuk.java.srcDirs = [ 
-            lpreview ? 'src/lpreview/java' :'src/classic/java',
-            'src/droidconuk/java/' 
+        main.java.srcDirs = [ 
+            ioschedSourceBase + 'java',
+            'src/main/java'
         ]
-        droidconuk.resources.srcDirs = [ 
-            lpreview ? 'src/lpreview/res' : 'src/classic/res', 
-            'src/droidconuk/res' 
+        main.resources.srcDirs = [ 
+            ioschedSourceBase + 'res', 
+            'src/main/res'
         ] 
     }
 
