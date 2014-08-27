@@ -31,10 +31,12 @@ android {
     buildToolsVersion "20.0.0"
 
     productFlavors { 
-        io2014 {} 
+        io2014 {
+            applicationId = "com.google.samples.apps.iosched"
+        } 
 
         droidconuk {
-            applicationId "com.conferenceengineer.iosched.event1002"
+            applicationId = "com.conferenceengineer.android.iosched.event1002"
         }
     }
 
