@@ -19,6 +19,8 @@ package com.google.samples.apps.iosched.util;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+
+import com.google.samples.apps.iosched.BuildConfig;
 import com.google.samples.apps.iosched.Config;
 
 import java.util.TimeZone;
@@ -264,8 +266,15 @@ public class PrefUtils  {
      * website. If actively==true, will return whether we should offer actively (with a card,
      * for example); if actively==false, will return whether we should do so passively
      * (with an overflow item in the menu, for instance).
+     *
+     * If the conference doesn't support remote attendees then the website will
+     * never be offered.
      */
     public static boolean shouldOfferIOExtended(final Context context, boolean actively) {
+        if(!BuildConfig.SUPPORTS_REMOTE_VIEWING) {
+            return false;
+        }
+
         boolean isRemote = !PrefUtils.isAttendeeAtVenue(context);
         boolean hasNotDismissed = !PrefUtils.hasDismissedIOExtendedCard(context);
         boolean conferenceGoingOn = !TimeUtils.hasConferenceEnded(context);

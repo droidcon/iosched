@@ -41,6 +41,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.samples.apps.iosched.BuildConfig;
 import com.google.samples.apps.iosched.Config;
 import com.google.samples.apps.iosched.R;
 import com.google.samples.apps.iosched.model.TagMetadata;
@@ -871,7 +872,8 @@ public class SessionsFragment extends Fragment implements
             LOGE(TAG, "Message card not found in UI (R.id.message_card).");
             return false;
         }
-        if (!PrefUtils.hasAnsweredLocalOrRemote(getActivity()) &&
+        if (BuildConfig.SUPPORTS_REMOTE_VIEWING &&
+                !PrefUtils.hasAnsweredLocalOrRemote(getActivity()) &&
                 !TimeUtils.hasConferenceEnded(getActivity())) {
             // show the "in person" vs "remote" card
             setupLocalOrRemoteCard(card);

@@ -37,6 +37,8 @@ android {
 
             manifestPlaceholders = [ uniqueContentIdentifier:uniqueContentIdentifier]
 
+            buildConfigField "boolean", "SUPPORTS_REMOTE_VIEWING", "true"
+
             buildConfigField "String", "CONFERENCE_DATA_MANIFEST_URL", "\"\""
 
             buildConfigField "String", "BOOTSTRAP_DATA_TIMESTAMP", "\"Thu, 10 Apr 2014 00:01:03 GMT\""
@@ -63,6 +65,8 @@ android {
             applicationId = "com.conferenceengineer.android.iosched.event1002"
             uniqueContentIdentifier = "event1002"
             manifestPlaceholders = [ uniqueContentIdentifier:uniqueContentIdentifier]
+
+            buildConfigField "boolean", "SUPPORTS_REMOTE_VIEWING", "false"
 
             buildConfigField "String", "CONFERENCE_DATA_MANIFEST_URL", "\"\""
 
