@@ -95,7 +95,7 @@ android {
 
 dependencies {
     wearApp project(':Wearable')
-    compile 'com.google.android.gms:play-services:5+' 
+    compile 'com.google.android.gms:play-services:5.0.89'
     compile 'com.android.support:support-v13:20.+'
     compile 'com.android.support:support-v4:20.+'
     compile 'com.google.android.apps.dashclock:dashclock-api:+'
