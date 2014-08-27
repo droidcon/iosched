@@ -18,8 +18,6 @@ package com.google.samples.apps.iosched;
 
 import android.net.Uri;
 
-import com.google.samples.apps.iosched.util.ParserUtils;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TimeZone;
