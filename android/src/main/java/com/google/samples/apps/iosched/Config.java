@@ -35,35 +35,28 @@ public class Config {
     public static final String DOGFOOD_BUILD_WARNING_TEXT = "This is a test build.";
 
     // Public data manifest URL
-    public static final String PROD_CONFERENCE_DATA_MANIFEST_URL = "";
+    public static final String PROD_CONFERENCE_DATA_MANIFEST_URL = BuildConfig.CONFERENCE_DATA_MANIFEST_URL;
 
     // Manifest URL override for Debug (staging) builds:
     public static final String MANIFEST_URL = PROD_CONFERENCE_DATA_MANIFEST_URL;
 
-    public static final String BOOTSTRAP_DATA_TIMESTAMP = "Thu, 10 Apr 2014 00:01:03 GMT";
+    public static final String BOOTSTRAP_DATA_TIMESTAMP = BuildConfig.BOOTSTRAP_DATA_TIMESTAMP;
 
     // Conference hashtag
-    public static final String CONFERENCE_HASHTAG = "#io14";
+    public static final String CONFERENCE_HASHTAG = BuildConfig.CONFERENCE_HASHTAG;
 
     // Patterns that, when absent from a hashtag, will trigger the addition of the
     // CONFERENCE_HASHTAG on sharing snippets. Ex: "#Android" will be shared as "#io14 #Android",
     // but "#iohunt" won't be modified.
-    public static final String CONFERENCE_HASHTAG_PREFIX = "#io";
+    public static final String CONFERENCE_HASHTAG_PREFIX = BuildConfig.CONFERENCE_HASHTAG_PREFIX;
 
     // Hard-coded conference dates. This is hardcoded here instead of extracted from the conference
     // data to avoid the Schedule UI breaking if some session is incorrectly set to a wrong date.
     public static final int CONFERENCE_YEAR = 2014;
 
-    public static final long[][] CONFERENCE_DAYS = new long[][] {
-            // start and end of day 1
-            { ParserUtils.parseTime("2014-06-25T07:00:00.000Z"),
-              ParserUtils.parseTime("2014-06-26T06:59:59.999Z") },
-            // start and end of day 2
-            { ParserUtils.parseTime("2014-06-26T07:00:00.000Z"),
-              ParserUtils.parseTime("2014-06-27T06:59:59.999Z") },
-        };
+    public static final long[][] CONFERENCE_DAYS = BuildConfig.CONFERENCE_DAYS;
 
-    public static final TimeZone CONFERENCE_TIMEZONE = TimeZone.getTimeZone("America/Los_Angeles");
+    public static final TimeZone CONFERENCE_TIMEZONE = TimeZone.getTimeZone(BuildConfig.CONFERENCE_TIMEZONE);
 
     public static final long CONFERENCE_START_MILLIS = CONFERENCE_DAYS[0][0];
     public static final long CONFERENCE_END_MILLIS = CONFERENCE_DAYS[CONFERENCE_DAYS.length-1][1];
@@ -75,7 +68,7 @@ public class Config {
     public static final long DAY_MILLIS = 24 * HOUR_MILLIS;
 
     // OAuth 2.0 related config
-    public static final String APP_NAME = "GoogleIO-Android";
+    public static final String APP_NAME = BuildConfig.OAUTH_APP_NAME;
     public static final String API_KEY = "";
 
     // Announcements
@@ -91,8 +84,8 @@ public class Config {
     public static final String LIVESTREAM_CAPTIONS_DARK_THEME_URL_PARAM = "&theme=dark";
 
     // Conference public WiFi AP parameters
-    public static final String WIFI_SSID = "IO2014";
-    public static final String WIFI_PASSPHRASE = "letsdothis";
+    public static final String WIFI_SSID = BuildConfig.WIFI_SSID;
+    public static final String WIFI_PASSPHRASE = BuildConfig.WIFI_PASSPHRASE;
 
     // GCM config
     public static final String GCM_SERVER_PROD_URL = "";

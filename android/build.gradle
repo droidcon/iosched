@@ -33,10 +33,50 @@ android {
     productFlavors { 
         io2014 {
             applicationId = "com.google.samples.apps.iosched"
-        } 
+
+            buildConfigField "String", "CONFERENCE_DATA_MANIFEST_URL", "\"\""
+
+            buildConfigField "String", "BOOTSTRAP_DATA_TIMESTAMP", "\"Thu, 10 Apr 2014 00:01:03 GMT\""
+            buildConfigField "String", "CONFERENCE_HASHTAG", "\"#io14\""
+            buildConfigField "String", "CONFERENCE_HASHTAG_PREFIX", "\"#io\""
+            buildConfigField "String", "CONFERENCE_TIMEZONE", "\"America/Los_Angeles\""
+            buildConfigField "String", "OAUTH_APP_NAME", "\"GoogleIO-Android\""
+            buildConfigField "String", "WIFI_SSID", "\"IO2014\""
+            buildConfigField "String", "WIFI_PASSPHRASE", "\"letsdothis\""
+
+            buildConfigField "long[][]", "CONFERENCE_DAYS", "new long[][] {\n" +
+                    "            {  " +
+                    "               com.google.samples.apps.iosched.util.ParserUtils.parseTime(\"2014-06-25T07:00:00.000Z\"),\n" +
+                    "               com.google.samples.apps.iosched.util.ParserUtils.parseTime(\"2014-06-26T06:59:59.999Z\")\n" +
+                    "            }, {\n" +
+                    "               com.google.samples.apps.iosched.util.ParserUtils.parseTime(\"2014-06-26T07:00:00.000Z\"),\n"+
+                    "               com.google.samples.apps.iosched.util.ParserUtils.parseTime(\"2014-06-27T06:59:59.999Z\")\n"+
+                    "            },\n" +
+                    "        }"
+        }
 
         droidconuk {
             applicationId = "com.conferenceengineer.android.iosched.event1002"
+
+            buildConfigField "String", "CONFERENCE_DATA_MANIFEST_URL", "\"\""
+
+            buildConfigField "String", "BOOTSTRAP_DATA_TIMESTAMP", "\"Thu, 27 Aug 2014 13:37:00 GMT\""
+            buildConfigField "String", "CONFERENCE_HASHTAG", "\"#droidconUK\""
+            buildConfigField "String", "CONFERENCE_HASHTAG_PREFIX", "\"#dcuk\""
+            buildConfigField "String", "CONFERENCE_TIMEZONE", "\"Europe/London\""
+            buildConfigField "String", "OAUTH_APP_NAME", "\"DroidconUK2014-2014\""
+            buildConfigField "String", "WIFI_SSID", "\"DROIDCONUK\""
+            buildConfigField "String", "WIFI_PASSPHRASE", "\"lolwaitwaht\""
+
+            buildConfigField "long[][]", "CONFERENCE_DAYS", "new long[][] {\n" +
+                    "            {  " +
+                    "               com.google.samples.apps.iosched.util.ParserUtils.parseTime(\"2014-10-30T08:00:00.000Z\"),\n" +
+                    "               com.google.samples.apps.iosched.util.ParserUtils.parseTime(\"2014-10-31T07:59:59.999Z\")\n" +
+                    "            }, {\n" +
+                    "               com.google.samples.apps.iosched.util.ParserUtils.parseTime(\"2014-10-31T08:00:00.000Z\"),\n"+
+                    "               com.google.samples.apps.iosched.util.ParserUtils.parseTime(\"2014-11-01T07:59:59.999Z\")\n"+
+                    "            },\n" +
+                    "        }"
         }
     }
 
