@@ -45,6 +45,7 @@ android {
             buildConfigField "String", "CONFERENCE_HASHTAG", "\"#io14\""
             buildConfigField "String", "CONFERENCE_HASHTAG_PREFIX", "\"#io\""
             buildConfigField "String", "CONFERENCE_TIMEZONE", "\"America/Los_Angeles\""
+            buildConfigField "String", "CONFERENCE_GAME_PACKAGE_NAME", "\"com.google.wolff.androidhunt2\""
             buildConfigField "String", "OAUTH_APP_NAME", "\"GoogleIO-Android\""
             buildConfigField "String", "UNIQUE_CONTENT_IDENTIFIER", "\""+uniqueContentIdentifier+"\""
             buildConfigField "String", "WIFI_SSID", "\"IO2014\""
@@ -71,6 +72,7 @@ android {
             buildConfigField "String", "CONFERENCE_DATA_MANIFEST_URL", "\"\""
 
             buildConfigField "String", "BOOTSTRAP_DATA_TIMESTAMP", "\"Thu, 27 Aug 2014 13:37:00 GMT\""
+            buildConfigField "String", "CONFERENCE_GAME_PACKAGE_NAME", "\"\""
             buildConfigField "String", "CONFERENCE_HASHTAG", "\"#droidconUK\""
             buildConfigField "String", "CONFERENCE_HASHTAG_PREFIX", "\"#dcuk\""
             buildConfigField "String", "CONFERENCE_TIMEZONE", "\"Europe/London\""

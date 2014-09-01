@@ -162,7 +162,7 @@ public class Config {
     public static final long STALE_DATA_WARNING_SNOOZE = 10 * MINUTE_MILLIS;
 
     // Package name for the I/O Hunt game
-    public static final String IO_HUNT_PACKAGE_NAME = "com.google.wolff.androidhunt2";
+    public static final String IO_HUNT_PACKAGE_NAME = BuildConfig.CONFERENCE_GAME_PACKAGE_NAME;
 
     // Play store URL prefix
     public static final String PLAY_STORE_URL_PREFIX
