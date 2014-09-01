@@ -57,7 +57,7 @@ android {
             buildConfigField "String", "CONFERENCE_TIMEZONE", "\"America/Los_Angeles\""
             buildConfigField "String", "CONFERENCE_GAME_PACKAGE_NAME", "\"com.google.wolff.androidhunt2\""
             buildConfigField "String", "OAUTH_APP_NAME", "\"GoogleIO-Android\""
-            buildConfigField "String", "OAUTH_API_KEY", ""
+            buildConfigField "String", "OAUTH_API_KEY", "\"\""
             buildConfigField "String", "UNIQUE_CONTENT_IDENTIFIER", "\""+uniqueContentIdentifier+"\""
             buildConfigField "String", "WIFI_SSID", "\"IO2014\""
             buildConfigField "String", "WIFI_PASSPHRASE", "\"letsdothis\""
