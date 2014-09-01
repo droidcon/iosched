@@ -90,7 +90,7 @@ android {
             buildConfigField "double", "VENUE_CAMERA_LATITUDE", "51.535556"
             buildConfigField "double", "VENUE_CAMERA_LONGITUDE", "-0.104797"
 
-            buildConfigField "String", "CONFERENCE_DATA_MANIFEST_URL", "\"\""
+            buildConfigField "String", "CONFERENCE_DATA_MANIFEST_URL", "\""+droidconuk14_android_manifest+"\""
 
             buildConfigField "String", "BOOTSTRAP_DATA_TIMESTAMP", "\"Thu, 27 Aug 2014 13:37:00 GMT\""
             buildConfigField "String", "CONFERENCE_GAME_PACKAGE_NAME", "\"\""
