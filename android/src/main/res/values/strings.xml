@@ -40,7 +40,7 @@
 
     <!-- Shown in the 'About' window of the app. -->
     <string name="about_body"><![CDATA[
-        <b>Google I/O 2014</b><br>
+        <b>ConferenceEngineer.com<br>(based on Google I/O 2014)</b><br>
         Version %s<br><br>
         <a href="http://m.google.com/utos">Terms of Service</a><br><br>
         <a href="http://www.google.com/policies/privacy/">Privacy Policy</a>
