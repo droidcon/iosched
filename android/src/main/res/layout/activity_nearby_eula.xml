@@ -28,7 +28,7 @@
         android:background="#e5e5e5">
 
         <ImageView
-            android:src="@drawable/io2014_logo"
+            android:src="@drawable/event_logo"
             android:layout_width="200dp"
             android:layout_height="100dp"
             android:scaleType="fitCenter"
