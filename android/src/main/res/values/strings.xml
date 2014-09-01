@@ -226,7 +226,7 @@
     <string name="empty_widget_text">No more upcoming sessions.\nSee you next year!</string>
 
     <!-- Shown on a widget instructing user how to start using the widget. -->
-    <string name="empty_widget_text_signed_out">Touch the Google I/O 2014 logo above to sign in and begin using the app.</string>
+    <string name="empty_widget_text_signed_out">Touch the logo above to sign in and begin using the app.</string>
 
     <!-- Shown as a header on a list of sessions to indicate that the sessions that appear on that
     group have already ended. -->
@@ -239,7 +239,7 @@
     <string name="experts_directory_all_countries">All countries</string>
 
     <!-- Text that appears next to a person's name to indicate that they are attending Google I/O in person. Alternate translations might be: "present in person", "present at the event", "present onsite", etc. -->
-    <string name="experts_directory_attending">attending I/O</string>
+    <string name="experts_directory_attending">attending</string>
 
     <!-- Description of the Google Developer Expert program that appears in the Google Developer Expert directory screen, giving an introduction about what the term means. -->
     <string name="experts_directory_header_body">The Google Developer Experts (GDE) title recognizes the outstanding developers who exhibit great expertise in one or more Google technologies and share it with the developer community. GDEs are gurus, mentors and evangelists; they create tutorials, code samples, and write books and blogs; they publish videos, drive community projects, and present at events large and small. These independent developers bring their real-world experience and knowledge working with Google technologies to developer communities worldwide.</string>
@@ -251,10 +251,10 @@
     <string name="experts_directory_header_title">Who are the Google Developers Experts?</string>
 
     <!-- Message that appears as feedback when the user has indicated that they are attending I/O in person. -->
-    <string name="explore_attending_in_person_toast">Attending I/O in person (you can change this in Settings)</string>
+    <string name="explore_attending_in_person_toast">Attending in person (you can change this in Settings)</string>
 
     <!-- Message that appears as feedback when the user has indicated that they are attending I/O remotely. -->
-    <string name="explore_attending_remotely_toast">Attending I/O remotely (you can change this in Settings)</string>
+    <string name="explore_attending_remotely_toast">Attending remotely (you can change this in Settings)</string>
 
     <!-- Label for a button to answer the question "Would you like to send feedback
     about this session?" which, when clicked, allows the user to send their feedback (ratings
@@ -274,7 +274,7 @@
 
     <!-- List dropdown item on the Video Library screen allowing the user to choose to see
     the videos from a particular year of Google I/O. -->
-    <string name="google_i_o_year">I/O <xliff:g id="year">%1$d</xliff:g></string>
+    <string name="google_i_o_year"><xliff:g id="year">%1$d</xliff:g></string>
 
     <!-- Label on a button that the user can click to dismiss an reminder or information message.
     For example "To scan an attendee's badge, hold your phone close to the badge for a few
@@ -366,7 +366,7 @@
     <string name="navdrawer_item_explore">Explore</string>
 
     <!-- Accessibility description for menu item to open the Explore screen. -->
-    <string name="navdrawer_item_explore_a11y">Explore Google I/O</string>
+    <string name="navdrawer_item_explore_a11y">Explore</string>
 
     <!-- Menu item to open the Map screen [CHAR_LIMIT=20] -->
     <string name="navdrawer_item_map">Map</string>
@@ -386,20 +386,20 @@
     <!-- Menu item to start the Sign In flow [CHAR_LIMIT=20] -->
     <string name="navdrawer_item_sign_in">Sign in</string>
 
-    <!-- Menu item to open a screen that lists I/O related hashtags. Each hashtag, when clicked, will
+    <!-- Menu item to open a screen that lists related hashtags. Each hashtag, when clicked, will
     open Google+ stream of posts that uses the hashtag [CHAR_LIMIT=20] -->
     <string name="navdrawer_item_social">Social</string>
 
-    <!-- Menu item to open a list of current and past I/O videos [CHAR_LIMIT=20] -->
+    <!-- Menu item to open a list of current and past videos [CHAR_LIMIT=20] -->
     <string name="navdrawer_item_video_library">Video library</string>
 
     <!-- Text indicator that appears below the user's name, showing that they are
     attending the conference in person in San Francisco. -->
-    <string name="navdrawer_status_attending_in_person">Attending I/O in person</string>
+    <string name="navdrawer_status_attending_in_person">Attending in person</string>
 
     <!-- Text indicator that appears below the user's name, showing that they are
     attending the conference remotely via live streaming. -->
-    <string name="navdrawer_status_attending_remotely">Attending I/O remotely</string>
+    <string name="navdrawer_status_attending_remotely">Attending remotely</string>
 
     <!-- Header text for the Nearby EULA fragment -->
     <string name="nearby_eula_header">PhysicalWeb Experiment</string>
@@ -495,7 +495,7 @@
 
     <!-- An application permission (this permission allows the application to modify the Google
     I/O schedule data). Shows on a permissions dialog screen. -->
-    <string name="permission_write">Modify Google I/O schedule data</string>
+    <string name="permission_write">Modify schedule data</string>
 
     <!-- Description of the Google+ +1 button for accessibility screen readers -->
     <string name="plus_one_description_standard">Touch to plus one.</string>
@@ -513,7 +513,7 @@
     <string name="pref_attendee_at_venue_description">Display all sessions and on-site events. If unchecked, only live-streamed sessions will be shown.</string>
 
     <!-- Title in the Settings screen for the "I will be at Google I/O" option -->
-    <string name="pref_attendee_at_venue_title">I\'ll be at Google I/O!</string>
+    <string name="pref_attendee_at_venue_title">I\'ll be there</string>
 
     <!-- Summary in the Settings screen for the "Show local times" option -->
     <string name="pref_local_times_description">Use your local time instead of the conference’s local time.</string>
@@ -547,11 +547,11 @@
 
     <!-- Text of a card shown in the session explorer that asks the user if he wants to see I/O
     extended events in his area. "Browse events" and "No, thanks" are the buttons shown in the card -->
-    <string name="question_i_o_extended">Would you like to know more about I/O Extended events happening near your location?</string>
+    <string name="question_i_o_extended">Would you like to know more about related events happening near your location?</string>
 
     <!-- Text of a card shown in the session explorer that asks the user if he will be attending I/O
     in person or remotely. "Remotely" and "In person" are the buttons shown in the card -->
-    <string name="question_local_or_remote">Are you attending I/O remotely or in person in San Francisco?</string>
+    <string name="question_local_or_remote">Are you attending remotely or in person?</string>
 
     <!-- Text of a card shown in the session explorer after I/O has started that asks the user if
     he wants to configure the WiFi. "Yes!" and "No, thanks" are the buttons shown in the card -->
@@ -584,10 +584,10 @@
 
     <!-- Search label that shows the type of data being searched for when the user clicks the
     Search button. -->
-    <string name="search_label">Google I/O sessions</string>
+    <string name="search_label">Sessions</string>
 
     <!-- A fragment of text appended to a Google calendar event indicating it was added by this application -->
-    <string name="session_calendar_suffix">- added by Google I/O Android app</string>
+    <string name="session_calendar_suffix">- added by conference app</string>
 
     <!-- Accessibility text announced as a response to pressing a button to add a session to the schedule. -->
     <string name="session_details_a11y_session_added">Session added to your schedule</string>
@@ -688,8 +688,8 @@
     <!-- Hint for a play/pause video button -->
     <string name="session_livestream_play_pause">Play / Pause</string>
 
-    <!-- Actionbar title for I/O Live -->
-    <string name="session_livestream_title">I/O Live</string>
+    <!-- Actionbar title for Live stream -->
+    <string name="session_livestream_title">Live</string>
 
     <!-- Notification text that a session is starting in some number of minutes -->
     <string name="session_notification_text_1">starting in <xliff:g id="remaining_time">%1$d</xliff:g> min.</string>
@@ -715,8 +715,8 @@
     <!-- Button text indicating the user would like us to set up wifi access -->
     <string name="setup_wifi_yes">Yes!</string>
 
-    <!-- Re-share template text indicating the user is watching I/O Live -->
-    <string name="share_livestream_template">Watching I/O Live: \'<xliff:g id="title">%1$s</xliff:g>\' at <xliff:g id="hashtags">%2$s</xliff:g> <xliff:g id="url">%3$s</xliff:g></string>
+    <!-- Re-share template text indicating the user is watching Live -->
+    <string name="share_livestream_template">Watching Live: \'<xliff:g id="title">%1$s</xliff:g>\' at <xliff:g id="hashtags">%2$s</xliff:g> <xliff:g id="url">%3$s</xliff:g></string>
 
     <!-- Re-share template text indicating the user is at a particular session -->
     <string name="share_template">Check out \'<xliff:g id="title">%1$s</xliff:g>\' at <xliff:g id="hashtags">%2$s</xliff:g> <xliff:g id="url">%3$s</xliff:g></string>
