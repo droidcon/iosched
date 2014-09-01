@@ -35,7 +35,10 @@ android {
             applicationId = "com.google.samples.apps.iosched"
             uniqueContentIdentifier = "iosched2014"
 
-            manifestPlaceholders = [ uniqueContentIdentifier:uniqueContentIdentifier]
+            manifestPlaceholders = [
+                    uniqueContentIdentifier:uniqueContentIdentifier,
+                    mapsApiKey:""
+            ]
 
             buildConfigField "boolean", "HAS_VIDEO_LIBRARY", "true"
             buildConfigField "boolean", "SUPPORTS_PEER_BADGE_SCANNING", "true"
@@ -67,7 +70,10 @@ android {
         droidconuk {
             applicationId = "com.conferenceengineer.android.iosched.event1002"
             uniqueContentIdentifier = "event1002"
-            manifestPlaceholders = [ uniqueContentIdentifier:uniqueContentIdentifier]
+            manifestPlaceholders = [
+                    uniqueContentIdentifier:uniqueContentIdentifier,
+                    mapsApiKey:droidconuk14_android_maps_api_key
+            ]
 
             buildConfigField "boolean", "HAS_VIDEO_LIBRARY", "false"
             buildConfigField "boolean", "SUPPORTS_PEER_BADGE_SCANNING", "false"
