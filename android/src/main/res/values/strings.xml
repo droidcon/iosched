@@ -408,7 +408,7 @@
     <string name="physicalweb_intro_title">PhysicalWeb Experiment</string>
 
     <!-- Explanation of the PhysicalWeb experiment that appears on the 'Nearby' tab. -->
-    <string name="physicalweb_intro_text">This tab can show you links to content related to the conference features near your current location (e.g., partner websites, apps, demos and interactive content). To do this, the app will perform a Bluetooth LE scan of your surroundings to look for tags and send that information to a Google server for processing. Once activated, this will continue for the duration of the event, as long as your device has Bluetooth turned on. If you want to turn the feature off, visit the app\'s Settings menu or deactivate Bluetooth on the device. Keep in mind this is just an experiment with BLE, not a full product, so there may be some rough edges! It may not work if there is poor or no network connection, or if there is too much interference.\n\nWould you like to enable this feature now?</string>
+    <string name="physicalweb_intro_text">This tab can show you links to content related to the conference features near your current location (e.g., partner websites, apps, demos and interactive content). To do this, the app will perform a Bluetooth LE scan of your surroundings to look for tags and send that information to a server for processing. Once activated, this will continue for the duration of the event, as long as your device has Bluetooth turned on. If you want to turn the feature off, visit the app\'s Settings menu or deactivate Bluetooth on the device. Keep in mind this is just an experiment with BLE, not a full product, so there may be some rough edges! It may not work if there is poor or no network connection, or if there is too much interference.\n\nWould you like to enable this feature now?</string>
 
     <!-- Text shown on the Nearby tab when Bluetooth is off, to ask the user to turn it on. -->
     <string name="physical_web_bluetooth_off">This feature requires Bluetooth, but your device\'s Bluetooth is turned off. To use this feature, please enable Bluetooth in your device\'s Settings screen.</string>
@@ -505,9 +505,9 @@
     <string name="pref_analytics_enabled_title">Send anonymous usage statistics</string>
 
     <!-- Description in the Settings screen for the setting that enables sending of anonymous usage
-    statistics to Google. -->
+    statistics to the app developer. -->
     <string name="pref_analytics_enabled_description">Send anonymous statistics about app usage
-    to Google.</string>
+    to the app developer.</string>
 
     <!-- Summary in the Settings screen for the "I will be at Google I/O" option -->
     <string name="pref_attendee_at_venue_description">Display all sessions and on-site events. If unchecked, only live-streamed sessions will be shown.</string>

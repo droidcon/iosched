@@ -4,4 +4,6 @@
     <string name="question_setup_wifi_after_i_o_start">Droidcon UK is here! Would you like to configure the conference WiFi now?</string>
     <string name="question_setup_wifi_before_i_o_start">Droidcon UK is coming up! Would you like to configure the conference WiFi now?</string>
     <string name="welcome_to_google_i_o_app">Welcome to the Droidcon UK app!</string>
+    <string name="experts_directory_header_body">These are the people we consider to have worked on high profile successful projects, or have helped others in an outstanding way.</string>
+    <string name="experts_directory_header_title">Who are the Experts?</string>
 </resources>
