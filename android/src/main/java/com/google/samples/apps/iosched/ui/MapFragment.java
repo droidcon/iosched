@@ -22,7 +22,6 @@ import static com.google.samples.apps.iosched.util.LogUtils.makeLogTag;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
-import android.app.DialogFragment;
 import android.content.*;
 import android.database.ContentObserver;
 import android.database.Cursor;
@@ -45,6 +44,7 @@ import android.view.ViewTreeObserver;
 import android.widget.FrameLayout;
 
 import com.google.android.gms.maps.CameraUpdate;
+import com.google.samples.apps.iosched.BuildConfig;
 import com.google.samples.apps.iosched.R;
 import com.google.samples.apps.iosched.provider.ScheduleContract;
 import com.google.samples.apps.iosched.util.*;
@@ -72,8 +72,8 @@ public class MapFragment extends com.google.android.gms.maps.MapFragment impleme
         GoogleMap.OnIndoorStateChangeListener, LoaderCallbacks<Cursor>,
         GoogleMap.OnMapLoadedCallback {
 
-    private static final LatLng MOSCONE =  new LatLng(37.783107, -122.403789);
-    private static final LatLng MOSCONE_CAMERA =  new LatLng(37.78308931536713, -122.40409433841705);
+    private static final LatLng VENUE_POSITION =  new LatLng(BuildConfig.VENUE_LATITUDE, BuildConfig.VENUE_LONGITUDE);
+    private static final LatLng VENUE_CAMERA_POSITION =  new LatLng(BuildConfig.VENUE_CAMERA_LATITUDE, BuildConfig.VENUE_CAMERA_LONGITUDE);
 
     // Initial camera zoom
     private static final float CAMERA_ZOOM = 18.19f;
@@ -301,7 +301,7 @@ public class MapFragment extends com.google.android.gms.maps.MapFragment impleme
 
         // Add a Marker for Moscone
         mMosconeMaker = mMap.addMarker(MapUtils.createMosconeMarker(mIconGenerator,
-                MOSCONE, getActivity()).visible(false));
+                VENUE_POSITION, getActivity()).visible(false));
 
         mMap.setOnMarkerClickListener(this);
         mMap.setOnInfoWindowClickListener(this);
@@ -362,12 +362,12 @@ public class MapFragment extends com.google.android.gms.maps.MapFragment impleme
     }
 
     /**
-     * Moves the camera to Moscone Center (as defined in {@link #MOSCONE} and {@link #CAMERA_ZOOM}.
+     * Moves the camera to Moscone Center (as defined in {@link #VENUE_POSITION} and {@link #CAMERA_ZOOM}.
      * @param animate Animates the camera if true, otherwise it is moved
      */
     private void centerOnMoscone(boolean animate) {
         CameraUpdate camera = CameraUpdateFactory.newCameraPosition(
-                new CameraPosition.Builder().bearing(CAMERA_BEARING).target(MOSCONE_CAMERA).zoom(CAMERA_ZOOM).tilt(0f).build());
+                new CameraPosition.Builder().bearing(CAMERA_BEARING).target(VENUE_CAMERA_POSITION).zoom(CAMERA_ZOOM).tilt(0f).build());
         if (animate) {
             mMap.animateCamera(camera);
         } else {
@@ -511,7 +511,7 @@ public class MapFragment extends com.google.android.gms.maps.MapFragment impleme
         IndoorBuilding building = mMap.getFocusedBuilding();
 
         if (building != null && mMosconeBuilding == null
-                && mMap.getProjection().getVisibleRegion().latLngBounds.contains(MOSCONE)) {
+                && mMap.getProjection().getVisibleRegion().latLngBounds.contains(VENUE_POSITION)) {
             // Store the first active building. This will always be Moscone
             mMosconeBuilding = building;
             enableMapElements();

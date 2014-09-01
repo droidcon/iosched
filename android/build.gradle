@@ -44,6 +44,11 @@ android {
             buildConfigField "boolean", "SUPPORTS_PEER_BADGE_SCANNING", "true"
             buildConfigField "boolean", "SUPPORTS_REMOTE_VIEWING", "true"
 
+            buildConfigField "double", "VENUE_LATITUDE", "37.783107"
+            buildConfigField "double", "VENUE_LONGITUDE", "-122.403789"
+            buildConfigField "double", "VENUE_CAMERA_LATITUDE", "37.78308931536713"
+            buildConfigField "double", "VENUE_CAMERA_LONGITUDE", "-122.40409433841705"
+
             buildConfigField "String", "CONFERENCE_DATA_MANIFEST_URL", "\"\""
 
             buildConfigField "String", "BOOTSTRAP_DATA_TIMESTAMP", "\"Thu, 10 Apr 2014 00:01:03 GMT\""
@@ -78,6 +83,11 @@ android {
             buildConfigField "boolean", "HAS_VIDEO_LIBRARY", "false"
             buildConfigField "boolean", "SUPPORTS_PEER_BADGE_SCANNING", "false"
             buildConfigField "boolean", "SUPPORTS_REMOTE_VIEWING", "false"
+
+            buildConfigField "double", "VENUE_LATITUDE", "51.535555"
+            buildConfigField "double", "VENUE_LONGITUDE", "-0.1047969"
+            buildConfigField "double", "VENUE_CAMERA_LATITUDE", "51.535556"
+            buildConfigField "double", "VENUE_CAMERA_LONGITUDE", "-0.104797"
 
             buildConfigField "String", "CONFERENCE_DATA_MANIFEST_URL", "\"\""
 
