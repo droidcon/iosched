@@ -390,7 +390,7 @@ public abstract class BaseActivity extends Activity implements
         mNavDrawerItems.add(NAVDRAWER_ITEM_SEPARATOR);
 
         // If attendee is on-site, show the People I've Met item
-        if (attendeeAtVenue) {
+        if (BuildConfig.SUPPORTS_PEER_BADGE_SCANNING && attendeeAtVenue) {
             mNavDrawerItems.add(NAVDRAWER_ITEM_PEOPLE_IVE_MET);
         }
 
