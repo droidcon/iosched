@@ -32,7 +32,7 @@
             android:layout_width="200dp"
             android:layout_height="100dp"
             android:scaleType="fitCenter"
-            android:tint="#7000"
+            android:tint="@color/event_logo_tint"
             android:layout_gravity="center|top" />
 
         <ScrollView
