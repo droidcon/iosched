@@ -37,6 +37,7 @@ android {
 
             manifestPlaceholders = [ uniqueContentIdentifier:uniqueContentIdentifier]
 
+            buildConfigField "boolean", "HAS_VIDEO_LIBRARY", "true"
             buildConfigField "boolean", "SUPPORTS_REMOTE_VIEWING", "true"
 
             buildConfigField "String", "CONFERENCE_DATA_MANIFEST_URL", "\"\""
@@ -67,6 +68,7 @@ android {
             uniqueContentIdentifier = "event1002"
             manifestPlaceholders = [ uniqueContentIdentifier:uniqueContentIdentifier]
 
+            buildConfigField "boolean", "HAS_VIDEO_LIBRARY", "false"
             buildConfigField "boolean", "SUPPORTS_REMOTE_VIEWING", "false"
 
             buildConfigField "String", "CONFERENCE_DATA_MANIFEST_URL", "\"\""
