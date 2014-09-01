@@ -21,8 +21,11 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Build;
 import android.os.Bundle;
+import android.preference.Preference;
 import android.preference.PreferenceActivity;
+import android.preference.PreferenceScreen;
 
+import com.google.samples.apps.iosched.BuildConfig;
 import com.google.samples.apps.iosched.R;
 import com.google.samples.apps.iosched.service.SessionCalendarService;
 import com.google.samples.apps.iosched.util.PrefUtils;
@@ -55,6 +58,14 @@ public class SettingsActivity extends PreferenceActivity implements SharedPrefer
         addPreferencesFromResource(R.xml.preferences);
         if (PrefUtils.hasEnabledBle(this)) {
             addPreferencesFromResource(R.xml.ble_preferences);
+        }
+        if (!BuildConfig.SUPPORTS_REMOTE_VIEWING) {
+            PreferenceScreen preferenceScreen = getPreferenceScreen();
+            Preference isAtConferencePreference =
+                    preferenceScreen.findPreference("pref_attendee_at_venue");
+            if(isAtConferencePreference != null) {
+                preferenceScreen.removePreference(isAtConferencePreference);
+            }
         }
     }
 
