@@ -67,7 +67,7 @@ public class Config {
 
     // OAuth 2.0 related config
     public static final String APP_NAME = BuildConfig.OAUTH_APP_NAME;
-    public static final String API_KEY = "";
+    public static final String API_KEY = BuildConfig.OAUTH_API_KEY;
 
     // Announcements
     public static final String ANNOUNCEMENTS_PLUS_ID = "";
