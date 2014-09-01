@@ -19,7 +19,7 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#e5e5e5"
+    android:background="@color/welcome_background"
     tools:context=".ui.WelcomeActivity">
 
     <ImageView

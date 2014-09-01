@@ -81,4 +81,7 @@
     <color name="tab_selected_strip">@color/theme_accent_1</color>
 
     <color name="my_schedule_conflict">#db4437</color>
+
+    <color name="eula_background">#e5e5e5</color>
+    <color name="welcome_background">#e5e5e5</color>
 </resources>
