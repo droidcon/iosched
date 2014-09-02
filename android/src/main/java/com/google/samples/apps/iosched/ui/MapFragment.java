@@ -100,7 +100,7 @@ public class MapFragment extends com.google.android.gms.maps.MapFragment impleme
     public static final String TYPE_PARTNER = "partner";
     public static final String TYPE_PLAIN_SESSION = "plainsession";
     public static final String TYPE_LABEL = "label";
-    public static final String TYPE_MOSCONE = "moscone";
+    public static final String TYPE_VENUE = "venue";
     public static final String TYPE_INACTIVE = "inactive";
 
     // Tile Providers

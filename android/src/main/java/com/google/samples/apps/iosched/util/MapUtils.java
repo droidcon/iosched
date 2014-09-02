@@ -17,7 +17,6 @@ package com.google.samples.apps.iosched.util;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.graphics.BitmapFactory;
 import android.preference.PreferenceManager;
 
 import com.google.samples.apps.iosched.R;
@@ -105,7 +104,7 @@ public class MapUtils {
      * @return
      */
     public static MarkerOptions createMosconeMarker(IconGenerator iconFactory, LatLng position, Context c) {
-        final String snippet = MapFragment.TYPE_MOSCONE;
+        final String snippet = MapFragment.TYPE_VENUE;
         iconFactory.setStyle(IconGenerator.STYLE_DEFAULT);
 
         final BitmapDescriptor icon =
