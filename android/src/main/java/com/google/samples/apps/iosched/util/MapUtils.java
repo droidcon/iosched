@@ -109,7 +109,7 @@ public class MapUtils {
         iconFactory.setStyle(IconGenerator.STYLE_DEFAULT);
 
         final BitmapDescriptor icon =
-                BitmapDescriptorFactory.fromResource(R.drawable.moscone_marker);
+                BitmapDescriptorFactory.fromResource(R.drawable.venue_marker);
 
         return new MarkerOptions().position(position).title(snippet)
                 .snippet(snippet).icon(icon)
