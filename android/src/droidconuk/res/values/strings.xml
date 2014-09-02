@@ -6,4 +6,5 @@
     <string name="welcome_to_google_i_o_app">Welcome to the Droidcon UK app!</string>
     <string name="experts_directory_header_body">These are the people we consider to have worked on high profile successful projects, or have helped others in an outstanding way.</string>
     <string name="experts_directory_header_title">Who are the Experts?</string>
+    <string name="map_label_venue" translatable="false">Business Design Center</string>
 </resources>
