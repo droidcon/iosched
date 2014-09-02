@@ -84,8 +84,8 @@ public class MapFragment extends com.google.android.gms.maps.MapFragment impleme
     // Estimated number of floors used to initialise data structures with appropriate capacity
     private static final int INITIAL_FLOOR_COUNT = 3;
 
-    // Default level (index of level in IndoorBuilding object for Moscone)
-    private static final int MOSCONE_DEFAULT_LEVEL_INDEX = 1;
+    // Default level (index of level in IndoorBuilding object for the venue)
+    private static final int VENUE_DEFAULT_LEVEL_INDEX = 1;
 
 
     /**
@@ -130,8 +130,8 @@ public class MapFragment extends com.google.android.gms.maps.MapFragment impleme
     // Screen DPI
     private float mDPI = 0;
 
-    // Indoor maps representation of Moscone Center
-    private IndoorBuilding mMosconeBuilding = null;
+    // Indoor maps representation of the venue
+    private IndoorBuilding mVenueBuilding = null;
 
     // currently displayed floor
     private int mFloor = INVALID_FLOOR;
@@ -140,8 +140,8 @@ public class MapFragment extends com.google.android.gms.maps.MapFragment impleme
     // Show markers at default zoom level
     private boolean mShowMarkers = true;
 
-    private boolean mAtMoscone = false;
-    private Marker mMosconeMaker = null;
+    private boolean mAtVenue = false;
+    private Marker mVenueMarker = null;
 
     private GoogleMap mMap;
 
@@ -299,8 +299,8 @@ public class MapFragment extends com.google.android.gms.maps.MapFragment impleme
                 mMarkers);
         mMap = getMap();
 
-        // Add a Marker for Moscone
-        mMosconeMaker = mMap.addMarker(MapUtils.createMosconeMarker(mIconGenerator,
+        // Add a Marker for the venue
+        mVenueMarker = mMap.addMarker(MapUtils.createVenueMarker(mIconGenerator,
                 VENUE_POSITION, getActivity()).visible(false));
 
         mMap.setOnMarkerClickListener(this);
@@ -310,8 +310,8 @@ public class MapFragment extends com.google.android.gms.maps.MapFragment impleme
         mMap.setInfoWindowAdapter(mInfoAdapter);
 
         if (resetCamera) {
-            // Move camera directly to Moscone
-           centerOnMoscone(false);
+            // Move camera directly to venue
+           centerOnVenue(false);
         }
 
         mMap.setIndoorEnabled(false);
@@ -362,10 +362,10 @@ public class MapFragment extends com.google.android.gms.maps.MapFragment impleme
     }
 
     /**
-     * Moves the camera to Moscone Center (as defined in {@link #VENUE_POSITION} and {@link #CAMERA_ZOOM}.
+     * Moves the camera to venue (as defined in {@link #VENUE_POSITION} and {@link #CAMERA_ZOOM}.
      * @param animate Animates the camera if true, otherwise it is moved
      */
-    private void centerOnMoscone(boolean animate) {
+    private void centerOnVenue(boolean animate) {
         CameraUpdate camera = CameraUpdateFactory.newCameraPosition(
                 new CameraPosition.Builder().bearing(CAMERA_BEARING).target(VENUE_CAMERA_POSITION).zoom(CAMERA_ZOOM).tilt(0f).build());
         if (animate) {
@@ -385,7 +385,7 @@ public class MapFragment extends com.google.android.gms.maps.MapFragment impleme
      * @param floor index of the floor to display. It requires an overlay and at least one Marker to
      *              be defined for it and it has to be a valid index in the
      *              {@link com.google.android.gms.maps.model.IndoorBuilding} object that
-     *              describes Moscone.
+     *              describes the venue.
      */
     private void showFloorElementsIndex(int floor) {
         LOGD(TAG, "Show floor " + floor);
@@ -401,25 +401,25 @@ public class MapFragment extends com.google.android.gms.maps.MapFragment impleme
 
         mFloor = floor;
 
-        if (isValidFloor(mFloor) && mAtMoscone) {
-            // Always hide the Moscone marker if a floor is shown
-            mMosconeMaker.setVisible(false);
+        if (isValidFloor(mFloor) && mAtVenue) {
+            // Always hide the venue marker if a floor is shown
+            mVenueMarker.setVisible(false);
             setFloorElementsVisible(mFloor, true);
         } else {
-            // Show Moscone marker if this is not a valid floor
-            mMosconeMaker.setVisible(true);
+            // Show venue marker if this is not a valid floor
+            mVenueMarker.setVisible(true);
         }
     }
 
     /**
-     * Change the active floor of Moscone Center
+     * Change the active floor of the venue.
      * to the given floor index. See {@link #showFloorElementsIndex(int)}.
      *
      * @param floor Index of the floor to show.
      * @see #showFloorElementsIndex(int)
      */
     private void showFloorIndex(int floor) {
-        if (isValidFloor(floor) && mAtMoscone) {
+        if (isValidFloor(floor) && mAtVenue) {
 
             if (mMap.getFocusedBuilding().getActiveLevelIndex() == floor) {
                 // This floor is already active, show its elements
@@ -430,6 +430,7 @@ public class MapFragment extends com.google.android.gms.maps.MapFragment impleme
             }
 
         } else {
+            mVenueMarker.setVisible(true);
             LOGD(TAG, "Can't show floor index " + floor + ".");
         }
     }
@@ -457,14 +458,14 @@ public class MapFragment extends com.google.android.gms.maps.MapFragment impleme
     }
 
     /**
-     * A floor is valid if it has tiles, overlays and the Moscone building contains that floor.
+     * A floor is valid if it has tiles, overlays and the venue contains that floor.
      *
      * @param floor
      * @return
      */
     private boolean isValidFloor(int floor) {
         return mMarkersFloor.get(floor) != null && mTileOverlays.get(floor) != null
-                && floor < mMosconeBuilding.getLevels().size();
+                && floor < mVenueBuilding.getLevels().size();
     }
 
     /**
@@ -473,32 +474,34 @@ public class MapFragment extends com.google.android.gms.maps.MapFragment impleme
      */
     private void enableMapElements() {
         if (mOverlaysLoaded && mMarkersLoaded && mWidth > 0 && mHeight > 0
-                && mMosconeBuilding != null) {
+                && mVenueBuilding != null) {
             // Enable indoor map again if data has been reloaded
             // Tiles and markers are enabled in the indoor API callbacks
             mMap.setIndoorEnabled(true);
 
-            // If already focused on Moscone, show the elements for the active floor
+            // If already focused on the venue, show the elements for the active floor
             // (The indoor callbacks will not be received in this case.)
-            if(mAtMoscone){
-                showFloorIndex(mMosconeBuilding.getActiveLevelIndex());
+            if(mAtVenue){
+                showFloorIndex(mVenueBuilding.getActiveLevelIndex());
             }
+        } else {
+            mVenueMarker.setVisible(true);
         }
     }
 
-    private void onDefocusMoscone() {
+    private void onDefocusVenue() {
         // Hide all markers and tile overlays
         showFloorElementsIndex(INVALID_FLOOR);
     }
 
-    private void onFocusMoscone() {
+    private void onFocusVenue() {
         // Highlight a room if argument is set and it exists, otherwise show the default floor
         if (mHighlightedRoom != null && mMarkers.containsKey(mHighlightedRoom)) {
             highlightRoom(mHighlightedRoom);
             mHighlightedRoom = null;
         } else {
-            // Switch to the default level for Moscone
-                showFloorIndex(MOSCONE_DEFAULT_LEVEL_INDEX);
+            // Switch to the default level for the venue
+            showFloorIndex(VENUE_DEFAULT_LEVEL_INDEX);
         }
 
 
@@ -510,28 +513,28 @@ public class MapFragment extends com.google.android.gms.maps.MapFragment impleme
     public void onIndoorBuildingFocused() {
         IndoorBuilding building = mMap.getFocusedBuilding();
 
-        if (building != null && mMosconeBuilding == null
+        if (building != null && mVenueBuilding == null
                 && mMap.getProjection().getVisibleRegion().latLngBounds.contains(VENUE_POSITION)) {
-            // Store the first active building. This will always be Moscone
-            mMosconeBuilding = building;
+            // Store the first active building. This will always be the venue
+            mVenueBuilding = building;
             enableMapElements();
         }
 
-        if (building != null && mMosconeBuilding.equals(building)) {
-            // Map is focused on Moscone Center
-            mAtMoscone = true;
-            onFocusMoscone();
-        } else if(mAtMoscone){
-            // Map is no longer focused on Moscone Center
-            mAtMoscone = false;
-            onDefocusMoscone();
+        if (building != null && mVenueBuilding.equals(building)) {
+            // Map is focused on the venue
+            mAtVenue = true;
+            onFocusVenue();
+        } else if(mAtVenue){
+            // Map is no longer focused on the venue
+            mAtVenue = false;
+            onDefocusVenue();
         }
     }
 
     @Override
     public void onIndoorLevelActivated(IndoorBuilding indoorBuilding) {
-        if (indoorBuilding.equals(mMosconeBuilding)) {
-            // Show map elements for this floor if at Moscone
+        if (indoorBuilding.equals(mVenueBuilding)) {
+            // Show map elements for this floor if at the venue
             showFloorElementsIndex(indoorBuilding.getActiveLevelIndex());
         }
     }
@@ -600,10 +603,10 @@ public class MapFragment extends com.google.android.gms.maps.MapFragment impleme
             AnalyticsManager.sendEvent("Map", "markerclick", title, 0L);
         }
 
-        if(marker.equals(mMosconeMaker)){
-            // Return camera to Moscone
-            LOGD(TAG, "Clicked on Moscone marker, return to initial display.");
-            centerOnMoscone(true);
+        if(marker.equals(mVenueMarker)){
+            // Return camera to the venue
+            LOGD(TAG, "Clicked on venue marker, return to initial display.");
+            centerOnVenue(true);
         } else if (TYPE_SESSION.equals(snippet)) {
             final long time = UIUtils.getCurrentTime(getActivity());
             Uri uri = ScheduleContract.Sessions.buildSessionsInRoomAfterUri(title, time);

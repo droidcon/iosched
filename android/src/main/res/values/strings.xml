@@ -342,7 +342,7 @@
     <string name="map_touch_to_see_session">Touch to see Sessions</string>
 
     <!-- Label for map marker that indicates Moscone Center at a lower zoom level -->
-    <string name="map_label_moscone" translatable="false">Moscone Center</string>
+    <string name="map_label_venue" translatable="false">Moscone Center</string>
 
     <!-- Accessibility content description on a button that will show more information about something. -->
     <string name="more_information">More information</string>
