@@ -92,7 +92,7 @@ android {
 
             buildConfigField "String", "CONFERENCE_DATA_MANIFEST_URL", "\""+droidconuk14_android_manifest+"\""
 
-            buildConfigField "String", "BOOTSTRAP_DATA_TIMESTAMP", "\"Tue, 2 Sep 2014 14:08:00 GMT\""
+            buildConfigField "String", "BOOTSTRAP_DATA_TIMESTAMP", "\"Tue,  4 Sep 2014 09:55:00 GMT\""
             buildConfigField "String", "CONFERENCE_GAME_PACKAGE_NAME", "\"\""
             buildConfigField "String", "CONFERENCE_HASHTAG", "\"#droidconUK\""
             buildConfigField "String", "CONFERENCE_HASHTAG_PREFIX", "\"#dcuk\""
