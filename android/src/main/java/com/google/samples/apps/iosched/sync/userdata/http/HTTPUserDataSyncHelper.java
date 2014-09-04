@@ -91,7 +91,12 @@ public class HTTPUserDataSyncHelper extends AbstractUserDataSyncHelper {
     protected boolean syncImpl(List<UserAction> actions, boolean hasPendingLocalData) {
         try {
             LOGD(TAG, "Now syncing user data.");
-            Set<String> remote = UserDataHelper.fromString(fetchRemote());
+            String remoteData = fetchRemote();
+            if(remoteData == null) {
+                LOGD(TAG, "Unable to fetch remote data, so unable to sync.");
+                return false;
+            }
+            Set<String> remote = UserDataHelper.fromString(remoteData);
             Set<String> local = UserDataHelper.getSessionIDs(actions);
 
             String remoteGcmKey = extractGcmKey(remote);
@@ -185,9 +190,14 @@ public class HTTPUserDataSyncHelper extends AbstractUserDataSyncHelper {
      * @throws IOException
      */
     private String fetchRemote() throws IOException {
-        String json = new GetOrCreateFIleDriveTask(getDriveService()).execute();
-        Log.v(TAG, "Got this content from remote myschedule: ["+json+"]");
-        return json;
+        try {
+            String json = new GetOrCreateFIleDriveTask(getDriveService()).execute();
+            Log.v(TAG, "Got this content from remote myschedule: [" + json + "]");
+            return json;
+        } catch (UserRecoverableAuthIOException e) {
+            mContext.startActivity(e.getIntent());
+            return null;
+        }
     }
 
 
