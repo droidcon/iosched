@@ -28,7 +28,6 @@ android {
     buildToolsVersion "20.0.0"
 
     defaultConfig {
-        applicationId "com.google.samples.apps.iosched"
         minSdkVersion 20
         targetSdkVersion 20
         versionCode 1
@@ -36,6 +35,10 @@ android {
     }
 
     productFlavors {
+        io2014 {
+            applicationId "com.google.samples.apps.iosched"
+        }
+
         droidconuk {
             applicationId "com.conferenceengineer.iosched.event1002"
         }
