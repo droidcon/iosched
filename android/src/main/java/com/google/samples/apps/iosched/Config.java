@@ -86,15 +86,14 @@ public class Config {
     public static final String WIFI_PASSPHRASE = BuildConfig.WIFI_PASSPHRASE;
 
     // GCM config
-    public static final String GCM_SERVER_PROD_URL = "";
-    public static final String GCM_SERVER_URL = "";
+    public static final String GCM_SERVER_URL = BuildConfig.GCM_URL;
 
     // the GCM sender ID is the ID of the app in Google Cloud Console
-    public static final String GCM_SENDER_ID = "";
+    public static final String GCM_SENDER_ID = BuildConfig.GCM_SENDER_ID;
 
     // The registration api KEY in the gcm server (configured in the GCM
     // server's AuthHelper.java file)
-    public static final String GCM_API_KEY = "";
+    public static final String GCM_API_KEY = BuildConfig.GCM_API_KEY;
 
     // When do we start to offer to set up the user's wifi?
     public static final long WIFI_SETUP_OFFER_START =
