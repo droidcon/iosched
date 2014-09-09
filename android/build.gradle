@@ -96,9 +96,9 @@ android {
             buildConfigField "String", "CONFERENCE_DATA_MANIFEST_URL", "\""+droidconuk14_android_manifest+"\""
             buildConfigField "String", "OAUTH_APP_NAME", "\"DroidconUK2014-2014\""
             buildConfigField "String", "OAUTH_API_KEY", "\""+droidconuk14_android_oauth_api_key+"\""
-            buildConfigField "String", "GCM_API_KEY", "\""+droidconuk14_gcm_url+"\""
+            buildConfigField "String", "GCM_API_KEY", "\""+droidconuk14_gcm_api_key+"\""
             buildConfigField "String", "GCM_SENDER_ID", "\""+droidconuk14_gcm_sender_id+"\""
-            buildConfigField "String", "GCM_URL", "\""+droidconuk14_gcm_api_key+"\""
+            buildConfigField "String", "GCM_URL", "\""+droidconuk14_gcm_url+"\""
 
             buildConfigField "String", "BOOTSTRAP_DATA_TIMESTAMP", "\"Tue,  4 Sep 2014 09:55:00 GMT\""
             buildConfigField "String", "CONFERENCE_GAME_PACKAGE_NAME", "\"\""
