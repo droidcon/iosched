@@ -756,6 +756,15 @@ public abstract class BaseActivity extends Activity implements
                 finish();
                 break;
             case NAVDRAWER_ITEM_MAP:
+                if(BuildConfig.USE_EXTERNAL_MAPS) {
+                    Uri locationUri = constructExternalMappingAppUri();
+                    intent = new Intent(Intent.ACTION_VIEW, locationUri);
+                    if(intent.resolveActivity(getPackageManager()) != null) {
+                        startActivity(intent);
+                        break;
+                    }
+                }
+
                 intent = new Intent(this, UIUtils.getMapActivityClass(this));
                 startActivity(intent);
                 finish();
@@ -788,6 +797,13 @@ public abstract class BaseActivity extends Activity implements
                 finish();
                 break;
         }
+    }
+
+    private Uri constructExternalMappingAppUri() {
+        String uri = "geo:0,0?q="
+                + BuildConfig.VENUE_LATITUDE + "," + BuildConfig.VENUE_LONGITUDE
+                + "("+BuildConfig.CONFERENCE_NAME+")";
+        return Uri.parse(uri);
     }
 
     private void signInOrCreateAnAccount() {
