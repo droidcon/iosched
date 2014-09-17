@@ -19,31 +19,29 @@ package com.google.samples.apps.iosched.sync;
 import android.content.Context;
 import android.text.TextUtils;
 
-import com.google.samples.apps.iosched.Config;
 import com.google.gson.Gson;
-import com.google.samples.apps.iosched.R;
+import com.google.samples.apps.iosched.Config;
 import com.google.samples.apps.iosched.io.model.DataManifest;
 import com.google.samples.apps.iosched.util.FileUtils;
 import com.google.samples.apps.iosched.util.HashUtils;
-import com.google.samples.apps.iosched.util.TimeUtils;
+import com.google.samples.apps.iosched.util.ServerDataFetcher;
+import com.turbomanage.httpclient.BasicHttpClient;
+import com.turbomanage.httpclient.HttpResponse;
 
 import java.io.File;
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.util.HashSet;
-import java.util.List;
 
-import com.turbomanage.httpclient.BasicHttpClient;
-import com.turbomanage.httpclient.ConsoleRequestLogger;
-import com.turbomanage.httpclient.HttpResponse;
-import com.turbomanage.httpclient.RequestLogger;
-
-import static com.google.samples.apps.iosched.util.LogUtils.*;
+import static com.google.samples.apps.iosched.util.LogUtils.LOGD;
+import static com.google.samples.apps.iosched.util.LogUtils.LOGE;
+import static com.google.samples.apps.iosched.util.LogUtils.LOGW;
+import static com.google.samples.apps.iosched.util.LogUtils.makeLogTag;
 
 /**
  * Helper class that fetches conference data from the remote server.
  */
-public class RemoteConferenceDataFetcher {
+public class RemoteConferenceDataFetcher extends ServerDataFetcher {
     private static final String TAG = makeLogTag(SyncHelper.class);
 
     // The directory under which we cache our downloaded files
@@ -56,9 +54,6 @@ public class RemoteConferenceDataFetcher {
 
     // URL of the remote manifest file
     private String mManifestUrl = null;
-
-    // timestamp of the manifest file on the server
-    private String mServerTimestamp = null;
 
     // the set of cache files we have used -- we use this for cache cleanup.
     private HashSet<String> mCacheFilesToKeep = new HashSet<String>();
@@ -90,55 +85,19 @@ public class RemoteConferenceDataFetcher {
             return null;
         }
 
-        BasicHttpClient httpClient = new BasicHttpClient();
-        httpClient.setRequestLogger(mQuietLogger);
-
-        // Only download if data is newer than refTimestamp
-        // Cloud Storage is very picky with the If-Modified-Since format. If it's in a wrong
-        // format, it refuses to serve the file, returning 400 HTTP error. So, if the
-        // refTimestamp is in a wrong format, we simply ignore it. But pay attention to this
-        // warning in the log, because it might mean unnecessary data is being downloaded.
-        if (!TextUtils.isEmpty(refTimestamp)) {
-            if (TimeUtils.isValidFormatForIfModifiedSinceHeader(refTimestamp)) {
-                httpClient.addHeader("If-Modified-Since", refTimestamp);
-            } else {
-                LOGW(TAG, "Could not set If-Modified-Since HTTP header. Potentially downloading " +
-                        "unnecessary data. Invalid format of refTimestamp argument: "+refTimestamp);
-            }
-        }
-
-        HttpResponse response = httpClient.get(mManifestUrl, null);
-        if (response == null) {
-            LOGE(TAG, "Request for manifest returned null response.");
-            throw new IOException("Request for data manifest returned null response.");
-        }
-
-        int status = response.getStatus();
-        if (status == HttpURLConnection.HTTP_OK) {
-            LOGD(TAG, "Server returned HTTP_OK, so new data is available.");
-            mServerTimestamp = getLastModified(response);
-            LOGD(TAG, "Server timestamp for new data is: " + mServerTimestamp);
-            String body = response.getBodyAsString();
-            if (TextUtils.isEmpty(body)) {
-                LOGE(TAG, "Request for manifest returned empty data.");
-                throw new IOException("Error fetching conference data manifest: no data.");
-            }
-            LOGD(TAG, "Manifest "+mManifestUrl+" read, contents: " + body);
-            mBytesDownloaded += body.getBytes().length;
-            return processManifest(body);
-        } else if (status == HttpURLConnection.HTTP_NOT_MODIFIED) {
-            // data on the server is not newer than our data
-            LOGD(TAG, "HTTP_NOT_MODIFIED: data has not changed since " + refTimestamp);
+        String manifestData = fetchDataIfNewer(TAG, mManifestUrl, refTimestamp);
+        if(manifestData == null) {
+            LOGD(TAG, "No new data is available");
             return null;
-        } else {
-            LOGE(TAG, "Error fetching conference data: HTTP status " + status);
-            throw new IOException("Error fetching conference data: HTTP status " + status);
         }
-    }
 
-    // Returns the timestamp of the data downloaded from the server
-    public String getServerDataTimestamp() {
-        return mServerTimestamp;
+        if (TextUtils.isEmpty(manifestData)) {
+            LOGE(TAG, "Request for manifest returned empty data.");
+            throw new IOException("Error fetching conference data manifest: no data.");
+        }
+        LOGD(TAG, "Manifest "+mManifestUrl+" read, contents: " + manifestData);
+        mBytesDownloaded += manifestData.getBytes().length;
+        return processManifest(manifestData);
     }
 
     /**
@@ -189,7 +148,7 @@ public class RemoteConferenceDataFetcher {
         LOGD(TAG, "Attempting to fetch: " + sanitizeUrl(url));
 
         // Check if we have it in our cache first
-        String body = null;
+        String body;
         try {
             body = loadFromCache(url);
             if (!TextUtils.isEmpty(body)) {
@@ -206,8 +165,7 @@ public class RemoteConferenceDataFetcher {
 
         // We don't have the file on cache, so download it
         LOGD(TAG, "Cache miss. Downloading from network: " + sanitizeUrl(url));
-        BasicHttpClient client = new BasicHttpClient();
-        client.setRequestLogger(mQuietLogger);
+        BasicHttpClient client = getQuietBasicHttpClient();
         HttpResponse response = client.get(url, null);
 
         if (response == null) {
@@ -362,7 +320,9 @@ public class RemoteConferenceDataFetcher {
                 ++kept;
             } else {
                 LOGD(TAG, "Cache cleanup: DELETING " + file.getName());
-                file.delete();
+                if(!file.delete()) {
+                    LOGD(TAG, "Cache cleanup: Deletion of "+file.getName()+" failed.");
+                }
                 ++deleted;
             }
         }
@@ -377,26 +337,5 @@ public class RemoteConferenceDataFetcher {
     public long getTotalBytesReadFromCache() {
         return mBytesReadFromCache;
     }
-
-    private String getLastModified(HttpResponse resp) {
-        if (!resp.getHeaders().containsKey("Last-Modified")) {
-            return "";
-        }
-
-        List<String> s = resp.getHeaders().get("Last-Modified");
-        return s.isEmpty() ? "" : s.get(0);
-    }
-
-    /**
-     * A type of ConsoleRequestLogger that does not log requests and responses.
-     */
-    private RequestLogger mQuietLogger = new ConsoleRequestLogger(){
-        @Override
-        public void logRequest(HttpURLConnection uc, Object content) throws IOException { }
-
-        @Override
-        public void logResponse(HttpResponse res) { }
-    };
-
 
 }
