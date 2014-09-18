@@ -54,4 +54,6 @@
 
     <dimen name="session_detail_speaker_left_offset">32dp</dimen> <!-- to center with FAB -->
 
+    <dimen name="twitter_stream_padding_vertical">16dp</dimen>
+    <dimen name="stream_image_right_margin">0dp</dimen>
 </resources>

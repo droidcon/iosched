@@ -1,5 +1,5 @@
 <!--
-  Copyright 2014 Google Inc. All rights reserved.
+  Copyright 2012 Google Inc.
 
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -13,14 +13,10 @@
   See the License for the specific language governing permissions and
   limitations under the License.
   -->
-<resources>
-    <dimen name="sliding_pane_width">384dp</dimen>
-
-    <dimen name="multipane_half_padding">16dp</dimen>
-    <dimen name="multipane_padding">32dp</dimen>
-
-    <dimen name="session_details_floating_width">600dp</dimen>
-    <dimen name="session_details_floating_height">750dp</dimen>
-
-    <dimen name="twitter_stream_padding_vertical">32dp</dimen>
-</resources>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/menu_compose"
+        android:icon="@drawable/ic_action_compose"
+        android:title="@string/description_compose"
+        android:orderInCategory="0"
+        android:showAsAction="ifRoom" />
+</menu>

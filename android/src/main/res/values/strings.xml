@@ -831,5 +831,10 @@
     <string name="wifi_install_error_message">Sorry, unable to update WiFi configuration</string>
     <string name="description_i_o_hunt">I/O Hunt</string>
 
+    <!-- Number of retweets -->
+    <string name="tweet_retweets">%d RT</string>
+    <string name="twitter_stream_error">Couldn\'t load the Twitter feed.</string>
+    <string name="empty_twitter_stream">No posts found.</string>
+    <string name="description_compose">New post</string>
 </resources>
 

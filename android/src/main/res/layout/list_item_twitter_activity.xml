@@ -1,0 +1,58 @@
+<!--
+  Copyright 2012 Google Inc.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  -->
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/TwitterStreamListItem">
+
+    <com.google.samples.apps.iosched.ui.widget.BezelImageView
+            android:id="@+id/stream_user_pic"
+            style="@style/StreamTweepPicture"/>
+
+    <TextView
+            android:id="@+id/stream_user_name"
+            android:layout_toRightOf="@id/stream_user_pic"
+            android:layout_toLeftOf="@+id/stream_retweets"
+            android:layout_alignWithParentIfMissing="true"
+            style="@style/StreamUserName"/>
+
+    <TextView
+            android:id="@+id/stream_retweets"
+            style="@style/StreamRetweet"/>
+
+    <TextView
+            android:id="@+id/stream_user_handle"
+            android:layout_below="@id/stream_user_name"
+            android:layout_alignLeft="@id/stream_user_name"
+            android:layout_alignBaseline="@+id/stream_timestamp"
+            android:layout_toLeftOf="@+id/stream_timestamp"
+            style="@style/StreamTextSmall"/>
+
+    <TextView
+            android:id="@+id/stream_timestamp"
+            android:layout_below="@id/stream_user_name"
+            android:layout_alignParentRight="true"
+            style="@style/StreamTimestamp"/>
+
+    <com.google.samples.apps.iosched.ui.widget.TweetTextView
+            android:id="@+id/stream_content"
+            android:layout_below="@id/stream_user_handle"
+            android:layout_alignLeft="@id/stream_user_handle"
+            android:layout_alignRight="@+id/stream_timestamp"
+            style="@style/StreamContent"/>
+
+</RelativeLayout>

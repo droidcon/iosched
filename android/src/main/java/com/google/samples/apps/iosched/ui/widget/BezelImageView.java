@@ -1,5 +1,5 @@
 /*
- * Copyright 2014 Google Inc. All rights reserved.
+ * Copyright 2012 Google Inc.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,8 +16,6 @@
 
 package com.google.samples.apps.iosched.ui.widget;
 
-import com.google.samples.apps.iosched.R;
-
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
@@ -33,6 +31,8 @@ import android.graphics.drawable.Drawable;
 import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.widget.ImageView;
+
+import com.google.samples.apps.iosched.R;
 
 /**
  * An {@link android.widget.ImageView} that draws its contents inside a mask and draws a border
@@ -145,7 +145,9 @@ public class BezelImageView extends ImageView {
                 mCacheBitmap.eraseColor(0);
             } else {
                 // Allocate a new bitmap with the correct dimensions.
-                mCacheBitmap.recycle();
+                if (!isInEditMode()) {
+                    mCacheBitmap.recycle();
+                }
                 //noinspection AndroidLintDrawAllocation
                 mCacheBitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
                 mCachedWidth = width;

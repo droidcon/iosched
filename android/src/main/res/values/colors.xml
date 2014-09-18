@@ -85,4 +85,9 @@
     <color name="event_logo_tint">#7000</color>
     <color name="eula_background">#e5e5e5</color>
     <color name="welcome_background">#e5e5e5</color>
+
+    <color name="stream_spacer_color">#eee</color>
+    <color name="stream_secondary_text_color">#898989</color>
+    <color name="stream_content_text_color">#444</color>
+    <color name="stream_accent">#ccd2a2</color>
 </resources>
