@@ -50,7 +50,7 @@ android {
             buildConfigField "double", "VENUE_CAMERA_LATITUDE", "37.78308931536713"
             buildConfigField "double", "VENUE_CAMERA_LONGITUDE", "-122.40409433841705"
 
-            buildConfigField "String", "CONFERENCE_NAME", "Google I/O 2014"
+            buildConfigField "String", "CONFERENCE_NAME", "\"Google I/O 2014\""
             buildConfigField "String", "CONFERENCE_DATA_MANIFEST_URL", "\"\""
             buildConfigField "String", "OAUTH_APP_NAME", "\"GoogleIO-Android\""
             buildConfigField "String", "OAUTH_API_KEY", "\"\""
