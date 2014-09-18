@@ -75,11 +75,11 @@ public class SocialActivity extends BaseActivity {
             Method fragmentCreator = BuildConfig.SOCIAL_FRAGMENT_CLASS.getMethod("newInstance");
             return (Fragment) fragmentCreator.invoke(null);
         } catch (NoSuchMethodException e) {
-            throw new RuntimeException("Unable to create social fragment", e);
+            throw new RuntimeException("Unable to create social fragment "+BuildConfig.SOCIAL_FRAGMENT_CLASS.getName(), e);
         } catch (InvocationTargetException e) {
-            throw new RuntimeException("Unable to create social fragment", e);
+            throw new RuntimeException("Unable to create social fragment "+BuildConfig.SOCIAL_FRAGMENT_CLASS.getName(), e);
         } catch (IllegalAccessException e) {
-            throw new RuntimeException("Unable to create social fragment", e);
+            throw new RuntimeException("Unable to create social fragment "+BuildConfig.SOCIAL_FRAGMENT_CLASS.getName(), e);
         }
     }
 
