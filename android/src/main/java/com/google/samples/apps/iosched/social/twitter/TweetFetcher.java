@@ -51,7 +51,7 @@ public class TweetFetcher extends ServerDataFetcher {
                 String tweetData = fetchDataIfNewer(TAG, getTweetsUrl(), dataTimestamp);
                 if (tweetData == null) {
                     LOGD(TAG, "No new tweet data is available");
-                    return null;
+                    return lastFetchResults;
                 }
 
                 List<Tweet> tweets = parseTweets(tweetData);
