@@ -16,11 +16,16 @@
 
 package com.google.samples.apps.iosched.ui;
 
+import android.app.Fragment;
 import android.os.Bundle;
 import android.app.ActionBar;
 
+import com.google.samples.apps.iosched.BuildConfig;
 import com.google.samples.apps.iosched.R;
 import com.google.samples.apps.iosched.util.AnalyticsManager;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 import static com.google.samples.apps.iosched.util.LogUtils.LOGD;
 import static com.google.samples.apps.iosched.util.LogUtils.makeLogTag;
@@ -41,7 +46,7 @@ public class SocialActivity extends BaseActivity {
         getLPreviewUtils().trySetActionBar();
         if (null == savedInstanceState) {
             getFragmentManager().beginTransaction()
-                    .replace(R.id.container, HashtagsFragment.newInstance())
+                    .replace(R.id.container, createSocialFragment())
                     .commit();
         }
 
@@ -62,6 +67,19 @@ public class SocialActivity extends BaseActivity {
             ActionBar ab = getActionBar();
             ab.setDisplayShowTitleEnabled(show);
             ab.setDisplayUseLogoEnabled(!show);
+        }
+    }
+
+    protected Fragment createSocialFragment() {
+        try {
+            Method fragmentCreator = BuildConfig.SOCIAL_FRAGMENT_CLASS.getMethod("newInstance");
+            return (Fragment) fragmentCreator.invoke(null);
+        } catch (NoSuchMethodException e) {
+            throw new RuntimeException("Unable to create social fragment", e);
+        } catch (InvocationTargetException e) {
+            throw new RuntimeException("Unable to create social fragment", e);
+        } catch (IllegalAccessException e) {
+            throw new RuntimeException("Unable to create social fragment", e);
         }
     }
 

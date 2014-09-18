@@ -67,6 +67,9 @@ android {
             buildConfigField "String", "WIFI_SSID", "\"IO2014\""
             buildConfigField "String", "WIFI_PASSPHRASE", "\"letsdothis\""
 
+            buildConfigField "Class<? extends android.app.Fragment>", "SOCIAL_FRAGMENT_CLASS",
+                             "com.google.samples.apps.iosched.ui.HashtagsFragment.class"
+
             buildConfigField "long[][]", "CONFERENCE_DAYS", "new long[][] {\n" +
                     "            {  " +
                     "               com.google.samples.apps.iosched.util.ParserUtils.parseTime(\"2014-06-25T07:00:00.000Z\"),\n" +
@@ -112,6 +115,9 @@ android {
             buildConfigField "String", "UNIQUE_CONTENT_IDENTIFIER", "\""+uniqueContentIdentifier+"\""
             buildConfigField "String", "WIFI_SSID", "\"DROIDCONUK\""
             buildConfigField "String", "WIFI_PASSPHRASE", "\"lolwaitwaht\""
+
+            buildConfigField "Class<? extends android.app.Fragment>", "SOCIAL_FRAGMENT_CLASS",
+                             "com.google.samples.apps.iosched.ui.TwitterSocialFragment.class"
 
             buildConfigField "long[][]", "CONFERENCE_DAYS", "new long[][] {\n" +
                     "            {  " +
