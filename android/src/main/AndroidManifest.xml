@@ -18,8 +18,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.google.samples.apps.iosched"
-    android:versionCode="201407"
-    android:versionName="2014.07"
+    android:versionCode="201408"
+    android:versionName="2014.08"
     android:installLocation="auto">
 
     <!-- targetSdkVersion set to 19 from build.gradle on non-L-preview builds -->
