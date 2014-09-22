@@ -234,6 +234,11 @@
                 android:value="tablet" />
         </activity>
 
+        <!-- Bridge activity to external mapping app -->
+        <activity android:name=".ui.ExternalMapActivityBridge"
+                  android:label="@string/title_map"
+                  android:exported="false" />
+
         <!-- TaskStackBuilder proxy activity for widgets and notifications. -->
 
         <activity

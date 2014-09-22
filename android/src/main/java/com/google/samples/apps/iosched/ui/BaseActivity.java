@@ -30,7 +30,6 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
@@ -757,15 +756,11 @@ public abstract class BaseActivity extends Activity implements
                 break;
             case NAVDRAWER_ITEM_MAP:
                 if(BuildConfig.USE_EXTERNAL_MAPS) {
-                    Uri locationUri = constructExternalMappingAppUri();
-                    intent = new Intent(Intent.ACTION_VIEW, locationUri);
-                    if(intent.resolveActivity(getPackageManager()) != null) {
-                        startActivity(intent);
-                        break;
-                    }
+                    intent = new Intent(this, ExternalMapActivityBridge.class);
+                    intent.putExtra(ExternalMapActivityBridge.EXTRA_ORIGINAL_INTENT, getIntent());
+                } else {
+                    intent = new Intent(this, UIUtils.getMapActivityClass(this));
                 }
-
-                intent = new Intent(this, UIUtils.getMapActivityClass(this));
                 startActivity(intent);
                 finish();
                 break;
@@ -797,13 +792,6 @@ public abstract class BaseActivity extends Activity implements
                 finish();
                 break;
         }
-    }
-
-    private Uri constructExternalMappingAppUri() {
-        String uri = "geo:0,0?q="
-                + BuildConfig.VENUE_LATITUDE + "," + BuildConfig.VENUE_LONGITUDE
-                + "("+BuildConfig.CONFERENCE_NAME+")";
-        return Uri.parse(uri);
     }
 
     private void signInOrCreateAnAccount() {
