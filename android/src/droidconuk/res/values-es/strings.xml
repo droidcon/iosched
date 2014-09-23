@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="question_setup_wifi_after_i_o_start">¡Droidcon London está aquí! ¿Desea configurar el WiFi de la conferencia ahora?</string>
+    <string name="question_setup_wifi_before_i_o_start">¡Droidcon London se acerca! ¿Desa configurar el WiFi de la conferencia ahora?</string>
+    <string name="welcome_to_google_i_o_app">¡Bienvenido a la aplicación de Droidcon London!</string>
+</resources>

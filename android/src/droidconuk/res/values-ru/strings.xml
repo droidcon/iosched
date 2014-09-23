@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="question_setup_wifi_after_i_o_start">Конференция Droidcon London уже началась! Вы хотите настроить доступ к сети Wi-Fi конференции сейчас?</string>
+    <string name="question_setup_wifi_before_i_o_start">Конференция Droidcon London скоро начнётся! Вы хотите настроить доступ к сети Wi-Fi конференции сейчас?</string>
+    <string name="welcome_to_google_i_o_app">Добро пожаловать в приложение Droidcon London!</string>
+</resources>
