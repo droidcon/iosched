@@ -206,11 +206,11 @@ public class Config {
     // Values for the EventPoint feedback API. Sync happens at the same time as schedule sync,
     // and before that values are stored locally in the database.
 
-    public static final String FEEDBACK_API_CODE = "";
-    public static final String FEEDBACK_URL = "";
-    public static final String FEEDBACK_API_KEY = "";
+    public static final String FEEDBACK_API_CODE = BuildConfig.FEEDBACK_API_CODE;
+    public static final String FEEDBACK_URL = BuildConfig.FEEDBACK_URL;
+    public static final String FEEDBACK_API_KEY = BuildConfig.FEEDBACK_API_KEY;
     public static final String FEEDBACK_DUMMY_REGISTRANT_ID = "";
-    public static final String FEEDBACK_SURVEY_ID = "";
+    public static final String FEEDBACK_SURVEY_ID = BuildConfig.FEEDBACK_SURVEY_ID;
 
     // URL prefix for web links to session pages
     public static final Uri SESSION_DETAIL_WEB_URL_PREFIX
