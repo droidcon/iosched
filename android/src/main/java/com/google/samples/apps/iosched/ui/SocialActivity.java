@@ -18,7 +18,6 @@ package com.google.samples.apps.iosched.ui;
 
 import android.app.Fragment;
 import android.os.Bundle;
-import android.app.ActionBar;
 
 import com.google.samples.apps.iosched.BuildConfig;
 import com.google.samples.apps.iosched.R;
@@ -43,7 +42,7 @@ public class SocialActivity extends BaseActivity {
         }
 
         setContentView(R.layout.activity_social);
-        getLPreviewUtils().trySetActionBar();
+
         if (null == savedInstanceState) {
             getFragmentManager().beginTransaction()
                     .replace(R.id.container, createSocialFragment())
@@ -61,15 +60,6 @@ public class SocialActivity extends BaseActivity {
         overridePendingTransition(0, 0);
     }
 
-    private void updateActionBarNavigation() {
-        boolean show = !isNavDrawerOpen();
-        if (getLPreviewUtils().shouldChangeActionBarForDrawer()) {
-            ActionBar ab = getActionBar();
-            ab.setDisplayShowTitleEnabled(show);
-            ab.setDisplayUseLogoEnabled(!show);
-        }
-    }
-
     protected Fragment createSocialFragment() {
         try {
             Method fragmentCreator = BuildConfig.SOCIAL_FRAGMENT_CLASS.getMethod("newInstance");
@@ -81,12 +71,6 @@ public class SocialActivity extends BaseActivity {
         } catch (IllegalAccessException e) {
             throw new RuntimeException("Unable to create social fragment "+BuildConfig.SOCIAL_FRAGMENT_CLASS.getName(), e);
         }
-    }
-
-    @Override
-    protected void onNavDrawerStateChanged(boolean isOpen, boolean isAnimating) {
-        super.onNavDrawerStateChanged(isOpen, isAnimating);
-        updateActionBarNavigation();
     }
 
     @Override

@@ -14,9 +14,6 @@
  * limitations under the License.
  */
 
-lpreview = hasProperty('lpreview') ? lpreview.toBoolean() : false;
-ext.ioschedSourceBase = lpreview ? 'src/lpreview/' : 'src/classic/';
-
 apply plugin: 'com.android.application'
 
 repositories {
@@ -27,8 +24,48 @@ repositories {
 }
 
 android {
-    compileSdkVersion lpreview ? "android-L" : 19
-    buildToolsVersion '20.0.0'
+    compileSdkVersion 21
+    buildToolsVersion "21.0.1"
+
+    defaultConfig {
+        minSdkVersion 14
+        targetSdkVersion 21
+    }
+
+    signingConfigs {
+        debug {
+            storeFile file("../android/debug.keystore")
+            storePassword "android"
+            keyAlias "androiddebugkey"
+            keyPassword "android"
+        }
+        release {
+            storeFile file("../android/debug.keystore")
+            storePassword "android"
+            keyAlias "androiddebugkey"
+            keyPassword "android"
+        }
+    }
+
+    buildTypes {
+        debug {
+            debuggable true
+            signingConfig signingConfigs.debug
+        }
+        release {
+            runProguard true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), file('proguard-project.txt')
+            signingConfig signingConfigs.release
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    aaptOptions {
+        noCompress 'apk'
+    }
 
     productFlavors { 
         io2014 {
@@ -140,66 +177,14 @@ android {
 
         }
     }
-
-    sourceSets {
-        main.java.srcDirs = [ 
-            ioschedSourceBase + 'java',
-            'src/main/java'
-        ]
-        main.resources.srcDirs = [ 
-            ioschedSourceBase + 'res', 
-            'src/main/res'
-        ] 
-    }
-
-    defaultConfig lpreview ? {} : {
-        // Non-L-preview configuration
-        minSdkVersion 14
-        targetSdkVersion 19
-    }
-
-    signingConfigs {
-        debug {
-            storeFile file("../android/debug.keystore")
-            storePassword "android"
-            keyAlias "androiddebugkey"
-            keyPassword "android"
-        }
-        release {
-            storeFile file("../android/debug.keystore")
-            storePassword "android"
-            keyAlias "androiddebugkey"
-            keyPassword "android"
-        }
-    }
-
-    buildTypes {
-        debug {
-            debuggable true
-            signingConfig signingConfigs.debug
-        }
-        release {
-            runProguard true
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), file('proguard-project.txt')
-            signingConfig signingConfigs.release
-        }
-    }
-
-    lintOptions {
-        abortOnError false
-    }
-
-    aaptOptions {
-        noCompress 'apk'
-    }
 }
 
 dependencies {
     wearApp project(':Wearable')
-    compile 'com.google.android.gms:play-services:5.0.89'
-    compile 'com.android.support:support-v13:20.+'
-    compile 'com.android.support:support-v4:20.+'
-    compile 'com.google.android.apps.dashclock:dashclock-api:+'
+    compile 'com.google.android.gms:play-services:6.1.+'
+    compile 'com.android.support:support-v13:21.+'
+    compile 'com.android.support:appcompat-v7:21.+'
+    compile 'com.android.support:cardview-v7:21.+'
     compile 'com.google.code.gson:gson:2.+'
     compile('com.google.api-client:google-api-client:1.+') {
         exclude group: 'xpp3', module: 'shared'
