@@ -54,13 +54,6 @@ public class ExternalMapActivityBridge extends Activity {
         }
     }
 
-    private Uri constructExternalMappingAppUri() {
-        String uri = "geo:0,0?q="
-                + BuildConfig.VENUE_LATITUDE + "," + BuildConfig.VENUE_LONGITUDE
-                + "("+BuildConfig.CONFERENCE_NAME+")";
-        return Uri.parse(uri);
-    }
-
     private void restartOriginalActivity() {
         Intent startIntent;
 
@@ -85,5 +78,11 @@ public class ExternalMapActivityBridge extends Activity {
         finish();
     }
 
+    public static Uri constructExternalMappingAppUri() {
+        String uri = "geo:0,0?q="
+                + BuildConfig.VENUE_LATITUDE + "," + BuildConfig.VENUE_LONGITUDE
+                + "("+BuildConfig.CONFERENCE_NAME+")";
+        return Uri.parse(uri);
+    }
 
 }

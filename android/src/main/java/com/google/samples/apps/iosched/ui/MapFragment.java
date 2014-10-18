@@ -94,7 +94,7 @@ public class MapFragment extends com.google.android.gms.maps.MapFragment impleme
     // Initial camera zoom
     private static final float CAMERA_ZOOM = 18.19f;
     private static final float CAMERA_BEARING = 234.2f;
- 
+
     private static final int INVALID_FLOOR = Integer.MIN_VALUE;
 
     // Estimated number of floors used to initialise data structures with appropriate capacity

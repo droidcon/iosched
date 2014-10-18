@@ -917,15 +917,33 @@ public abstract class BaseActivity extends ActionBarActivity implements
 
         // if attendee is remote, show map on the overflow instead of on the nav bar
         final boolean isRemote = !PrefUtils.isAttendeeAtVenue(this);
+
+        boolean canSupportLocationMapViewing;
+        if(BuildConfig.USE_EXTERNAL_MAPS) {
+            Intent mapIntent =
+                    new Intent(
+                            Intent.ACTION_VIEW,
+                            ExternalMapActivityBridge.constructExternalMappingAppUri()
+                    );
+            canSupportLocationMapViewing =
+                    getPackageManager().
+                        queryIntentActivities(
+                                mapIntent,
+                                PackageManager.MATCH_DEFAULT_ONLY
+                        ).size() > 0;
+        } else {
+            canSupportLocationMapViewing = true;
+        }
         final MenuItem mapItem = menu.findItem(R.id.menu_map);
         if (mapItem != null) {
-            mapItem.setVisible(isRemote);
+            mapItem.setVisible(isRemote && canSupportLocationMapViewing);
         }
 
         MenuItem ioHuntItem = menu.findItem(R.id.menu_i_o_hunt);
         if (ioHuntItem != null) {
             ioHuntItem.setVisible(!isRemote && !TextUtils.isEmpty(Config.IO_HUNT_PACKAGE_NAME));
         }
+
     }
 
     @Override
