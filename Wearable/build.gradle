@@ -42,6 +42,10 @@ android {
         droidconuk {
             applicationId "com.conferenceengineer.iosched.event1002"
         }
+
+        droidconit {
+            applicationId "com.conferenceengineer.android.iosched.droidconit2015"
+        }
     }
 
 
