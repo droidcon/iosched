@@ -23,13 +23,17 @@ repositories {
     }
 }
 
+ext {
+    uniqueContentIdentifier = "iosched2014"
+}
+
 android {
-    compileSdkVersion 21
-    buildToolsVersion "21.0.1"
+    compileSdkVersion 22
+    buildToolsVersion "22"
 
     defaultConfig {
         minSdkVersion 14
-        targetSdkVersion 21
+        targetSdkVersion 22
     }
 
     signingConfigs {
@@ -53,7 +57,7 @@ android {
             signingConfig signingConfigs.debug
         }
         release {
-            runProguard true
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), file('proguard-project.txt')
             signingConfig signingConfigs.release
         }
@@ -70,7 +74,6 @@ android {
     productFlavors { 
         io2014 {
             applicationId = "com.google.samples.apps.iosched"
-            uniqueContentIdentifier = "iosched2014"
 
             manifestPlaceholders = [
                     uniqueContentIdentifier:uniqueContentIdentifier,

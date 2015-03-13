@@ -309,7 +309,7 @@ public class ScheduleContract {
         String VIDEO_IMPORT_HASHCODE = "video_import_hashcode";
     }
 
-    public static final String CONTENT_AUTHORITY = BuildConfig.PACKAGE_NAME;
+    public static final String CONTENT_AUTHORITY = BuildConfig.APPLICATION_ID;
 
     public static final Uri BASE_CONTENT_URI = Uri.parse("content://" + CONTENT_AUTHORITY);
 
