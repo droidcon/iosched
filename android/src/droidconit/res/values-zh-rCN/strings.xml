@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Droidcon London 2014</string>
+    <string name="question_setup_wifi_after_i_o_start">Droidcon Italy 2015 在这！你想现在配置会议的无线网络吗？</string>
+    <string name="question_setup_wifi_before_i_o_start">Droidcon Italy 2015 快到了！你想现在配置会议的无线网络吗？</string>
+    <string name="welcome_to_google_i_o_app">欢迎来到 Droidcon Italy 2015 应用程序！</string>
+</resources>

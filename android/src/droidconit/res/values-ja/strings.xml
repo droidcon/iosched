@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="question_setup_wifi_after_i_o_start">DroidconのItalyを開催します！直ぐに、会議のWiFiを設定しますか？</string>
+    <string name="question_setup_wifi_before_i_o_start">DroidconのItalyが始まります！直ぐに、会議のWiFiを設定しますか？</string>
+    <string name="welcome_to_google_i_o_app">Droidcon Italyのアプリへようこそ！</string>
+</resources>

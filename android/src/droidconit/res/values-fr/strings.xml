@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="question_setup_wifi_after_i_o_start">Droidcon Italy, c\'est maintenant ! Aimeriez-vous configurer tout de suite le Wi-Fi de la conférence ?</string>
+    <string name="question_setup_wifi_before_i_o_start">Droidcon italy arrive ! Aimeriez-vous configurer tout de suite le Wi-Fi de la conférence ?</string>
+    <string name="welcome_to_google_i_o_app">Bienvenue dans l\'application Droidcon Italy!</string>
+</resources>
