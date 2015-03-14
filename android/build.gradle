@@ -185,7 +185,7 @@ android {
             uniqueContentIdentifier = "droidconit"
             manifestPlaceholders = [
                     uniqueContentIdentifier:uniqueContentIdentifier,
-                    mapsApiKey:droidconuk14_android_maps_api_key
+                    mapsApiKey:droidconit15_android_maps_api_key
             ]
 
             buildConfigField "boolean", "HAS_VIDEO_LIBRARY", "false"
@@ -193,31 +193,31 @@ android {
             buildConfigField "boolean", "SUPPORTS_REMOTE_VIEWING", "false"
             buildConfigField "boolean", "USE_EXTERNAL_MAPS", "true"
 
-            buildConfigField "double", "VENUE_LATITUDE", "44.980835"
-            buildConfigField "double", "VENUE_LONGITUDE", "7.394124"
-            buildConfigField "double", "VENUE_CAMERA_LATITUDE", "44.980835"
-            buildConfigField "double", "VENUE_CAMERA_LONGITUDE", "7.394124"
+            buildConfigField "double", "VENUE_LATITUDE", "45.030931"
+            buildConfigField "double", "VENUE_LONGITUDE", "7.664791"
+            buildConfigField "double", "VENUE_CAMERA_LATITUDE", "45.030931"
+            buildConfigField "double", "VENUE_CAMERA_LONGITUDE", "7.664791"
 
             buildConfigField "String", "CONFERENCE_NAME", "\"Droidcon Italy 2015\""
-            buildConfigField "String", "CONFERENCE_DATA_MANIFEST_URL", "\""+droidconuk14_android_manifest+"\""
+            buildConfigField "String", "CONFERENCE_DATA_MANIFEST_URL", "\""+droidconit15_android_manifest+"\""
             buildConfigField "String", "OAUTH_APP_NAME", "\"DroidconUK2014-2014\""
-            buildConfigField "String", "OAUTH_API_KEY", "\""+droidconuk14_android_oauth_api_key+"\""
-            buildConfigField "String", "GCM_API_KEY", "\""+droidconuk14_gcm_api_key+"\""
-            buildConfigField "String", "GCM_SENDER_ID", "\""+droidconuk14_gcm_sender_id+"\""
-            buildConfigField "String", "GCM_URL", "\""+droidconuk14_gcm_url+"\""
+            buildConfigField "String", "OAUTH_API_KEY", "\""+droidconit15_android_oauth_api_key+"\""
+            buildConfigField "String", "GCM_API_KEY", "\""+droidconit15_gcm_api_key+"\""
+            buildConfigField "String", "GCM_SENDER_ID", "\""+droidconit15_gcm_sender_id+"\""
+            buildConfigField "String", "GCM_URL", "\""+droidconit15_gcm_url+"\""
 
             buildConfigField "String", "BOOTSTRAP_DATA_TIMESTAMP", "\"Thu, 09 Apr 2015 09:30:00 CET\""
             buildConfigField "String", "CONFERENCE_GAME_PACKAGE_NAME", "\"\""
             buildConfigField "String", "CONFERENCE_HASHTAG", "\"#droidconIT\""
             buildConfigField "String", "CONFERENCE_HASHTAG_PREFIX", "\"#dcit\""
             buildConfigField "String", "CONFERENCE_TIMEZONE", "\"Europe/Rome\""
-            buildConfigField "String", "FEEDBACK_API_CODE", "\""+droidconuk14_feedback_api_code+"\""
-            buildConfigField "String", "FEEDBACK_API_KEY", "\""+droidconuk14_feedback_api_key+"\""
-            buildConfigField "String", "FEEDBACK_SURVEY_ID", "\""+droidconuk14_feedback_survey_id+"\""
-            buildConfigField "String", "FEEDBACK_URL", "\""+droidconuk14_feedback_url+"\""
+            buildConfigField "String", "FEEDBACK_API_CODE", "\""+droidconit15_feedback_api_code+"\""
+            buildConfigField "String", "FEEDBACK_API_KEY", "\""+droidconit15_feedback_api_key+"\""
+            buildConfigField "String", "FEEDBACK_SURVEY_ID", "\""+droidconit15_feedback_survey_id+"\""
+            buildConfigField "String", "FEEDBACK_URL", "\""+droidconit15_feedback_url+"\""
             buildConfigField "String", "UNIQUE_CONTENT_IDENTIFIER", "\""+uniqueContentIdentifier+"\""
-            buildConfigField "String", "WIFI_SSID", "\"DROIDCONUK\""
-            buildConfigField "String", "WIFI_PASSPHRASE", "\"lolwaitwaht\""
+            buildConfigField "String", "WIFI_SSID", "\""+ droidconit15_wifi_ssid +"\""
+            buildConfigField "String", "WIFI_PASSPHRASE", "\"" + droidconit15_wifi_password + "\""
 
             buildConfigField "Class<? extends android.app.Fragment>", "SOCIAL_FRAGMENT_CLASS",
                     "com.google.samples.apps.iosched.ui.TwitterSocialFragment.class"
