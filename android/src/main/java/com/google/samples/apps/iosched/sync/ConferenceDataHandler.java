@@ -25,6 +25,7 @@ import android.os.RemoteException;
 import android.preference.PreferenceManager;
 import android.text.TextUtils;
 
+import com.google.samples.apps.iosched.droidconitaly15.JsonTransformer;
 import com.google.samples.apps.iosched.io.*;
 import com.google.samples.apps.iosched.io.map.model.Tile;
 import com.google.samples.apps.iosched.provider.ScheduleContract;
@@ -65,17 +66,17 @@ public class ConferenceDataHandler {
     // really old or nonexistent)
     private static final String DEFAULT_TIMESTAMP = "Sat, 1 Jan 2000 00:00:00 GMT";
 
-    private static final String DATA_KEY_ROOMS = "rooms";
-    private static final String DATA_KEY_BLOCKS = "blocks";
-    private static final String DATA_KEY_TAGS = "tags";
-    private static final String DATA_KEY_SPEAKERS = "speakers";
-    private static final String DATA_KEY_SESSIONS = "sessions";
-    private static final String DATA_KEY_SEARCH_SUGGESTIONS = "search_suggestions";
-    private static final String DATA_KEY_MAP = "map";
-    private static final String DATA_KEY_HASHTAGS = "hashtags";
-    private static final String DATA_KEY_EXPERTS = "experts";
-    private static final String DATA_KEY_VIDEOS = "video_library";
-    private static final String DATA_KEY_PARTNERS = "partners";
+    public static final String DATA_KEY_ROOMS = "rooms";
+    public static final String DATA_KEY_BLOCKS = "blocks";
+    public static final String DATA_KEY_TAGS = "tags";
+    public static final String DATA_KEY_SPEAKERS = "speakers";
+    public static final String DATA_KEY_SESSIONS = "sessions";
+    public static final String DATA_KEY_SEARCH_SUGGESTIONS = "search_suggestions";
+    public static final String DATA_KEY_MAP = "map";
+    public static final String DATA_KEY_HASHTAGS = "hashtags";
+    public static final String DATA_KEY_EXPERTS = "experts";
+    public static final String DATA_KEY_VIDEOS = "video_library";
+    public static final String DATA_KEY_PARTNERS = "partners";
 
     private static final String[] DATA_KEYS_IN_ORDER = {
             DATA_KEY_ROOMS,
@@ -143,6 +144,9 @@ public class ConferenceDataHandler {
         mHandlerForKey.put(DATA_KEY_HASHTAGS, mHashtagsHandler = new HashtagsHandler(mContext));
         mHandlerForKey.put(DATA_KEY_VIDEOS, mVideosHandler = new VideosHandler(mContext));
         mHandlerForKey.put(DATA_KEY_PARTNERS, mPartnersHandler = new PartnersHandler(mContext));
+
+        // transform the jsons to the expected format
+        dataBodies = JsonTransformer.transformJson(dataBodies);
 
         // process the jsons. This will call each of the handlers when appropriate to deal
         // with the objects we see in the data.
